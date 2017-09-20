@@ -1,0 +1,58 @@
+# Sampling of Analog Signals
+
+
+## Signals
+
+- Signal = a measurable quantity which varies in time, space or some other variable
+
+- Example: a voltage signal
+
+- Represented as a mathematical function, e.g. $v(t)$.
+
+- **Off Topic: Glossary**
+   - "e.g." = "*exampli gratia*" (lat.) = "for example" (eng.) = "de exemplu" (rom.)
+   - "i.e." = "*id est*" (lat) = "that is" (eng.) = "adică" (rom.)
+
+
+## Signal dimension
+
+- Unidimensional (1D) signal: = a function of a signal variable
+   - Example: $v(t)$ = a function of time
+
+- Multidimensional (2D, 3D, ...) signal = a function of multiple variables
+   - Example: intensity of an image across a photo, $I(x,y)$, depends on the two
+   coordinates $x$ and $y$ that specify the position
+
+## Continuous and discrete signals
+
+- Continuous (analog) signal = function of a continuous variable
+   - Signal has a value for possible value of the variable in the defined range
+   - The variable may be defined only in a certain range (e.g. $t \in [0,100]$),
+   but it is a compact range
+
+- Discrete signal = function of a discrete variable
+   - Signal has values only at certain discrete values (*samples*)
+   - Indexed with natural numbers: $x[-1]$, $x[0]$, $x[1]$ etc.
+   - Outside the samples, the signal is **not defined**
+
+## Notation
+
+- We use the following notation throughout these lectures
+
+- Continuous signals
+   - Has **round parantheses**, e.g. $x_a(t)$
+   - Sometimes has the $a$ subscript
+   - The variable is usually $t$ (time)
+   - $x(2.3)$ = the value of the signal $a(t)$ at $t = 2.3$
+
+- Discrete signals
+   - Has **square brackets**, e.g. $x[n]$
+   - The variables are denoted as $n$ or $k$ (suggest natural numbers)
+   - $x[3]$ = the value of the signal $x[n]$ for $n = 3$
+   - $x[1.5]$ = does not exist
+
+## Signals with continuous and discrete values 
+
+
+
+## Sampling
