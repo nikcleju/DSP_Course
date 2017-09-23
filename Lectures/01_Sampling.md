@@ -1,27 +1,32 @@
-# Sampling of Analog Signals
 
+# I. Analog and Digital Signals
 
 ## Signals
 
 - Signal = a measurable quantity which varies in time, space or some other variable
 
-- Example: a voltage signal
+* Examples:
+    - a voltage which varies in time (1D voltage signal)
+    - sound pressure which varies in time (sound signal)
+    - intensity of light which varies across a photo (2D image)
 
 - Represented as a mathematical function, e.g. $v(t)$.
 
-- Off Topic: Glossary
+## Off Topic
+
+- Glossary:
     - "e.g." = "*exampli gratia*" (lat.) = "for example" (eng.) = "de exemplu" (rom.)
     - "i.e." = "*id est*" (lat) = "that is" (eng.) = "adică" (rom.)
 
-
 ## Signal dimension
 
-- Unidimensional (1D) signal: = a function of a signal variable
-    - Example: $v(t)$ = a function of time
+- **Unidimensional** (1D) signal = a function of a single variable
+    - Example: a voltage signal $v(t)$ only varies in time.
 
-- Multidimensional (2D, 3D, ...) signal = a function of multiple variables
-    - Example: intensity of an image across a photo, $I(x,y)$, depends on the two
-    coordinates $x$ and $y$ that specify the position
+- **Multidimensional** (2D, 3D ... M-D) signal = a function of a multiple variables
+    - Example: intensity of a grayscale image $I(x,y)$ across the surface of a photo
+
+- In these lectures we consider only 1D signals, but the theory is similar
 
 ## Continuous and discrete signals
 
@@ -35,17 +40,21 @@
     - Indexed with natural numbers: $x[-1]$, $x[0]$, $x[1]$ etc.
     - Outside the samples, the signal is **not defined**
 
+
+![](figures/01_Sampling_figure1_1.png){width=12cm}\
+
+
 ## Notation
 
 - We use the following notation throughout these lectures
 
-- Continuous signals
+- Continuous signal
     - Has **round parantheses**, e.g. $x_a(t)$
     - Sometimes has the $a$ subscript
     - The variable is usually $t$ (time)
     - $x(2.3)$ = the value of the signal $a(t)$ at $t = 2.3$
 
-- Discrete signals
+- Discrete signal
     - Has **square brackets**, e.g. $x[n]$
     - The variables are denoted as $n$ or $k$ (suggest natural numbers)
     - $x[3]$ = the value of the signal $x[n]$ for $n = 3$
@@ -64,13 +73,15 @@
 
 - Frequency = inverse of period
 
+- Pulsation $\omega$ = 2 * $\pi$ * frequency
+
 - Continuous signals:
-$$x_a(t) = x(t + T)$$
+    - Periodic: $x_a(t) = x(t + T)$
     - $T$ is usually measured in seconds (or some other unit)
     - $F = \frac{1}{T}$ is measured in Hz = $\frac{1}{s}$ (Hertz)
 
 - Discrete signals:
-$$x[n] = x[n + N]$$
+    - Periodic: $x[n] = x[n + N]$
     - $N$ **has no unit**, because it is just a number
     - $f = \frac{1}{N}$ **has no unit** also
 
@@ -86,6 +97,9 @@ $$x[n] = x[n + N]$$
     - Consequence of using natural numbers to index the samples (x[0], x[1], x[2]...),
     without any physical unit attached
 
+- For mathematical reasons: we will consider negative frequencies as well (remember SCS)
+    - they mirror the positive frequencies.
+
 ## Sampling
 
 - Taking the values from an analog signal at certain discrete moments of time, usually periodic
@@ -99,6 +113,13 @@ $$x[n] = x[n + N]$$
     - Processing of continuous signals is expensive
     - Processing of discrete signals is cheap (digital devices)
     - Sometimes nothing is lost due to sampling 
+
+## Graphical example
+
+
+![](figures/01_Sampling_figure2_1.png)\
+
+
 
 ## Sampling equation
 
@@ -122,6 +143,14 @@ x[n] =& x_a(n T_s) \\
 - Sampling a continuous cosine (or sine) produces a discrete cosine (or sine)
 
 - The discrete frequency is $f = \frac{F}{F_s}$
+
+## False friends
+
+- **Note:** A discrete sinusoidal signal might not _look_ sinosoidal, when its frequency is high (close to $\frac{1}{2}$).
+
+
+![](figures/01_Sampling_figure3_1.png){width=12cm}\
+
 
 ## Sampling theorem (Nyquist-Shannon)
 
@@ -165,16 +194,26 @@ $$sin (2 \pi (\frac{1}{2} + \epsilon)n) = - sin (2 \pi (\frac{1}{2} - \epsilon)n
 
 - Sampling with $F_s \ge 2 F_{max}$ ensures $f \le \frac{1}{2}$, so no aliasing
 
+## Aliasing example - low frequency signal
+
+
+![](figures/01_Sampling_figure4_1.png)\
+
+
+## Aliasing example - high frequency signal, same samples
+
+
+![](figures/01_Sampling_figure5_1.png)\
+
 
 ## The problem of aliasing
 
-- Sampling different analog signals, with different frequencies, leads to exactly the
-same samples
+- Sampling different signals leads to exactly same samples
 
-- How can be know from what signal did the samples come from? Impossible.
+- How to know from what signal did the samples come from? Impossible.
 
 - Better remove from the signal the frequencies larger than $\frac{F_s}{2}$, 
-otherwise they will be similar to a different frequency and create confusion
+otherwise they will create a false frequency and bring confusion
 
 - Anti-alias filter: a low-pass filter situated before a sampling circuit, 
 rejecting all frequencies $F > \frac{F_s}{2}$ from the signal before sampling
