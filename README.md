@@ -1,2 +1,2 @@
-# IT20162017
-Information Theory class 2016-2017
+# DSP20172018
+Digital Signal Processing, ETTI, TUIASI, 2017-2018
