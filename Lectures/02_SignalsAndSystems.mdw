@@ -1,9 +1,7 @@
 
 # II. Discrete signals and systems
 
-## II.1 Discrete signals
-
-### Representation
+## Representation of discrete signals
 
 A discrete signal can represented:
 
@@ -15,11 +13,11 @@ Examples: blackboard
 
 $x[4]$ represents the value of the fourth sample in the signal $x[n]$.
 
-### Basic signals
+## Basic signals
 
 Some elementary signals are presented below.
 
-#### Unit impulse
+### Unit impulse
 
 Contains a single non-zero value of $1$ located at time $0$. It is denoted with $\delta[n]$.
 
@@ -29,7 +27,7 @@ $$\delta[n] =
 0 & \mbox{otherwise}
 \end{cases}.$$
 
-### Representation
+## Representation
 
 <<echo=False>>=
 import matplotlib.pyplot as plt, numpy as np
@@ -40,11 +38,9 @@ plt.axis([t[0],t[-1],-0.2,1.2])
 @
 
 
-### Unit step
+## Unit step
 
-#### Unit step
-
-It is denoted with $u[n]$.
+* It is denoted with $u[n]$.
 
 $$u[n] = 
 \begin{cases}
@@ -52,7 +48,7 @@ $$u[n] =
 0 & \mbox{otherwise}
 \end{cases}.$$
 
-### Representation
+## Representation
 
 <<echo=False>>=
 import matplotlib.pyplot as plt, numpy as np
@@ -62,9 +58,7 @@ plt.stem(t,delta); plt.title ('Unit step $u[n]$')
 plt.axis([t[0],t[-1],-0.2,1.2])
 @
 
-### Unit ramp
-
-#### Unit ramp
+## Unit ramp
 
 It is denoted with $u_r[n]$.
 
@@ -74,7 +68,7 @@ n &\mbox{if } n \geq 0 \\
 0 & \mbox{otherwise}
 \end{cases}.$$
 
-### Representation
+## Representation
 
 <<echo=False>>=
 import matplotlib.pyplot as plt, numpy as np
@@ -85,9 +79,7 @@ plt.axis([t[0],t[-1],0,10.2])
 @
 
 
-### Exponential signal
-
-#### Exponential signal
+## Exponential signal
 
 It does not have a special notation. It is defined by:
 $$x[n] = a^n.$$
@@ -101,7 +93,7 @@ Depending on the value of $a$, we have four possible cases:
 3. $-1 < a < 0$
 4. $a \leq 1$
 
-### Representation
+## Representation
 
 <<echo=False>>=
 import matplotlib.pyplot as plt, numpy as np
@@ -118,9 +110,7 @@ plt.subplot(2,2,4); plt.stem(n,x4); plt.title ('a = -1.35');
 @
 
 
-## II.2 Types of discrete signals
-
-### Signals with finite energy
+## Signals with finite energy
 
 - The **energy of a discrete signal** is defined as
 $$E = \sum_{n=-\infty}^{\infty} (x[n])^2.$$
@@ -129,7 +119,7 @@ $$E = \sum_{n=-\infty}^{\infty} (x[n])^2.$$
 
 - Examples: unit impulse has finite energy; unit step does not.
 
-### Signals with finite power
+## Signals with finite power
 
 - The **average power of a discrete signal** is defined as
 $$P = \lim_{N \to \infty} \frac{\sum_{n=-N}^{N} (x[n])^2}{2N+1}.$$
@@ -143,7 +133,7 @@ $$P = \lim_{N \to \infty} \frac{\sum_{n=-N}^{N} (x[n])^2}{2N+1}.$$
 - Example: unit step has finite power $P = \frac{1}{2}$ (see proof at blackboard).
 
 
-### Periodic and non-periodic signals
+## Periodic and non-periodic signals
 
 - A signal is called **periodic** if its values repeat themselves after a certain time (known as **period**).
 $$x[n] = x[n + N]), \forall t$$
@@ -153,7 +143,7 @@ $$x[n] = x[n + N]), \forall t$$
 - Periodic signals have infinite energy, and finite power equal to the power of a single period.
 
 
-### Even and odd signals
+## Even and odd signals
 
 - A signal is **even** if it satisfies the following symmetry:
 $$x[n] = x[-n], \forall n.$$
@@ -164,7 +154,7 @@ $$-x[n] = x[-n], \forall n.$$
 - There exist signals which are neither even nor odd.
 
 
-### Even and odd signals: example
+## Even and odd signals: example
 
 <<fig=True, echo=False, height='6cm', width='10cm'>>=
 import matplotlib.pyplot as plt, numpy as np
@@ -177,7 +167,7 @@ plt.subplot(1,2,2); plt.stem(n,x2); plt.title ('Odd signal');
 @
 
 
-### Even and odd parts of a signal
+## Even and odd parts of a signal
 
 - Every signal can be written as the sum of an even signal and an odd signal:
 $$x[n] = x_e[n] + x_o[n]$$
@@ -191,7 +181,7 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 - Proof: check that $x_e[n]$  is even, $x_o[n]$ is odd, and their sum is $x[n]$
 
 
-### Even and odd parts: example
+## Even and odd parts: example
 
 <<echo=False, width='10cm'>>=
 import matplotlib.pyplot as plt, numpy as np
@@ -209,9 +199,9 @@ plt.subplot(1,3,3); plt.stem(n,xo); plt.title ('Odd part'); plt.axis([-6,6,-4,10
 @
 
 
-## II.3 Basic operations with discrete signals
+## Basic operations - Time shifting
 
-### Time shifting
+Time shifting:
 
 - Let $x[n]$ be a signal. 
 
@@ -220,7 +210,7 @@ plt.subplot(1,3,3); plt.stem(n,xo); plt.title ('Odd part'); plt.axis([-6,6,-4,10
 - The signal **$x[n+k]$ is $x[n]$ anticipated with $k$ time units**. Graphically, $x[n+k]$ is shifted $k$ units to the **left** compared to the original signal.
 
 
-### Time shifting: representation
+## Time shifting: representation
 
 <<fig=True, echo=False>>=
 import matplotlib.pyplot as plt, numpy as np
@@ -235,9 +225,12 @@ plt.subplot(3,1,3); plt.stem(n,x3); plt.title ('x[n+3]')
 @
 
 
-### Time reversal
+## Time reversal
 
 Changing the variable $n$ to $-n$ produces a signal $x[-n]$ which mirrors $x[n]$.
+
+
+## Time reversal: representation
 
 <<fig=True,echo=False>>=
 import matplotlib.pyplot as plt, numpy as np
@@ -250,12 +243,14 @@ plt.subplot(1,2,2); plt.stem(n,x2); plt.title ('Reversed signal x[-n]');
 @
 
 
-### Subsampling
+## Subsampling
 
 $x_{M\downarrow}[n] = x[Mn]$ is a **subsampled** version of $x[n]$ with a factor of $M$. 
 
 Only 1 sample out of $M$ are kept from the original signal $x[n]$, the rest are discarded.
 
+
+## Subsampling - representation
 
 <<fig=True,echo=False>>=
 import matplotlib.pyplot as plt, numpy as np
@@ -269,7 +264,7 @@ plt.figure(figsize=(5,6));
 plt.stem(n2,x2); plt.title ('Signal subsampled by a factor of 2, $x_{2\downarrow}[n]$');
 @
 
-### Interpolation
+## Interpolation
 
 **Interpolation** by a factor of $L$ adds $L$ of zeros between two samples in the original signal. 
 
@@ -281,6 +276,7 @@ x[\frac{n}{L}] &\mbox{if } \frac{n}{L} \in \mathbb{N} \\
 \end{cases}.
 $$
 
+## Interpolation: representation
 
 ```python
 %matplotlib inline
@@ -301,7 +297,7 @@ plt.stem(x2); plt.title ('Interpolated signal by a factor or 3, $x_{3\uparrow}[n
 ![png](02_SignalsAndSystems_files/02_SignalsAndSystems_23_1.png)
 
 
-### Mathematical operations
+## Mathematical operations
 
 A signal $x[n]$ can be **scaled** by a constant A, i.e. each sample is multipled by A.
 
@@ -315,26 +311,29 @@ Two signals $x_1[n]$ and $x_2[n]$ can be **multiplied** by multiypling the indiv
 
 $$y[n] = x_1[n] \cdot x_2[n]$$
 
-## II.4 Discrete systems
 
-A **system** is a device or algorithm which produces an **output signal** based on an **input signal**. We will only consiuder systems with a single input and a single output.
+## Discrete systems
 
-Figure here - blackboard.
+- A **system** is a device or algorithm which produces an **output signal** based on an **input signal**. 
 
-Common notation: x[n] is the input, y[n] is the output, H is the system. 
+- We will only consiuder systems with a single input and a single output.
 
-The relation between the signals can be written as
+- Common notation: x[n] is the input, y[n] is the output, H is the system. 
+
+## Discrete systems - notation
+
+- The relation between the signals can be written as
 
 $$y[n] = H\left[x[n]\right],$$
 
-meaning "*the system H applied to the input x[n] produces the output y[n]*".
+- Translates as "*the system H applied to the input x[n] produces the output y[n]*".
 
-It can also be represented as
+- It can also be represented as
 $$x[n] \overset{H}{\rightarrow} y[n],$$
 
-suggesting "*the input $x[n]$ is transformed by the system H into y[n]*".
+- Translates as "*the input $x[n]$ is transformed by the system H into y[n]*".
 
-Usually, a system is described by the **input-output equation** which expains how $y[n]$ is defined in terms of $x[n]$.
+## Examples
 
 Examples:
 
@@ -346,6 +345,8 @@ Examples:
 6. $y[n] = (x[n])^2 + \log_{10} x[n-1]$
 7. $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$
 
+
+## Examples - 1
 
 ```python
 %matplotlib inline
@@ -363,6 +364,7 @@ plt.gcf().subplots_adjust(top=0.85)
 ![png](02_SignalsAndSystems_files/02_SignalsAndSystems_27_0.png)
 
 
+## Examples - 2
 
 ```python
 %matplotlib inline
@@ -379,7 +381,7 @@ plt.gcf().subplots_adjust(top=0.85)
 
 ![png](02_SignalsAndSystems_files/02_SignalsAndSystems_28_0.png)
 
-
+## Examples - 3
 
 ```python
 %matplotlib inline
@@ -408,7 +410,7 @@ plt.gcf().subplots_adjust(top=0.85)
 
 ![png](02_SignalsAndSystems_files/02_SignalsAndSystems_29_1.png)
 
-
+## Examples - 4
 
 ```python
 %matplotlib inline
@@ -430,14 +432,10 @@ plt.suptitle('$y[n] = \max(x[n+1], x[n], x[n-1])$', fontsize='x-large')
 plt.gcf().subplots_adjust(top=0.85)
 ```
 
-    x =  [0, 1, 2, 3, 4, 4, 4, 4, 4]
-    y = [1.00, 2.00, 3.00, 4.00, 4.00, 4.00, 4.00, 4.00, 4.00]
-
-
-
 ![png](02_SignalsAndSystems_files/02_SignalsAndSystems_30_1.png)
 
 
+## Examples - 5
 
 ```python
 %matplotlib inline
@@ -462,24 +460,28 @@ plt.gcf().subplots_adjust(top=0.80)
 ![png](02_SignalsAndSystems_files/02_SignalsAndSystems_31_1.png)
 
 
-### Recursive systems
+## Recursive systems
 
-The last system $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$ can be also written in **recursive form**
+- The last system $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$ can be also written in **recursive form**
 
 $$y[n] = y[n-1] + x[n],$$
 
 
-assuming that we start from a suitable **initial condition** $$y[n_0] = \sum_{k=-\infty}^{n_0} x[k].$$
+- Assuming that we start from a suitable **initial condition** $$y[n_0] = \sum_{k=-\infty}^{n_0} x[k].$$
 
-Recursive systems always have one or more initial conditions. 
 
-For recursive systems, the output signal depends on the input signal and on initial conditions as well. Thus, the initial conditions must always be specified for a recursive system.
+## Recursive systems - Initial conditions
 
-If the initial conditions are omitted for a recursive system, it is implicitly assumed that they are equal to 0. When the initial conditions are all 0, the system is said to be **relaxed**.
+- Recursive systems always have one or more initial conditions. 
 
-Note that a recursive system with non-zero initial conditions can produce an output signal even in the absence of an input ($x[n] = 0$). See example.
+- For recursive systems, the output signal depends on the input signal and on initial conditions as well. Thus, the initial conditions must always be specified for a recursive system.
 
-### Representation of systems
+- If the initial conditions are omitted for a recursive system, it is implicitly assumed that they are equal to 0. When the initial conditions are all 0, the system is said to be **relaxed**.
+
+- A recursive system with non-zero initial conditions can produce an output signal even in the absence of an input ($x[n] = 0$). See example.
+
+
+## Representation of systems
 
 The operation of a system can be described graphically (see examples on blackboard):
 
@@ -490,9 +492,7 @@ The operation of a system can be described graphically (see examples on blackboa
 - anticipation element
 - other blocks for more complicated math operations
 
-## II.4 Classification of discrete systems
-
-### Memoryless / systems with memory
+## Memoryless / systems with memory
 
 A system is **memoryless (or static)** if the output at some time $n$ depends only on the input **from the same moment** $n$. Otherwise, the system **has memory (dynamic)**. 
 
@@ -507,7 +507,7 @@ Examples:
 - finite memory of order 4: $y[n] = x[n] + x[n-2] + x[n-4]$ 
 - infinite memory: $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$
 
-### Time-Invariant and Time-Variant systems
+## Time-Invariant and Time-Variant systems
 
 A relaxed system $H$ is **time-invariant** if and only if
 $$x[n] \overset{H}{\rightarrow} y[n]$$
@@ -519,12 +519,16 @@ $\forall x[n], \forall k$.
 
 Otherwise, the system is said to be **time-variant**.
 
+## Time-Invariant and Time-Variant systems
+
 Examples:
 - $y[n] = x[n] - x[n-1]$ is time-invariant
 - $y[n] = n \cdot x[n]$ is not time-invariant
 
 A system is time-invariant if it depends on $n$ only through the input signal $x[n]$.
 
+
+## Time-Invariant and Time-Variant systems: representation
 
 ```python
 %matplotlib inline
@@ -554,6 +558,7 @@ plt.gcf().subplots_adjust(top=0.80)
 
 ![png](02_SignalsAndSystems_files/02_SignalsAndSystems_36_0.png)
 
+## Time-Invariant and Time-Variant systems: representation
 
 
 ```python
@@ -584,7 +589,7 @@ plt.gcf().subplots_adjust(top=0.80)
 ![png](02_SignalsAndSystems_files/02_SignalsAndSystems_37_1.png)
 
 
-### Linear and nonlinear systems
+## Linear and nonlinear systems
 
 A system $H$ is **linear** if it satisfies the following relation (called "superposition")
 
@@ -604,7 +609,7 @@ Examples:
 
 
 
-For a syste to be linear, the input samples $x[n]$ must not undergo non-linear transformations. 
+For a system to be linear, the input samples $x[n]$ must not undergo non-linear transformations. 
 
 **The only transformations** of the input x[n] allowed to take place in a linear system are:
 

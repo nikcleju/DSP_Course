@@ -41,6 +41,10 @@
     - Outside the samples, the signal is **not defined**
 
 
+```
+<matplotlib.text.Text at 0x7f770d66da90>
+```
+
 ![](figures/01_Sampling_figure1_1.png){width=12cm}\
 
 
@@ -117,6 +121,10 @@
 ## Graphical example
 
 
+```
+<matplotlib.text.Text at 0x7f770c7b9400>
+```
+
 ![](figures/01_Sampling_figure2_1.png)\
 
 
@@ -148,6 +156,10 @@ x[n] =& x_a(n T_s) \\
 
 - **Note:** A discrete sinusoidal signal might not _look_ sinosoidal, when its frequency is high (close to $\frac{1}{2}$).
 
+
+```
+<matplotlib.text.Text at 0x7f770bedf9e8>
+```
 
 ![](figures/01_Sampling_figure3_1.png){width=12cm}\
 
@@ -197,11 +209,19 @@ $$sin (2 \pi (\frac{1}{2} + \epsilon)n) = - sin (2 \pi (\frac{1}{2} - \epsilon)n
 ## Aliasing example - low frequency signal
 
 
+```
+<matplotlib.text.Text at 0x7f770bd859b0>
+```
+
 ![](figures/01_Sampling_figure4_1.png)\
 
 
 ## Aliasing example - high frequency signal, same samples
 
+
+```
+<matplotlib.text.Text at 0x7f770d21d390>
+```
 
 ![](figures/01_Sampling_figure5_1.png)\
 
