@@ -1,23 +1,28 @@
 
 # II. Discrete signals and systems
 
-## Representation of discrete signals
+## II.1 Discrete signals
+
+### Representation
 
 A discrete signal can represented:
 
 - graphically
 - in table form
-- as a vector: $x[n] = [...,0,0,1,3,4,5,0,...]$, with an **arrow** indicating the origin of time ($n=0$). If the arrow is missing, the origin of time is at the first element. The dots $...$ indicate that the value remains the same from that point onwards
+- as a vector: $x[n] = [...,0,0,1,3,4,5,0,...]$
+    - an **arrow** indicates the origin of time ($n=0$).
+    -if the arrow is missing, the origin of time is at the first element
+    -the dots $...$ indicate that the value remains the same from that point onwards
 
-Examples: blackboard
+Examples: at blackboard
 
-$x[4]$ represents the value of the fourth sample in the signal $x[n]$.
+Notation: $x[4]$ represents the value of the fourth sample in the signal $x[n]$
 
-## Basic signals
+### Basic signals
 
 Some elementary signals are presented below.
 
-### Unit impulse
+#### Unit impulse
 
 Contains a single non-zero value of $1$ located at time $0$. It is denoted with $\delta[n]$.
 
@@ -27,20 +32,18 @@ $$\delta[n] =
 0 & \mbox{otherwise}
 \end{cases}.$$
 
-## Representation
+### Representation
 
-
-```
-[-3, 4, -0.2, 1.2]
-```
 
 ![](figures/02_SignalsAndSystems_figure1_1.png)\
 
 
 
-## Unit step
+### Unit step
 
-* It is denoted with $u[n]$.
+#### Unit step
+
+It is denoted with $u[n]$.
 
 $$u[n] = 
 \begin{cases}
@@ -48,17 +51,15 @@ $$u[n] =
 0 & \mbox{otherwise}
 \end{cases}.$$
 
-## Representation
+### Representation
 
-
-```
-[-6, 9, -0.2, 1.2]
-```
 
 ![](figures/02_SignalsAndSystems_figure2_1.png)\
 
 
-## Unit ramp
+### Unit ramp
+
+#### Unit ramp
 
 It is denoted with $u_r[n]$.
 
@@ -68,18 +69,16 @@ n &\mbox{if } n \geq 0 \\
 0 & \mbox{otherwise}
 \end{cases}.$$
 
-## Representation
+### Representation
 
-
-```
-[-6, 9, 0, 10.2]
-```
 
 ![](figures/02_SignalsAndSystems_figure3_1.png)\
 
 
 
-## Exponential signal
+### Exponential signal
+
+#### Exponential signal
 
 It does not have a special notation. It is defined by:
 $$x[n] = a^n.$$
@@ -93,27 +92,27 @@ Depending on the value of $a$, we have four possible cases:
 3. $-1 < a < 0$
 4. $a \leq 1$
 
-## Representation
+### Representation
 
-
-```
-<matplotlib.text.Text at 0x7f9260b49a58>
-```
 
 ![](figures/02_SignalsAndSystems_figure4_1.png)\
 
 
 
-## Signals with finite energy
+## II.2 Types of discrete signals
+
+### Signals with finite energy
 
 - The **energy of a discrete signal** is defined as
 $$E = \sum_{n=-\infty}^{\infty} (x[n])^2.$$
 
 - If $E$ is finite, the signal is said to have finite energy.
 
-- Examples: unit impulse has finite energy; unit step does not.
+- Examples: 
+    - unit impulse has finite energy
+    - unit step does not
 
-## Signals with finite power
+### Signals with finite power
 
 - The **average power of a discrete signal** is defined as
 $$P = \lim_{N \to \infty} \frac{\sum_{n=-N}^{N} (x[n])^2}{2N+1}.$$
@@ -127,7 +126,7 @@ $$P = \lim_{N \to \infty} \frac{\sum_{n=-N}^{N} (x[n])^2}{2N+1}.$$
 - Example: unit step has finite power $P = \frac{1}{2}$ (see proof at blackboard).
 
 
-## Periodic and non-periodic signals
+### Periodic and non-periodic signals
 
 - A signal is called **periodic** if its values repeat themselves after a certain time (known as **period**).
 $$x[n] = x[n + N]), \forall t$$
@@ -137,29 +136,25 @@ $$x[n] = x[n + N]), \forall t$$
 - Periodic signals have infinite energy, and finite power equal to the power of a single period.
 
 
-## Even and odd signals
+### Even and odd signals
 
-- A signal is **even** if it satisfies the following symmetry:
+- A real signal is **even** if it satisfies the following symmetry:
 $$x[n] = x[-n], \forall n.$$
 
-- A signal is **odd** if it satisfies the following anti-symmetry:
+- A real signal is **odd** if it satisfies the following anti-symmetry:
 $$-x[n] = x[-n], \forall n.$$
 
 - There exist signals which are neither even nor odd.
 
 
-## Even and odd signals: example
+### Even and odd signals: example
 
 
-```
-<matplotlib.text.Text at 0x7f9260ec6550>
-```
-
-![](figures/02_SignalsAndSystems_figure5_1.png){width=10cm}\
+![](figures/02_SignalsAndSystems_figure5_1.png){width=linewidth}\
 
 
 
-## Even and odd parts of a signal
+### Even and odd parts of a signal
 
 - Every signal can be written as the sum of an even signal and an odd signal:
 $$x[n] = x_e[n] + x_o[n]$$
@@ -173,71 +168,54 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 - Proof: check that $x_e[n]$  is even, $x_o[n]$ is odd, and their sum is $x[n]$
 
 
-## Even and odd parts: example
+### Even and odd parts: example
 
 
-```
-[-6, 6, -4, 10]
-```
-
-![](figures/02_SignalsAndSystems_figure6_1.png){width=10cm}\
+![](figures/02_SignalsAndSystems_figure6_1.png){width=12cm}\
 
 
 
-## Basic operations - Time shifting
+## II.3 Basic operations with discrete signals
 
-Time shifting:
+### Time shifting
 
-- Let $x[n]$ be a signal. 
+- The signal $x[n-k]$ is $x[n]$ **delayed with $k$ time units**
+    - Graphically, $x[n-k]$ is shifted $k$ units to the **right** compared to the original
 
-- The signal **$x[n-k]$ is $x[n]$ delayed with $k$ time units**. Graphically, $x[n-k]$ is shifted $k$ units to the **right** compared to the original signal.
-
-- The signal **$x[n+k]$ is $x[n]$ anticipated with $k$ time units**. Graphically, $x[n+k]$ is shifted $k$ units to the **left** compared to the original signal.
-
-
-## Time shifting: representation
+- The signal $x[n+k]$ is $x[n]$ **anticipated with $k$ time units**
+    - Graphically, $x[n+k]$ is shifted $k$ units to the **left** compared to the original signal.
 
 
-```
-<matplotlib.text.Text at 0x7f926036d6d8>
-```
+### Time shifting: representation
+
 
 ![](figures/02_SignalsAndSystems_figure7_1.png)\
 
 
 
-## Time reversal
+### Time reversal
 
-Changing the variable $n$ to $-n$ produces a signal $x[-n]$ which mirrors $x[n]$.
+- Changing the variable $n$ to $-n$ produces a signal $x[-n]$ which mirrors $x[n]$.
 
-
-```
-<matplotlib.text.Text at 0x7f92601b02b0>
-```
 
 ![](figures/02_SignalsAndSystems_figure8_1.png)\
 
 
 
-## Subsampling
+### Subsampling
 
-$x_{M\downarrow}[n] = x[Mn]$ is a **subsampled** version of $x[n]$ with a factor of $M$. 
-
-Only 1 sample out of $M$ are kept from the original signal $x[n]$, the rest are discarded.
-
+- $x_{M\downarrow}[n] = x[Mn]$ is a **subsampled** version of $x[n]$ with a factor of $M$
+    - Keep only 1 sample out of $M$ samples from the original signal $x[n]$
 
 
-```
-<matplotlib.text.Text at 0x7f9260dafc50>
-```
 
 ![](figures/02_SignalsAndSystems_figure9_1.png)\
-![](figures/02_SignalsAndSystems_figure9_2.png)\
 
 
-## Interpolation
 
-**Interpolation** by a factor of $L$ adds $L$ of zeros between two samples in the original signal. 
+### Interpolation
+
+- **Interpolation** by a factor of $L$ adds $L$ of zeros between two samples in the original signal. 
 
 $$
 x_{L\uparrow} = 
@@ -248,62 +226,53 @@ x[\frac{n}{L}] &\mbox{if } \frac{n}{L} \in \mathbb{N} \\
 $$
 
 
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-x1 = [1, 2, 3, 4, 4]
-x2 = [1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 4, 0, 0, ]
-plt.figure(figsize=(3,4));
-plt.stem(x1); plt.title ('Original signal x[n]')
-plt.figure(figsize=(9,4));
-plt.stem(x2); plt.title ('Interpolated signal by a factor or 3, $x_{3\uparrow}[n]$');
-```
 
-
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_23_0.png)
+![](figures/02_SignalsAndSystems_figure10_1.png){width=12cm}\
 
 
 
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_23_1.png)
+### Mathematical operations
 
-
-## Mathematical operations
-
-A signal $x[n]$ can be **scaled** by a constant A, i.e. each sample is multipled by A.
+- A signal $x[n]$ can be **scaled** by a constant A, i.e. each sample is multipled by A:
 
 $$y[n] = A x[n].$$
 
-Two signals $x_1[n]$ and $x_2[n]$ can be **summed** by summing the individual samples:
+- Two signals $x_1[n]$ and $x_2[n]$ can be **summed** by summing the individual samples:
 
 $$y[n] = x_1[n] + x_2[n]$$
 
-Two signals $x_1[n]$ and $x_2[n]$ can be **multiplied** by multiypling the individual samples:
+- Two signals $x_1[n]$ and $x_2[n]$ can be **multiplied** by multiypling the individual samples:
 
 $$y[n] = x_1[n] \cdot x_2[n]$$
 
 
-## Discrete systems
+## II.4 Discrete systems
 
-- A **system** is a device or algorithm which produces an **output signal** based on an **input signal**. 
+### Definition
 
-- We will only consiuder systems with a single input and a single output.
+- **System** = a device or algorithm which produces an **output signal** based on an **input signal**
 
-- Common notation: x[n] is the input, y[n] is the output, H is the system. 
+- We will only consider systems with a single input and a single output
 
-## Discrete systems - notation
+- Figure here: blackboard.
 
-- The relation between the signals can be written as
+- Common notation:
+    - x[n] is the input
+    - y[n] is the output
+    - H is the system. 
 
-$$y[n] = H\left[x[n]\right],$$
+### Notations
 
-- Translates as "*the system H applied to the input x[n] produces the output y[n]*".
+- Notations:
+$$y[n] = H\left[x[n]\right]$$
+("*the system H applied to the input x[n] produces the output y[n]*")
 
-- It can also be represented as
-$$x[n] \overset{H}{\rightarrow} y[n],$$
+$$x[n] \overset{H}{\rightarrow} y[n]$$
+("*the input $x[n]$ is transformed by the system H into y[n]*")
 
-- Translates as "*the input $x[n]$ is transformed by the system H into y[n]*".
+### Equations
 
-## Examples
+- Usually, a system is described by the **input-output equation** (or **difference equation**) which expains how $y[n]$ is defined in terms of $x[n]$.
 
 Examples:
 
@@ -315,318 +284,214 @@ Examples:
 6. $y[n] = (x[n])^2 + \log_{10} x[n-1]$
 7. $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$
 
-
-## Examples - 1
-
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-x = [1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4]
-y = [0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4]
-plt.figure(figsize=(10,4));
-plt.subplot(2,1,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
-plt.subplot(2,1,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
-plt.suptitle('Identity system $y[n] = x[n]$', fontsize='x-large')
-plt.gcf().subplots_adjust(top=0.85)
-```
+### Example
 
 
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_27_0.png)
+![](figures/02_SignalsAndSystems_figure11_1.png)\
 
 
-## Examples - 2
-
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-x = [0, 1, 2, 3, 4, 4, 4, 4, 4]
-y = [1, 2, 3, 4, 4, 4, 4, 4, 4]
-plt.figure(figsize=(10,4));
-plt.subplot(2,1,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
-plt.subplot(2,1,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
-plt.suptitle('$y[n] = x[n+1]$', fontsize='x-large')
-plt.gcf().subplots_adjust(top=0.85)
-```
+### Example
 
 
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_28_0.png)
+![](figures/02_SignalsAndSystems_figure12_1.png)\
 
-## Examples - 3
 
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-x = [0, 1, 2, 3, 4, 4, 4, 4, 4]
-for i in range(len(x)):
-    if i==0:
-        y[i] = (x[i] + x[i+1])/3.0;   # x[-1] does not exist in the vector
-    elif i == len(x)-1:
-        y[i] = (x[i-1] + x[i])/3.0;   # x[len(x)] does not exist in the vector
-    else:
-        y[i] = (x[i-1] + x[i] + x[i+1])/3.0;
-print 'x = ',x
-print ('y = ['+', '.join(['%.2f']*len(y))%tuple(y)+']')
-plt.figure(figsize=(10,4));
-plt.subplot(2,1,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
-plt.subplot(2,1,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
-plt.suptitle('$y[n] = (x[n+1] + x[n] + x[n-1])/3$', fontsize='x-large')
-plt.gcf().subplots_adjust(top=0.85)
-```
+### Example
 
-    x =  [0, 1, 2, 3, 4, 4, 4, 4, 4]
-    y = [0.33, 1.00, 2.00, 3.00, 3.67, 4.00, 4.00, 4.00, 2.67]
+
+![](figures/02_SignalsAndSystems_figure13_1.png)\
 
 
 
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_29_1.png)
-
-## Examples - 4
-
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-x = [0, 1, 2, 3, 4, 4, 4, 4, 4]
-for i in range(len(x)):
-    if i==0:
-        y[i] = max(x[i], x[i+1])   # x[-1] does not exist in the vector
-    elif i == len(x)-1:
-        y[i] = max(x[i-1], x[i])   # x[len(x)] does not exist in the vector
-    else:
-        y[i] = max(x[i-1], x[i], x[i+1])
-print 'x = ',x
-print ('y = ['+', '.join(['%.2f']*len(y))%tuple(y)+']')
-plt.figure(figsize=(10,4));
-plt.subplot(2,1,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
-plt.subplot(2,1,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
-plt.suptitle('$y[n] = \max(x[n+1], x[n], x[n-1])$', fontsize='x-large')
-plt.gcf().subplots_adjust(top=0.85)
-```
-
-    x =  [0, 1, 2, 3, 4, 4, 4, 4, 4]
-    y = [1.00, 2.00, 3.00, 4.00, 4.00, 4.00, 4.00, 4.00, 4.00]
+### Example
 
 
-
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_30_1.png)
-
+![](figures/02_SignalsAndSystems_figure14_1.png)\
 
 
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-x = [0, 1, 2, 3, 4, 4, 4, 4, 4]
-for i in range(len(x)):
-    y[i] = sum(x[0:(i+1)])
-print 'x = ',x
-print ('y = ['+', '.join(['%.2f']*len(y))%tuple(y)+']')
-plt.figure(figsize=(10,5));
-plt.subplot(2,1,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
-plt.subplot(2,1,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([0,8,0,30])
-plt.suptitle('$y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$', fontsize='x-large')
-plt.gcf().subplots_adjust(top=0.80)
-```
-
-    x =  [0, 1, 2, 3, 4, 4, 4, 4, 4]
-    y = [0.00, 1.00, 3.00, 6.00, 10.00, 14.00, 18.00, 22.00, 26.00]
+### Example 
 
 
+![](figures/02_SignalsAndSystems_figure15_1.png)\
 
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_31_1.png)
 
 
 ### Recursive systems
 
-The last system $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$ can be also written in **recursive form**
+- The last system $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$ can be also written in **recursive form**
 
 $$y[n] = y[n-1] + x[n],$$
 
 
-assuming that we start from a suitable **initial condition** $$y[n_0] = \sum_{k=-\infty}^{n_0} x[k].$$
+- Need to start from an **initial condition** $$y[n_0] = \sum_{k=-\infty}^{n_0} x[k]$$
 
-Recursive systems always have one or more initial conditions. 
+- Recursive systems always have one or more initial conditions. 
 
-For recursive systems, the output signal depends on the input signal and on initial conditions as well. Thus, the initial conditions must always be specified for a recursive system.
+- For recursive systems, the output signal depends on:
 
-If the initial conditions are omitted for a recursive system, it is implicitly assumed that they are equal to 0. When the initial conditions are all 0, the system is said to be **relaxed**.
+    - the input signal
+    - **and** on initial conditions
+   
+- The initial conditions must always be specified for a recursive system
+    - If not specified : implicitly assumed they are 0 (**relaxed** system)
 
-Note that a recursive system with non-zero initial conditions can produce an output signal even in the absence of an input ($x[n] = 0$). See example.
+- A recursive system with non-zero initial conditions can produce an output signal even in the absence of an input ($x[n] = 0$)
+
 
 ### Representation of systems
 
-The operation of a system can be described graphically (see examples on blackboard):
+- The operation of a system can be described graphically (see examples on blackboard):
 
-- summation of two signals
-- scaling of a signal with a constant
-- multiplication of two signals
-- delay element
-- anticipation element
-- other blocks for more complicated math operations
+    - summation of two signals
+    - scaling of a signal with a constant
+    - multiplication of two signals
+    - delay element
+    - anticipation element
+    - other blocks for more complicated math operations
 
 ## II.4 Classification of discrete systems
 
 ### Memoryless / systems with memory
 
-A system is **memoryless (or static)** if the output at some time $n$ depends only on the input **from the same moment** $n$. Otherwise, the system **has memory (dynamic)**. 
+- **Memoryless (or static)**:  output at time $n$ depends only on the input **from the same moment** $n$
 
-Examples:
+- Otherwise, the system **has memory (dynamic)**
 
-- memoryless: $y[n] = (x[n])^3 + 5$
-- with memory: $y[n] = (x[n])^3 + x[n-1]$
+- Examples:
 
-For systems with memory, if the output at time $n$ $y[n]$ depends only the current input and on the last $N$ inputs, $x[n-N], x[n-(N-1)],... x[n]$, then the system has **memory N**. If $N$ is finite, the system has **finite memory**; if $N = \infty$, the system has infinite memory.
+    - memoryless: $y[n] = (x[n])^3 + 5$
+    - with memory: $y[n] = (x[n])^3 + x[n-1]$
 
-Examples:
-- finite memory of order 4: $y[n] = x[n] + x[n-2] + x[n-4]$ 
-- infinite memory: $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$
+### Memoryless / systems with memory
+
+- Memory of size $N$:
+    - output at time $n$ $y[n]$ depends only up to the last $N$ inputs, $x[n-N], x[n-(N-1)],... x[n]$,
+    - if $N$ is finite: the system has **finite memory**
+    - if $N = \infty$, the system has infinite memory
+
+- Examples:
+    - finite memory of order 4: $y[n] = x[n] + x[n-2] + x[n-4]$ 
+    - infinite memory: $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$
 
 ### Time-Invariant and Time-Variant systems
 
-A relaxed system $H$ is **time-invariant** if and only if
+- A relaxed system $H$ is **time-invariant** if and only if:
 $$x[n] \overset{H}{\rightarrow} y[n]$$
 implies
 $$x[n-k] \overset{H}{\rightarrow} y[n-k],$$
 $\forall x[n], \forall k$.
 
-**Delaying the input signal with $k$ will only delay the output with the same amount, otherwise the output is not affected**. For all input signals, for all possible delays (positive or negative).
+- Delaying the input signal with $k$ will only delay the output with the same amount, otherwise the output is not affected
+    - Must be true for all input signals, for all possible delays (positive or negative)
 
-Otherwise, the system is said to be **time-variant**.
+- Otherwise, the system is said to be **time-variant**
 
-Examples:
-- $y[n] = x[n] - x[n-1]$ is time-invariant
-- $y[n] = n \cdot x[n]$ is not time-invariant
+### Time-Invariant and Time-Variant systems
 
-A system is time-invariant if it depends on $n$ only through the input signal $x[n]$.
+- Examples:
+    - $y[n] = x[n] - x[n-1]$ is time-invariant
+    - $y[n] = n \cdot x[n]$ is not time-invariant
 
+- A system is time-invariant if it depends on $n$ only through the input signal $x[n]$
 
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-n = range(0,13)
-x = [0, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4]
-xd = [0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4]
-def H(x):
-  y = [0]*len(x)
-  for i in range(len(x)):
-      if i == 0:
-          y[i] = x[i]
-      else:
-          y[i] = x[i] - x[i-1]
-  return y
-#print 'x = ',x
-#print ('y = ['+', '.join(['%.2f']*len(y))%tuple(y)+']')
-plt.figure(figsize=(10,5));
-plt.subplot(2,2,1); plt.stem(n,x); plt.title ('Input $x[n]$'); plt.axis([0,13,0,5])
-plt.subplot(2,2,2); plt.stem(n,H(x)); plt.title ('Output $H[x[n]]$'); plt.axis([0,13,0,1.2])
-plt.subplot(2,2,3); plt.stem(n,xd); plt.title ('Input $x[n-4]$'); plt.axis([0,13,0,5])
-plt.subplot(2,2,4); plt.stem(n,H(xd)); plt.title ('Output $H[x[n-4]]$'); plt.axis([0,13,0,1.2])
-plt.suptitle('Time-invariant system $y[n] = x[n] - x[n-1]$', fontsize='x-large')
-plt.gcf().subplots_adjust(top=0.80)
-```
+### Example 
 
 
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_36_0.png)
+![](figures/02_SignalsAndSystems_figure16_1.png)\
 
 
 
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-n = range(0,13)
-x = [0, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4]
-xd = [0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4]
-def H(n,x):
-  y = [n[i] * x[i] for i in range(len(x))]
-  return y
-print 'H[x[n]] = ',H(n,x)
-print 'H[x[n-4]] = ',H(n,xd)
-plt.figure(figsize=(10,5));
-plt.subplot(2,2,1); plt.stem(n,x); plt.title ('Input $x[n]$'); plt.axis([0,13,0,5])
-plt.subplot(2,2,2); plt.stem(n,H(n,x)); plt.title ('Output $H[x[n]]$'); plt.axis([0,13,0,50])
-plt.subplot(2,2,3); plt.stem(n,xd); plt.title ('Input $x[n-4]$'); plt.axis([0,13,0,5])
-plt.subplot(2,2,4); plt.stem(n,H(n,xd)); plt.title ('Output $H[x[n-4]]$'); plt.axis([0,13,0,50])
-plt.suptitle('Time-variant system $y[n] = n \cdot x[n]]$', fontsize='x-large')
-plt.gcf().subplots_adjust(top=0.80)
-```
-
-    H[x[n]] =  [0, 1, 4, 9, 16, 20, 24, 28, 32, 36, 40, 44, 48]
-    H[x[n-4]] =  [0, 0, 0, 0, 0, 5, 12, 21, 32, 36, 40, 44, 48]
+### Another example 
 
 
+![](figures/02_SignalsAndSystems_figure17_1.png)\
 
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_37_1.png)
+
 
 
 ### Linear and nonlinear systems
 
-A system $H$ is **linear** if it satisfies the following relation (called "superposition")
+- A system $H$ is **linear** if:
 
 $$H\left[ a x_1[n] + b x_2[n]\right] = a H\left[ x_1[n] \right] + b H\left[ x_2[n] \right].$$
 
-**Applying the system to a sum of two signals = applying the system to each signal, and adding the results.**
+- Composed of two parts:
+    - Applying the system to a sum of two signals = applying the system to each signal, and adding the results
+    - Scaling the input signal with a constant $a$ is the same as scaling the output signal with $a$
 
-**Scaling the input signal with a constant $a$ is the same as scaling the output signal with $a$**. 
+- The same relation will be true for a sum of many signals, not just two
 
-The same relation will be true for a sum of many signals, not just two.
+### Linear and nonlinear systems
 
-When considering a complicated input signal, the signal can be decomposed into a sum of smaller parts, and the system can be applied to each part independently, then the results are added.
+- Advantage of linear systems
+    - Complicated input signals can be decomposed into a sum of smaller parts
+    - The system can be applied to each part independently
+    - Then the results are added back
 
-Examples:
-- linear system: $y[n] = 3 x[n] + 5x[n-2]$
-- nonlinear system: $y[n] = 3 (x[n])^2 + 5x[n-2]$
+- Examples:
+    - linear system: $y[n] = 3 x[n] + 5x[n-2]$
+    - nonlinear system: $y[n] = 3 (x[n])^2 + 5x[n-2]$
 
 
+### Linear and nonlinear systems
 
-For a syste to be linear, the input samples $x[n]$ must not undergo non-linear transformations. 
+- For a system to be linear, the input samples $x[n]$ must not undergo non-linear transformations. 
 
-**The only transformations** of the input x[n] allowed to take place in a linear system are:
+- **The only transformations** of the input x[n] allowed to take place in a linear system are:
 
-- scaling (multiplication) with a constant
-- delaying
-- summing different delayed versions of the signal (not summing with a constant)
+    - scaling (multiplication) with a constant
+    - delaying
+    - summing different delayed versions of the signal (not summing with a constant)
 
-Examples: at blackboard
 
 ### Causal and non-causal systems
 
-A system is **causal** if the output $y[n]$ depends only on the current input $x[n]$ and the past values $x[n-1]$, $x[n-2]$..., but not on the future samples $x[n+1]$, $x[n+2]$...
+- **Causal**: the output $y[n]$ depends only on the current input $x[n]$ and the past values $x[n-1]$, $x[n-2]$..., but not on the future samples $x[n+1]$, $x[n+2]$...
 
-Otherwise the system is **non-causal**.
+- Otherwise the system is **non-causal**.
 
-A causal system can function in real-time, because to compute the current output sample we need only the input samples from the past.
+- A causal system can operate in real-time
+    - we need only the input samples from the past
+    - non-causal systems need samples from the future
 
-Examples:
-
-- $y[n] = x[n] - x[n-1]$ is causal
-- $y[n] = x[n+1] - x[n-1]$ is non-causal
-- $y[n] = x[-n]$ is non-causal
+- Examples:
+    - $y[n] = x[n] - x[n-1]$ is causal
+    - $y[n] = x[n+1] - x[n-1]$ is non-causal
+    - $y[n] = x[-n]$ is non-causal
 
 
 ### Stable and unstable systems
 
-A signal is **bounded** if there exists a value $M$ such that all the samples of the signal or smaller than M, in absolute values.
+- **Bounded** signal: if there exists a value $M$ such that all the samples of the signal or smaller than M, in absolute values
 
 $$x[n] \in [-M, M]$$
 
 $$\lvert x[n] \rvert \leq M$$
 
-A system is **stable** if for any bounded input signal it produces a bounded output signal (not necessarily with the same $M$). This known as BIBO (Bounded Input --> Bounded Output).
+- **Stable** system: if for any bounded input signal it produces a bounded output signal
+    - not necessarily with the same $M$
+    - known as BIBO (Bounded Input --> Bounded Output)
 
-In other words, when the input signal has bounded values, the output signal does not go towards $\infty$ or $-\infty$.
+- In other words: when the input signal has bounded values, the output signal does not go towards $\infty$ or $-\infty$.
 
-Examples:
-- $y[n] = (x[n])^3 - x[n+4]$ is stable
-- $y[n] = \frac{1}{x[n] - x[n-1]}$ is unstable
-- $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$ is unstable
+### Stable and unstable systems
+
+- Examples:
+    - $y[n] = (x[n])^3 - x[n+4]$ is stable
+    - $y[n] = \frac{1}{x[n] - x[n-1]}$ is unstable
+    - $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$ is unstable
 
 
 ## Impulse response of Linear Time-Invariant (LTI) systems
 
-Notation: An **LTI** system (**L**inear **T**ime-**I**nvariant) is a system which is simultaneously **linear** and **time-invariant**. 
+### Linear Time-Invariant (LTI) systems
 
-LTI systems can be described via either (or both):
+- Notation: An **LTI** system (**L**inear **T**ime-**I**nvariant) is a system which is simultaneously **linear** and **time-invariant**. 
 
-1. the **impulse response** $h[n]$
-2. the **difference equation** 
+- LTI systems can be described via either (or both):
+
+    1. the **impulse response** $h[n]$
+    2. the **difference equation** 
 $$\begin{split}
 y[n] =& -\sum_{k=1}^N a_k y[n-k] + -\sum_{k=1}^M b_k x[n-k] \\
 =& -a_1 y[n-1] - a_2 y[n-2] -... - a_N y[n-N] + b_0 x[n] + b_1 x[n-1] + ... + b_M x[n-M]
@@ -635,29 +500,31 @@ y[n] =& -\sum_{k=1}^N a_k y[n-k] + -\sum_{k=1}^M b_k x[n-k] \\
 
 ### The impulse response
 
-The **impulse response** of a system is the output (response) of the system when the input signal is the impulse signal $\delta[n]$:
+- **Impulse response** of a system = output (response) of when the input signal is the impulse $\delta[n]$:
 
-$$h[n] = H(\delta[n]).$$
+$$h[n] = H(\delta[n])$$
 
-The impulse response **fully characterizes the system**: based on $h[n]$ we can compute the response of the system to **any** input signal. All the properties of LTI systems can be described via characteristics of the impulse response
+- The impulse response of a LTI system **fully characterizes the system**:
+    - based on $h[n]$ we can compute the response of the system to **any** input signal
+    - all the properties of LTI systems can be described via characteristics of the impulse response
 
 ### Signals are a sum of impulses
 
-Every discrete signal is composed of impulses, so any signal can be composed as **a sum of scaled and delayed impulses $\delta[n]$**.
+- Any signal can be composed as **a sum of scaled and delayed impulses $\delta[n]$**.
 
-Example: $x[n] = {3, 1, -5, 0, 2} = 3\delta[n] + \delta[n-1] -5 \delta[n-2] + 2\delta[n-2]$
+- Example: $x[n] = \{3, 1, -5, 0, 2\} = 3\delta[n] + \delta[n-1] -5 \delta[n-2] + 2\delta[n-2]$
 
-In general
-$$x[n] = \sum_{k=-\infty}^\infty x[k]\delta[n-k],$$
+- In general
+$$x[n] = \sum_{k=-\infty}^\infty x[k]\delta[n-k]$$
 
-i.e. a sum of impulses $\delta[n]$, delayed with $k$ and scaled with the corresponding value $x[k]$.
+i.e. a sum of impulses $\delta[n]$, delayed with $k$ and scaled with the corresponding value $x[k]$
 
 ### Convolution
 
-Because the system is linear and time-invariant, the response of the system to a sum of impulses, delayed with $k$ and scaled with $x[k]$, **is a sum of impulse responses, delayed with $k$ and scaled with $x[k]$**.
-
-Basically, the input signal is composed of a "bunch" of impulses. Since the system is LTI, each impulse will generate its own response. The output signal is the sum of impulse responses, delayed and scaled appropriately.
-
+- The response of a LTI system to a sum of impulses, delayed with $k$ and scaled with $x[k]$, **is a sum of impulse responses, delayed with $k$ and scaled with $x[k]$**.
+    - The input signal is composed of separate impulses
+    - LTI system --> each impulse will generate its own response
+    - output signal is the sum of impulse responses, delayed and scaled
 $$\begin{split}
 y[n] =& H \left( x[n] \right) \\
 =& H \left( \sum_{k=-\infty}^\infty x[k]\delta[n-k] \right) \\
@@ -665,50 +532,20 @@ y[n] =& H \left( x[n] \right) \\
 =& \sum_{k=-\infty}^\infty x[k] h[n-k]. \\
 \end{split}$$
 
-This operation is known as the **convolution** of two signals $x[n]$ and $h[n]$
-$$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k]$$.
+### Convolution 
 
-**The response of a LTI system to an input signal x[n] is the convolution of x[n] with the system's impulse response h[n].**
+- This operation = the **convolution** of two signals $x[n]$ and $h[n]$
+$$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k]$$
 
-
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-n = range(0,3)
-x = [4, 3, 2, 1]
-h = [1, 1, 1, 1]
-y = np.convolve(x,h)
-x0 = [4]
-x1 = [0, 3]
-x2 = [0, 0, 2]
-x3 = [0, 0, 0, 1]
-y0 = x[0]*np.array(h)
-y1 = x[1]*np.array([0] + h)
-y2 = x[2]*np.array([0, 0] + h)
-y3 = x[3]*np.array([0, 0, 0] + h)
-plt.figure(figsize=(14,15));
-plt.subplot(5,2,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,3); plt.stem(x0); plt.title ('First impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,4); plt.stem(y0); plt.title ('First impulse response of output$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,5); plt.stem(x1); plt.title ('Second impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,6); plt.stem(y1); plt.title ('Second impulse response of output$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,7); plt.stem(x2); plt.title ('Third impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,8); plt.stem(y2); plt.title ('Third impulse response of output$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,9); plt.stem(x3); plt.title ('Fourth impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,10); plt.stem(y3); plt.title ('Fourth impulse response of output$'); plt.axis([-0.5,13,0,12])
-#plt.gcf().subplots_adjust(top=0.80)
-```
+- The response of a LTI system to an input signal x[n] is **the convolution of x[n] with the system's impulse response h[n]**
 
 
+### Example
 
 
-    [-0.5, 13, 0, 12]
+![](figures/02_SignalsAndSystems_figure18_1.png)\
 
 
-
-
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_46_1.png)
 
 
 ### Properties of convolution
@@ -736,89 +573,100 @@ $$(\alpha \cdot a[n] + \beta \cdot b[n]) * c[n] = \alpha (\cdot a[n] * c[n]) + \
 
 Proof: by linearity of the corresponding system
 
+
 ### Properties of LTI systems expressed with $h[n]$
 
 #### 1. Identity system
 
-A system with $h[n] = \delta[n]$ produces an response equal to the input, $y[n] = x[n], \forall x[n]$.
+- A system with $h[n] = \delta[n]$ produces an response equal to the input, $y[n] = x[n], \forall x[n]$.
 
-Proof: $\delta[n]$ is neutral element for convolution.
+- Proof: $\delta[n]$ is neutral element for convolution.
+
+
+### Properties of LTI systems expressed with $h[n]$
 
 #### 2. Series connection is commutative
 
-LTI systems connected in series can be interchanged in any order. Proof: by commutativity of convolution.
+- LTI systems connected in series can be interchanged in any order
 
-LTI systems connected in series are equivalent to a single system with
+- Proof: by commutativity of convolution.
+
+- LTI systems connected in series are equivalent to a single system with
 
 $$h_{equiv}[n] = h_1[n] * h_2[n] * ... * h_N[n]$$
+
+
+### Properties of LTI systems expressed with $h[n]$
 
 #### 3. Parallel connection means sum
 
 LTI systems connected in parallel are equivalent to a single system with
 
-$$h_{equiv}[n] = h_1[n] + h_2[n] + ... * h_N[n]$$
+$$h_{equiv}[n] = h_1[n] + h_2[n] + ... + h_N[n]$$
+
+
+### Properties of LTI systems expressed with $h[n]$
 
 #### 4. Response of LTI systems to unit step
 
-If the input signal is $u[n]$, the response of the system is
+- If the input signal is $u[n]$, the response of the system is
 $$s[n] = u[n] * h[n] = h[n] * u[n] = \sum_{k=-\infty}^\infty h[k] u[n-k] = \sum_{k=-\infty}^n h[k]$$.
 
-The signal $\sum_{k=-\infty}^n h[k]$ is a *discrete-time integration* of $h[n]$ (equivalent to the integral for continuous signals $\int_{-\infty}^t h(t) dt$, only that the signal is now discrete si the integral degenerates into a sum).
 
-It follows that $$h[n] = s[n] - s[n-1].$$
+### Properties of LTI systems expressed with $h[n]$
 
-Note that the unit step $u[n]$ iteslf is the discrete-time integral of the unit impulse:
+- Proof:
+
+    - The signal $\sum_{k=-\infty}^n h[k]$ is a *discrete-time integration* of $h[n]$
+    - The unit step $u[n]$ iteslf is the discrete-time integral of the unit impulse:
 $$u[n] = \sum_{k=-\infty}^n \delta[k]$$
 $$\delta[n] = u[n] - u[n-1]$$
+    - Therefore the system response to the integral of the impulse = the integral of the system response to the impulse
 
-Therefore the system response to the integral of the unit impulse is the integral of the system response to the input impulse.
-
-The interchanging of the integration with the system is due to the linearity of the system and is valid for all signals:
+    - The interchanging of the integration with the system is due to the linearity of the system and is valid for all signals:
 
 $$H \left( \sum_{k=-\infty}^n x[k] \right) = \sum_{k=-\infty}^n H \left( x[k] \right) $$
 
-### Relation between LTI system properties and $h[n]$
 
-#### 1. Causal LTI systems and their $h[n]$
+## Relation between LTI system properties and $h[n]$
 
-If a LTI system is causal, then $h[n] = 0, \forall n < 0$.
+### 1. Causal LTI systems and their $h[n]$
 
-Proof: If $y[n] = \sum_{k=-\infty}^{\infty} x[k] h[n-k]$, but $y[n]$ does not depend on $x[n+1], x[n+2], ...$, it means that these terms are multiplied with 0. The value $x[n+1]$ is multiplied with $h[n-(n+1)] = h[-1]$, $x[n+2]$ is multiplied with $h[n-(n+2)] = h[-2]$, and so on. Therefore:
+If a LTI system is causal, then 
+$$h[n] = 0, \forall n < 0$$
+
+- Proof: 
+
+    - $y[n] = \sum_{k=-\infty}^{\infty} x[k] h[n-k]$, 
+    - $y[n]$ does not depend on $x[n+1], x[n+2], ...$
+    - it means that these terms are multiplied with 0
+    - the value $x[n+1]$ is multiplied with $h[n-(n+1)] = h[-1]$, $x[n+2]$ is multiplied with $h[n-(n+2)] = h[-2]$, and so on
+    - Therefore:
 $$h[n] = 0, \forall n < 0$$.
 
-Such a signal which is 0 for $n<0$ is called a *causal **signal***. Otherwise the signal is *non-causal*.
+### Causal signals and causal systems
 
-Therefore we can say that *a system is causal if and only if it has a causal impulse response*
+- A signal which is 0 for $n<0$ is called a *causal **signal***
 
-Further definitions:
+- Otherwise the signal is *non-causal*
 
-- a signal which 0 for $n>0$ is called an *anti-causal* signal
-- a signal which has non-zero values both for some $n>0$ and for some $n<0$ (and thus is neither causal nor non-causal) is called *bilateral*. 
+- We can say that *a system is causal if and only if it has a causal impulse response*
 
+- Further definitions:
 
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-l = 20
-n = range(-(l+6),(l+7))
-xc = [0]*l + [0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 3] + [3]*l
-xn = [3]*l + [3, 3, 3, 3, 3, 2, 1, 0, 0, 0, 0, 0, 0] + [0]*l
-xb = [3]*l + [3, 3, 3, 2, 1, 1, 1, 1, 1, 1, 2, 3, 4] + [4]*l
-plt.figure(figsize=(18,6));
-plt.subplot(1,3,1); plt.stem(n,xc); plt.title ('Causal signal'); plt.axis([-(l+6.5), (l+6.5), 0, 5])
-plt.subplot(1,3,2); plt.stem(n,xn); plt.title ('Anti-causal signal (non-causal)'); plt.axis([-(l+6.5), (l+6.5), 0, 5])
-plt.subplot(1,3,3); plt.stem(n,xb); plt.title ('Bilateral signal (non-causal)'); plt.axis([-(l+6.5), (l+6.5), 0, 5]);
+    - a signal which 0 for $n>0$ is called an *anti-causal* signal
+    - a signal which has non-zero values both for some $n>0$ and for some $n<0$ (and thus is neither causal nor non-causal) is called *bilateral*. 
 
-```
+### Example
 
 
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_53_0.png)
+![](figures/02_SignalsAndSystems_figure19_1.png)\
 
 
-#### 2. Stable systems and their $h[n]$
 
-Considering a bounded input signal, $\lvert x[n] \rvert \leq A$, the absolute value of the output is:
+### 2. Stable systems and their $h[n]$
 
+- Considering a bounded input signal, $\lvert x[n] \rvert \leq A$, the absolute value of the output is:
 $$\begin{split}
 \lvert y[n] \rvert  =& \lvert \sum_{k=-\infty}^\infty x[k] h[n-k] \rvert \\
 \leq & \sum_{k=-\infty}^\infty \lvert x[k] h[n-k] \rvert  \\
@@ -826,134 +674,94 @@ $$\begin{split}
 \leq & A \sum_{k=-\infty}^\infty \lvert h[n-k] \rvert 
 \end{split}$$
 
-The output signal is bounded (and hence the system is stable) if $\sum_{k=-\infty}^\infty \lvert h[n] \rvert$ is finite.
-
-Therefore **a LTI system is stable if $$\sum_{k=-\infty}^\infty \lvert h[n] \rvert < \infty$$**.
+- Therefore **a LTI system is stable if $$\sum_{k=-\infty}^\infty \lvert h[n] \rvert < \infty$$**.
 
 
 ### 3. Memoryless systems and their $h[n]$ (Exercise)
 
-**Exercise:** What ca we say about the impulse response $h[n]$ of a memoryless system? What about a system with finite memory $M$?
+**Exercises:**
 
-### FIR and IIR systems
+- What can we say about the impulse response $h[n]$ of a memoryless system? 
 
-The *support* of a discrete signal is the smallest interval of $n$ such that the signal is 0 everywhere outside the interval.
+- What about a system with finite memory $M$?
 
-Depending on the support of the impulse response, discrete LTI systems can be FIR or IIR systems.
 
-#### FIR systems
+## FIR and IIR systems
 
-A **F**inite **I**mpulse **R**esponse (**FIR**) system has an impulse response with finite support, i.e. the impulse response is 0 outside a certain interval.
+### Support
 
-For a causal system, $h[n] = 0$ for $n < 0$, so we have $h[n] = 0$ for $n < 0$ or $n \geq M$, for some $M$. The convolution is thus reduced to:
-$$y[n] = \sum_{k=0}^M h[k] x[n-k] = h[0] \cdot x[n] + h[1] \cdot x[n-1] + ... h[M] \cdot x[n-M].$$
-For a causal FIR system, the output is a linear combination of the last $M$ input samples (has finite memory $M$).
+- The **support** of a discrete signal = the smallest interval of $n$ such that the signal is 0 everywhere outside the interval.
 
-#### IIR systems
+- Examples: at whiteboard
 
-An **I**nfinite **I**mpulse **R**esponse (**FIR**) system has an impulse response with infinite support, i.e. the impulse response never becomes completely 0 forever.
+- Depending on the support of the impulse response, discrete LTI systems can be **FIR** or **IIR** systems.
 
-In the case of a causal system, from the convolution equation results that the output $y[n]$ potentially depends on all the preceding input samples. An IIR system has infinite memory.
+### FIR systems
 
-### Recursive and non-recursive implementation of systems
+- A **F**inite **I**mpulse **R**esponse (**FIR**) system has an impulse response with finite support
+    - i.e. the impulse response is 0 outside a certain interval.
 
-A ***recursive*** implementation of a system computes the output $y[n]$ based partly on the previous output samples $y[n-1], y[n-2],...$.
+- For a causal system:
+    - $h[n] = 0$ for $n < 0$
+    - therefore $h[n] = 0$ for $n < 0$ or $n \geq M$, for some $M$
+    - The convolution becomes:
+$$y[n] = \sum_{k=0}^M h[k] x[n-k] = h[0] \cdot x[n] + h[1] \cdot x[n-1] + ... h[M] \cdot x[n-M]$$
 
-Generally, every LTI system can be expressed only based on the input samples $x[n], x[n-1], ...$, but in some cases it would need an infinite amount of memory (an infinite amount of previous input samples). Therefore the recursive expression is preferred, when possible.
+- For a causal FIR system, the output is a linear combination of the last $M$ input samples (has finite memory $M$)
 
-Example:$$y[n] = \frac{1}{n+1}\sum_0^n x[n]$$
+### IIR systems
 
-This system (what is its memory?) can be rewritten in recursive form: $$y[n] = n\cdot y[n-1] + x[n]$$
+- An **I**nfinite **I**mpulse **R**esponse (**FIR**) system has an impulse response with infinite support
+    - i.e. the impulse response never becomes completely 0 forever.
 
-**In general, the output $y[n]$ of a recursive system depends on the last $N$ samples of the output, y[n-1], ... y[n-N], and the current and the last $M$ samples of the input, x[0], x[1], ... x[n-M].**
+- Causal system: the output $y[n]$ potentially depends on all the preceding input samples
+    - from the convolution equation
 
-A ***non-recursive*** system is a system **for which the output $y[n]$ depends only on the the current and the last $M$ samples of the input, x[0], x[1], ... x[n-M].**
+- An IIR system has infinite memory
 
-FIR systems can always be implemented non-recursively, but it is possible to implemented them in a recursive way.
+### Recursive / non-recursive implementations
 
-IIR systems can only be implemented recursively.
+- **Recursive** implementation: compute $y[n]$ based partly on the previous output samples $y[n-1], y[n-2],...$.
+    - more efficient
+
+- For a recursive LTI system, the output $y[n]$ depends on:
+    - the last $N$ samples of the output, y[n-1], ... y[n-N]
+    - and the current and the last $M$ samples of the input, x[0], x[1], ... x[n-M].
+
+- Example:
+
+$$y[n] = \frac{1}{n+1}\sum_0^n x[n]$$
+
+can be rewritten in recursive form:
+
+$$y[n] = n\cdot y[n-1] + x[n]$$
+
+
+### Recursive / non-recursive implementations
+
+- **Non-recursive** system: the output $y[n]$ is computed based only on last $M$ samples of the input, x[0], x[1], ... x[n-M].
+
+- FIR systems can always be implemented non-recursively, but may also be implemented in a recursive way
+
+- IIR systems can only be implemented recursively
+    - otherwise they would need infinite memory
+    
 
 ### Initial conditions for recursive systems
 
-Recursive systems rely on previous outputs. When the computations of the output starts, the previous values must be specified. These previous output values needed at the start moment are *the initial conditions* of the system.
+- Recursive systems rely on previous outputs --> the previous values must be always available
 
-Notes
+- We need some starting values at the start moment (**the initial conditions** of the system)
 
-- The output of a system always depends on the initial conditions, besides the input signal
-- A system with initial conditions equal to 0 is called *relaxed*
-- The output of a relaxed system to an input signal is called *zero-state response*, $y_{zs}[n]$, because the initial conditions (initial state) is 0, and the output depends only in the input signal. This is also called *forced response*.
-- A system with non-zero initial conditions produces an output even when the input signal is zero. This output is called *zero-input response*, $y_{zi}[n]$, because the input signal is 0, and the output depends only on the initial conditions. This is also called *natural response*.
+- Notes:
+
+    - Output signal depends on the input **and** on the initial conditions
+    - A system with non-zero initial conditions produces an output even when the input signal is zero
+    - This output is called *zero-input response*, $y_{zi}[n]$
+    - A system with initial conditions equal to 0 is called *relaxed*
+    - The output of a relaxed system to an input signal is called *zero-state response*, $y_{zs}[n]$ (also called *forced response*)
+    
 - For linear systems, the output of a system is always the sum of the forced response and the natural response:
 $$y[n] = y_{zs}[n] + y_{zi}[n]$$
 
-### Correlation of discrete signals
-
-The **correlation** (or cross-correlation) of two finite-energy discrete signals $x[n]$ and $y[n]$ is defined as:
-
-$$r_{xy}[l] = \sum_\infty^\infty x[n] y[n-l]$$
-$$r_{xy}[l] = \sum_\infty^\infty x[n+l] y[n]$$
-
-This equation is similar to convolution, up to a reflection of the signal (the second term has $y[n-l]$ instead of $y[l-n]$). Thus correlation = convolution with a reflected signal, and vice-versa.
-
-The argument $l$ represents the delay of $y[n]$ compared to $x[n]$
-
-The **auto-correlation** of a signal $x[n]$ is defined as the correlation of the signal with itself
-$$r_{xx}[l] = \sum_\infty^\infty x[n] x[n-l] = \sum_\infty^\infty x[n] x[n+l]$$
-
-### Properties of correlation and auto-correlation
-
-1.  $r_{xy}[l] = r_{yx}[-l]$
-Proof: at whiteboard
-
-2. Auto-correlation is an **even** signal: $$r_{xx}[l] = r_{xx}[-l]$$
-Proof: based on first property
-
-3. Auto-correlation is maximum for $l=0$
-$$r_{xx}[0] \geq r_{xx}[l], \forall l$$
-
-### Usages of correlation and auto-correlation
-
-Besides significant theoretical importance in theory, there are some straightforward applications of correlation in practice. A few examples are given below
-
-#### 1. Searching for a certain part in a large signal
-
-When the two signals have both positive and negative values (roughly of similar length), the correlation signal will have a large value when the positive and negative areas match, and small values when they don't match. This can be used to locate a certain part within a large signal
-
-
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-x1 = np.array([1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1])
-x2 = np.hstack((np.random.randn(800), x1, np.random.randn(300)))
-corr = np.correlate(x2, x1)
-plt.figure(figsize=(18,6));
-plt.subplot(1,3,1); plt.stem(x1); plt.title ('Signal to look for');plt.axis([0, 20, -1.5, 1.5])
-plt.subplot(1,3,2); plt.stem(x2); plt.title ('Signal to search in');
-plt.subplot(1,3,3); plt.stem(corr); plt.title ('Correlation signal');
-
-```
-
-
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_63_0.png)
-
-
-#### 2. Estimating the delay of a signal
-
-In radar-like systems, a signal pulse is sent from an emitter, gets reflected from a target and is received back with a lot of random noise added. We would like to estimate the delay of the received pulse. The correlation signal between the original block and the received signal will have a maximum when the original block overlaps with the block in the received signal. The position of the maximum indicates the delay.
-
-
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt, numpy as np
-x1 = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
-x2 = np.hstack((np.zeros(800), x1, np.zeros(300))) + 0.8*np.random.randn(800+300+x1.size)
-corr = np.correlate(x2, x1)
-plt.figure(figsize=(18,6));
-plt.subplot(1,3,1); plt.stem(x1); plt.title ('Signal pulse sent');plt.axis([0, 20, 0.2, 1.5])
-plt.subplot(1,3,2); plt.stem(x2); plt.title ('Received signal, buried in noise');
-plt.subplot(1,3,3); plt.stem(corr); plt.title ('Correlation signal');
-```
-
-
-![png](02_SignalsAndSystems_files/02_SignalsAndSystems_65_0.png)
 

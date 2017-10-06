@@ -1,7 +1,9 @@
 
-# I. Analog and Digital Signals
+# I. Sampling of analog signals
 
-## Signals
+## I.1. Analog and Digital Signals
+
+### Signals
 
 - Signal = a measurable quantity which varies in time, space or some other variable
 
@@ -12,13 +14,13 @@
 
 - Represented as a mathematical function, e.g. $v(t)$.
 
-## Off Topic
+### Off Topic
 
 - Glossary:
     - "e.g." = "*exampli gratia*" (lat.) = "for example" (eng.) = "de exemplu" (rom.)
     - "i.e." = "*id est*" (lat) = "that is" (eng.) = "adică" (rom.)
 
-## Signal dimension
+### Signal dimension
 
 - **Unidimensional** (1D) signal = a function of a single variable
     - Example: a voltage signal $v(t)$ only varies in time.
@@ -28,7 +30,7 @@
 
 - In these lectures we consider only 1D signals, but the theory is similar
 
-## Continuous and discrete signals
+### Continuous and discrete signals
 
 - Continuous (analog) signal = function of a continuous variable
     - Signal has a value for possible value of the variable in the defined range
@@ -41,14 +43,10 @@
     - Outside the samples, the signal is **not defined**
 
 
-```
-<matplotlib.text.Text at 0x7f770d66da90>
-```
-
 ![](figures/01_Sampling_figure1_1.png){width=12cm}\
 
 
-## Notation
+### Notation
 
 - We use the following notation throughout these lectures
 
@@ -64,14 +62,14 @@
     - $x[3]$ = the value of the signal $x[n]$ for $n = 3$
     - $x[1.5]$ = does not exist
 
-## Signals with continuous and discrete values 
+### Signals with continuous and discrete values 
 
 - The signal values can be continuous or discrete
     - Example: signal values stored as 8-bit or 16-bit values
 
 - On digital systems, signals always have discrete values due to finite number precision
 
-## Discrete frequency
+### Discrete frequency
 
 - A signal is **periodic** if the values repeat themselves after a certain time (**period**)
 
@@ -89,7 +87,7 @@
     - $N$ **has no unit**, because it is just a number
     - $f = \frac{1}{N}$ **has no unit** also
 
-## Domain of existence of frequency
+### Domain of existence of frequency
 
 - Continuous signals
     - Period $T$ can be as small as possible $T \to 0$
@@ -104,7 +102,9 @@
 - For mathematical reasons: we will consider negative frequencies as well (remember SCS)
     - they mirror the positive frequencies.
 
-## Sampling
+## I.2. Sampling
+
+### Sampling
 
 - Taking the values from an analog signal at certain discrete moments of time, usually periodic
 
@@ -118,18 +118,14 @@
     - Processing of discrete signals is cheap (digital devices)
     - Sometimes nothing is lost due to sampling 
 
-## Graphical example
+### Graphical example
 
-
-```
-<matplotlib.text.Text at 0x7f770c7b9400>
-```
 
 ![](figures/01_Sampling_figure2_1.png)\
 
 
 
-## Sampling equation
+### Sampling equation
 
 - Sampling of the continuous signal $x_a$:
 $$x[n] = x_a(n \cdot T_s)$$
@@ -137,7 +133,7 @@ $$x[n] = x_a(n \cdot T_s)$$
 - The $n$-th value of the discrete signal $x[n]$ is the value of the
 analog signal $x_a(t)$ taken after $n$ sampling periods, at $t = n \cdot T_s$
 
-## Sampling of harmonic signals
+### Sampling of harmonic signals
 
 - Let's sample a cosine: $x_a(t) = cos (2 \pi F t)$
 
@@ -152,19 +148,15 @@ x[n] =& x_a(n T_s) \\
 
 - The discrete frequency is $f = \frac{F}{F_s}$
 
-## False friends
+### False friends
 
 - **Note:** A discrete sinusoidal signal might not _look_ sinosoidal, when its frequency is high (close to $\frac{1}{2}$).
 
 
-```
-<matplotlib.text.Text at 0x7f770bedf9e8>
-```
-
 ![](figures/01_Sampling_figure3_1.png){width=12cm}\
 
 
-## Sampling theorem (Nyquist-Shannon)
+### Sampling theorem (Nyquist-Shannon)
 
 - If a signal that has maximum frequency $F_{max}$ is sampled with a a sampling frequency 
 $$F_s \ge 2 F_{max},$$
@@ -173,13 +165,13 @@ $$x_a(t) = \sum_{n=-\infty}^{+\infty} x[n] \cdot \frac{sin(\pi (F_s t - n))}{\pi
 
 
 
-## Comments on the sampling theorem
+### Comments on the sampling theorem
 - All the information in the original signal is contained in the samples, 
 provided the sampling frequency is high enough
 - We can process discrete samples instead of the original analog signals
 - Sampling with $F_s \ge 2F_{max}$ makes the discrete frequency smaller than 1/2 $$f = \frac{F}{F_s} \leq \frac{F_{max}}{F_s} \leq \frac{1}{2}$$
 
-## Aliasing
+### Aliasing
 
 - http://www.dictionary.com/browse/alias:
     - “alias”: a false name used to conceal one’s identity; an assumed name
@@ -195,7 +187,7 @@ that is lower than $f_{max} = \frac{1}{2}$
     - This means reducing $f$ with 1
     - Thus we can always end up a frequency $f' \in [-1/2, 1/2]$ (up to a sign change)
 
-## Aliasing (continued)
+### Aliasing (continued)
 
 
 $$cos (2 \pi (\frac{1}{2} + \epsilon)n) = cos (2 \pi (\frac{1}{2} - \epsilon)n)$$
@@ -206,27 +198,19 @@ $$sin (2 \pi (\frac{1}{2} + \epsilon)n) = - sin (2 \pi (\frac{1}{2} - \epsilon)n
 
 - Sampling with $F_s \ge 2 F_{max}$ ensures $f \le \frac{1}{2}$, so no aliasing
 
-## Aliasing example - low frequency signal
+### Aliasing example - low frequency signal
 
-
-```
-<matplotlib.text.Text at 0x7f770bd859b0>
-```
 
 ![](figures/01_Sampling_figure4_1.png)\
 
 
-## Aliasing example - high frequency signal, same samples
+### Aliasing example - high frequency signal, same samples
 
-
-```
-<matplotlib.text.Text at 0x7f770d21d390>
-```
 
 ![](figures/01_Sampling_figure5_1.png)\
 
 
-## The problem of aliasing
+### The problem of aliasing
 
 - Sampling different signals leads to exactly same samples
 
@@ -239,7 +223,7 @@ otherwise they will create a false frequency and bring confusion
 rejecting all frequencies $F > \frac{F_s}{2}$ from the signal before sampling
     - Standard practice in the design of processing systems
    
-## Signal reconstruction from samples   
+### Signal reconstruction from samples   
 - A discrete frequency $f \in [-\frac{1}{2}, \frac{1}{2}]$ will be reconstructed as follows:
 $$x_r(t) = x[\frac{t}{T_s}] = x[t \cdot F_s]$$
 
@@ -251,7 +235,7 @@ $$x_r(t) = x[\frac{t}{T_s}] = x[t \cdot F_s]$$
    
 - Only signals sampled according to the sampling theorem will be reconstructed identically
     
-## Signal quantization and coding   
+### Signal quantization and coding   
 
 - In practice, the values of the samples are rounded to fixed levels, e.g. 8-bit, 16-bit values.
 
@@ -261,7 +245,7 @@ $$x_r(t) = x[\frac{t}{T_s}] = x[t \cdot F_s]$$
 
 - Converting the value in binary form is known as **coding**
 
-## A/D and D/A conversion
+### A/D and D/A conversion
 
 - Sampling + quantization + coding is usually done by an **Analog to Digital Converter (ADC)** 
     - It takes an analog signal and produces a sequence of binary-coded values
