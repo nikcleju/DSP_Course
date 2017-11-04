@@ -23,7 +23,7 @@ where $f_1 = 0.1$, $f_2 = 0.15$, $n = \overline{1:10000}$ and `noise` is AWGN wi
 2. Write a script file to implement a live spectrum analyzer.
     a. Read 8192 samples from the system's audio input device (use `audiorecord()`)
     a. Plot the signal and its magnitude spectrum as in the previous exercise. Plot only the positive
-    side of the magnitude spectrum ($\omega$ going from $\omega = 0$ to  $\omega = \pi$)
+    side of the magnitude spectrum ($\omega$ cgoing from $\omega = 0$ to  $\omega = \pi$)
     plot only 
     a. Go back to a. and repeat forever (you can stop it with Ctrl-C)
 
