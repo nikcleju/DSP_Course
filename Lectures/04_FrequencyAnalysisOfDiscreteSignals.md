@@ -8,7 +8,7 @@
 * Very useful to analyze signals in **frequency domain**
 * The **spectrum** of a signal indicates the frequency contents
 * Mathematical tools: 
-    * periodicac signals: **Fourier series**
+    * periodical signals: **Fourier series**
     * non-periodical signals: **Fourier transform**
     
 ### Analog periodical signals
@@ -59,7 +59,7 @@ $$c_k = \frac{1}{T} \int_{T/2}^{T/2} x(t) e ^{- j 2 \pi k F_0 t}$$
 --> **cosine with amplitude |c_k| and phase $\angle c_k$**
 
 * Average power of signal = energy of coefficients
-$$P_T = \frac{1}{T}\int_T |x(t)|^2 = \sum_{-infty}^{\infty} |c_k|^2$$
+$$P_T = \frac{1}{T}\int_T |x(t)|^2 = \sum_{-\infty}^{\infty} |c_k|^2$$
 
 * Interpretation of Fourier series for real signal
     * **the signal is the sum of cosine signals with frequency
@@ -76,16 +76,16 @@ $$P_T = \frac{1}{T}\int_T |x(t)|^2 = \sum_{-infty}^{\infty} |c_k|^2$$
 ### Analog non-periodical signals
 
 * The signal is composed of all frequencies (inverse Fourier transform)
-$$x(t) = \int_{\-infty}^{\infty} X(F) e^{j 2 \pi f t} dF$$
+$$x(t) = \frac{1}{2 \pi} \int_{-\infty}^{\infty} X(\omega) e^{j \omega t} d\omega$$
 
 * The frequency content is found by the Fourier transform
-$$X(F) = \int_{\-infty}^{\infty} x(t) e^{- j 2 \pi f t} dt$$
+$$X(\omega) = \int_{-\infty}^{\infty} x(t) e^{- j \omega t} dt$$
 
-* ( Can use instead $\Omega = 2 \pi F$)
+* (Remember: $\omega = 2 \pi F$)
 
-* $X(F)$ is a complex function
-    * $|X(F)|$ is the amplitude spectrum
-    * $\angle X(F)$ is the phase spectrum
+* $X(\omega)$ is a complex function
+    * $|X(\omega)|$ is the amplitude spectrum
+    * $\angle X(\omega)$ is the phase spectrum
 
 ### Conditions for convergence
 
@@ -108,18 +108,18 @@ $$X(F) = \int_{\-infty}^{\infty} x(t) e^{- j 2 \pi f t} dt$$
 
 ### Signal spectrum
 
-* $X(F)$ is a complex function
-* If the signal is **real** $x(t) \in \mathbb{R}$, then the $X(F)$ is **even**
-    * $|X(F)| = |X(-F)|$
-    * $\angle X(F) = - \angle X(-F)$
+* $X(\omega)$ is a complex function
+* If the signal is **real** $x(t) \in \mathbb{R}$, then the $X(\omega)$ is **even**
+    * $|X(\omega)| = |X(-\omega)|$
+    * $\angle X(\omega) = - \angle X(-\omega)$
     * group the terms with $c_k$ with $c_{-k}$
---> **cosine with amplitude |X(F)| and phase $\angle X(F)$**
+--> **cosine with amplitude $|X(\omega)|$ and phase $\angle X(\omega)$**
 
 * Signal energy is the same in time and frequency domains
-$$E = \int_{\infty}^{\infty} |x(t)|^2 dt = \int_{\infty}^{\infty} |X(F)|^2 dF$$
+$$E = \int_{\infty}^{\infty} |x(t)|^2 dt = \frac{1}{2\pi}\int_{-\infty}^{\infty} |X(\omega)|^2 d\omega$$
 
 * The power spectral density of $x(t)$ is 
-$$S_{xx}(F) = |X(F)|^2$$
+$$S_{xx}(\omega) = |X(\omega)|^2$$
 
 
 ## IV.2 Frequency analysis of discrete signals
@@ -200,15 +200,17 @@ $$x_3[n] = \left\{ 1,1,0,0 \right\}$$
 ### Example in Python
 
 
-~~~~{.python}
->>> import numpy as np
->>> from scipy.fftpack import fft, ifft
->>> x = np.array([1.0, 1.0, 0.0, 0.0])
->>> y = 1.0/4.0 * fft(x)
->>> y
-array([ 0.50+0.j  ,  0.25-0.25j,  0.00+0.j  ,  0.25+0.25j])
+```python
+import numpy as np
+from scipy.fftpack import fft, ifft
+x = np.array([1.0, 1.0, 0.0, 0.0])
+y = 1.0/4.0 * fft(x)
+y
+```
 
-~~~~~~~~~~~~~
+```
+array([ 0.50+0.j  ,  0.25-0.25j,  0.00+0.j  ,  0.25+0.25j])
+```
 
 
 
