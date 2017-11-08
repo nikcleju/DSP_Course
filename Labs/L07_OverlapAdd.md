@@ -78,7 +78,7 @@ while(1)
     % Play the first L samples from y.
     % Move into a temporary vector y2 for safety and play from there.
     y2 = y(1:L);
-    player = audioplayer(y,Fs);
+    player = audioplayer(y2,Fs);
     play(player);
     
     % read next 4 seconds of file
