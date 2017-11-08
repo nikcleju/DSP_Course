@@ -1,6 +1,6 @@
 ---
 title: Efficient Convolution with Overlap-Add
-subtitle: Lab 6, DSP
+subtitle: Lab 7, DSP
 documentclass: scrartcl
 fontsize: 12pt
 ---
