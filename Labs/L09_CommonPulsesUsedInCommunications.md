@@ -56,7 +56,7 @@ Display a figure composed of 5 subfigures, where the signal contains only:
 4. Repeat exercises 1 and 3 using a 100-long Gaussian pulse (*Hint*: checl Matlab function `gausswin()`.
 How is the spectrum of the Gaussian pulse compared to a rectangular pulse? Why?
 
-5. Open Matlab's Window Designer tool (`windowDesigner`). Visualize the time-domain and frequency-domain
+5. Open Matlab's Window Design and Analysis Tool (run `window` in command line). Visualize the time-domain and frequency-domain
 domain aspect of the following window types:
     * rectangular
     * raised cosine
