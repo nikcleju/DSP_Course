@@ -34,7 +34,7 @@ phase = angle(c);
 
 % Find the amplitudes of sinusoidal components
 m = m(1:(N/2+1)); 
-m(2:N) = 2*m(2:N);
+m(2:N/2) = 2*m(2:N/2);
 
 % Frequencies' values = multiples of fundamental 1/N
 f = (0:(N/2))*1/N;
@@ -43,7 +43,7 @@ f = (0:(N/2))*1/N;
     * Each component is a cosine with amplitude `m(i)`, frequency `f(i)` and phase `phase(i)`.
     * The DC component of the signal is just like a sinusoidal component with frequency 0 (i.e. constant signal)
     * Full formula is:
-$$x[n] = \sum_i m(i) \cos(2 \pi f(i) + phase(i))$$
+$$x[n] = \sum_i m(i) \cos(2 \pi f(i)*n + phase(i))$$
     
 3. Reconstruct and plot the signal `x` as in previous exercise, but keeping only some of the sinusoidal components.
 Display a figure composed of 5 subfigures, where the signal contains only:
