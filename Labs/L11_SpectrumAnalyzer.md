@@ -1,6 +1,6 @@
 ---
 title: Spectrum Analyzer Application
-subtitle: Lab 10, DSP
+subtitle: Lab 11, DSP
 documentclass: scrartcl
 fontsize: 12pt
 ---
