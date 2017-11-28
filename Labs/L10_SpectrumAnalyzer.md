@@ -1,6 +1,6 @@
 ---
 title: Spectrum Analyzer Application
-subtitle: Lab 9, DSP
+subtitle: Lab 10, DSP
 documentclass: scrartcl
 fontsize: 12pt
 ---
@@ -15,23 +15,46 @@ to use the FFT algorithm in Matlab for frequency analysis of data.
 # Exercises
 
 1. Generate the signal $x[n] = 0.5 \sin (2 \pi f_1 n) + 0.7 \sin (2 \pi f_1 n) + noise,$
-where $f_1 = 0.1$, $f_2 = 0.15$, $n = \overline{1:10000}$ and `noise` is AWGN with variance $sigma^2 = 0.1$.
+where $f_1 = 0.1$, $f_2 = 0.15$, $n = \overline{1:10000}$ and `noise` is AWGN with variance $\sigma^2 = 0.1$.
     a. Plot the signal, in the top half of a sigure (use `subplot()`).
-    b. Display the magnitude spectrum of the signal $x[n]$ from 1, two-sided ($\omega$ going from $\omega = -\pi$ to  $\omega = \pi$),
-    in the bottom half of the figure (use `subplot()`).
+    b. Display the magnitude spectrum of the signal $x[n]$, one-sided ($\omega$ going from $\omega = 0$ to  $\omega = \pi$),
+    in the bottom half of the figure (use `subplot()`). Use the following code from the previous laboratories:
+
+```
+% Given a signal x with length N
+
+% Compute the Fourier series coefficients and find their magnitudes and phases
+c = fft(x);
+m = abs(c);
+phase = angle(c);
+
+% Find the amplitudes of sinusoidal components
+m = m(1:(N/2+1)); 
+m(2:N/2) = 2*m(2:N/2);
+
+% Frequencies' values = multiples of fundamental 1/N
+f = (0:(N/2))*1/N;
+```
 
 2. Write a script file to implement a live spectrum analyzer.
-    a. Read 8192 samples from the system's audio input device (use `audiorecord()`)
+    a. Read 8192 samples from the system's audio input device (use `recordblocking()` function of `audiorecord` object, see Matlab's Help on `recordblocking()` for an example)
     a. Plot the signal and its magnitude spectrum as in the previous exercise. Plot only the positive
-    side of the magnitude spectrum ($\omega$ cgoing from $\omega = 0$ to  $\omega = \pi$)
-    plot only 
-    a. Go back to a. and repeat forever (you can stop it with Ctrl-C)
+    side of the magnitude spectrum ($\omega$ cgoing from $\omega = 0$ to  $\omega = \pi$).
+    a. Go back to a. and repeat forever (you can stop the program with Ctrl-C)
 
-3. Write a function `p = pitch(x)` which returns the dominant frequency in the input signal $x$ (the dominant 
+3. Write a function `p = dominant(x)` which returns the **dominant** frequency in the input signal $x$ (the dominant 
 frequency is the frequency for which the magnitude spectrum is maximum). Call the function from the iterations
-in the previous exercise, and display the dominant frequency in Matlab command line (use `disp()`).
+in the previous exercise, and display the dominant frequency in Matlab command line (use `disp()`) for each set of samples.
+
+4. Write a function `p = fundamental(x)` which returns the **fundamental** frequency in the input signal $x$, knowing that:
+    - the dominant frequency is either the fundamental one or a multiple of it
+    - the fundamental frequency, even if it is not the dominant one, is still large enough (e.g. more than 50% the amplitude of the dominant frequency).
+
+5. Based on the fundamental frequency, try to estimate what string is played in a guitar.
+Each open string in a guitar has a fundamental frequency, you can find it here: [https://en.wikipedia.org/wiki/Guitar_tunings](https://en.wikipedia.org/wiki/Guitar_tunings).
+
+
 
 # Final questions
-
 
 1. TBD
