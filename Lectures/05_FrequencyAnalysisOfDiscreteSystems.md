@@ -6,11 +6,11 @@
 * We consider an LTI system with $h[n]$
 
 * Input signal = complex harmonic (exponential) signal
-$x[n] = A e^{j \omega_0 n}$$
+$x[n] = A e^{j \omega_0 n}$
 
 * Output signal = convolution
 $$\begin{split}
-y[n] &= \sum_{k=-\infty}^\infty h[n] x[k-n]\\
+y[n] &= \sum_{k=-\infty}^\infty h[k] x[n-k]\\
 &= \sum_{k=-\infty}^\infty h[k] e^{-j \omega_0 k} A e^{j \omega_0 n}\\
 &= H(\omega_0) \cdot x[n]
 \end{split}$$
