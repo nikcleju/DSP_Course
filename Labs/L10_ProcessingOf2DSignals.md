@@ -26,7 +26,7 @@ of the image. Ignore the first and last row/column.
 figure and display the original image, the image filtered once,
 the image filtered 5 times, and the image filtered 10 times.
 
-4. Apply the following 2D system on the Lena image. 
+4. **NU MERGE, RAMAN DOAR MUCHIILE, TB SCAZUTE COMPONENTA CONTINUA, ETC. DE REVAZUT** Apply the following 2D system on the Lena image. 
 Display the resulting image. What has changed? 
 What type of 2D filter is this?
 
