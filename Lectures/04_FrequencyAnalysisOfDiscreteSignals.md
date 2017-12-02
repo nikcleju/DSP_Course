@@ -200,17 +200,15 @@ $$x_3[n] = \left\{ 1,1,0,0 \right\}$$
 ### Example in Python
 
 
-```python
-import numpy as np
-from scipy.fftpack import fft, ifft
-x = np.array([1.0, 1.0, 0.0, 0.0])
-y = 1.0/4.0 * fft(x)
-y
-```
-
-```
+~~~~{.python}
+>>> import numpy as np
+>>> from scipy.fftpack import fft, ifft
+>>> x = np.array([1.0, 1.0, 0.0, 0.0])
+>>> y = 1.0/4.0 * fft(x)
+>>> y
 array([ 0.50+0.j  ,  0.25-0.25j,  0.00+0.j  ,  0.25+0.25j])
-```
+
+~~~~~~~~~~~~~
 
 
 

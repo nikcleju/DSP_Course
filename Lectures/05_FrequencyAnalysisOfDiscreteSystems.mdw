@@ -183,15 +183,11 @@ $$\tau_g(\omega) = \frac{d \Theta(\omega)}{d \omega}$$
 
 * Based on geometric method
 
-* The gain must be found by separate condition
+* The gain coefficient must be found by separate condition
+    * i.e. specify the desired magnitude response at one frequency
 
 * Examples at blackboard
 
-
-### Linear-phase FIR filters
-
-* Only FIR filters can have linear phase!
-* IIR filters cannot have linear phase (no proof
 
 ### Zero-phase transfer function
 
@@ -202,15 +198,21 @@ $$|H(\omega)| \geq 0$$
     * $|H(\omega)|$ remains positive
     * $\angle H(\omega)$ has a jump of $\pi$
 
-* Zero phase transfer function $H(\omega) = H_R(\omega) e^{j \Theta_R(\omega)}$
+* **Zero-phase transfer function**
     * $H_R(\omega)$ = $\pm |H(\omega)|$, including the sign (can be positive or negative)
     * $\Theta_R(\omega)$ doesn't have anymore the jumps of $\pi$
+$$H(\omega) = H_R(\omega) e^{j \Theta_R(\omega)}$$
 
 * Everything else still applies
     * $H_R(\omega)$ is even
     * $\Theta_R(\omega)$ is odd
 
-### Symmetries for linear-phase FIR
+### Linear-phase FIR filters
+
+* Only FIR filters can have linear phase!
+* IIR filters cannot have linear phase (no proof)
+
+### Symmetry conditions for linear-phase FIR
 
 * Let filter order be $M$
 
@@ -288,17 +290,3 @@ outside unit circle --> unstable
 * Maximum phase: all zeros are outside unit circle
 * Mixed phase: some zeros inside, some outside
 
-### System identification
-
-* How to find system/transfer function of an unknown system?
-
-* Via the Z transform
-    * Observe the output $y[n]$ to a known input $x[n]$
-    * Then $H(z) = Y(z) / X(z)$
-    * Example
-
-* Direct in time domain (for causal systems)
-    * use convolution equation to find $h[0]$, then $h[1]$ etc
-
-* Using correlation 
-    .
