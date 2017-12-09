@@ -35,6 +35,10 @@ $$\delta[n] =
 ### Representation
 
 
+```
+[-3, 4, -0.2, 1.2]
+```
+
 ![](figures/02_SignalsAndSystems_figure1_1.png)\
 
 
@@ -54,6 +58,10 @@ $$u[n] =
 ### Representation
 
 
+```
+[-6, 9, -0.2, 1.2]
+```
+
 ![](figures/02_SignalsAndSystems_figure2_1.png)\
 
 
@@ -71,6 +79,10 @@ n &\mbox{if } n \geq 0 \\
 
 ### Representation
 
+
+```
+[-6, 9, 0, 10.2]
+```
 
 ![](figures/02_SignalsAndSystems_figure3_1.png)\
 
@@ -94,6 +106,10 @@ Depending on the value of $a$, we have four possible cases:
 
 ### Representation
 
+
+```
+<matplotlib.text.Text at 0x7ffac6fc0860>
+```
 
 ![](figures/02_SignalsAndSystems_figure4_1.png)\
 
@@ -150,6 +166,10 @@ $$-x[n] = x[-n], \forall n.$$
 ### Even and odd signals: example
 
 
+```
+<matplotlib.text.Text at 0x7ffac786c9b0>
+```
+
 ![](figures/02_SignalsAndSystems_figure5_1.png){width=linewidth}\
 
 
@@ -171,6 +191,10 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 ### Even and odd parts: example
 
 
+```
+[-6, 6, -4, 10]
+```
+
 ![](figures/02_SignalsAndSystems_figure6_1.png){width=12cm}\
 
 
@@ -189,6 +213,10 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 ### Time shifting: representation
 
 
+```
+<matplotlib.text.Text at 0x7ffac6f0a0f0>
+```
+
 ![](figures/02_SignalsAndSystems_figure7_1.png)\
 
 
@@ -197,6 +225,10 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 
 - Changing the variable $n$ to $-n$ produces a signal $x[-n]$ which mirrors $x[n]$.
 
+
+```
+<matplotlib.text.Text at 0x7ffac757eb70>
+```
 
 ![](figures/02_SignalsAndSystems_figure8_1.png)\
 
@@ -208,6 +240,10 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
     - Keep only 1 sample out of $M$ samples from the original signal $x[n]$
 
 
+
+```
+<matplotlib.text.Text at 0x7ffac6db11d0>
+```
 
 ![](figures/02_SignalsAndSystems_figure9_1.png)\
 
@@ -227,7 +263,15 @@ $$
 
 
 
-![](figures/02_SignalsAndSystems_figure10_1.png){width=12cm}\
+```
+File "<ipython-input-1-b76ffdfaebe3>", line 7
+    plt.stem(x2); plt.title ('Interpolated signal by a factor or 3,
+$x_{3\uparrow}[n]$');
+                            ^
+SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes
+in position 43-44: truncated \uXXXX escape
+```
+
 
 
 
@@ -543,6 +587,10 @@ $$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k]$$
 ### Example
 
 
+```
+[-0.5, 13, 0, 12]
+```
+
 ![](figures/02_SignalsAndSystems_figure18_1.png)\
 
 
@@ -659,6 +707,10 @@ $$h[n] = 0, \forall n < 0$$.
 
 ### Example
 
+
+```
+[-26.5, 26.5, 0, 5]
+```
 
 ![](figures/02_SignalsAndSystems_figure19_1.png)\
 

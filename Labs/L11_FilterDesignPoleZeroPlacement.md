@@ -13,7 +13,7 @@ digital filters using the built-in tools of Matlab.
 
 # Exercises
 
-1. Open the Filter Design tool in Matlab (call `fdtool` in command line).
+1. Open the Filter Design tool in Matlab (call `fdatool` in command line).
 Draw two zeros and two plots and place them such as to obtain:
     - a Low-Pass filter
     - a High-Pass filter
