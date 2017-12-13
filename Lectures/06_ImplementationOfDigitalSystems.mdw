@@ -1,4 +1,4 @@
-
+FD
 # Chapter VI. Implementation of Digital Systems
 
 ## VI.1. Direct-Form structures
@@ -49,7 +49,7 @@ y[n] =& -\sum_{k=1}^N a_k y[n-k] + -\sum_{k=1}^M b_k x[n-k] \\
 
 ### Direct-Form II
 
-![Direct-Form II structure](img/FD1.png){#id .class width=55%}
+![Direct-Form II structure](img/FD2.png){#id .class width=55%}
 
 *[image from "Digital Signal Processing", Proakis & Manolakis, 3rd ed.]*
 
