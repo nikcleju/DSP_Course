@@ -23,7 +23,7 @@ All the laboratory documents are in the Labs folder.
 **Tests during semester**
 
 The grades of the 3 tests during the semester are available here: [Tests\NoteTeste_2017_12_20.pdf](Tests/NoteTeste_2017_12_20.pdf).
-The **password is your group number (5xxx)**.
+To access the file, download the file and enter the password: your group number (**xxxx**).
 
 As you know, it is possible to re-take one test during the lecture hours in the last week.
 
