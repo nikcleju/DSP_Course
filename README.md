@@ -20,14 +20,18 @@ The list of subjects is here: [Labs\LabTest.pdf](Labs/LabTest.pdf)
 
 All the laboratory documents are in the Labs folder.
 
+**Tests during semester**
+
+The grades of the 3 tests during the semester are available here: [Tests\NoteTeste_2017_12_20.pdf](Tests/NoteTeste_2017_12_20.pdf).
+The **password is your group number (5xxx)**.
+
+As you know, it is possible to re-take one test during the lecture hours in the last week.
+
+All the tests given this semester will be available in the Tests folder (soon to be).
+
 **Exercises**
 
 The exercises done throughout the lectures are available in the Exercises folder.
-
-**Tests**
-
-All the tests given this semester are available in the Tests folder (soon to be).
-
 
 Have fun!
 
