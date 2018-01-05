@@ -18,6 +18,8 @@ autumn semester at ETTI, TUIASI.
  
 The list of subjects is here: [Labs\LabTest.pdf](Labs/LabTest.pdf)
 
+The schedule of the test entry times is here: [Labs\ProgramareTest.pdf](Labs/ProgramareTest.pdf)
+
 All the laboratory documents are in the Labs folder.
 
 **Tests during semester**
