@@ -1,9 +1,13 @@
-# DSP20172018
+# DSP_Course
 
-Here you will find all the materials for the class of Digital Signal Processing taught during 2017-2018
+Here you will find all the materials for the class of Digital Signal Processing taught during 2018-2019
 autumn semester at ETTI, TUIASI.
 
-**Lectures [pdf]** All lecture slides are available in the Lectures folder:
+## Course materials 
+
+### Lectures 
+
+All lecture slides are available as pdf files in the Lectures folder:
 
 - [Lectures\00_Introduction.pdf](Lectures/00_Introduction.pdf)
 - [Lectures\01_Sampling.pdf](Lectures/01_Sampling.pdf)
@@ -14,33 +18,24 @@ autumn semester at ETTI, TUIASI.
 - [Lectures\06_ImplementationOfDigitalSystems.pdf](Lectures/06_ImplementationOfDigitalSystems.pdf)
 - [Lectures\07_ApplicationsOfDSP.pdf](Lectures/07_ApplicationsOfDSP.pdf)
 
-**Exam**
+### Exercises
+
+The exercises done throughout the lectures are available in the Exercises folder.
+
+### Laboratory
+
+The laboratory files are available in the Labs folder.
+
+## Evaluation
+
+### Exam
 
 A sample exam sheet is here: [SampleExam\SampleExamSheet.pdf](SampleExam/SampleExamSheet.pdf)
 
-**Grades for Laboratory and Tests**
 
-The Laboratory grades are here: [Grades\NoteLab_2018_01_14_Final.pdf](Grades/NoteLab_2018_01_14_Final.pdf)
+### Grades
 
-The Tests grades are here: [Grades\NoteTeste_2018_01_14_Final.pdf](Grades/NoteTeste_2018_01_14_Final.pdf)
-
-To access the files, download and enter the password: your group number (**xxxx**).
-
-**Laboratory test**
- 
-The list of subjects is here: [Labs\LabTest.pdf](Labs/LabTest.pdf)
-
-The schedule of the test entry times is here: [Labs\ProgramareTest.pdf](Labs/ProgramareTest.pdf)
-
-All the laboratory documents are in the Labs folder.
-
-**Tests during semester**
-
-All the tests given this semester will be available in the Tests folder: [Tests](Tests)
-
-**Exercises**
-
-The exercises done throughout the lectures are available in the Exercises folder.
+Grades will be available only on the Faculty's [e-learning platform](edu.etti.tuiasi.ro).
 
 Have fun!
 

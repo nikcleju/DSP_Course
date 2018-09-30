@@ -20,7 +20,7 @@ EXPORTED_DOCS_TEX = $(SOURCE_MD:.md=.tex)
 
 # Pandoc options
 PANDOC = pandoc
-PANDOC_OPTIONS = -f markdown+latex_macros --standalone --include-in-header macros.md
+PANDOC_OPTIONS = -f markdown+latex_macros --standalone 
 
 # PWeave options
 PWEAVE = pweave
@@ -47,7 +47,9 @@ RM=/bin/rm
 # What is this?
 .PHONY: all clean
 
-all : tex odt pdf
+all : pdf
+
+debug: tex odt pdf
 
 odt : $(EXPORTED_DOCS_ODT)
 
