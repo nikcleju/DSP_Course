@@ -1,6 +1,6 @@
-# Introduction
+## Introduction
 
-## Organization
+### Organization
 
 - 6 credits
 - Professors
@@ -14,7 +14,7 @@
 - My office hours: *To Be Announced* (best by appointment)
 
 
-## Evaluation
+### Evaluation
 
 - Exam
     - 60% of final grade
@@ -37,13 +37,13 @@
 - Final grade = 60% Exam + 20% Tests + 20% Lab
 
 
-## Course structure
+### Course structure
 1. Chapter I:   Sampling of analog signals
 2. Chapter II:  Discrete signals and systems
 3. Chapter III: ...
 4. Chapter IV:  ...
 
-## Bibliography (TBD)
+### Bibliography (TBD)
 
 1. *Prelucrarea digitală a semnalelor*, Daniela Tărniceriu (romanian)
 2. *Digital Signal Processing: Principles, Algorithms and Applications*, John G. Proakis, Dimitris G. Manolakis, 3rd Edition (english)

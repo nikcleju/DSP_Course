@@ -43,10 +43,6 @@
     - Outside the samples, the signal is **not defined**
 
 
-```
-<matplotlib.text.Text at 0x7f1e3b315128>
-```
-
 ![](figures/01_Sampling_figure1_1.png){width=12cm}\
 
 
@@ -97,7 +93,7 @@
     - Period $T$ can be as small as possible $T \to 0$
     - Therefore $F$ could go up to $\infty$
 
-- Analog signals
+- Discrete signals
     - Smallest period is $N = 2$ (excluding $N=1$, constant signals)
     - Largest possible frequency is $f_{max} = \frac{1}{2}$
     - Consequence of using natural numbers to index the samples (x[0], x[1], x[2]...),
@@ -124,10 +120,6 @@
 
 ### Graphical example
 
-
-```
-<matplotlib.text.Text at 0x7f1e3a4650f0>
-```
 
 ![](figures/01_Sampling_figure2_1.png)\
 
@@ -161,10 +153,6 @@ x[n] =& x_a(n T_s) \\
 - **Note:** A discrete sinusoidal signal might not _look_ sinosoidal, when its frequency is high (close to $\frac{1}{2}$).
 
 
-```
-<matplotlib.text.Text at 0x7f1e39b8d668>
-```
-
 ![](figures/01_Sampling_figure3_1.png){width=12cm}\
 
 
@@ -172,7 +160,7 @@ x[n] =& x_a(n T_s) \\
 
 - If a signal that has maximum frequency $F_{max}$ is sampled with a a sampling frequency 
 $$F_s \ge 2 F_{max},$$
-- then it can be perfectly reconstructed from its samples using the formula:
+    then it can be perfectly reconstructed from its samples using the formula:
 $$x_a(t) = \sum_{n=-\infty}^{+\infty} x[n] \cdot \frac{sin(\pi (F_s t - n))}{\pi (F_s t - n)}.$$
 
 
@@ -190,42 +178,38 @@ provided the sampling frequency is high enough
 
 - What happens when the sampling frequency is not high enough?
 
-- Every discrete frequency that exceeds $f_{max} = \frac{1}{2}$ is **identical** (an alias) to a frequency
-that is lower than $f_{max} = \frac{1}{2}$
+- Every discrete frequency $f$ outside the interval $f \notin [-\frac{1}{2}, \frac{1}{2}]$
+is **identical** (an "alias") with a frequency from this interval $f_{alias} \in [-\frac{1}{2}, \frac{1}{2}]$
 
-- Proof: 
-    - Consider $x[n] = cos(2 \pi f n)$, $f > \frac{1}{2}$
-    - We can always subtract $2 \pi n$ since $cos()$ is periodical
-    - This means reducing $f$ with 1
-    - Thus we can always end up a frequency $f' \in [-1/2, 1/2]$ (up to a sign change)
+- Proof: at blackboard 
+    - Consider $x[n] = cos(2 \pi f n)$, $f \notin [-\frac{1}{2}, \frac{1}{2}]$
+    - We can always add/subtract $2 \pi n$ since $cos()$ is periodical, with no change
+    - This means increasing/reducing $f$ by 1
+    - Thus we can always end up a frequency $f_{alias} \in [-1/2, 1/2]$ (up to a sign change)
 
-### Aliasing (continued)
+### Aliasing
 
+- Frequency **folding**: if $f$ exceeds the limit $\frac{1}{2}$ with $\epsilon$, it aliases 
+a frequency below $\frac{1}{2}$ with $\epsilon$, symmetrically
 
 $$cos (2 \pi (\frac{1}{2} + \epsilon)n) = cos (2 \pi (\frac{1}{2} - \epsilon)n)$$
 
 $$sin (2 \pi (\frac{1}{2} + \epsilon)n) = - sin (2 \pi (\frac{1}{2} - \epsilon)n)$$
 
-- Aliasing only affects digital signals
+### Aliasing
+
+- Aliasing only affects digital signals, caused by sampling
 
 - Sampling with $F_s \ge 2 F_{max}$ ensures $f \le \frac{1}{2}$, so no aliasing
 
 ### Aliasing example - low frequency signal
 
 
-```
-<matplotlib.text.Text at 0x7f1e3af65400>
-```
-
 ![](figures/01_Sampling_figure4_1.png)\
 
 
 ### Aliasing example - high frequency signal, same samples
 
-
-```
-<matplotlib.text.Text at 0x7f1e3adff7f0>
-```
 
 ![](figures/01_Sampling_figure5_1.png)\
 

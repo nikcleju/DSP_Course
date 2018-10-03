@@ -25,6 +25,7 @@ PANDOC_OPTIONS = -f markdown+latex_macros --standalone -t beamer --slide-level 3
 # PWeave options
 PWEAVE = pweave
 PWEAVE_OPTIONS = -f pandoc
+PWEAVE_OPTIONS_FAST = -f pandoc -m
 
 # Other options
 RM=/bin/rm
@@ -49,6 +50,10 @@ RM=/bin/rm
 .PHONY: all clean
 
 all : pdf
+
+#full :
+#	PWEAVE_OPTIONS="-f pandoc"
+#	$(MAKE) all
 
 debug: tex odt pdf
 
