@@ -169,6 +169,16 @@ x[n] =& x_a(n T_s) \\
 
 - The discrete frequency is $f = \frac{F}{F_s}$
 
+### Discrete frequency is relative
+
+$$f = \frac{F}{F_s}$$
+
+- Discrete frequency should be understood as **relative to the sampling frequency**
+    - $f = \frac{1}{4}$ means "coming from an analog frequency F which was 
+$\frac{1}{4}$ of the sampling frequency"
+    - $f = 0.1$ means "one tenth of the sampling frequency", and so on
+
+
 ### False friends
 
 - **Note:** A discrete sinusoidal signal might not _look_ sinosoidal, when its frequency is high (close to $\frac{1}{2}$).
@@ -227,6 +237,17 @@ a frequency below $\frac{1}{2}$ with $\epsilon$, symmetrically
 $$cos (2 \pi (\frac{1}{2} + \epsilon)n) = cos (2 \pi (\frac{1}{2} - \epsilon)n)$$
 
 $$sin (2 \pi (\frac{1}{2} + \epsilon)n) = - sin (2 \pi (\frac{1}{2} - \epsilon)n)$$
+
+### Aliasing
+
+Equivalently:
+
+- If an analog frequency $F$ exceeds the limit $\frac{F_s}{2}$ with some $\epsilon$, 
+it produces the same samples (alias) as another analog frequency smaller
+than $\frac{F_s}{2}$ with $\epsilon$, symmetrically
+
+- Example: $F = 1000 Hz$ sampled with $F_s = 1600 Hz$ aliases $F_{alias} = 600 Hz$.
+
 
 ### Aliasing
 
