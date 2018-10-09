@@ -1,5 +1,5 @@
 ---
-title: Working with discrete signals
+title: Working with discrete 1D signals
 subtitle: Lab 2, DSP
 documentclass: scrartcl
 fontsize: 12pt
@@ -8,7 +8,7 @@ fontsize: 12pt
 # Objective
 
 Students should gain knowledge on some of the basic Matlab functions for handling 
-discrete signals
+discrete unidimensional signals
 
 # Theoretical aspects
 
@@ -23,7 +23,7 @@ The following aspects shall be explained
 2. Loading / saving data from .mat files
 
 3. Working with audio data
-    - importing signals from audio files (audioread() function)
+    - importing signals from audio files (`audioread()` function)
     - playing signals through the speaker
 
 4. Applying windows to signals
@@ -43,7 +43,8 @@ The following aspects shall be explained
     b. Change the sampling frequency to half the correct value, and play again. How will the sound be changed?
     c. Amplify the sound by multiplying the data by 4. Play the sound and observe the difference.
     d. Swap the left and right channels (it's a stereo file).
-    e. Apply the Hann window to the audio signal (to both channels) and play it.
+    e. Multiply each audio channel with a periodic rectangular window and listen to
+    the results. Change the window to a Hann window (or simply sinusoidal).
     
 4. Generate a long signal (1000000 elements) looking like $[1, -1, 1, -1, ...]$ and play it using $Fs = 8000$. 
 What signal is generated? What is it's frequency? Hints:
