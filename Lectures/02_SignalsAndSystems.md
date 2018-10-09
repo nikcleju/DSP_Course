@@ -108,7 +108,7 @@ Depending on the value of $a$, we have four possible cases:
 
 
 ```
-<matplotlib.text.Text at 0x7ffac6fc0860>
+Text(0.5,1,'a = -1.35')
 ```
 
 ![](figures/02_SignalsAndSystems_figure4_1.png)\
@@ -167,7 +167,7 @@ $$-x[n] = x[-n], \forall n.$$
 
 
 ```
-<matplotlib.text.Text at 0x7ffac786c9b0>
+Text(0.5,1,'Odd signal')
 ```
 
 ![](figures/02_SignalsAndSystems_figure5_1.png){width=linewidth}\
@@ -214,7 +214,7 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 
 
 ```
-<matplotlib.text.Text at 0x7ffac6f0a0f0>
+Text(0.5,1,'x[n+3]')
 ```
 
 ![](figures/02_SignalsAndSystems_figure7_1.png)\
@@ -227,7 +227,7 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 
 
 ```
-<matplotlib.text.Text at 0x7ffac757eb70>
+Text(0.5,1,'Reversed signal x[-n]')
 ```
 
 ![](figures/02_SignalsAndSystems_figure8_1.png)\
@@ -242,7 +242,8 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 
 
 ```
-<matplotlib.text.Text at 0x7ffac6db11d0>
+Text(0.5,1,'Signal subsampled by a factor of 2,
+$x_{2\\downarrow}[n]$')
 ```
 
 ![](figures/02_SignalsAndSystems_figure9_1.png)\
@@ -264,7 +265,7 @@ $$
 
 
 ```
-File "<ipython-input-1-b76ffdfaebe3>", line 7
+File "<ipython-input-1-d428ef30960d>", line 7
     plt.stem(x2); plt.title ('Interpolated signal by a factor or 3,
 $x_{3\uparrow}[n]$');
                             ^
@@ -583,13 +584,8 @@ $$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k]$$
 
 - The response of a LTI system to an input signal x[n] is **the convolution of x[n] with the system's impulse response h[n]**
 
-
 ### Example
 
-
-```
-[-0.5, 13, 0, 12]
-```
 
 ![](figures/02_SignalsAndSystems_figure18_1.png)\
 
@@ -620,6 +616,32 @@ Proof: equation
 $$(\alpha \cdot a[n] + \beta \cdot b[n]) * c[n] = \alpha (\cdot a[n] * c[n]) + \beta \cdot (b[n] * c[n])$$
 
 Proof: by linearity of the corresponding system
+
+
+### Interpretation of convolution equation
+
+The convolution equation can be interpreted in two ways:
+
+1. The output signal $y[n]$ = a sum of a lot of impulse responses $h[n]$,
+each one delayed by $k$ (hence $[n-k]$) and scaled by $x[k]$
+    - one for each sample in the input signal
+    - explain at blackboard
+
+$$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k]$$
+
+
+### Interpretation of convolution equation
+
+2. Each output sample $y[n]$ = a weighted average of the input samples around it
+    - $y[n] = ... + h[2] \cdot x[n-2] + h[1]\cdot x[n-1] + h[0]\cdot x[n] + h[n+1] \cdot x[n+1] + ...$
+
+- If $h[n]$ has finite length (e.g. non-zero only between $h[-2] ... h[2]$),
+then there are only a few terms in the sum
+    - Example at blackboard
+
+$$x[n] * h[n] = \sum_{k=-\infty}^\infty h[k] x[n-k]$$
+
+
 
 
 ### Properties of LTI systems expressed with $h[n]$
