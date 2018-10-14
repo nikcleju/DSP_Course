@@ -11,8 +11,8 @@ A discrete signal can represented:
 - in table form
 - as a vector: $x[n] = [...,0,0,1,3,4,5,0,...]$
     - an **arrow** indicates the origin of time ($n=0$).
-    -if the arrow is missing, the origin of time is at the first element
-    -the dots $...$ indicate that the value remains the same from that point onwards
+    - if the arrow is missing, the origin of time is at the first element
+    - the dots $...$ indicate that the value remains the same from that point onwards
 
 Examples: at blackboard
 
@@ -35,11 +35,7 @@ $$\delta[n] =
 ### Representation
 
 
-```
-[-3, 4, -0.2, 1.2]
-```
-
-![](figures/02_SignalsAndSystems_figure1_1.png)\
+![](figures/02_SignalsAndSystems_figure1_1.png){width=10cm}\
 
 
 
@@ -58,11 +54,7 @@ $$u[n] =
 ### Representation
 
 
-```
-[-6, 9, -0.2, 1.2]
-```
-
-![](figures/02_SignalsAndSystems_figure2_1.png)\
+![](figures/02_SignalsAndSystems_figure2_1.png){width=10cm}\
 
 
 ### Unit ramp
@@ -80,11 +72,7 @@ n &\mbox{if } n \geq 0 \\
 ### Representation
 
 
-```
-[-6, 9, 0, 10.2]
-```
-
-![](figures/02_SignalsAndSystems_figure3_1.png)\
+![](figures/02_SignalsAndSystems_figure3_1.png){width=10cm}\
 
 
 
@@ -107,11 +95,15 @@ Depending on the value of $a$, we have four possible cases:
 ### Representation
 
 
+<<<<<<< Updated upstream
 ```
 Text(0.5,1,'a = -1.35')
 ```
 
 ![](figures/02_SignalsAndSystems_figure4_1.png)\
+=======
+![](figures/02_SignalsAndSystems_figure4_1.png){width=10cm}\
+>>>>>>> Stashed changes
 
 
 
@@ -128,6 +120,17 @@ $$E = \sum_{n=-\infty}^{\infty} (x[n])^2.$$
     - unit impulse has finite energy
     - unit step does not
 
+### Connection with DEDP class
+
+- Cross-link with DEDP course:
+$$E = \|\mathbf{x} - \mathbf{0}\|^2 = \|\mathbf{x}\|^2$$
+
+- Energy of a signal = **squared Euclidean distance to 0**
+    - geometric interpretation: squared length of the segment
+from 0 to the point $\mathbf{x}$
+    - holds for continuous signals as well:
+$$E = \|\mathbf{x}\|^2 = \int_{-\infty}^\infty x^2(t) dt$$
+
 ### Signals with finite power
 
 - The **average power of a discrete signal** is defined as
@@ -139,8 +142,12 @@ $$P = \lim_{N \to \infty} \frac{\sum_{n=-N}^{N} (x[n])^2}{2N+1}.$$
 
 - A signal with finite energy has finite power ($P=0$ if the signal has infinite length). A signal with infinite energy can have finite or infinite power.
 
-- Example: unit step has finite power $P = \frac{1}{2}$ (see proof at blackboard).
+- Example: unit step has finite power $P = \frac{1}{2}$ (proof at blackboard).
 
+### Connection with DEDP class
+
+- Average power = temporal average squared value $\overline{X^2}$
+    - i.e. average value of the square of samples
 
 ### Periodic and non-periodic signals
 
@@ -166,11 +173,15 @@ $$-x[n] = x[-n], \forall n.$$
 ### Even and odd signals: example
 
 
+<<<<<<< Updated upstream
 ```
 Text(0.5,1,'Odd signal')
 ```
 
 ![](figures/02_SignalsAndSystems_figure5_1.png){width=linewidth}\
+=======
+![](figures/02_SignalsAndSystems_figure5_1.png){width=12cm}\
+>>>>>>> Stashed changes
 
 
 
@@ -191,10 +202,6 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 ### Even and odd parts: example
 
 
-```
-[-6, 6, -4, 10]
-```
-
 ![](figures/02_SignalsAndSystems_figure6_1.png){width=12cm}\
 
 
@@ -213,10 +220,13 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 ### Time shifting: representation
 
 
+<<<<<<< Updated upstream
 ```
 Text(0.5,1,'x[n+3]')
 ```
 
+=======
+>>>>>>> Stashed changes
 ![](figures/02_SignalsAndSystems_figure7_1.png)\
 
 
@@ -226,16 +236,24 @@ Text(0.5,1,'x[n+3]')
 - Changing the variable $n$ to $-n$ produces a signal $x[-n]$ which mirrors $x[n]$.
 
 
+<<<<<<< Updated upstream
 ```
 Text(0.5,1,'Reversed signal x[-n]')
 ```
 
+=======
+>>>>>>> Stashed changes
 ![](figures/02_SignalsAndSystems_figure8_1.png)\
 
 
 
 ### Subsampling
+- **Subsampling** by a factor of M = 
+keep only 1 sample from every M of the original signal
+    - Total number of samples is reduced M times
+$$x_{M\downarrow}[n] = x[Mn]$$
 
+<<<<<<< Updated upstream
 - $x_{M\downarrow}[n] = x[Mn]$ is a **subsampled** version of $x[n]$ with a factor of $M$
     - Keep only 1 sample out of $M$ samples from the original signal $x[n]$
 
@@ -245,6 +263,8 @@ Text(0.5,1,'Reversed signal x[-n]')
 Text(0.5,1,'Signal subsampled by a factor of 2,
 $x_{2\\downarrow}[n]$')
 ```
+=======
+>>>>>>> Stashed changes
 
 ![](figures/02_SignalsAndSystems_figure9_1.png)\
 
@@ -252,8 +272,9 @@ $x_{2\\downarrow}[n]$')
 
 ### Interpolation
 
-- **Interpolation** by a factor of $L$ adds $L$ of zeros between two samples in the original signal. 
-
+- **Interpolation** by a factor of $L$ adds $(L-1)$ 
+zeros between two samples in the original signal
+    - Total number of samples increases L times
 $$
 x_{L\uparrow} = 
 \begin{cases}
@@ -264,6 +285,7 @@ $$
 
 
 
+<<<<<<< Updated upstream
 ```
 File "<ipython-input-1-d428ef30960d>", line 7
     plt.stem(x2); plt.title ('Interpolated signal by a factor or 3,
@@ -273,6 +295,9 @@ SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes
 in position 43-44: truncated \uXXXX escape
 ```
 
+=======
+![](figures/02_SignalsAndSystems_figure10_1.png){width=12cm}\
+>>>>>>> Stashed changes
 
 
 
@@ -363,24 +388,20 @@ Examples:
 
 ### Recursive systems
 
-- The last system $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$ can be also written in **recursive form**
-
+- Some systems can/must be written in **recursive form**
 $$y[n] = y[n-1] + x[n],$$
 
+- Must always specify **initial conditions**
+    - i.e. initial value (e.g. $y[-1] = 2.5$)
+    - if not mentioned, assume they are 0 ("relaxed system")
+    - they represent the internal state of the system at the
+starting moment
 
-- Need to start from an **initial condition** $$y[n_0] = \sum_{k=-\infty}^{n_0} x[k]$$
-
-- Recursive systems always have one or more initial conditions. 
-
-- For recursive systems, the output signal depends on:
-
-    - the input signal
-    - **and** on initial conditions
-   
-- The initial conditions must always be specified for a recursive system
-    - If not specified : implicitly assumed they are 0 (**relaxed** system)
-
-- A recursive system with non-zero initial conditions can produce an output signal even in the absence of an input ($x[n] = 0$)
+- For recursive systems, the output signal depends on 
+both the input signal **and** on the initial conditions
+    - different initial conditions lead to different outputs, 
+even if input signal is the same 
+    - a recursive system with non-zero initial conditions can produce an output signal even in the absence of an input ($x[n] = 0$)
 
 
 ### Representation of systems
@@ -412,19 +433,28 @@ $$y[n] = y[n-1] + x[n],$$
 - Memory of size $N$:
     - output at time $n$ $y[n]$ depends only up to the last $N$ inputs, $x[n-N], x[n-(N-1)],... x[n]$,
     - if $N$ is finite: the system has **finite memory**
-    - if $N = \infty$, the system has infinite memory
+    - if $N = \infty$, the system has **infinite memory**
 
 - Examples:
     - finite memory of order 4: $y[n] = x[n] + x[n-2] + x[n-4]$ 
-    - infinite memory: $y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$
+    - infinite memory: $y[n] = 0.5y[n-1] + 0.8 x[n]$
+        - recursive systems usually have infinite memory
+
+### Memoryless / systems with memory
+
+- An input sample has an effect on the output only for the next $N$ time moments
+
+- For systems infinite memory, any sample influences **all** the following samples, forever
+    - but, if system is stable, the influence gets smaller and smaller
+
+
 
 ### Time-Invariant and Time-Variant systems
 
 - A relaxed system $H$ is **time-invariant** if and only if:
 $$x[n] \overset{H}{\rightarrow} y[n]$$
-implies
-$$x[n-k] \overset{H}{\rightarrow} y[n-k],$$
-$\forall x[n], \forall k$.
+implies, $\forall x[n], \forall k$, that
+$$x[n-k] \overset{H}{\rightarrow} y[n-k]$$ 
 
 - Delaying the input signal with $k$ will only delay the output with the same amount, otherwise the output is not affected
     - Must be true for all input signals, for all possible delays (positive or negative)
@@ -729,10 +759,6 @@ $$h[n] = 0, \forall n < 0$$.
 
 ### Example
 
-
-```
-[-26.5, 26.5, 0, 5]
-```
 
 ![](figures/02_SignalsAndSystems_figure19_1.png)\
 
