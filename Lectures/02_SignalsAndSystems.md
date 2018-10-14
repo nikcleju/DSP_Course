@@ -95,15 +95,7 @@ Depending on the value of $a$, we have four possible cases:
 ### Representation
 
 
-<<<<<<< Updated upstream
-```
-Text(0.5,1,'a = -1.35')
-```
-
-![](figures/02_SignalsAndSystems_figure4_1.png)\
-=======
 ![](figures/02_SignalsAndSystems_figure4_1.png){width=10cm}\
->>>>>>> Stashed changes
 
 
 
@@ -173,15 +165,7 @@ $$-x[n] = x[-n], \forall n.$$
 ### Even and odd signals: example
 
 
-<<<<<<< Updated upstream
-```
-Text(0.5,1,'Odd signal')
-```
-
-![](figures/02_SignalsAndSystems_figure5_1.png){width=linewidth}\
-=======
 ![](figures/02_SignalsAndSystems_figure5_1.png){width=12cm}\
->>>>>>> Stashed changes
 
 
 
@@ -220,13 +204,6 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 ### Time shifting: representation
 
 
-<<<<<<< Updated upstream
-```
-Text(0.5,1,'x[n+3]')
-```
-
-=======
->>>>>>> Stashed changes
 ![](figures/02_SignalsAndSystems_figure7_1.png)\
 
 
@@ -236,13 +213,6 @@ Text(0.5,1,'x[n+3]')
 - Changing the variable $n$ to $-n$ produces a signal $x[-n]$ which mirrors $x[n]$.
 
 
-<<<<<<< Updated upstream
-```
-Text(0.5,1,'Reversed signal x[-n]')
-```
-
-=======
->>>>>>> Stashed changes
 ![](figures/02_SignalsAndSystems_figure8_1.png)\
 
 
@@ -253,18 +223,6 @@ keep only 1 sample from every M of the original signal
     - Total number of samples is reduced M times
 $$x_{M\downarrow}[n] = x[Mn]$$
 
-<<<<<<< Updated upstream
-- $x_{M\downarrow}[n] = x[Mn]$ is a **subsampled** version of $x[n]$ with a factor of $M$
-    - Keep only 1 sample out of $M$ samples from the original signal $x[n]$
-
-
-
-```
-Text(0.5,1,'Signal subsampled by a factor of 2,
-$x_{2\\downarrow}[n]$')
-```
-=======
->>>>>>> Stashed changes
 
 ![](figures/02_SignalsAndSystems_figure9_1.png)\
 
@@ -285,19 +243,7 @@ $$
 
 
 
-<<<<<<< Updated upstream
-```
-File "<ipython-input-1-d428ef30960d>", line 7
-    plt.stem(x2); plt.title ('Interpolated signal by a factor or 3,
-$x_{3\uparrow}[n]$');
-                            ^
-SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes
-in position 43-44: truncated \uXXXX escape
-```
-
-=======
 ![](figures/02_SignalsAndSystems_figure10_1.png){width=12cm}\
->>>>>>> Stashed changes
 
 
 
