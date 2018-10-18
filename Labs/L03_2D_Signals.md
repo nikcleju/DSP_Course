@@ -15,6 +15,10 @@ Students should understand and be able to operate with 2D data (images).
     - black = 0, white = 1
     - show the image with `imshow()`
 
+2. Modify the chessboard image to have light gray and dark gray instead of white and black.
+
+3. Create a color image representing the Romanian flag (3 stripes of blue, yellow, red).
+
 1. Load the `Lena` image (use `imread()`) and display it (use `imshow()`).
 
 2. Construct a new image based on the `Lena`, but in which each pixel value
