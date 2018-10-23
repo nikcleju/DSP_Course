@@ -47,6 +47,80 @@ Make a new video sequence as follows:
     Deduce the equation of this system. What kind of filter is this?
 
 
+# Matlab snippets
+
+1. Creating a video sequence in Matlab
+
+    ```
+    % Prepare data structure for a new video file in grayscale
+    height = ...; % desired height
+    width  = ...; % desired width
+    NoF    = ...; % desired number of frames
+    video = struct('cdata', zeros(height,width,1,'uint8'), ...
+       'colormap',colormap(gray(256)));
+
+    % Put each frame in the video data structure
+    for i = 1:NoF   % how many frames we want
+        video(i).cdata = ... se pune aici imaginea ...;
+    end
+
+    % Play the sequence
+    implay(video);
+
+    % Save the video to disk
+    aviObj = VideoWriter('OutputVideo.avi', 'Uncompressed AVI');
+    open(aviObj);
+    for i = 1:numel(video)
+       % Fix: ensure we don;t have any value larger than 1, it crashes Matlab
+       video(i).cdata (video(i).cdata > 1) = 1;
+       
+       % Save to disk
+       writeVideo(aviObj,ofmov(i).cdata);
+    end
+    close(aviObj);
+    ```
+
+1. Alternative way of creating a video sequence in Matlab
+
+    ```
+    height = ...; % desired height
+    width  = ...; % desired width
+    NoF    = ...; % desired number of frames
+    % an array of size height x width x 1 x NoF:
+    video  = zeros(height, width, 1, NoF);   
+    for i = 1:NoF
+        video(:,:,:,i) = ... the frame number i ... ;
+    end
+
+    % Play the sequence
+    implay(video);
+
+    % Fix: ensure we don't have any value larger than 1, it crashes Matlab
+    video(video > 1) = 1;
+
+    % Save file to disk
+    aviObj = VideoWriter('OutputVideo.avi', 'Uncompressed AVI');
+    aviObj.open();
+    aviObj.writeVideo(video);
+    aviobj.close();
+```
+
+
+1. Loading and processing frames from an existing video file
+
+    ```
+    v = VideoReader(['FisierVideo.avi']);
+    height = v.Height;           % get height of the video frames
+    width  = v.Width;            % get width of the video frames
+    NoF    = v.NumberOfFrames;   % get total number of frames in the video
+
+    % Process every frame in the video
+    for i = 1:NoF
+        frame = v.read(i);              % read frame number i
+        ... do stuff ...
+    end
+    ```
+
 # Final questions
 
 
