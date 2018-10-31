@@ -1,6 +1,6 @@
 ---
-title: DIgital systems
-subtitle: Lab 3, DSP
+title: Digital systems
+subtitle: Lab 5, DSP
 documentclass: scrartcl
 fontsize: 12pt
 ---
@@ -37,7 +37,7 @@ The following aspects shall be explained.
 # Exercises
 
 1. Create a function `mysys1()` that implements the following system $H_1$:
-$$y[n] = H_1\{x[n]\} = n \cdot x[n] + 5$$
+$$y[n] = H_1\{x[n]\} = \frac{1}{4} x[n] - \frac{1}{2} x[n-1] + \frac{1}{4} x[n-2]$$
     - the function takes 1 input argument `x` and outputs 1 result vector `y`
 
 2. Create a function to test linearity of a system, `test_linear()`, by checking if the linearity equation holds
@@ -48,6 +48,7 @@ $$y[n] = H_1\{x[n]\} = n \cdot x[n] + 5$$
     - if the linearity equation holds every time, the function shall return 1; otherwise the return value shall be 0
 
 3. Create functions to implement other two systems, and check their linearity also
+$$y[n] = H_1\{x[n]\} = n \cdot x[n] + 5$$
 $$y[n] = x[n] + 0.5 x[n-1] + 1$$
 $$y[n] = (x[n])^2 + 4$$
 
