@@ -1,6 +1,6 @@
 ---
 title: Implementing digital systems in Simulink
-subtitle: Lab 4, DSP
+subtitle: Lab 6, DSP
 documentclass: scrartcl
 fontsize: 12pt
 ---
