@@ -339,15 +339,16 @@ then the corresponding signal $x[n]$ is complex
 
 ### Position of poles and time behavior
 
-* A rational Z transform $X(z)$ = sum of partial fractions
+* When the Z transform is a ratio of polynomials, 
+the signal $x[n]$ is a sum of exponential signals
+    * A rational Z transform $X(z)$ = sum of partial fractions, as we just saw
+    * Each partial fraction (pole) generates an exponential signal 
+        * $a^n u[n]$, or
+        * $-a^n u[-n-1]$
 
-$\leftarrow$
-
-The signal $x[n]$ is a sum of exponential signals (for each partial fraction / pole)
-
-* In the following, we will analyze the relation between the
+* For a single partial fraction (one pole only), 
+we will analyze the relation between the
 position of the pole and the signal in time
-
 
 
 ### Position of poles and time behaviour - 1 pole
@@ -402,8 +403,8 @@ A double pole in $a$:
 
 ### Position of poles and time behavior - conjugate poles
 
-$$X(z) = \frac{1 - a z^{-1} \cos{\omega_0}}{1 - 2 z ^{-1} \cos{\omega_0} + z^{-2}}, CR: |z| > |a|$$
-$$x[n] = n a^n u[n]$$
+$$X(z) = \frac{1 - a \cos{\omega_0} z^{-1}}{1 - 2 a \cos{\omega_0} z^{-1} + a^2 z^{-2}}, CR: |z| > |a|$$
+$$x[n] = a^n \cos(\omega_0 n) u[n]$$
 
 A pair of complex conjugate poles:
 
@@ -417,8 +418,8 @@ A pair of complex conjugate poles:
 
 What if poles are double?
 
-    * poles on unit circle --> increasing signal
-    * otherwise similar
+* poles on unit circle --> increasing signal
+* otherwise, similar to above
 
 ### Position of poles and time behavior - conjugate poles
 
@@ -452,7 +453,7 @@ $$y[n] = x[n] * h[n]$$
 
 $$Y(z) = X(z) \cdot H(z)$$
 
-* **The system function of a LTI system is the Z transform of the impulse response $h[n]$**
+* **The system function** of a LTI system = the Z transform of the impulse response $h[n]$
 
 * The system function of a LTI system is:
 
@@ -482,15 +483,21 @@ $$H(z) = \frac{Y(z)}{X(z)} =  \frac{ \sum_{k=0}^M b_k z^{-k} }{ 1 + \sum_{k=1}^N
 
 ### Particular cases of system functions
 
-* FIR systems: $a_k = 0$
+Particular cases of system functions:
+
+* **FIR systems**: $a_k = 0$
     * has only zeroes, no poles (all-zero system)
-$$H(z) = \frac{Y(z)}{X(z)} = \sum_{k=0}^M b_k z^{-k}$$
+$$H(z) = \frac{Y(z)}{X(z)} = \frac{\sum_{k=0}^M b_k z^{-k}}{1}$$
 
-* All-pole system: $b_k = 0, k \geq 1$ (must have at least $b_0 \neq 0)$
-    * has only poles
+
+* Otherwise we have an **IIR system**
+
+    * **All-pole system**: $b_k = 0, k \geq 1$ (numerator = a constant =  $b_0$)
+        * has only poles
 $$H(z) = \frac{Y(z)}{X(z)} =  \frac{ b_0 }{ 1 + \sum_{k=1}^N a_k z^{-k} }$$
+    
+    * Or a general IIR system with both poles and zeros
 
-* Otherwise, in general, we have a *pole-zero system*, with both poles and zeroes
 
 
 ### Output of the system, no initial conditions
@@ -528,8 +535,8 @@ $$y[n] = \underbrace{\sum_{k=1}^N A_k (p_k)^n u[n]}_{natural \; response} +
 
 ### Natural and forced response
 
-* Natural response $y_{nr}[n]$ = the part given by the poles **of the system**
-* Forced response $y_{fr}[n]$ = given by the poles **of the input signal**
+* Natural response $y_{nr}[n]$ = the part given by the **poles of the system**
+* Forced response $y_{fr}[n]$ = given by the **poles of the input signal**
 
 * This output is the **zero-state response** of the system (no initial conditions)
 
@@ -545,7 +552,7 @@ $$y[n] = \underbrace{\sum_{k=1}^N A_k (p_k)^n u[n]}_{natural \; response} +
 
 ### Unilateral Z transform
 
-* Initial conditions appear here
+* Initial conditions appear here:
 
 $$y[n] \trZ Y(z) = \sum_{n=0}^{\infty} y[n] z^{-n}$$
 $$\begin{split}
@@ -575,23 +582,29 @@ $$N_0(z) = -\sum_{k=1}^N a_k z^{-k} \sum_{n=1}^k y[-n]z^n $$
 ### Zero-state and zero-input outputs
 
 * The first part = **zero-state response** (state = initial conditions = 0)
+    * = the response due to the input, when all initial conditions = 0
+    * = the sum of the natural response + forced response
 * The second part = **zero-input response** (when no input)
+    * = the response due to the initial conditions, when input = 0
 
 * Total output = sum of all components
 
-* But zero-input response has the same poles as the system function, so
+### Zero-state and zero-input outputs
+
+* But zero-input response has the same poles as the system function
 $$y_{zi}[n] = \sum_{k=1}^N D_k (p_k)^n u[n]$$
 
-* **Zero-input response is just like natural response, with different coefficients**
+* Zero-input response is **just like natural response**, only with different coefficients
     * The initial conditions just change the coefficients of the system's natural response
 
 ### Transient and permanent response
 
 * For a stable system, all system poles $|p_k| < 1$, so natural response (including initial conditions) is made of decreasing exponentials 
-* ** For a stable system, the natural response dies out exponentially**
-* The natural response is called a **transient response**
+* For a stable system, the natural response dies out exponentially
+* Thus, the natural response is called a **transient response**
+    * it fades away
 
-* Input signals typically last longer, or infinitely (poles on the unit circle) --> the forced response is a **permanent response**
+* Input signals typically last longer, or infinitely => the forced response is a **permanent response**
 
 * Operating regimes:
     * when the input signal is first applied, and the transient response is present, the system is in **transient regime**
@@ -609,17 +622,20 @@ $$y_{zi}[n] = \sum_{k=1}^N D_k (p_k)^n u[n]$$
 $$\sum |h[n]| < \infty (convergent)$$
 
 * For a stable system, with $H(z)$
+$$ |H(z)| \leq \sum |h[n]| \cdot |z^{-n}| = \sum |h[n]| < \infty$$
 
-$$ |H(z)| \leq \sum |h[n]| \cdot |z^{-n}| \leq \sum |h[n]| < \infty$$
+    considering $|z|=1$, i.e. **on the unit circle**.
 
-considering $|z|=1$, i.e. **on the unit circle**.
 
-* **A LTI system is stable if the unit circle in inside the Convergence Region**
-    * one can prove the reciprocal, so there is equivalence
+### Stability of a system and H(z)
 
-* If the system is causal, CR = exterior of a circle given by the largest pole, so all poles must be inside unit circle
+* A LTI system is stable if the **unit circle in inside the Region of Convergence**
+    * one can also prove the reciprocal, so there is equivalence
 
-* **A *causal* LTI system is stable if all the poles are inside the unit circle**
+* If the system is causal, RoC = exterior of a circle given by the largest pole,
+    * therefore all poles must be **inside** unit circle
+
+* A causal LTI system is stable if **all the poles are inside the unit circle**
 
 
 ### Stability of a system and H(z)
