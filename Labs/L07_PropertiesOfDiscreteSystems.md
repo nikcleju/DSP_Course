@@ -1,6 +1,6 @@
 ---
 title: Properties of discrete systems
-subtitle: Lab 5, DSP
+subtitle: Lab 7, DSP
 documentclass: scrartcl
 fontsize: 12pt
 ---
