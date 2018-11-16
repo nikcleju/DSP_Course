@@ -14,9 +14,9 @@ $$y[n] = -0.1 y[n-1] + 0.2 y[n-2] + x[n] + x[n-1]$$
     d. Compute the response of the system to the input signal $x[n] = \left(\frac{1}{3}\right)^n u[n]$
 
 2. A causal LTI system has the property that if the input signal is 
-$$x[n] = \left( \frac{1}{3} \right)^2 u[n] - \frac{1}{4} \left( \frac{1}{3} \right)^n u[n-1],$$
+$$x[n] = \left( \frac{1}{3} \right)^n u[n] - \frac{1}{4} \left( \frac{1}{3} \right)^n u[n-1],$$
 then the output signal is
-$$y[n] = \left( \frac{1}{4} \right)^2 u[n]$$
+$$y[n] = \left( \frac{1}{4} \right)^n u[n]$$
 
     a. Find the system function H(z), draw the pole-zero diagram
     b. Compute the impulse response $h[n]$ of the system
