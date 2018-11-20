@@ -22,6 +22,8 @@ $$x(t) = x(t + T)$$
 signals, with multiples of the fundamental frequency, $k F_0$**
 $$x(t) = \sum_{k=-\infty}^{\infty} c_k e^{j 2 \pi k F_0 t}$$
 
+### Analog periodical signals
+
 * The coefficients $c_k$ are the **spectrum** of the signal
 $$c_k = \frac{1}{T} \int_{T/2}^{T/2} x(t) e ^{- j 2 \pi k F_0 t}$$
 
@@ -31,22 +33,25 @@ $$c_k = \frac{1}{T} \int_{T/2}^{T/2} x(t) e ^{- j 2 \pi k F_0 t}$$
 
 ### Conditions for convergence
 
-* When is the Fourier series convergent to the signal?
-    * i.e. when is the relation correct, 
+* When is the Fourier series relation valid?
     * i.e. when is the sum actually equal to $x(t)$?
+    * i.e. when is the Fourier series convergent?
 
-* Dirichlet conditions: the sum is convergent in all continuity points if:
+* Dirichlet conditions: the sum is valid (convergent) in all continuity points if:
     1. $x(t)$ is continuous or has a finite number of discontinuities
     in any finite interval
     2. $x(t)$ has a finite number of maxima and minima in any period
     3. $x(t)$ is absolutely integrable in any period, i.e.:
     $$\int_{T} |x(t)| dt  < \infty$$
     
+### Conditions for convergence
+
 * Weaker condition:
     * if $x(t)$ is square summable
 	$$\int_T x(t)^2 dt < \infty$$
-    * then the he difference $d(t) = x(t) - \sum_{k=-\infty}^{\infty} c_k e^{j 2 \pi k F_0 t}$
-    has zero energy
+    * then the difference signal 
+        $$d(t) = x(t) - \sum_{k=-\infty}^{\infty} c_k e^{j 2 \pi k F_0 t}$$
+      has zero energy
     * Does not guarantee *pointwise* convergence
     
 ### Signal spectrum
@@ -56,16 +61,18 @@ $$c_k = \frac{1}{T} \int_{T/2}^{T/2} x(t) e ^{- j 2 \pi k F_0 t}$$
     * $|c_k| = |c_{-k}|$
     * $\angle c_k = - \angle c_{-k}$
     * group the terms with $c_k$ with $c_{-k}$
---> **cosine with amplitude |c_k| and phase $\angle c_k$**
+--> **cosine with amplitude $|c_k|$ and phase $\angle c_k$**
+
+* Interpretation of Fourier series for real signal
+    * **the signal is the sum of cosine signals with frequencies
+    $0, \; F_0, \;2F_0 ...$, each with amplitude $|c_k|$ and initial phase $\angle c_k$**
+
+* No other frequencies appear in spectrum --> spectrum is made of "lines"
+
+### Energy conservation
 
 * Average power of signal = energy of coefficients
 $$P_T = \frac{1}{T}\int_T |x(t)|^2 = \sum_{-\infty}^{\infty} |c_k|^2$$
-
-* Interpretation of Fourier series for real signal
-    * **the signal is the sum of cosine signals with frequency
-    $0, F_0, 2F_0 ...$, with amplitudes $|c_k|$ and phase $\angle c_k$**
-
-* No other frequencies appear in spectrum --> spectrum is made of "lines"
 
 ### Time-frequency duality
 
@@ -89,21 +96,24 @@ $$X(\omega) = \int_{-\infty}^{\infty} x(t) e^{- j \omega t} dt$$
 
 ### Conditions for convergence
 
-* When is the Fourier series convergent to the signal?
-    * i.e. when is the relation correct, 
+* When is the Fourier series relation  valid?
     * i.e. when is the sum actually equal to $x(t)$?
+    * i.e. when is the sum convergent to the signal?
 
-* Dirichlet conditions: the sum is convergent in all continuity points if:
+* Dirichlet conditions: the sum is valid (convergent) in all continuity points if:
     1. $x(t)$ is continuous or has a finite number of discontinuities
     2. $x(t)$ has a finite number of maxima and minima
     3. $x(t)$ is absolutely integrable:
     $$\int_{\infty}^{\infty} |x(t)| dt  < \infty$$
     
+### Conditions for convergence
+
 * Weaker condition:
     * if $x(t)$ is square summable
 	$$\int_{\infty}^{\infty} x(t)^2 dt < \infty$$
-    * then the he difference $d(t) = x(t) - \sum_{k=-\infty}^{\infty} c_k e^{j 2 \pi k F_0 t}$
-    has zero energy
+    * then the difference signal 
+        $$d(t) = x(t) - \sum_{k=-\infty}^{\infty} c_k e^{j 2 \pi k F_0 t}$$
+      has zero energy
     * Does not guarantee *pointwise* convergence
 
 ### Signal spectrum
@@ -115,23 +125,24 @@ $$X(\omega) = \int_{-\infty}^{\infty} x(t) e^{- j \omega t} dt$$
     * group the terms with $c_k$ with $c_{-k}$
 --> **cosine with amplitude $|X(\omega)|$ and phase $\angle X(\omega)$**
 
-* Signal energy is the same in time and frequency domains
-$$E = \int_{\infty}^{\infty} |x(t)|^2 dt = \frac{1}{2\pi}\int_{-\infty}^{\infty} |X(\omega)|^2 d\omega$$
-
 * The power spectral density of $x(t)$ is 
 $$S_{xx}(\omega) = |X(\omega)|^2$$
 
+### Energy conservation
+
+* Signal energy is the same in time and frequency domains
+$$E = \int_{\infty}^{\infty} |x(t)|^2 dt = \frac{1}{2\pi}\int_{-\infty}^{\infty} |X(\omega)|^2 d\omega$$
 
 ## IV.2 Frequency analysis of discrete signals
 
 ### Fourier series of discrete periodical signals
 
-* A discrete signal of period $N$: $x[n] = x[n + N]$
+* A discrete signal of period $N$: $$x[n] = x[n + N]$$
 
-* Decomposed as a **sum of complex exponentials**:
+* Can always be decomposed as a **sum of complex exponentials**:
 $$x[n] = \sum_{k=0}^{N-1} c_k e^{j 2 \pi k n / N}, n=0,1,... N-1$$
 
-* Finding the coefficients:
+* Finding the coefficients $c_k$:
 $$c_k = \frac{1}{N} \sum_{n=0}^{N-1} x[n] e^{- j 2 \pi k n /N}$$
 
 
@@ -179,7 +190,6 @@ where $L = N/2$ or $L = (N-1)/2$ depending if $N$ is even or odd
 $$P = \frac{1}{N} \sum_{n=0}^{N-1}|x[n]|^2$$
 
 * Is the same in the frequency domain (with proof):
-
 $$P = \sum_{k=0}^{N-1} |c_k|^2$$
 
 * Power spectral density of the signal is
@@ -187,26 +197,6 @@ $$S_{xx}[k] = |c_k|^2$$
 
 * Energy over one period is
 $$E = \sum_{n-0}^{N-1} |x[n]|^2 = N \sum_{k-0}^{N-1} |c_k|^2$$
-
-### Examples
-
-* Examples:
-
-$$x_1[n] = cos(\sqrt{5} \pi n)$$
-$$x_2[n] = 2 sin(\frac{\pi}{3}n)$$
-$$x_3[n] = \left\{ 1,1,0,0 \right\}$$
-
-
-### Example in Python
-
-<<term=True>>=
-import numpy as np
-from scipy.fftpack import fft, ifft
-x = np.array([1.0, 1.0, 0.0, 0.0])
-y = 1.0/4.0 * fft(x)
-y
-@
-
 
 
 ### Properties of Fourier series
@@ -252,7 +242,7 @@ Circular convolution:
 
 $$x_1[n] \otimes x_2[n] = \sum_{k=0}^{N-1} x_1[k] x_2[(n-k)_N]$$
 
-* takes two periodic signals of period N, result is the same
+* takes two periodic signals of period N, result is also periodic with period N
 * Example at the whiteboard: how it is computed
 
 ### Properties of Fourier series
