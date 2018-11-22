@@ -30,7 +30,7 @@ LTI systems interconnection:
   * connection in series $<=>$ convolution of their impulse responses
   * connection in parallel $<=>co$ sum of their impulse responses
 
-   
+  
 
 # Exercises
 
@@ -41,10 +41,18 @@ The function is given two input vectors and outputs the resulting vector.
 Convolve the sequence with the impulse response $\{ 1/6, 1/6, 1/6, 1/6, 1/6, 1/6\}$.
 Play the resulting sequence and compare with the original.
 
-3. Check the length of the convolution result vector, and deduce the general
+3. Download the "IM Reverbs Pack" archive from [http://www.voxengo.com/impulses/](http://www.voxengo.com/impulses/).
+It contains impulse responses that create a reverberation effect. 
+    a. Unzip and play the file "Scala Milan Opera Hall.wav".
+    b. Load file "Scala Milan Opera Hall.wav" in Matlab (use `audioread()`). Restrict the data to about 1 second length.
+    Call the resulting vector **`h`**.
+    c. Load the first 4 seconds of "Kalimba.mp3" (use `audioread()`), convolve with **`h`** and play the result (use `audioplayer()`).
+    How does the signal sound? What audio effect did we implement here?
+
+4. Check the length of the convolution result vector, and deduce the general
 rule: what is length of the convolution of two signals of lengths $L_1$ and $L_2$?
 
-4. Redo exercise 2 using the `conv()` function from Matlab.
+5. Redo exercise 2 using the `conv()` function from Matlab.
 
 
 # Final questions
