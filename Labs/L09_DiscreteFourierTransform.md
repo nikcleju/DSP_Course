@@ -1,6 +1,6 @@
 ---
 title: The Discrete Fourier Transform
-subtitle: Lab 8, DSP
+subtitle: Lab 9, DSP
 documentclass: scrartcl
 fontsize: 12pt
 ---
@@ -27,9 +27,12 @@ with $f_1 = 0.05$ and $f_1 = 0.1$.
     c. Repeat for a signal length of 93 samples. 
     Why do additional frequency components appear in the spectrum?
 
-2. Generate a 19 samples long **triangular** signal `x` defined as:
-`x` increases linearly from` x(1) = 0` up to `x(10) = 4`, then decreases linearly 
-to `x(19) = 0`.
+2. Generate a 39 samples long **triangular** signal `x` defined as:
+    - first 10 samples are zeros
+    - next, `x` increases linearly from` x(10) = 0` up to `x(19) = 4`, then decreases linearly 
+to `x(29) = 0`.
+    - last 10 samples are 0
+   
     a. Plot the signal in the top half of a figure, and the
     magnitude of the Fourier series coefficients in the lower half.
     b. What is the amplitude of the **third harmonic component** 
