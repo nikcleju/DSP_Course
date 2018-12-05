@@ -1,6 +1,6 @@
 ---
 title: Common Pulses Used in Communications
-subtitle: Lab 9, DSP
+subtitle: Lab 10, DSP
 documentclass: scrartcl
 fontsize: 12pt
 ---
