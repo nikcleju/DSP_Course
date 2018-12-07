@@ -82,7 +82,7 @@ $$x[n] = \sum_{k=0}^{N-1}c_k e^{j 2 \pi k n / N}$$
 $$c_k H\left(\frac{2 \pi}{N}k\right) e^{j 2 \pi k n / N}$$
 
 * So the total output is:
-$$x[n] = \sum_{k=0}^{N-1}c_k H\left(\frac{2 \pi}{N}k\right) e^{j 2 \pi k n / N}$$
+$$y[n] = \sum_{k=0}^{N-1}c_k H\left(\frac{2 \pi}{N}k\right) e^{j 2 \pi k n / N}$$
 
 * The output is still periodic, same period, same frequencies
 
