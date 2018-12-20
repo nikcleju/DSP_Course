@@ -216,15 +216,15 @@ $$H(\omega) = H_R(\omega) e^{j \Theta_R(\omega)}$$
 
 * Let filter order be $M$
 
-* The filter coefficients are $h[0]$, ... $h[M-1]$
+* The filter coefficients are $h[0]$, ... $h[M-1]$, $h[M]$
 
 * Linear-phase is guaranteed in two cases
 
 * **Positive symmetry**
-$$h[n] = h[M-1-n]$$
+$$h[n] = h[M-n]$$
 
 * **Negative symmetry (anti-symmetry)**
-$$h[n] = -h[M-1-n]$$
+$$h[n] = -h[M-n]$$
 
 ### Cases of linear-phase FIR
 
@@ -273,6 +273,7 @@ $$H_I(z) = \frac{1}{H(z)}$$
 
 * Problem: if $H(z)$ has zeros outside unit circle, $H_I(z)$ has poles
 outside unit circle --> unstable
+    * In this case the filtering cannot be undone
 
 * Examples at blackboard
 
@@ -281,8 +282,9 @@ outside unit circle --> unstable
 
 * Start with example 
 
-* If replace a zero $z$ with $1/z$, the modulus does not change!
-    * only phase is affected
+* If replace a zero $z_k$ with $1/z_k$, 
+the modulus of the transfer function does not change! (Not true; TO CHECK what's up)
+    * only the phase is affected
 
 * Minimum phase: all zeros are inside the unit circle
     * minimum phase = minimum derivative = minimum delay
