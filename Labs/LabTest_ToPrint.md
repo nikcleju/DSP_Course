@@ -1,20 +1,8 @@
 ---
-title: Laboratory Test
-subtitle: DSP
 documentclass: scrartcl
 fontsize: 12pt
+geometry: margin=2cm
 ---
-
-# Explanations
-
-* There are 8 subjects in all, shown below according to the laboratory they were done in.
-
-* The test will last for 50 minutes (~10 students in the first hour, ~10 students in the second hour)
-
-* Your schedule will be available in `ProgramareTest.pdf`.
-
-
-# Subjects
 
 
 ## Lab 2
@@ -102,6 +90,12 @@ $$y[n] = H_1\{x[n]\} = \frac{1}{4}(x[n]  + x[n-1] + x[n-2] + x[n-3])$$
 ![Settings for the *From Multimedia Device* block - part 2](img/L4_Settings_FromMMDevice_2.png){width=50%}
     
     
+\ 
+
+\ 
+
+\ 
+    
 ## Lab 7
 
 1. Create a Simulink model to implement the following system $H_1$:
@@ -138,7 +132,7 @@ with frequency 0.05. Implement it in Simulink, visualize & play the output signa
     * What frequency do you hear when running the simulation?
 
 
-![Settings for the *From Multimedia Device* block - part 1](img/L4_Settings_FromMMDevice_1.png){width=50%}
-![Settings for the *From Multimedia Device* block - part 2](img/L4_Settings_FromMMDevice_2.png){width=50%}
+![Settings for the *From Multimedia Device* block - part 1](img/L4_Settings_FromMMDevice_1.png){width=40%}
+![Settings for the *From Multimedia Device* block - part 2](img/L4_Settings_FromMMDevice_2.png){width=40%}
 
 
