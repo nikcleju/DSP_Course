@@ -207,6 +207,14 @@ $$H(\omega) = H_R(\omega) e^{j \Theta_R(\omega)}$$
     * $H_R(\omega)$ is even
     * $\Theta_R(\omega)$ is odd
 
+
+### 2018-2019 Exam
+	
+2018-2019 Exam
+
+* Skip next 3 slides (up to "Particular classes of filters")
+
+
 ### Linear-phase FIR filters
 
 * Only FIR filters can have linear phase!
@@ -216,15 +224,15 @@ $$H(\omega) = H_R(\omega) e^{j \Theta_R(\omega)}$$
 
 * Let filter order be $M$
 
-* The filter coefficients are $h[0]$, ... $h[M-1]$, $h[M]$
+* The filter coefficients are $h[0]$, ... $h[M-1]$
 
 * Linear-phase is guaranteed in two cases
 
 * **Positive symmetry**
-$$h[n] = h[M-n]$$
+$$h[n] = h[M-1-n]$$
 
 * **Negative symmetry (anti-symmetry)**
-$$h[n] = -h[M-n]$$
+$$h[n] = -h[M-1-n]$$
 
 ### Cases of linear-phase FIR
 
@@ -266,29 +274,13 @@ $$h[n] = -h[M-n]$$
 ### Inverse filters
 
 * Sometimes is necessary to **undo** a filtering
-    * undo attenuation of a signal passed through a channel
+    * e.g. undo attenuation of a signal passed through a channel
 
 * Inverse filter: has inverse system function:
 $$H_I(z) = \frac{1}{H(z)}$$
 
 * Problem: if $H(z)$ has zeros outside unit circle, $H_I(z)$ has poles
 outside unit circle --> unstable
-    * In this case the filtering cannot be undone
 
 * Examples at blackboard
-
-
-### Minimum and maximum phase filters
-
-* Start with example 
-
-* If replace a zero $z_k$ with $1/z_k$, 
-the modulus of the transfer function does not change! (Not true; TO CHECK what's up)
-    * only the phase is affected
-
-* Minimum phase: all zeros are inside the unit circle
-    * minimum phase = minimum derivative = minimum delay
-    * inverse filter is stable
-* Maximum phase: all zeros are outside unit circle
-* Mixed phase: some zeros inside, some outside
 

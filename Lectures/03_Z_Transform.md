@@ -88,6 +88,11 @@ $$x[n] = \frac{1}{2 \pi j} \oint_C X(z) z^{n-1} dz$$
 
 * We will not use this relation in practice, but instead will rely on **partial fraction decomposition**
 
+### 2018-2019 Exam
+
+2018-2019 Exam
+
+* Properties of Z Transform: only 1, 2, and 9
 
 ### Properties of Z transform
 
@@ -549,6 +554,12 @@ $$y[n] = \underbrace{\sum_{k=1}^N A_k (p_k)^n u[n]}_{natural \; response} +
 * We have initial conditions $y[-1], y[-2], ... y[n-N]$
 
 * Where do initial condition appear in the Z transform?
+
+### 2018-2019 Exam
+
+2018-2019 Exam
+
+* Skip next 2 slides (up to "Zero-state and zero-input outputs")
 
 ### Unilateral Z transform
 

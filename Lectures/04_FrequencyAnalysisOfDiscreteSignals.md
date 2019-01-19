@@ -30,29 +30,6 @@ $$c_k = \frac{1}{T} \int_{T/2}^{T/2} x(t) e ^{- j 2 \pi k F_0 t}$$
 * The coefficients $c_k$ are complex values
     * their modulus = "amplitude spectrum"
     * their phase = "phase spectrum""
-
-### Conditions for convergence
-
-* When is the Fourier series relation valid?
-    * i.e. when is the sum actually equal to $x(t)$?
-    * i.e. when is the Fourier series convergent?
-
-* Dirichlet conditions: the sum is valid (convergent) in all continuity points if:
-    1. $x(t)$ is continuous or has a finite number of discontinuities
-    in any finite interval
-    2. $x(t)$ has a finite number of maxima and minima in any period
-    3. $x(t)$ is absolutely integrable in any period, i.e.:
-    $$\int_{T} |x(t)| dt  < \infty$$
-    
-### Conditions for convergence
-
-* Weaker condition:
-    * if $x(t)$ is square summable
-	$$\int_T x(t)^2 dt < \infty$$
-    * then the difference signal 
-        $$d(t) = x(t) - \sum_{k=-\infty}^{\infty} c_k e^{j 2 \pi k F_0 t}$$
-      has zero energy
-    * Does not guarantee *pointwise* convergence
     
 ### Signal spectrum
 
@@ -93,28 +70,6 @@ $$X(\omega) = \int_{-\infty}^{\infty} x(t) e^{- j \omega t} dt$$
 * $X(\omega)$ is a complex function
     * $|X(\omega)|$ is the amplitude spectrum
     * $\angle X(\omega)$ is the phase spectrum
-
-### Conditions for convergence
-
-* When is the Fourier series relation  valid?
-    * i.e. when is the sum actually equal to $x(t)$?
-    * i.e. when is the sum convergent to the signal?
-
-* Dirichlet conditions: the sum is valid (convergent) in all continuity points if:
-    1. $x(t)$ is continuous or has a finite number of discontinuities
-    2. $x(t)$ has a finite number of maxima and minima
-    3. $x(t)$ is absolutely integrable:
-    $$\int_{\infty}^{\infty} |x(t)| dt  < \infty$$
-    
-### Conditions for convergence
-
-* Weaker condition:
-    * if $x(t)$ is square summable
-	$$\int_{\infty}^{\infty} x(t)^2 dt < \infty$$
-    * then the difference signal 
-        $$d(t) = x(t) - \sum_{k=-\infty}^{\infty} c_k e^{j 2 \pi k F_0 t}$$
-      has zero energy
-    * Does not guarantee *pointwise* convergence
 
 ### Signal spectrum
 
@@ -197,6 +152,13 @@ $$S_{xx}[k] = |c_k|^2$$
 
 * Energy over one period is
 $$E = \sum_{n-0}^{N-1} |x[n]|^2 = N \sum_{k-0}^{N-1} |c_k|^2$$
+
+
+### 2018-2019 Exam
+
+2018-2019 Exam
+
+* Properties of Fourier series: only 1, 2, and 5
 
 
 ### Properties of Fourier series
@@ -298,46 +260,6 @@ $$x[n] \in \mathbb{R} \rightarrow X^*(\omega) = X(-\omega)$$
     * modulus is even: $|X(\omega)| = |X(-\omega)|$
     * phase is odd: $X(\omega) = - X(-\omega)$
 
-### Convergence of the Fourier transform
-
-* When are the relations valid?
-
-* Assume we compute the Fourier transform with only $2M+1$ samples:
-$$X_M(\omega) = \sum_{-M}^M x[n] e^{- j \omega n}$$
-
-* If a signal $x[n]$ is **absolutely summable**:
-$$\sum_{\infty}^\infty |x[n]| < \infty$$
-
-* then the Fourier series  is **uniform convergent** for every $\omega$ (OK):
-$$\lim_{M \to \infty} X(\omega) - X_M(\omega) = 0$$
-
-### Convergence for square-summable signals
-
-* Signals that are only **square summable**
-$$\sum_{\infty}^\infty |x[n]|^2 < \infty$$
-
-* have a weaker convergence:
-$$\lim_{M \to \infty} \int_{-\pi}^\pi |X(\omega) - X_M(\omega)|^2 d\omega = 0$$
-
-### The Gibbs phenomenon
-
-* When $H(\omega)$ **has discontinuities**, then $h[n]$ is **not** absolutely summable, only square summable
-
-* Problem: if we only use $M$ samples, even if $M$ is very large, we will
-obtain **small oscillations around the discontinuity**
-
-* As $M \to \infty$, the oscillations do not become smaller, but thinner --> they don't go away!
-
-* The Fourier transform will always *overshoot* with about 9% below and above 
-
-* Known as the **Gibbs phenomenon**
-
-### Gibbs phenomenon
-
-
-
-
-![Gibbs phenomenon](img/Gibbs.png "Gibbs phenomenon")
 
 ### Relation between Fourier series and Fourier transform
 
@@ -362,6 +284,12 @@ $$z = e^{j \omega}$$
 
 * This is true for most usual signals we work with
     * there are exceptions, but they are outside the scope of this class
+
+### 2018-2019 Exam
+
+2018-2019 Exam
+
+* Properties of Fourier transform: only 1, 2, 5, and Parseval theorem
 
 ### Properties of Fourier transform
 

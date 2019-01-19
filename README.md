@@ -3,19 +3,15 @@
 Here you will find all the materials for the class of Digital Signal Processing taught during 2018-2019
 autumn semester at ETTI, TUIASI.
 
-## News
+## Notes for 2018-2019 exam
 
-- Se pot reface ambele teste, de la fiecare disciplina
-- DSP Laborator:
-    - recuperari: saptamana 13
-    - test laborator: saptamana 14
-- DSP refacere teste semestriale:
-    - vineri saptamana 13, la curs, ultimele doua ore: de la 09:00 la 10:00 grupa 5311, de la 10:00 la 11:00 grupa 5312. Ca sa nu le amestecam cu altele si sa iasa haos.
-- DEDP Laborator:
-    - test laborator: in saptamana 13 si 14, la laborator
-    - recuperari: doar in timpul recuperarilor de la DSP din saptamana 13, altfel nu avem cand
-- DEDP refacere teste semestriale:
-    - saptamana 13, marti, la seminar
+* Lectures: only chapters 1-5 were covered
+    * Do not read 06_ImplementationOfDigitalSystems.pdf and 07_ApplicationsOfDSP.pdf
+* Lectures: have marked the slides we have not covered (in Chapters III, IV and V).
+
+* Exercises: only Week1.pdf to Week10.pdf, without the last two files (Week11 and Week12)
+
+* Semester tests are available here (Tests_2018_2019.zip](Tests_2018_2019.zip)
 
 ## Course materials 
 

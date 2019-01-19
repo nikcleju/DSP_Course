@@ -207,6 +207,14 @@ $$H(\omega) = H_R(\omega) e^{j \Theta_R(\omega)}$$
     * $H_R(\omega)$ is even
     * $\Theta_R(\omega)$ is odd
 
+
+### 2018-2019 Exam
+	
+2018-2019 Exam
+
+* Skip next 3 slides (up to "Particular classes of filters")
+
+
 ### Linear-phase FIR filters
 
 * Only FIR filters can have linear phase!
@@ -266,7 +274,7 @@ $$h[n] = -h[M-1-n]$$
 ### Inverse filters
 
 * Sometimes is necessary to **undo** a filtering
-    * undo attenuation of a signal passed through a channel
+    * e.g. undo attenuation of a signal passed through a channel
 
 * Inverse filter: has inverse system function:
 $$H_I(z) = \frac{1}{H(z)}$$
@@ -275,18 +283,4 @@ $$H_I(z) = \frac{1}{H(z)}$$
 outside unit circle --> unstable
 
 * Examples at blackboard
-
-
-### Minimum and maximum phase filters
-
-* Start with example 
-
-* If replace a zero $z$ with $1/z$, the modulus does not change!
-    * only phase is affected
-
-* Minimum phase: all zeros are inside the unit circle
-    * minimum phase = minimum derivative = minimum delay
-    * inverse filter is stable
-* Maximum phase: all zeros are outside unit circle
-* Mixed phase: some zeros inside, some outside
 
