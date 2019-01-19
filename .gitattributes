@@ -1,2 +1,0 @@
-secretfile filter=git-crypt diff=git-crypt
-*.secr filter=git-crypt diff=git-crypt
