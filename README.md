@@ -11,7 +11,7 @@ autumn semester at ETTI, TUIASI.
 
 * Exercises: only Week1.pdf to Week10.pdf, without the last two files (Week11 and Week12)
 
-* Semester tests are available here (Tests_2018_2019.zip](Tests_2018_2019.zip)
+* Semester tests are available here [Tests_2018_2019.zip](Tests_2018_2019.zip)
 
 ## Course materials 
 
