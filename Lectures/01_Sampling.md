@@ -43,6 +43,15 @@
     - Outside the samples, the signal is **not defined**
 
 
+```
+/home/ncleju/.local/bin/pweave:10: UserWarning: In Matplotlib 3.3
+individual lines on a stem plot will be added as a LineCollection
+instead of individual lines. This significantly improves the
+performance of a stem plot. To remove this warning and switch to the
+new behaviour, set the "use_line_collection" keyword argument to True.
+  sys.exit(weave())
+```
+
 ![](figures/01_Sampling_figure1_1.png){width=12cm}\
 
 
@@ -121,6 +130,15 @@
 ### Graphical example
 
 
+```
+/home/ncleju/.local/bin/pweave:8: UserWarning: In Matplotlib 3.3
+individual lines on a stem plot will be added as a LineCollection
+instead of individual lines. This significantly improves the
+performance of a stem plot. To remove this warning and switch to the
+new behaviour, set the "use_line_collection" keyword argument to True.
+  if __name__ == '__main__':
+```
+
 ![](figures/01_Sampling_figure2_1.png)\
 
 
@@ -162,6 +180,20 @@ $\frac{1}{4}$ of the sampling frequency"
 
 - **Note:** A discrete sinusoidal signal might not _look_ sinosoidal, when its frequency is high (close to $\frac{1}{2}$).
 
+
+```
+/home/ncleju/.local/bin/pweave:7: UserWarning: In Matplotlib 3.3
+individual lines on a stem plot will be added as a LineCollection
+instead of individual lines. This significantly improves the
+performance of a stem plot. To remove this warning and switch to the
+new behaviour, set the "use_line_collection" keyword argument to True.
+
+/home/ncleju/.local/bin/pweave:11: UserWarning: In Matplotlib 3.3
+individual lines on a stem plot will be added as a LineCollection
+instead of individual lines. This significantly improves the
+performance of a stem plot. To remove this warning and switch to the
+new behaviour, set the "use_line_collection" keyword argument to True.
+```
 
 ![](figures/01_Sampling_figure3_1.png){width=12cm}\
 
@@ -226,11 +258,29 @@ than $\frac{F_s}{2}$ with $\epsilon$, symmetrically
 ### Aliasing example - low frequency signal
 
 
+```
+/home/ncleju/.local/bin/pweave:8: UserWarning: In Matplotlib 3.3
+individual lines on a stem plot will be added as a LineCollection
+instead of individual lines. This significantly improves the
+performance of a stem plot. To remove this warning and switch to the
+new behaviour, set the "use_line_collection" keyword argument to True.
+  if __name__ == '__main__':
+```
+
 ![](figures/01_Sampling_figure4_1.png)\
 
 
 ### Aliasing example - high frequency signal, same samples
 
+
+```
+/home/ncleju/.local/bin/pweave:8: UserWarning: In Matplotlib 3.3
+individual lines on a stem plot will be added as a LineCollection
+instead of individual lines. This significantly improves the
+performance of a stem plot. To remove this warning and switch to the
+new behaviour, set the "use_line_collection" keyword argument to True.
+  if __name__ == '__main__':
+```
 
 ![](figures/01_Sampling_figure5_1.png)\
 

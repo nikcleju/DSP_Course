@@ -21,20 +21,20 @@
     - Consists of both theory questions and exercises
     - Many small questions (like in Information Theory exam), both for theory and exercises
 
-- Laboratory
-    - 20% of final grade
-    - in Matlab / Simulink
-    - grade will be computed from:
-        - activity throughout semester (10%)
-        - final laboratory practical test in Matlab / Simulink (10%)
+- Applications
+	- 40% of final grade
+	- Laboratory
+        - in Matlab / Simulink
+		- grade will be computed from:
+		- a). activity throughout semester (10%)
+		- b). final laboratory practical test in Matlab / Simulink (10%)
+	- Intermediate tests
+		- 20% of final grade
+		- 3 tests: in Week 5, Week 8 and Week 11
+		- test = one exercise, 30 minutes, during lecture or laboratory (will be decided)
+		- Tests grade = average of the three tests grades
 
-- Intermediate tests
-    - 20% of final grade
-    - 3 tests: in Week 5, Week 8 and Week 11
-    - test = one exercise, 30 minutes, during lecture or laboratory (will be decided)
-    - Tests grade = average of the three tests grades
-
-- Final grade = 60% Exam + 20% Tests + 20% Lab
+- Final grade = 60% Exam + 40% Applications (Tests + Lab)
 
 
 ### Course structure

@@ -10,3 +10,6 @@
 \newcommand{\trZ}{\stackrel{\mathrm{Z}}{\longleftrightarrow}}
 
 \newcommand*{\underuparrow}[1]{\ensuremath{\underset{\uparrow}{#1}}}
+
+\setbeamercolor{section name}{fg=white}  % Make section number white so it's not visible, see https://tex.stackexchange.com/a/468134
+\setbeamercolor{subsection name}{fg=white}  % Make section number white so it's not visible, see https://tex.stackexchange.com/a/468134

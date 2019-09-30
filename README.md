@@ -1,8 +1,9 @@
 # DSP_Course
 
-Here you will find all the materials for the class of Digital Signal Processing taught during 2018-2019
+Here you will find all the materials for the class of Digital Signal Processing taught during 2019-2020
 autumn semester at ETTI, TUIASI.
 
+<!--
 ## Notes for 2018-2019 exam
 
 * Lectures: only chapters 1-5 were covered
@@ -12,6 +13,7 @@ autumn semester at ETTI, TUIASI.
 * Exercises: only Week1.pdf to Week10.pdf, without the last two files (Week11 and Week12)
 
 * Semester tests are available here [Tests_2018_2019.zip](Tests_2018_2019.zip)
+-->
 
 ## Course materials 
 
