@@ -38,7 +38,7 @@ $$\delta[n] =
 import matplotlib.pyplot as plt, numpy as np
 delta = [0,0,0,1,0,0,0,0]
 t = range(-3,-3+len(delta))
-plt.stem(t,delta); plt.title ('Unit impulse $\delta[n]$')
+plt.stem(t,delta, use_line_collection=True); plt.title ('Unit impulse $\delta[n]$')
 plt.axis([t[0],t[-1],-0.2,1.2])
 plt.show()
 @
@@ -62,7 +62,7 @@ $$u[n] =
 import matplotlib.pyplot as plt, numpy as np
 delta = [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1]
 t = range(-6,-6+len(delta))
-plt.stem(t,delta); plt.title ('Unit step $u[n]$')
+plt.stem(t,delta, use_line_collection=True); plt.title ('Unit step $u[n]$')
 plt.axis([t[0],t[-1],-0.2,1.2])
 plt.show()
 @
@@ -85,7 +85,7 @@ n &\mbox{if } n \geq 0 \\
 import matplotlib.pyplot as plt, numpy as np
 delta = [0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10]
 t = range(-6,-6+len(delta))
-plt.stem(t,delta); plt.title ('Unit ramp $u_r[n]$')
+plt.stem(t,delta, use_line_collection=True); plt.title ('Unit ramp $u_r[n]$')
 plt.axis([t[0],t[-1],0,10.2])
 plt.show()
 @
@@ -117,10 +117,10 @@ x2 = 0.65**n
 x3 = (-0.65)**n
 x4 = (-1.35)**n
 plt.figure(figsize=(12,6))
-plt.subplot(2,2,1); plt.stem(n,x1); plt.title ('a = 1.35');
-plt.subplot(2,2,2); plt.stem(n,x2); plt.title ('a = 0.65');
-plt.subplot(2,2,3); plt.stem(n,x3); plt.title ('a = -0.65');
-plt.subplot(2,2,4); plt.stem(n,x4); plt.title ('a = -1.35');
+plt.subplot(2,2,1); plt.stem(n,x1, use_line_collection=True); plt.title ('a = 1.35');
+plt.subplot(2,2,2); plt.stem(n,x2, use_line_collection=True); plt.title ('a = 0.65');
+plt.subplot(2,2,3); plt.stem(n,x3, use_line_collection=True); plt.title ('a = -0.65');
+plt.subplot(2,2,4); plt.stem(n,x4, use_line_collection=True); plt.title ('a = -1.35');
 plt.show()
 @
 
@@ -196,8 +196,8 @@ n = np.arange(-6,7)
 x1 = [1, 2, 3, 4, 5, 4.5, 3.5, 4.5, 5, 4, 3, 2, 1]
 x2 = [-1, -2, -3, -4, -5, -5, 0, 5, 5, 4, 3, 2, 1]
 plt.figure(figsize=(12,6))
-plt.subplot(1,2,1); plt.stem(n,x1); plt.title ('Even signal');
-plt.subplot(1,2,2); plt.stem(n,x2); plt.title ('Odd signal');
+plt.subplot(1,2,1); plt.stem(n,x1, use_line_collection=True); plt.title ('Even signal');
+plt.subplot(1,2,2); plt.stem(n,x2, use_line_collection=True); plt.title ('Odd signal');
 plt.show()
 @
 
@@ -228,9 +228,9 @@ xo = (x1 - np.flipud(x1))/2.0
 #print 'xe[n] = ',xe
 #print 'xo[n] = ',xo
 plt.figure(figsize=(15,3));
-plt.subplot(1,3,1); plt.stem(n,x1); plt.title ('Original signal'); plt.axis([-6,6,-4,10]);
-plt.subplot(1,3,2); plt.stem(n,xe); plt.title ('Even part'); plt.axis([-6,6,-4,10]);
-plt.subplot(1,3,3); plt.stem(n,xo); plt.title ('Odd part'); plt.axis([-6,6,-4,10]);
+plt.subplot(1,3,1); plt.stem(n,x1, use_line_collection=True); plt.title ('Original signal'); plt.axis([-6,6,-4,10]);
+plt.subplot(1,3,2); plt.stem(n,xe, use_line_collection=True); plt.title ('Even part'); plt.axis([-6,6,-4,10]);
+plt.subplot(1,3,3); plt.stem(n,xo, use_line_collection=True); plt.title ('Odd part'); plt.axis([-6,6,-4,10]);
 plt.show()
 @
 
@@ -255,9 +255,9 @@ x1 = [0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 5, 6, 7, 7, 7, 8, 9, 9, 9]
 x2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 5, 6, 7, 7]
 x3 = [0, 1, 2, 3, 4, 4, 4, 5, 6, 7, 7, 7, 8, 9, 9, 9, 9, 9, 9]
 plt.figure(figsize=(4,8));
-plt.subplot(3,1,1); plt.stem(n,x1); plt.title ('Original signal x[n]')
-plt.subplot(3,1,2); plt.stem(n,x2); plt.title ('x[n-5] '); plt.axis([-10,10,0,9])
-plt.subplot(3,1,3); plt.stem(n,x3); plt.title ('x[n+3]')
+plt.subplot(3,1,1); plt.stem(n,x1, use_line_collection=True); plt.title ('Original signal x[n]')
+plt.subplot(3,1,2); plt.stem(n,x2, use_line_collection=True); plt.title ('x[n-5] '); plt.axis([-10,10,0,9])
+plt.subplot(3,1,3); plt.stem(n,x3, use_line_collection=True); plt.title ('x[n+3]')
 plt.show()
 @
 
@@ -272,8 +272,8 @@ n = np.arange(-9,10)
 x1 = [0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 5, 6, 7, 7, 7, 8, 9, 9, 9]
 x2 = np.flipud(x1)
 plt.figure(figsize=(10,6));
-plt.subplot(1,2,1); plt.stem(n,x1); plt.title ('Original signal x[n]')
-plt.subplot(1,2,2); plt.stem(n,x2); plt.title ('Reversed signal x[-n]');
+plt.subplot(1,2,1); plt.stem(n,x1, use_line_collection=True); plt.title ('Original signal x[n]')
+plt.subplot(1,2,2); plt.stem(n,x2, use_line_collection=True); plt.title ('Reversed signal x[-n]');
 plt.show()
 @
 
@@ -292,9 +292,9 @@ x2 = x1[0:-1:2]
 n2 = np.array(n[0:-1:2])/2
 plt.figure(figsize=(10,4))
 plt.subplot(1,2,1)
-plt.stem(n,x1); plt.title ('Original signal x[n]')
+plt.stem(n,x1, use_line_collection=True); plt.title ('Original signal x[n]')
 plt.subplot(1,2,2)
-plt.stem(n2,x2); plt.title ('Signal subsampled by a factor of 2, $x_{2\downarrow}[n]$');
+plt.stem(n2,x2, use_line_collection=True); plt.title ('Signal subsampled by a factor of 2, $x_{2\downarrow}[n]$');
 plt.show()
 @
 
@@ -318,9 +318,9 @@ import matplotlib.pyplot as plt, numpy as np
 x1 = [1, 2, 3, 4, 4]
 x2 = [1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 4, 0, 0, ]
 plt.subplot(1,2,1)
-plt.stem(x1); plt.title ('Original signal x[n]')
+plt.stem(x1, use_line_collection=True); plt.title ('Original signal x[n]')
 plt.subplot(1,2,2)
-plt.stem(x2); plt.title ('Interpolated signal by a factor or 3');
+plt.stem(x2, use_line_collection=True); plt.title ('Interpolated signal by a factor or 3');
 plt.show()
 @
 
@@ -385,8 +385,8 @@ import matplotlib.pyplot as plt, numpy as np
 x = [1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4]
 y = [0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4]
 plt.figure(figsize=(10,4));
-plt.subplot(2,1,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
-plt.subplot(2,1,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
+plt.subplot(2,1,1); plt.stem(x, use_line_collection=True); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
+plt.subplot(2,1,2); plt.stem(y, use_line_collection=True); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
 plt.suptitle('$y[n] = x[n-3]$', fontsize='x-large')
 plt.gcf().subplots_adjust(top=0.85)
 plt.show()
@@ -399,8 +399,8 @@ import matplotlib.pyplot as plt, numpy as np
 x = [0, 1, 2, 3, 4, 4, 4, 4, 4]
 y = [1, 2, 3, 4, 4, 4, 4, 4, 4]
 plt.figure(figsize=(10,4));
-plt.subplot(2,1,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
-plt.subplot(2,1,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
+plt.subplot(2,1,1); plt.stem(x, use_line_collection=True); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
+plt.subplot(2,1,2); plt.stem(y, use_line_collection=True); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
 plt.suptitle('$y[n] = x[n+1]$', fontsize='x-large')
 plt.gcf().subplots_adjust(top=0.85)
 plt.show()
@@ -419,8 +419,8 @@ for i in range(len(x)):
     else:
         y[i] = (x[i-1] + x[i] + x[i+1])/3.0;
 plt.figure(figsize=(10,4));
-plt.subplot(2,1,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
-plt.subplot(2,1,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
+plt.subplot(2,1,1); plt.stem(x, use_line_collection=True); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
+plt.subplot(2,1,2); plt.stem(y, use_line_collection=True); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
 plt.suptitle('$y[n] = (x[n+1] + x[n] + x[n-1])/3$', fontsize='x-large')
 plt.gcf().subplots_adjust(top=0.85)
 plt.show()
@@ -440,8 +440,8 @@ for i in range(len(x)):
     else:
         y[i] = max(x[i-1], x[i], x[i+1])
 plt.figure(figsize=(10,4));
-plt.subplot(2,1,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
-plt.subplot(2,1,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
+plt.subplot(2,1,1); plt.stem(x, use_line_collection=True); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
+plt.subplot(2,1,2); plt.stem(y, use_line_collection=True); plt.title ('Output $y[n]$'); plt.axis([0,8,0,5])
 plt.suptitle('$y[n] = \max(x[n+1], x[n], x[n-1])$', fontsize='x-large')
 plt.gcf().subplots_adjust(top=0.85)
 plt.show()
@@ -455,8 +455,8 @@ x = [0, 1, 2, 3, 4, 4, 4, 4, 4]
 for i in range(len(x)):
     y[i] = sum(x[0:(i+1)])
 plt.figure(figsize=(10,5));
-plt.subplot(2,1,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
-plt.subplot(2,1,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([0,8,0,30])
+plt.subplot(2,1,1); plt.stem(x, use_line_collection=True); plt.title ('Input $x[n]$'); plt.axis([0,8,0,5])
+plt.subplot(2,1,2); plt.stem(y, use_line_collection=True); plt.title ('Output $y[n]$'); plt.axis([0,8,0,30])
 plt.suptitle('$y[n] = \sum_{k=-\infty}^{n} x[k] = x[n] + x[n-1] + x[n-2] + ...$', fontsize='x-large')
 plt.gcf().subplots_adjust(top=0.80)
 plt.show()
@@ -564,10 +564,10 @@ def H(x):
 #print 'x = ',x
 #print ('y = ['+', '.join(['%.2f']*len(y))%tuple(y)+']')
 plt.figure(figsize=(10,5));
-plt.subplot(2,2,1); plt.stem(n,x); plt.title ('Input $x[n]$'); plt.axis([0,13,0,5])
-plt.subplot(2,2,2); plt.stem(n,H(x)); plt.title ('Output $H[x[n]]$'); plt.axis([0,13,0,1.2])
-plt.subplot(2,2,3); plt.stem(n,xd); plt.title ('Input $x[n-4]$'); plt.axis([0,13,0,5])
-plt.subplot(2,2,4); plt.stem(n,H(xd)); plt.title ('Output $H[x[n-4]]$'); plt.axis([0,13,0,1.2])
+plt.subplot(2,2,1); plt.stem(n,x, use_line_collection=True); plt.title ('Input $x[n]$'); plt.axis([0,13,0,5])
+plt.subplot(2,2,2); plt.stem(n,H(x), use_line_collection=True); plt.title ('Output $H[x[n]]$'); plt.axis([0,13,0,1.2])
+plt.subplot(2,2,3); plt.stem(n,xd, use_line_collection=True); plt.title ('Input $x[n-4]$'); plt.axis([0,13,0,5])
+plt.subplot(2,2,4); plt.stem(n,H(xd), use_line_collection=True); plt.title ('Output $H[x[n-4]]$'); plt.axis([0,13,0,1.2])
 plt.suptitle('Time-invariant system $y[n] = x[n] - x[n-1]$', fontsize='x-large')
 plt.gcf().subplots_adjust(top=0.80)
 plt.show()
@@ -585,10 +585,10 @@ def H(n,x):
   y = [n[i] * x[i] for i in range(len(x))]
   return y
 plt.figure(figsize=(10,5));
-plt.subplot(2,2,1); plt.stem(n,x); plt.title ('Input $x[n]$'); plt.axis([0,13,0,5])
-plt.subplot(2,2,2); plt.stem(n,H(n,x)); plt.title ('Output $H[x[n]]$'); plt.axis([0,13,0,50])
-plt.subplot(2,2,3); plt.stem(n,xd); plt.title ('Input $x[n-4]$'); plt.axis([0,13,0,5])
-plt.subplot(2,2,4); plt.stem(n,H(n,xd)); plt.title ('Output $H[x[n-4]]$'); plt.axis([0,13,0,50])
+plt.subplot(2,2,1); plt.stem(n,x, use_line_collection=True); plt.title ('Input $x[n]$'); plt.axis([0,13,0,5])
+plt.subplot(2,2,2); plt.stem(n,H(n,x), use_line_collection=True); plt.title ('Output $H[x[n]]$'); plt.axis([0,13,0,50])
+plt.subplot(2,2,3); plt.stem(n,xd, use_line_collection=True); plt.title ('Input $x[n-4]$'); plt.axis([0,13,0,5])
+plt.subplot(2,2,4); plt.stem(n,H(n,xd), use_line_collection=True); plt.title ('Output $H[x[n-4]]$'); plt.axis([0,13,0,50])
 plt.suptitle('Time-variant system $y[n] = n \cdot x[n]]$', fontsize='x-large')
 plt.gcf().subplots_adjust(top=0.80)
 plt.show()
@@ -742,16 +742,16 @@ y0 = x[0]*np.array(h)
 y1 = x[1]*np.array([0] + h)
 y2 = x[2]*np.array([0, 0] + h)
 y3 = x[3]*np.array([0, 0, 0] + h)
-plt.subplot(5,2,1); plt.stem(x); plt.title ('Input $x[n]$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,2); plt.stem(y); plt.title ('Output $y[n]$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,3); plt.stem(x0); plt.title ('First impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,4); plt.stem(y0); plt.title ('First impulse response of output$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,5); plt.stem(x1); plt.title ('Second impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,6); plt.stem(y1); plt.title ('Second impulse response of output$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,7); plt.stem(x2); plt.title ('Third impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,8); plt.stem(y2); plt.title ('Third impulse response of output$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,9); plt.stem(x3); plt.title ('Fourth impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,10); plt.stem(y3); plt.title ('Fourth impulse response of output$'); plt.axis([-0.5,13,0,12])
+plt.subplot(5,2,1); plt.stem(x, use_line_collection=True); plt.title ('Input $x[n]$'); plt.axis([-0.5,13,0,5])
+plt.subplot(5,2,2); plt.stem(y, use_line_collection=True); plt.title ('Output $y[n]$'); plt.axis([-0.5,13,0,12])
+plt.subplot(5,2,3); plt.stem(x0, use_line_collection=True); plt.title ('First impulse of input$'); plt.axis([-0.5,13,0,5])
+plt.subplot(5,2,4); plt.stem(y0, use_line_collection=True); plt.title ('First impulse response of output$'); plt.axis([-0.5,13,0,12])
+plt.subplot(5,2,5); plt.stem(x1, use_line_collection=True); plt.title ('Second impulse of input$'); plt.axis([-0.5,13,0,5])
+plt.subplot(5,2,6); plt.stem(y1, use_line_collection=True); plt.title ('Second impulse response of output$'); plt.axis([-0.5,13,0,12])
+plt.subplot(5,2,7); plt.stem(x2, use_line_collection=True); plt.title ('Third impulse of input$'); plt.axis([-0.5,13,0,5])
+plt.subplot(5,2,8); plt.stem(y2, use_line_collection=True); plt.title ('Third impulse response of output$'); plt.axis([-0.5,13,0,12])
+plt.subplot(5,2,9); plt.stem(x3, use_line_collection=True); plt.title ('Fourth impulse of input$'); plt.axis([-0.5,13,0,5])
+plt.subplot(5,2,10); plt.stem(y3, use_line_collection=True); plt.title ('Fourth impulse response of output$'); plt.axis([-0.5,13,0,12])
 #plt.gcf().subplots_adjust(top=0.80)
 plt.show()
 @
@@ -903,9 +903,9 @@ xc = [0]*l + [0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 3] + [3]*l
 xn = [3]*l + [3, 3, 3, 3, 3, 2, 1, 0, 0, 0, 0, 0, 0] + [0]*l
 xb = [3]*l + [3, 3, 3, 2, 1, 1, 1, 1, 1, 1, 2, 3, 4] + [4]*l
 plt.figure(figsize=(18,6));
-plt.subplot(1,3,1); plt.stem(n,xc); plt.title ('Causal signal'); plt.axis([-(l+6.5), (l+6.5), 0, 5])
-plt.subplot(1,3,2); plt.stem(n,xn); plt.title ('Anti-causal (non-causal)'); plt.axis([-(l+6.5), (l+6.5), 0, 5])
-plt.subplot(1,3,3); plt.stem(n,xb); plt.title ('Bilateral (non-causal)'); plt.axis([-(l+6.5), (l+6.5), 0, 5]);
+plt.subplot(1,3,1); plt.stem(n,xc, use_line_collection=True); plt.title ('Causal signal'); plt.axis([-(l+6.5), (l+6.5), 0, 5])
+plt.subplot(1,3,2); plt.stem(n,xn, use_line_collection=True); plt.title ('Anti-causal (non-causal)'); plt.axis([-(l+6.5), (l+6.5), 0, 5])
+plt.subplot(1,3,3); plt.stem(n,xb, use_line_collection=True); plt.title ('Bilateral (non-causal)'); plt.axis([-(l+6.5), (l+6.5), 0, 5]);
 plt.show()
 @
 

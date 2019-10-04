@@ -35,15 +35,6 @@ $$\delta[n] =
 ### Representation
 
 
-```
-/home/ncleju/.local/bin/pweave:4: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  import sys
-```
-
 ![](figures/02_SignalsAndSystems_figure1_1.png){width=10cm}\
 
 
@@ -63,15 +54,6 @@ $$u[n] =
 ### Representation
 
 
-```
-/home/ncleju/.local/bin/pweave:4: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  import sys
-```
-
 ![](figures/02_SignalsAndSystems_figure2_1.png){width=10cm}\
 
 
@@ -89,15 +71,6 @@ n &\mbox{if } n \geq 0 \\
 
 ### Representation
 
-
-```
-/home/ncleju/.local/bin/pweave:4: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  import sys
-```
 
 ![](figures/02_SignalsAndSystems_figure3_1.png){width=10cm}\
 
@@ -121,32 +94,6 @@ Depending on the value of $a$, we have four possible cases:
 
 ### Representation
 
-
-```
-/home/ncleju/.local/bin/pweave:8: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  if __name__ == '__main__':
-/home/ncleju/.local/bin/pweave:9: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
-/home/ncleju/.local/bin/pweave:10: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  sys.exit(weave())
-/home/ncleju/.local/bin/pweave:11: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
 
 ![](figures/02_SignalsAndSystems_figure4_1.png){width=10cm}\
 
@@ -218,20 +165,6 @@ $$-x[n] = x[-n], \forall n.$$
 ### Even and odd signals: example
 
 
-```
-/home/ncleju/.local/bin/pweave:6: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  from pweave.scripts import weave
-/home/ncleju/.local/bin/pweave:7: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
-
 ![](figures/02_SignalsAndSystems_figure5_1.png){width=12cm}\
 
 
@@ -253,25 +186,6 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 ### Even and odd parts: example
 
 
-```
-/home/ncleju/.local/bin/pweave:10: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  sys.exit(weave())
-/home/ncleju/.local/bin/pweave:11: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:12: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
-
 ![](figures/02_SignalsAndSystems_figure6_1.png){width=12cm}\
 
 
@@ -290,27 +204,6 @@ new behaviour, set the "use_line_collection" keyword argument to True.
 ### Time shifting: representation
 
 
-```
-/home/ncleju/.local/bin/pweave:7: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-
-/home/ncleju/.local/bin/pweave:8: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  if __name__ == '__main__':
-/home/ncleju/.local/bin/pweave:9: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
-```
-
 ![](figures/02_SignalsAndSystems_figure7_1.png)\
 
 
@@ -319,20 +212,6 @@ new behaviour, set the "use_line_collection" keyword argument to True.
 
 - Changing the variable $n$ to $-n$ produces a signal $x[-n]$ which mirrors $x[n]$.
 
-
-```
-/home/ncleju/.local/bin/pweave:6: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  from pweave.scripts import weave
-/home/ncleju/.local/bin/pweave:7: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
 
 ![](figures/02_SignalsAndSystems_figure8_1.png)\
 
@@ -344,21 +223,6 @@ keep only 1 sample from every M of the original signal
     - Total number of samples is reduced M times
 $$x_{M\downarrow}[n] = x[Mn]$$
 
-
-```
-/home/ncleju/.local/bin/pweave:8: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  if __name__ == '__main__':
-/home/ncleju/.local/bin/pweave:10: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  sys.exit(weave())
-```
 
 ![](figures/02_SignalsAndSystems_figure9_1.png)\
 
@@ -378,20 +242,6 @@ x[\frac{n}{L}] &\mbox{if } \frac{n}{L} \in \mathbb{N} \\
 $$
 
 
-
-```
-/home/ncleju/.local/bin/pweave:5: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-
-/home/ncleju/.local/bin/pweave:7: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
 
 ![](figures/02_SignalsAndSystems_figure10_1.png){width=12cm}\
 
@@ -453,60 +303,17 @@ Examples:
 ### Example
 
 
-```
-/home/ncleju/.local/bin/pweave:5: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-
-/home/ncleju/.local/bin/pweave:6: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  from pweave.scripts import weave
-```
-
 ![](figures/02_SignalsAndSystems_figure11_1.png)\
 
 
 ### Example
 
 
-```
-/home/ncleju/.local/bin/pweave:5: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-
-/home/ncleju/.local/bin/pweave:6: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  from pweave.scripts import weave
-```
-
 ![](figures/02_SignalsAndSystems_figure12_1.png)\
 
 
 ### Example
 
-
-```
-/home/ncleju/.local/bin/pweave:11: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:12: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
 
 ![](figures/02_SignalsAndSystems_figure13_1.png)\
 
@@ -515,38 +322,11 @@ new behaviour, set the "use_line_collection" keyword argument to True.
 ### Example
 
 
-```
-/home/ncleju/.local/bin/pweave:11: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:12: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
-
 ![](figures/02_SignalsAndSystems_figure14_1.png)\
 
 
 ### Example 
 
-
-```
-/home/ncleju/.local/bin/pweave:6: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  from pweave.scripts import weave
-/home/ncleju/.local/bin/pweave:7: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
 
 ![](figures/02_SignalsAndSystems_figure15_1.png)\
 
@@ -638,60 +418,12 @@ $$x[n-k] \overset{H}{\rightarrow} y[n-k]$$
 ### Example 
 
 
-```
-/home/ncleju/.local/bin/pweave:16: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:17: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:18: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:19: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
-
 ![](figures/02_SignalsAndSystems_figure16_1.png)\
 
 
 
 ### Another example 
 
-
-```
-/home/ncleju/.local/bin/pweave:9: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
-/home/ncleju/.local/bin/pweave:10: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  sys.exit(weave())
-/home/ncleju/.local/bin/pweave:11: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:12: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
 
 ![](figures/02_SignalsAndSystems_figure17_1.png)\
 
@@ -830,59 +562,6 @@ $$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k]$$
 
 ### Example
 
-
-```
-/home/ncleju/.local/bin/pweave:14: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:15: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:16: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:17: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:18: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:19: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:20: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:21: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:22: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-/home/ncleju/.local/bin/pweave:23: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-```
 
 ![](figures/02_SignalsAndSystems_figure18_1.png)\
 
@@ -1026,27 +705,6 @@ $$h[n] = 0, \forall n < 0$$.
 
 ### Example
 
-
-```
-/home/ncleju/.local/bin/pweave:8: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  if __name__ == '__main__':
-/home/ncleju/.local/bin/pweave:9: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
-/home/ncleju/.local/bin/pweave:10: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  sys.exit(weave())
-```
 
 ![](figures/02_SignalsAndSystems_figure19_1.png)\
 

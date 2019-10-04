@@ -52,7 +52,7 @@ plt.figure(figsize=(10, 3));
 plt.subplot(121)
 plt.plot(tanalog,vanalog); plt.title('Analog signal $a(t)$')
 plt.subplot(122)
-plt.stem(tdiscrete,vdiscrete); plt.title ('Discrete signal $b[n]$');
+plt.stem(tdiscrete,vdiscrete, use_line_collection=True); plt.title ('Discrete signal $b[n]$');
 plt.show()
 @
 
@@ -138,7 +138,7 @@ Ts = 8                               # Sampling period Ts=10, sampling freq Fs =
 td = t[0:101:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
 xd = xa[td]
 plt.plot(t,xa)                       # plotting
-plt.stem(td,xd,'--r')
+plt.stem(td,xd,'--r', use_line_collection=True)
 plt.xlabel('time')
 plt.ylabel('voltage')
 plt.title('A sample sinusoidal signal $v(t)$')
@@ -190,11 +190,11 @@ x1 = np.sin(2*math.pi*0.05*t)         #  frequency
 x2 = np.sin(2*math.pi*0.25*t)          # sin(2*pi*f*t)
 plt.figure(figsize=(10, 3));
 plt.subplot(121)
-plt.stem(t,x1); plt.title('Frequency $f = 0.05$')
+plt.stem(t,x1, use_line_collection=True); plt.title('Frequency $f = 0.05$')
 plt.axis([0, 40, -1.2, 1.2])
 plt.subplot(122)
 plt.axis([0, 40, -1.2, 1.2])
-plt.stem(t,x2); plt.title ('Frequency $f = 0.25$')
+plt.stem(t,x2), use_line_collection=True; plt.title ('Frequency $f = 0.25$')
 plt.show()
 @
 
@@ -265,7 +265,7 @@ xa = np.sin(2*math.pi*0.006*t)        # analog signal
 td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
 xd = xa[td]
 plt.plot(t,xa)                       # plotting
-plt.stem(td,xd,'--r')
+plt.stem(td,xd,'--r', use_line_collection=True)
 plt.xlabel('time')
 plt.ylabel('voltage')
 plt.title('A sample sinusoidal signal $v(t)$')
@@ -282,7 +282,7 @@ xa = -np.sin(2*math.pi*(2/Ts -0.006)*t)        # analog signal
 td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
 xd = xa[td]
 plt.plot(t,xa)                       # plotting
-plt.stem(td,xd,'--r')
+plt.stem(td,xd,'--r', use_line_collection=True)
 plt.xlabel('time')
 plt.ylabel('voltage')
 plt.title('A sample sinusoidal signal $v(t)$')

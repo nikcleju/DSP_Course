@@ -43,15 +43,6 @@
     - Outside the samples, the signal is **not defined**
 
 
-```
-/home/ncleju/.local/bin/pweave:10: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  sys.exit(weave())
-```
-
 ![](figures/01_Sampling_figure1_1.png){width=12cm}\
 
 
@@ -130,15 +121,6 @@ new behaviour, set the "use_line_collection" keyword argument to True.
 ### Graphical example
 
 
-```
-/home/ncleju/.local/bin/pweave:8: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  if __name__ == '__main__':
-```
-
 ![](figures/01_Sampling_figure2_1.png)\
 
 
@@ -182,20 +164,13 @@ $\frac{1}{4}$ of the sampling frequency"
 
 
 ```
-/home/ncleju/.local/bin/pweave:7: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-
-/home/ncleju/.local/bin/pweave:11: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
+  File "<ipython-input-1-f8278cf1aeb4>", line 11
+    plt.stem(t,x2), use_line_collection=True; plt.title ('Frequency $f
+= 0.25$')
+^
+SyntaxError: can't assign to function call
 ```
 
-![](figures/01_Sampling_figure3_1.png){width=12cm}\
 
 
 ### Sampling theorem (Nyquist-Shannon)
@@ -258,29 +233,11 @@ than $\frac{F_s}{2}$ with $\epsilon$, symmetrically
 ### Aliasing example - low frequency signal
 
 
-```
-/home/ncleju/.local/bin/pweave:8: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  if __name__ == '__main__':
-```
-
 ![](figures/01_Sampling_figure4_1.png)\
 
 
 ### Aliasing example - high frequency signal, same samples
 
-
-```
-/home/ncleju/.local/bin/pweave:8: UserWarning: In Matplotlib 3.3
-individual lines on a stem plot will be added as a LineCollection
-instead of individual lines. This significantly improves the
-performance of a stem plot. To remove this warning and switch to the
-new behaviour, set the "use_line_collection" keyword argument to True.
-  if __name__ == '__main__':
-```
 
 ![](figures/01_Sampling_figure5_1.png)\
 
