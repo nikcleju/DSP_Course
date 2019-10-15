@@ -64,6 +64,11 @@ $$
 \end{bmatrix}
 $$
 
+4. Create a function `I2 = myfunc(I, h)` which takes an input image `I` of any size
+and a $3 \times 3$ matrix `h` and does the same operation from the previous exercises.
+
+    Test your function with the matrices `h` from the previous exercises
+and check that it works correctly.
 
 # Final questions
 
