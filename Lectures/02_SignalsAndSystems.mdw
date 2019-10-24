@@ -756,35 +756,7 @@ plt.subplot(5,2,10); plt.stem(y3, use_line_collection=True); plt.title ('Fourth 
 plt.show()
 @
 
-
-
-### Properties of convolution
-
-* Convolution is commutative (the order of the two signals doesn't matter): 
-
-$$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k] = h[n] * x[n] = \sum_{k=-\infty}^\infty h[k] x[n-k]$$.
-
-Proof: make variable change $(n-k) \rightarrow l$, change all in equation
-
-* Convolution is associative
-
-$$(a[n] * b[n]) * c[n] = a[n] * (b[n] * c[n])$$.
-
-(No proof)
-
-* The unit impulse is neutral element for convolution
-
-$$a[n] * \delta[n] = \delta[n] * a[n]  = a[n]$$.
-
-Proof: equation
-
-* Convolution is a linear operation
-$$(\alpha \cdot a[n] + \beta \cdot b[n]) * c[n] = \alpha (\cdot a[n] * c[n]) + \beta \cdot (b[n] * c[n])$$
-
-Proof: by linearity of the corresponding system
-
-
-### Interpretation of convolution equation
+### Interpretation of the convolution equation
 
 The convolution equation can be interpreted in two ways:
 
@@ -793,20 +765,90 @@ each one delayed by $k$ (hence $[n-k]$) and scaled by $x[k]$
     - one for each sample in the input signal
     - explain at blackboard
 
-$$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k]$$
+$$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] \mathbf{h[n}-k\mathbf{]}$$
 
 
-### Interpretation of convolution equation
+### Interpretation of the convolution equation
 
-2. Each output sample $y[n]$ = a weighted average of the input samples around it
+2. Each output sample $y[n]$ = a **weighted sum** of the input samples around it
     - $y[n] = ... + h[2] \cdot x[n-2] + h[1]\cdot x[n-1] + h[0]\cdot x[n] + h[n+1] \cdot x[n+1] + ...$
 
 - If $h[n]$ has finite length (e.g. non-zero only between $h[-2] ... h[2]$),
 then there are only a few terms in the sum
     - Example at blackboard
 
-$$x[n] * h[n] = \sum_{k=-\infty}^\infty h[k] x[n-k]$$
+$$x[n] * h[n] = \sum_{k=-\infty}^\infty h[k] \mathbf{x[n}-k\mathbf{]}$$
 
+### Interpretation of the convolution equation
+
+![Convolution as weighted sum](img/Convolution1D.png){.id height=60%}
+
+* image from http://www.stokastik.in
+
+### Interpretation of the convolution equation
+
+* Watch the following:
+
+https://www.youtube.com/watch?v=ulKbLD6BRJA
+
+
+### 2D convolution
+
+* Convolution can be applied in 2D (for images)
+
+* The input signal = an image I[x, y]
+
+* The impulse response (the ***kernel***) = a matrix H[x, y]
+
+* The convolution result:
+
+$$Y[x,y] = I * H = \sum_{i=-\infty}^\infty \sum_{j=-\infty}^\infty I[x-i,y-j] \cdot H[i,j]$$
+
+### 2D convolution
+
+![2D Convolution as weighted sum](img/Convolution2D.gif)
+
+* image from http://machinelearninguru.com
+
+### 2D Convolution
+
+* Watch this:
+
+http://machinelearninguru.com/computer_vision/basics/convolution
+/convolution_layer.html
+
+### 2D Convolution
+
+* Simple image effects with 2D convolutions:
+    * the "kernel" = the impulse response $H[x,y]$
+
+see https://en.wikipedia.org/wiki/Kernel_(image_processing)
+
+* What are their 1D counterparts?
+
+
+### Properties of convolution
+
+* Convolution is commutative (the order of the two signals doesn't matter): 
+
+$$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k] = h[n] * x[n] = \sum_{k=-\infty}^\infty h[k] x[n-k]$$.
+Proof: make variable change $(n-k) \rightarrow l$, change all in equation
+
+* Convolution is associative
+
+$$(a[n] * b[n]) * c[n] = a[n] * (b[n] * c[n])$$.
+(No proof)
+
+### Properties of convolution
+
+* The unit impulse is neutral element for convolution
+
+$$a[n] * \delta[n] = \delta[n] * a[n]  = a[n]$$.
+Proof: equation
+
+* Convolution is a linear operation
+$$(\alpha \cdot a[n] + \beta \cdot b[n]) * c[n] = \alpha (\cdot a[n] * c[n]) + \beta \cdot (b[n] * c[n])$$
+Proof: by linearity of the corresponding system
 
 
 
