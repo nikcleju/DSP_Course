@@ -23,6 +23,8 @@ $$X(z) = \sum_{-\infty}^\infty x[n] z^{-n}$$
 $$\mathcal{Z}\left( x[n] \right) = X(Z)$$
 $$x[n] \trZ X(Z)$$
 
+### Definition of Z transform
+
 * Similar to the Laplace transform for analog signals
 
 * The Z transform associates **a polynomial** to a signal (think Decision and Estimation class)
@@ -55,6 +57,8 @@ $$|z| < r_2$$
 
 * For bilateral signals, both the causal and the anti-causal terms of the sum must converges ---> the CR is the area between two circles:
 $$r_1 < |z| < r_2$$
+
+### Region of convergence
 
 * For finite-support signals, the two "circles" are $0$ and $\infty$
 
@@ -222,7 +226,7 @@ When $z \to \infty$, all terms $z^{-k}$ vanish.
 
 * Easily found all over the Internet
 
-![Common Z transform pairs](img/Z-transform-pairs.jpg)
+![Common Z transform pairs](img/Z-transform-pairs.jpg){.id height=80%}
 
 
 ## III.2. Z transforms which are Rational Functions
@@ -428,7 +432,7 @@ What if poles are double?
 
 ### Position of poles and time behavior - conjugate poles
 
-![Signal behavior for 1 double pole](img/1ComplexPairPolesSignalBehavior.png)
+![Signal behavior for 1 double pole](img/1ComplexPairPolesSignalBehavior.png){.id height=80%}
 
 
 ### Position of poles and time behavior
