@@ -1,6 +1,6 @@
 ---
 title: Convolution
-subtitle: Lab 6, DSP
+subtitle: Lab 8, DSP
 documentclass: scrartcl
 fontsize: 12pt
 ---
