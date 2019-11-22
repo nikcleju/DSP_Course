@@ -544,78 +544,24 @@ $$y[n] = \underbrace{\sum_{k=1}^N A_k (p_k)^n u[n]}_{natural \; response} +
 
 ### Natural and forced response
 
-* Natural response $y_{nr}[n]$ = the part given by the **poles of the system**
-* Forced response $y_{fr}[n]$ = given by the **poles of the input signal**
+The output $y[n]$ is the sum of two signals:
 
-* This output is the **zero-state response** of the system (no initial conditions)
+* Natural response $y_{nr}[n]$ = the part given by the poles of **the system** itself
+* Forced response $y_{fr}[n]$ = given by the poles of **the input signal**
+* Together they form the **zero-state response** of the system (no initial conditions)
 
-* If some poles have higher multiplicity, the formulas will be slightly changed
+If there are initial conditions, there is a third component:
 
-### Output of the system, with initial conditions 
+* Zero-input response $y_{fr}[n]$ = given by the initial conditions of the system
+  * It behaves similarly to the natural response
 
-* The input signal is causal and applied at moment $n=0$
-* The output signal is causal and is computed starting from $n=0$
-* We have initial conditions $y[-1], y[-2], ... y[n-N]$
-
-* Where do initial condition appear in the Z transform?
-
-### 2018-2019 Exam
-
-2018-2019 Exam
-
-* Skip next 2 slides (up to "Zero-state and zero-input outputs")
-
-### Unilateral Z transform
-
-* Initial conditions appear here:
-
-$$y[n] \trZ Y(z) = \sum_{n=0}^{\infty} y[n] z^{-n}$$
-$$\begin{split}
-y[n-k] \trZ &\sum_{n=0}^{\infty} y[n-k] z^{-n} = \\
-=&\sum_{m=-k}^{\infty} y[m] z^{-m-k}\\
-=&z^{-k}(\sum_{m=0}^{\infty} y[m] z^{-m} + \sum_{m=1}^k y[-m]z^m)\\
-=&\underbrace{z^{-k}Y(z)}_{normal} + z^{-k}\sum_{n=1}^k \underbrace{y[-n]}_{I.C.} z^n
-\end{split}$$
-
-* This is known as the *unilateral Z transform*, shifting in time
-
-### Output of the system
-
-* Replacing this in the system's difference equation
-$$y[n] + \sum_{k=1}^n a_k y[n-k] = \sum_{k=0}^m b_k x[n-k]$$
-yields
-$$Y(z) \left( 1 + \sum_{k=1}^N a_k z^{-k} \right) + \sum_{k=1}^N a_k z^{-k} \sum_{n=1}^k y[-n]z^n = X(z) \left( \sum_{k=0}^M b_k z^{-k} \right)$$
-
-$$Y(z) = \frac{\sum_{k=0}^M b_k z^{-k}}{1 + \sum_{k=1}^N a_k z^{-k}} + 
-\frac{-\sum_{k=1}^N a_k z^{-k} \sum_{n=1}^k y[-n]z^n }{1 + \sum_{k=1}^N a_k z^{-k}}$$
-
-* Therefore
-$$\boxed{Y(z) = H(z) X(z) + \frac{N_0(z)}{A(z)}}$$
-with
-$$N_0(z) = -\sum_{k=1}^N a_k z^{-k} \sum_{n=1}^k y[-n]z^n $$
-
-### Zero-state and zero-input outputs
-
-* The first part = **zero-state response** (state = initial conditions = 0)
-    * = the response due to the input, when all initial conditions = 0
-    * = the sum of the natural response + forced response
-* The second part = **zero-input response** (when no input)
-    * = the response due to the initial conditions, when input = 0
-
-* Total output = sum of all components
-
-### Zero-state and zero-input outputs
-
-* But zero-input response has the same poles as the system function
-$$y_{zi}[n] = \sum_{k=1}^N D_k (p_k)^n u[n]$$
-
-* Zero-input response is **just like natural response**, only with different coefficients
-    * The initial conditions just change the coefficients of the system's natural response
 
 ### Transient and permanent response
 
 * For a stable system, all system poles $|p_k| < 1$, so natural response (including initial conditions) is made of decreasing exponentials 
+
 * For a stable system, the natural response dies out exponentially
+
 * Thus, the natural response is called a **transient response**
     * it fades away
 
@@ -625,13 +571,12 @@ $$y_{zi}[n] = \sum_{k=1}^N D_k (p_k)^n u[n]$$
     * when the input signal is first applied, and the transient response is present, the system is in **transient regime**
     * When the transient response has died out, the system remains in **permanent regime**, where only the input signal determines the output
 
-
 * Example: apply a infinitely long sinusoidal, starting from $n=0$
 
 
 ### Stability of a system and H(z)
 
-* Stable system: bounded input --> bounded output
+* Stable system: a bounded input implies a bounded output
 
 * Reminder: A system is stable if
 $$\sum |h[n]| < \infty (convergent)$$
