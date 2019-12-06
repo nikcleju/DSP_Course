@@ -431,6 +431,8 @@ $$\angle{X} = \angle{C} + \angle (e^{j \omega}-z_1) + \cdots + \angle(e^{j \omeg
 
 * Examples:...
 
+### Geometric interpretation of Fourier transform
+
 * Simple interpretation for modulus $|X(\omega)|$:
     * Z transform $X(z)$ is a *"landscape"*
         * poles = mountains of infinite height
