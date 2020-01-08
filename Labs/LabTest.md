@@ -9,7 +9,7 @@ fontsize: 12pt
 
 # Explanations
 
-* There are 9 subjects in all, shown below according to the laboratory they were done in.
+* There are 8 subjects in all, shown below according to the laboratory they were done in.
 
 * The test will last up to 110 minutes (the 2h of the normal lab session)
 
@@ -139,17 +139,6 @@ with $f_1 = 0.05$ and $f_1 = 0.1$.
 components. Generate the signal from the Fourier coefficients with `ifft()`
 and plot it. What is the resulting signal?
 
-
-
-## Lab 11
-
-1. Use the Filter Design tool in Matlab (call `fdatool` in command line)
-to design a Low-Pass filter of order 5, IIR, with cutoff frequency 0.1.
-Export the coefficients to the Matlab workspace.
-
-2. Generate a signal composed of 30 values of 1 followed by 30 values of 0. 
-Filter the signal with the designed filter (use `filter()`).
-Plot a figure with 2 subfigures showing the original signal and the filtered signal.
 
 
 ## Lab 12

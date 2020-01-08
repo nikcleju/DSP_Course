@@ -116,7 +116,9 @@ $$y[n] = H_1\{x[n]\} = 0.8 y[n-1] + 0.25 x[n]  + 0.1 x[n-1]$$
     - apply input signals `x`, `y` and `x+y` to the three copies of the system 
     - add the outputs of the systems which have `x` and `y` as inputs, then subtract the output of the system which has `x + y` as input
     - show the resulting signal. Is the system linear?
-    
+
+
+\newpage    
     
 ## Lab 9
 
@@ -131,17 +133,6 @@ with $f_1 = 0.05$ and $f_1 = 0.1$.
 components. Generate the signal from the Fourier coefficients with `ifft()`
 and plot it. What is the resulting signal?
 
-
-
-## Lab 11
-
-1. Use the Filter Design tool in Matlab (call `fdatool` in command line)
-to design a Low-Pass filter of order 5, IIR, with cutoff frequency 0.1.
-Export the coefficients to the Matlab workspace.
-
-2. Generate a signal composed of 30 values of 1 followed by 30 values of 0. 
-Filter the signal with the designed filter (use `filter()`).
-Plot a figure with 2 subfigures showing the original signal and the filtered signal.
 
 
 ## Lab 12
