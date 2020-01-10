@@ -189,40 +189,16 @@ $$\tau_g(\omega) = \frac{d \Theta(\omega)}{d \omega}$$
 * Examples at blackboard
 
 
-### Zero-phase transfer function
-
-* Normally, $|H(\omega|$) is strictly positive
-$$|H(\omega)| \geq 0$$
-
-* When $H(\omega)$ the function passes through 0:
-    * $|H(\omega)|$ remains positive
-    * $\angle H(\omega)$ has a jump of $\pi$
-
-* **Zero-phase transfer function**
-    * $H_R(\omega)$ = $\pm |H(\omega)|$, including the sign (can be positive or negative)
-    * $\Theta_R(\omega)$ doesn't have anymore the jumps of $\pi$
-$$H(\omega) = H_R(\omega) e^{j \Theta_R(\omega)}$$
-
-* Everything else still applies
-    * $H_R(\omega)$ is even
-    * $\Theta_R(\omega)$ is odd
-
-
-### 2018-2019 Exam
-	
-2018-2019 Exam
-
-* Skip next 3 slides (up to "Particular classes of filters")
-
-
 ### Linear-phase FIR filters
 
-* Only FIR filters can have linear phase!
-* IIR filters cannot have linear phase (no proof)
+What type of filters can have linear phase?
+
+* IIR filters cannot have linear phase (no proof) 
+* Only FIR filters can have linear phase, and only if they satisfy some symmetry conditions
 
 ### Symmetry conditions for linear-phase FIR
 
-* Let filter order be $M$
+* Let filter have an impulse response of length $M$ (order is $M-1$)
 
 * The filter coefficients are $h[0]$, ... $h[M-1]$
 
