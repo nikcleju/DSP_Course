@@ -5,7 +5,7 @@ documentclass: scrartcl
 fontsize: 12pt
 ---
 
-
+FACUT WEEK 2
 1. Characterize the following  systems with respect to:
 
     - Memory

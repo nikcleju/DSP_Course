@@ -721,15 +721,15 @@ $$\lvert x[n] \rvert \leq M$$
 
 - Notation: An **LTI** system (**L**inear **T**ime-**I**nvariant) is a system which is simultaneously **linear** and **time-invariant**. 
 
-- LTI systems can be described via either (or both):
+- LTI systems have an equation like this:
 
-    1. the **impulse response** $h[n]$
-    2. the **difference equation** 
-$$\begin{split}
-y[n] =& -\sum_{k=1}^N a_k y[n-k] + -\sum_{k=1}^M b_k x[n-k] \\
-=& -a_1 y[n-1] - a_2 y[n-2] -... - a_N y[n-N] + b_0 x[n] + b_1 x[n-1] + ... + b_M x[n-M]
-\end{split}$$
+    $$\begin{split}
+    y[n] =& -a_1 y[n-1] - a_2 y[n-2] -... - a_N y[n-N] + \\ 
+      & + b_0 x[n] + b_1 x[n-1] + ... + b_M x[n-M] \\
+    =& -\sum_{k=1}^N a_k y[n-k] + \sum_{k=1}^M b_k x[n-k] \\
+    \end{split}$$
 
+  - the above is for causal systems; non-causal can also have [n+k]
 
 ### The impulse response
 
@@ -743,21 +743,19 @@ $$h[n] = H(\delta[n])$$
 
 ### Signals are a sum of impulses
 
-- Any signal can be composed as **a sum of scaled and delayed impulses $\delta[n]$**.
+- Any signal $x[n]$ can be composed as **a sum of scaled and delayed impulses $\delta[n]$**.
 
 - Example: $x[n] = \{3, 1, -5, 0, 2\} = 3\delta[n] + \delta[n-1] -5 \delta[n-2] + 2\delta[n-2]$
 
 - In general
 $$x[n] = \sum_{k=-\infty}^\infty x[k]\delta[n-k]$$
 
-i.e. a sum of impulses $\delta[n]$, delayed with $k$ and scaled with the corresponding value $x[k]$
+  i.e. a sum of impulses $\delta[n]$, each one delayed with $k$ and scaled with the corresponding value $x[k]$
 
 ### Convolution
 
 - The response of a LTI system to a sum of impulses, delayed with $k$ and scaled with $x[k]$, **is a sum of impulse responses, delayed with $k$ and scaled with $x[k]$**.
-    - The input signal is composed of separate impulses
-    - LTI system --> each impulse will generate its own response
-    - output signal is the sum of impulse responses, delayed and scaled
+
 $$\begin{split}
 y[n] =& H \left( x[n] \right) \\
 =& H \left( \sum_{k=-\infty}^\infty x[k]\delta[n-k] \right) \\
@@ -765,12 +763,32 @@ y[n] =& H \left( x[n] \right) \\
 =& \sum_{k=-\infty}^\infty x[k] h[n-k]. \\
 \end{split}$$
 
+### Convolution
+
+- Convolution in short:
+
+    - The input signal is composed of separate impulses
+    
+    - Each impulse will generate its own response (LTI)
+    
+    - Output signal is the sum of impulse responses, delayed and scaled
+
+- Convolution only applies for LTI systems
+
 ### Convolution 
 
 - This operation = the **convolution** of two signals $x[n]$ and $h[n]$
-$$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k]$$
+  $$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k]$$
 
 - The response of a LTI system to an input signal x[n] is **the convolution of x[n] with the system's impulse response h[n]**
+  $$y[n] = x[n] * h[n]$$
+
+### Convolution 
+
+- Convolution is commutative:  $x[n] * h[n] = h[n] * x[n]$
+  - in equation it doesn't matter which signal has $[k]$ and which with $[n-k]$
+
+$$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k] = \sum_{k=-\infty}^\infty x[n-k] h[k]$$
 
 ### Example
 
@@ -788,16 +806,26 @@ y0 = x[0]*np.array(h)
 y1 = x[1]*np.array([0] + h)
 y2 = x[2]*np.array([0, 0] + h)
 y3 = x[3]*np.array([0, 0, 0] + h)
-plt.subplot(5,2,1); plt.stem(x, use_line_collection=True); plt.title ('Input $x[n]$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,2); plt.stem(y, use_line_collection=True); plt.title ('Output $y[n]$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,3); plt.stem(x0, use_line_collection=True); plt.title ('First impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,4); plt.stem(y0, use_line_collection=True); plt.title ('First impulse response of output$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,5); plt.stem(x1, use_line_collection=True); plt.title ('Second impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,6); plt.stem(y1, use_line_collection=True); plt.title ('Second impulse response of output$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,7); plt.stem(x2, use_line_collection=True); plt.title ('Third impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,8); plt.stem(y2, use_line_collection=True); plt.title ('Third impulse response of output$'); plt.axis([-0.5,13,0,12])
-plt.subplot(5,2,9); plt.stem(x3, use_line_collection=True); plt.title ('Fourth impulse of input$'); plt.axis([-0.5,13,0,5])
-plt.subplot(5,2,10); plt.stem(y3, use_line_collection=True); plt.title ('Fourth impulse response of output$'); plt.axis([-0.5,13,0,12])
+#plt.subplot(5,2,1); plt.stem(x, use_line_collection=True); plt.title ('Input $x[n]$'); plt.axis([-0.5,13,0,5])
+#plt.subplot(5,2,2); plt.stem(y, use_line_collection=True); plt.title ('Output $y[n]$'); plt.axis([-0.5,13,0,12])
+#plt.subplot(5,2,3); plt.stem(x0, use_line_collection=True); plt.title ('First impulse of input'); plt.axis([-0.5,13,0,5])
+#plt.subplot(5,2,4); plt.stem(y0, use_line_collection=True); plt.title ('First impulse response of output$'); plt.axis([-0.5,13,0,12])
+#plt.subplot(5,2,5); plt.stem(x1, use_line_collection=True); plt.title ('Second impulse of input'); plt.axis([-0.5,13,0,5])
+#plt.subplot(5,2,6); plt.stem(y1, use_line_collection=True); plt.title ('Second impulse response of output$'); plt.axis([-0.5,13,0,12])
+#plt.subplot(5,2,7); plt.stem(x2, use_line_collection=True); plt.title ('Third impulse of input'); plt.axis([-0.5,13,0,5])
+#plt.subplot(5,2,8); plt.stem(y2, use_line_collection=True); plt.title ('Third impulse response of output$'); plt.axis([-0.5,13,0,12])
+#plt.subplot(5,2,9); plt.stem(x3, use_line_collection=True); plt.title ('Fourth impulse of input'); plt.axis([-0.5,13,0,5])
+#plt.subplot(5,2,10); plt.stem(y3, use_line_collection=True); plt.title ('Fourth impulse response of output$'); plt.axis([-0.5,13,0,12])
+plt.subplot(5,2,1); plt.stem(x, use_line_collection=True); plt.axis([-0.5,13,0,5])
+plt.subplot(5,2,2); plt.stem(y, use_line_collection=True); plt.axis([-0.5,13,0,12])
+plt.subplot(5,2,3); plt.stem(x0, use_line_collection=True); plt.axis([-0.5,13,0,5])
+plt.subplot(5,2,4); plt.stem(y0, use_line_collection=True); plt.axis([-0.5,13,0,12])
+plt.subplot(5,2,5); plt.stem(x1, use_line_collection=True); plt.axis([-0.5,13,0,5])
+plt.subplot(5,2,6); plt.stem(y1, use_line_collection=True); plt.axis([-0.5,13,0,12])
+plt.subplot(5,2,7); plt.stem(x2, use_line_collection=True); plt.axis([-0.5,13,0,5])
+plt.subplot(5,2,8); plt.stem(y2, use_line_collection=True); plt.axis([-0.5,13,0,12])
+plt.subplot(5,2,9); plt.stem(x3, use_line_collection=True); plt.axis([-0.5,13,0,5])
+plt.subplot(5,2,10); plt.stem(y3, use_line_collection=True); plt.axis([-0.5,13,0,12])
 #plt.gcf().subplots_adjust(top=0.80)
 plt.savefig('fig/02_SignalsAndSystems_Convolution.png', transparent=True, bbox_inches='tight', dpi=300)
 plt.close()
@@ -811,7 +839,9 @@ The convolution equation can be interpreted in two ways:
 
 1. The output signal $y[n]$ = a sum of a lot of impulse responses $h[n]$,
 each one delayed by $k$ (hence $[n-k]$) and scaled by $x[k]$
+
     - one for each sample in the input signal
+    
     - explain at blackboard
 
 $$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] \mathbf{h[n}-k\mathbf{]}$$
@@ -820,84 +850,136 @@ $$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] \mathbf{h[n}-k\mathbf{]}$$
 ### Interpretation of the convolution equation
 
 2. Each output sample $y[n]$ = a **weighted sum** of the input samples around it
-    - $y[n] = ... + h[2] \cdot x[n-2] + h[1]\cdot x[n-1] + h[0]\cdot x[n] + h[n+1] \cdot x[n+1] + ...$
+
+   $$y[n] = ... + h[2] \cdot x[n-2] + h[1]\cdot x[n-1] + h[0]\cdot x[n] + h[-1] \cdot x[n+1] + ...$$
 
 - If $h[n]$ has finite length (e.g. non-zero only between $h[-2] ... h[2]$),
 then there are only a few terms in the sum
+
     - Example at blackboard
 
-$$x[n] * h[n] = \sum_{k=-\infty}^\infty h[k] \mathbf{x[n}-k\mathbf{]}$$
+    $$x[n] * h[n] = \mathbf{y[n]} = \sum_{k=-\infty}^\infty h[k] \mathbf{x[n}-k\mathbf{]}$$
 
 ### Interpretation of the convolution equation
 
 ![Convolution as weighted sum](img/Convolution1D.png){.id height=60%}
 
-* image from http://www.stokastik.in
+- image from http://www.stokastik.in
 
 ### Interpretation of the convolution equation
 
-* Watch the following:
+- Watch the following:
 
-https://www.youtube.com/watch?v=ulKbLD6BRJA
+  [https://www.youtube.com/watch?v=ulKbLD6BRJA](https://www.youtube.com/watch?v=ulKbLD6BRJA)
 
+### Example
+
+The impulse response can be read directly from the system equation (for non-recursive systems): 
+
+- Suppose we have the system:
+  $$y[n] = 3 x[n+1] + 5 x[n] - 2 x[n-1] + 4 x[n-2]$$
+  
+- What is the impulse response of the system?
+
+- Answer: $h[n] = \{...0, 3, \underuparrow{5}, -2, 4, 0, ...\}$
+
+### Convolution as matrix multiplication
+
+- Convolution can we written as multiplication with a **circulant** (or "**Toeplitz**") matrix
+
+  - in this example, assuming $h[n]$ is non-zero only from $h[-1]$ to $h[3]$
+
+$$\begin{bmatrix}
+\vdots\\
+y_n\\
+y_{n+1}\\
+y_{n+2}\\
+y_{n+3}\\
+\vdots
+\end{bmatrix}
+= 
+\begin{bmatrix}
+\dots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \dots \\
+\dots & 0 & h_3 & h_2 & h_1 & h_0 & h_{-1} & 0 & 0 & \dots \\
+\dots & 0 & 0 & h_3 & h_2 & h_1 & h_0 & h_{-1} & 0 & \dots \\
+\dots & 0 & 0 & 0 & h_3 & h_2 & h_1 & h_0 & h_{-1} & \dots \\
+\dots & 0 & 0 & 0 & 0 & h_3 & h_2 & h_1 & h_0 & \dots \\
+\dots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \dots \\
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\vdots\\
+x_{n-4}\\
+x_{n-3}\\
+x_{n-2}\\
+x_{n-1}\\
+x_{n}\\
+x_{n+1}\\
+x_{n+2}\\
+x_{n+3}\\
+\vdots
+\end{bmatrix}$$
 
 ### 2D convolution
 
-* Convolution can be applied in 2D (for images)
+- Convolution can be applied in 2D (for images)
 
-* The input signal = an image I[x, y]
+- The input signal = an image $I[x, y]$
 
-* The impulse response (the ***kernel***) = a matrix H[x, y]
+- The impulse response (the ***kernel***) = a matrix H[x, y]
 
-* The convolution result:
+- The convolution result:
 
-$$Y[x,y] = I * H = \sum_{i=-\infty}^\infty \sum_{j=-\infty}^\infty I[x-i,y-j] \cdot H[i,j]$$
+  $$Y[x,y] = I * H = \sum_{i=-\infty}^\infty \sum_{j=-\infty}^\infty I[x-i,y-j] \cdot H[i,j]$$
 
 ### 2D convolution
 
 ![2D Convolution as weighted sum](img/Convolution2D.gif)
 
-* image from http://machinelearninguru.com
+- image from http://machinelearninguru.com
 
 ### 2D Convolution
 
-* Watch this:
+- Watch this:
 
-http://machinelearninguru.com/computer_vision/basics/convolution
-/convolution_layer.html
+  http://machinelearninguru.com/computer_vision/basics/convolution/convolution_layer.html
 
 ### 2D Convolution
 
-* Simple image effects with 2D convolutions:
-    * the "kernel" = the impulse response $H[x,y]$
+- Simple image effects with 2D convolutions:
 
-see https://en.wikipedia.org/wiki/Kernel_(image_processing)
+    - the "kernel" = the impulse response $H[x,y]$
 
-* What are their 1D counterparts?
+- See here: [https://en.wikipedia.org/wiki/Kernel_(image_processing)](https://en.wikipedia.org/wiki/Kernel_(image_processing))
+
+- What are their 1D counterparts?
 
 
 ### Properties of convolution
 
-* Convolution is commutative (the order of the two signals doesn't matter): 
+Basic properties of convolution
 
-$$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k] = h[n] * x[n] = \sum_{k=-\infty}^\infty h[k] x[n-k]$$.
-Proof: make variable change $(n-k) \rightarrow l$, change all in equation
+- Convolution is **commutative** (the order of the signals doesn't matter): 
+  $$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k] = h[n] * x[n] = \sum_{k=-\infty}^\infty h[k] x[n-k]$$
 
-* Convolution is associative
+  - Proof: make variable change $(n-k) \rightarrow l$, change all in equation
 
-$$(a[n] * b[n]) * c[n] = a[n] * (b[n] * c[n])$$.
-(No proof)
+- Convolution is **associative**:
+  $$(a[n] * b[n]) * c[n] = a[n] * (b[n] * c[n])$$
+
+  - (No proof)
 
 ### Properties of convolution
 
-* The unit impulse is neutral element for convolution
+- The unit impulse is **neutral element** for convolution:
+  $$a[n] * \delta[n] = \delta[n] * a[n]  = a[n]$$.
+ 
+  - Proof: equation
 
-$$a[n] * \delta[n] = \delta[n] * a[n]  = a[n]$$.
-Proof: equation
+-  Convolution is a **linear operation** (or **distributive**):
+  $$(\alpha \cdot a[n] + \beta \cdot b[n]) * c[n] = \alpha (\cdot a[n] * c[n]) + \beta \cdot (b[n] * c[n])$$  
 
-* Convolution is a linear operation
-$$(\alpha \cdot a[n] + \beta \cdot b[n]) * c[n] = \alpha (\cdot a[n] * c[n]) + \beta \cdot (b[n] * c[n])$$
-Proof: by linearity of the corresponding system
+  - Proof: by linearity of the corresponding system
 
 
 
@@ -957,6 +1039,14 @@ $$H \left( \sum_{k=-\infty}^n x[k] \right) = \sum_{k=-\infty}^n H \left( x[k] \r
 
 ## Relation between LTI system properties and $h[n]$
 
+### Relation between LTI system properties and $h[n]$
+
+- For an LTI system, if we know $h[n]$, we know **everything** about the system
+
+- Therefore, the properties (causal, memory, stability) must be reflected somehow in $h[n]$
+
+  - Not linearity and time-invariance, they must be true, otherwise we wouldn't talk about $h[n]$
+
 ### 1. Causal LTI systems and their $h[n]$
 
 If a LTI system is causal, then 
@@ -973,16 +1063,17 @@ $$h[n] = 0, \forall n < 0$$.
 
 ### Causal signals and causal systems
 
-- A signal which is 0 for $n<0$ is called a *causal **signal***
+- A **signal** which is 0 for $n<0$ is called a **causal** signal
 
-- Otherwise the signal is *non-causal*
+- Otherwise the signal is **non-causal**
 
-- We can say that *a system is causal if and only if it has a causal impulse response*
+- We can say that a **system** is causal if and only if it has a causal **impulse response**
 
 - Further definitions:
 
-    - a signal which 0 for $n>0$ is called an *anti-causal* signal
-    - a signal which has non-zero values both for some $n>0$ and for some $n<0$ (and thus is neither causal nor non-causal) is called *bilateral*. 
+    - a signal which 0 for $n>0$ is called an **anti-causal** signal
+    
+    - a signal which has non-zero values both for some $n>0$ and for some $n<0$ (and thus is neither causal nor non-causal) is called **bilateral** 
 
 ### Example
 
@@ -1038,70 +1129,107 @@ $$\begin{split}
 
 ### FIR systems
 
-- A **F**inite **I**mpulse **R**esponse (**FIR**) system has an impulse response with finite support
+- A **F**inite **I**mpulse **R**esponse (**FIR**) system has an impulse response with **finite support**
+    
     - i.e. the impulse response is 0 outside a certain interval.
+    
+    - i.e. $h[n]$ is zero beyond some element $h[M]$
 
-- For a causal system:
-    - $h[n] = 0$ for $n < 0$
-    - therefore $h[n] = 0$ for $n < 0$ or $n \geq M$, for some $M$
-    - The convolution becomes:
-$$y[n] = \sum_{k=0}^M h[k] x[n-k] = h[0] \cdot x[n] + h[1] \cdot x[n-1] + ... h[M] \cdot x[n-M]$$
+- The system equation for a FIR system:
+  $$y[n] = \sum_{k=0}^M h[k] x[n-k] = h[0] \cdot x[n] + h[1] \cdot x[n-1] + ... h[M] \cdot x[n-M]$$
+  
+  - is non-recursive (depends only on $x$)
+  
+  - goes only up to some term $h[M] x[n-M]$
+  
+  - for causal system, starts from $h[0] x[n]$; for non-causal, can start from $h[-k] x[n+k]$
 
-- For a causal FIR system, the output is a linear combination of the last $M$ input samples (has finite memory $M$)
+
+### FIR systems
+
+- For a causal FIR system, the output is a **linear combination** of **the last M+1 input samples**
+
+- For non-causal FIR system, some future input samples enter the combination 
 
 ### IIR systems
 
-- An **I**nfinite **I**mpulse **R**esponse (**FIR**) system has an impulse response with infinite support
+- An **I**nfinite **I**mpulse **R**esponse (**FIR**) system has an impulse response with **infinite support**
+    
     - i.e. the impulse response never becomes completely 0 forever.
 
-- Causal system: the output $y[n]$ potentially depends on all the preceding input samples
-    - from the convolution equation
+- The output $y[n]$ potentially depends on all the preceding input samples
+    
+    - from the convolution equation: 
+    $$\begin{split}
+    y[n] &= \sum_{k=0}^{\infty} h[k] x[n-k] \\
+    &= h[0] \cdot x[n] + h[1] \cdot x[n-1] + ... h[M] \cdot x[n-M] + ... \mathbf{goes\;\;on} + ...
+    \end{split}$$
 
 - An IIR system has infinite memory
 
-### Recursive / non-recursive implementations
+### IIR systems
 
-- **Recursive** implementation: compute $y[n]$ based partly on the previous output samples $y[n-1], y[n-2],...$.
-    - more efficient
+- IIR systems must have **recursive** equations:
 
-- For a recursive LTI system, the output $y[n]$ depends on:
-    - the last $N$ samples of the output, y[n-1], ... y[n-N]
-    - and the current and the last $M$ samples of the input, x[0], x[1], ... x[n-M].
+  - they depend on previous outputs $y[n-1]$ up to $y[n-N]$
+  
+  - they also depend on input, going back up to $x[n-k]$
+  
 
-- Example:
+- General equation of an IIR system:  
+  $$\begin{split}
+  y[n] =& -a_1 y[n-1] - a_2 y[n-2] -... - a_N y[n-N] + \\ 
+  & + b_0 x[n] + b_1 x[n-1] + ... + b_M x[n-M] \\
+  =& -\sum_{k=1}^N a_k y[n-k] + \sum_{k=1}^M b_k x[n-k] \\
+  \end{split}$$
 
-$$y[n] = \frac{1}{n+1}\sum_0^n x[n]$$
+  - the impulse response cannot be read explicitly from the equation
+  
+  - IIR equations are more general than FIR
 
-can be rewritten in recursive form:
+### General equation of an LTI system
 
-$$y[n] = n\cdot y[n-1] + x[n]$$
+Recap:
 
+- The general equation of an LTI system is:
+  $$\begin{split}
+  y[n] =& -a_1 y[n-1] - a_2 y[n-2] -... - a_N y[n-N] + \\ 
+  & + b_0 x[n] + b_1 x[n-1] + ... + b_M x[n-M] \\
+  =& -\sum_{k=1}^N a_k y[n-k] + \sum_{k=1}^M b_k x[n-k] \\
+  \end{split}$$
 
-### Recursive / non-recursive implementations
+- If all $a_i = 0$, it is a FIR system, no $y[n-k]$ term
+  
+  - in this case the coefficients $b_k = h[k]$ (impulse response)
+  
+- If some $a_i \neq 0$, it is an IIR system
+  
+  - impulse response $h[n]$ is infinitely long, is more complicated to find
 
-- **Non-recursive** system: the output $y[n]$ is computed based only on last $M$ samples of the input, x[0], x[1], ... x[n-M].
-
-- FIR systems can always be implemented non-recursively, but may also be implemented in a recursive way
-
-- IIR systems can only be implemented recursively
-    - otherwise they would need infinite memory
-    
+- Note: if system is non-causal, can start from $x[n+k]$
 
 ### Initial conditions for recursive systems
 
-- Recursive systems rely on previous outputs --> the previous values must be always available
-
-- We need some starting values at the start moment (**the initial conditions** of the system)
-
-- Notes:
-
-    - Output signal depends on the input **and** on the initial conditions
-    - A system with non-zero initial conditions produces an output even when the input signal is zero
-    - This output is called *zero-input response*, $y_{zi}[n]$
-    - A system with initial conditions equal to 0 is called *relaxed*
-    - The output of a relaxed system to an input signal is called *zero-state response*, $y_{zs}[n]$ (also called *forced response*)
+- Recursive systems need **initial conditions** (starting values)
     
-- For linear systems, the output of a system is always the sum of the forced response and the natural response:
-$$y[n] = y_{zs}[n] + y_{zi}[n]$$
+    - since they rely on previous outputs
 
+- If initial conditions are all 0, the system is **relaxed**
+
+    - the output depends only on the input signal
+    
+- If initial conditions are not zero, the output depends on the input signal **and** the initial conditions    
+
+### Initial conditions for recursive systems
+
+- The effect of the input signal and the effect of initial conditions are **independent**
+
+  - the system behaves **linear** with respect to them
+  - total output = output due to input + output due to initial conditions
+
+  Input       Init.Cond.      Output 
+---------   --------------   ----------------
+  x[n]            0            $y[n] = y_{zs}[n]$
+    0          non-zero        $y[n] = y_{zi}[n]$
+  x[n]         non-zero        $y[n] = y_{zs}[n] + y_{zi}[n]$
 
