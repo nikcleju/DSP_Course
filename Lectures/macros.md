@@ -13,3 +13,5 @@
 
 \setbeamercolor{section name}{fg=white}  % Make section number white so it's not visible, see https://tex.stackexchange.com/a/468134
 \setbeamercolor{subsection name}{fg=white}  % Make section number white so it's not visible, see https://tex.stackexchange.com/a/468134
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
