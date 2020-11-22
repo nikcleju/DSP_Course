@@ -263,7 +263,7 @@ with the corresponding basis vector:
 - Same **generic** thing every time, only the type of signals differ
 
 
-## IV.2 The Fourier Transform
+## IV.2 Introducing the Fourier Transforms
 
 ### Reminder
 
@@ -275,13 +275,13 @@ $$\cos(x) = \frac{e^{jx} + e^{-jx}}{2}$$
 
 $$\sin(x) = \frac{e^{jx} - e^{-jx}}{2j}$$
 
-$$\sin(x) = \cos(x - \frac{pi}{2})$$
+$$\sin(x) = \cos(x - \frac{\pi}{2})$$
 
-$$\cos(x) = \sin(x + \frac{pi}{2})$$
+$$\cos(x) = \sin(x + \frac{\pi}{2})$$
 
 ### Why sinusoidal signals 
 
-- Why are sinusoidal signals $\sin()$ and $\cos()$ so prevalent in signal processing?
+- Why are sinusoidal signals $\sin()$ and $\cos()$ **so prevalent** in signal processing?
 
 - Answer: because they are combinations of an $e^{jx}$ and an $e^{-jx}$
 
@@ -307,90 +307,173 @@ y[n] &= \sum_{k=-\infty}^\infty h[k] x[n-k]\\
 
 ### Eigen-function
 
-- Complex exponential signals are **eigen-functions** ("funcții proprii")
-of LTI systems:
+- **Eigen-function** of a system ("funcție proprie") = 
+a function $f$ which, if input in a system, 
+produces an output proportional to it
+    $$H\lbrace f \rbrace = \lambda \cdot f, \lambda \in \mathbb{C}$$
+
+    - just like **eigen-vectors** of a matrix (remember algebra): $A \mathbb{v} = \lambda \mathbb{v}$
+    - we call the "functions" to allow for continuous signals as well
+
+- Complex exponential signals $e^{j\omega t}$ (or $e^{j\omega n}$) are **eigen-functions** of Linear and Time Invariant (LTI) systems:
 
     - output signal = input signal $\times$ a (complex) constant
+    
+### Representation with respect to eigen-functions (-vectors)
+
+- We can understand the effect of a LTI system very easily
+ if we **decompose all signals $x[n]$ as a combination of
+ $\lbrace e^{j \omega n} \rbrace$**
+
+- Example: RGB color filter
+   
+   - suppose we have some photographic filters (lenses):
+      - one reduces red to 50%
+      - one reduces green to 25%
+      - one reduces blue to 80%
+      - RGB are eigen-functions of the system: input = 200 Blue, output = 0.8 * 200 Blue
+      - what is the output color if input is "pink"?
+      - Answer is easy if we represent all colors in RGB
+
+### Representation with respect to eigen-functions (-vectors)
 
 - We can understand the effect of a LTI system **very easily** if we decompose all signals as a combination of $\lbrace e^{j \omega n} \rbrace$
-
-- Example: RGB color filter (listen)
 
 - All vector space theory becomes useful now:
 
   - $\lbrace e^{j \omega n} \rbrace$ is an **orthonormal basis**
   - decomposing signals = finding coefficients $\alpha_i$
-  - we know how to do this with the inner product
+  - we know how to do this, just like for any orthonormal basis
 
-### Fourier Transform of Discrete Signals
+  $$x[n] = \sum \alpha_\omega \cdot e^{j \omega n}$$
+  $$\alpha_\omega = \langle x, e^{j \omega n} \rangle$$
 
-- Consider signal $\vec{x} = x[n]$ in the vector space of infinitely-long signals
 
-- The signals $\lbrace e^{j 2 \pi f n} \rbrace, \forall f \in [-\frac{1}{2}, \frac{1}{2}]$ form an **orthonormal basis** in this space
+### Discrete-Time Fourier Transform (DTFT)
 
-- We can expand (almost) any $\vec{x}$ in this basis
+- Consider the vector space of **non-periodic infinitely-long signals**
 
-- There are an infinite number of terms, use an integral:
+- This vector space is **infinite-dimensional**
 
-  $$x[n] = \int_{f=-1/2}^{1/2} \underbrace{X(f)}_{\alpha_i} e^{j 2 \pi f n} df$$
+- The signals $\lbrace e^{j 2 \pi f n} \rbrace, \forall f \in [-\frac{1}{2}, \frac{1}{2}]$ form an **orthonormal basis**
+
+- We can expand (almost) any $\vec{x}$ in this basis:
+
+  $$x[n] = \int_{f=-1/2}^{1/2} \underbrace{X(f)}_{\alpha_\omega} e^{j 2 \pi f n} df$$
   
 - The coefficient of every $e^{j 2 \pi f n}$ is found by inner product:
 
-  $$\alpha_i = X(f) = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_n x[n] e^{- j 2 \pi f n}$$
+  $$\alpha_\omega = X(f) = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_n x[n] e^{- j 2 \pi f n}$$
   
 
-### Fourier Transform of Discrete Signals
+### Discrete-Time Fourier Transform (DTFT)
 
-**Inverse Fourier Transform of Discrete Signals**
-
+**Inverse Discrete-Time Fourier Transform (DTFT)**
   $$x[n] = \int_{f=-1/2}^{1/2} X(f) e^{j 2 \pi f n} df$$
 
-  - Any $x[n]$ can be written as a linear combination of $\lbrace e^{j 2 \pi f n} \rbrace, \forall f \in [-\frac{1}{2}, \frac{1}{2}]$, with some coefficients $X(f)$
+  - A signal $x[n]$ can be written as a linear combination of $\lbrace e^{j 2 \pi f n} \rbrace, \forall f \in [-\frac{1}{2}, \frac{1}{2}]$, with some coefficients $X(f)$
 
 
-**Fourier Transform of Discrete Signals**
-
-  $$X(f) = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_n x[n] e^{- j 2 \pi f n}$$
+**Discrete-Time Fourier Transform (DTFT)**
+  $$X(f) = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=\infty}^{\infty} x[n] e^{- j 2 \pi f n}$$
 
   - The coefficient $X(f)$ of every $\lbrace e^{j 2 \pi f n} \rbrace$ is found using the inner product $\langle \vec{x}, e^{j 2 \pi f n} \rangle$
 
-### Fourier Transform of Discrete Signals
+### Discrete-Time Fourier Transform (DTFT)
+
+- Alternative form with $\omega$
 
 - We can replace $2 \pi f = \omega$, and $df = \frac{1}{2 \pi} d\omega$
 
   $$x[n] = \frac{1}{2 \pi}\int_{\omega=-\pi}^{\pi} X(\omega) e^{j \omega n} d\omega$$
 
-  $$X(f) = \langle x[n], e^{j \omega n} \rangle = \sum_n x[n] e^{- j \omega n}$$
+  $$X(\omega) = \langle x[n], e^{j \omega n} \rangle = \sum_n x[n] e^{- j \omega n}$$
 
+
+### Discrete-Time Fourier Transform (DTFT)
+
+- A non-periodic signal $x[n]$ has a **continuous spectrum** $X(\omega)$, with $f \in [-\frac{1}{2}, \frac{1}{2}]$
   
-### Basic properties of Fourier transform
+  - e.g. $\omega \in [-\frac{1}{2}, \frac{1}{2}]$
 
-- $X(\omega)$ is a complex function
 
-- It is **periodical** with period $2 \pi$
-  $$X(\omega + 2 \pi) = X(\omega)$$
+### Discrete Fourier Transform (DFT)
 
-- If the signal $x[n]$ is real, the Fourier transform is **even**
+- Consider the vector space of **periodic** signals with **period N**
+  - for some fixed $N =$ 2, 3 or ... etc
+  
+- This is a vector space of **dimension N**
+  - we need N numbers to identify a signal (specify its period)
+
+- We can consider $x[n]$ only for **one period**, i.e. $n = 0 ,\dots N-1$
+
+- The signals $\lbrace e^{j 2 \pi f n} \rbrace, \forall f \in \lbrace 0, \frac{1}{N}, \dots \frac{N-1}{N} \rbrace$ form an **orthonormal basis** with N elements
+
+- It is a **discrete** set of frequencies: $f = \frac{k}{N}, \forall k \in \lbrace 0, 1, \dots N-1 \rbrace$
+
+### Discrete Fourier Transform (DFT)
+
+**Inverse Discrete Fourier Transform**
+  $$x[n] = \sum_{k=0}^{N-1} X_k e^{j 2 \pi k n / N}$$
+
+  - A periodic signal $x[n]$ can be written as a linear combination of $k$ signals $\lbrace e^{j 2 \pi k n / N} \rbrace$, with some coefficients $X_k$
+
+**Discrete Fourier Transform**
+  $$X_k = \frac{1}{N} \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=0}^{N-1} x[n] e^{- j 2 \pi k n / N}$$
+
+  - The coefficient $X(f)$ of every $\lbrace e^{j 2 \pi f n} \rbrace$ is found using the inner product $\langle \vec{x}, e^{j 2 \pi f n} \rangle$
+
+
+### Discrete Fourier Transform (DFT)
+
+- A periodic signal $x[n]$ with period $N$ has a **discrete spectrum** $X(\omega)$ composed of only $N$ frequencies $\lbrace 0, \frac{1}{N} \dots \frac{N-1}{N} \rbrace$
+
+- Each frequency $\frac{k}{N}$ has a **coefficient** $X_k$
+
+  - also written as $c_k$
+
+  - The N coefficients $X_k$ are the equivalent of $X(\omega)$
+  
+- It is also known as the "Fourier Series for Discrete Signals"
+ 
+## IV.3 The Discrete-Time Fourier Transform (DTFT)
+
+### Definition
+
+Definitions (again):
+
+
+**Inverse Discrete-Time Fourier Transform (DTFT)**
+  $$x[n] = \int_{f=-1/2}^{1/2} X(f) e^{j 2 \pi f n} df = \frac{1}{2\pi} \int_{\omega=-\pi}^{\pi} X(\omega) e^{j \omega n} d\omega$$
+
+
+**Discrete-Time Fourier Transform (DTFT)**
+  $$X(f) = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=\infty}^{\infty} x[n] e^{- j 2 \pi f n}$$
+
+
+### Basic properties of DTFT
+
+- $X(\omega)$ is defined only for $\omega \in [-\pi, \pi]$
+  - or $f \in [-\frac{1}{2}, \frac{1}{2}]$
+
+- $X(\omega)$ is complex (has $| X(\omega) |$, $\angle X(\omega)$)
+
+- If the signal $x[n]$ is real, $X(\omega)$ is **even**
   $$x[n] \in \mathbb{R} \rightarrow X(-\omega) = X^*(\omega)$$
 
-- This means:
+  - This means:
+  
     - modulus is even: $|X(\omega)| = |X(-\omega)|$
     - phase is odd: $X(\omega) = - X(-\omega)$
   
-### Parseval theorem
-
-- **Parseval theorem**: energy of the signal is the same in time and frequency domains
-  $$E = \sum_{-\infty}^\infty |x[n]|^2 = \frac{1}{2 \pi}\int_{-\pi}^\pi |X(\omega)|^2$$
-  
-- Is true for all orthonormal bases
 
 ### Expressing as sum of sinusoids
 
 - Grouping terms with $e^{j \omega n}$ and $e^{j (-\omega) n}$ we get:
 
   $$\begin{split}
-  x[n] &= \frac{1}{2\pi} \int_{\pi}^0 X(\omega) e^{j \omega n} + \frac{1}{2\pi} \int_0^\pi X(\omega) e^{j \omega n} d\omega\\
-       &= \frac{1}{2\pi} \int_0^\pi (X(\omega) e^{j \omega n}  + X(\omega) e^{j (-\omega) n} ) d\omega\\
+  x[n] &= \frac{1}{2\pi} \int_{-\pi}^0 X(\omega) e^{j \omega n} + \frac{1}{2\pi} \int_0^\pi X(\omega) e^{j \omega n} d\omega\\
+       &= \frac{1}{2\pi} \int_0^\pi (X(\omega) e^{j \omega n}  + X(-\omega) e^{j (-\omega) n} ) d\omega\\
        &= \frac{1}{2\pi} \int_0^\pi 2|X(\omega)| ( e^{j \omega n + \angle{X(\omega)}}  +  e^{- j \omega n - \angle{X(\omega)}} ) d\omega\\
        &= \frac{1}{2\pi} \int_0^\pi 2 |X(\omega)| \cos(\omega n + \angle X(\omega))d\omega
   \end{split}$$
@@ -410,238 +493,7 @@ of LTI systems:
 - The **phase** $\angle X(\omega)$ gives the initial phase
 
 
-### Power spectral density
-
-* The average power of a discrete periodic signal
-$$P = \frac{1}{N} \sum_{n=0}^{N-1}|x[n]|^2$$
-
-* Is the same in the frequency domain (with proof):
-$$P = \sum_{k=0}^{N-1} |c_k|^2$$
-
-* Power spectral density of the signal is
-$$S_{xx}[k] = |c_k|^2$$
-
-* Energy over one period is
-$$E = \sum_{n-0}^{N-1} |x[n]|^2 = N \sum_{k-0}^{N-1} |c_k|^2$$
-
-  
-## IV.3 The Fourier Series
-
-
-
-## IV.4 The Discrete Fourier Transform
-
-
-
-
-
-
-
-
-## IV.2 Frequency analysis of discrete signals
-
-### Fourier series of discrete periodical signals
-
-* A discrete signal of period $N$: $$x[n] = x[n + N]$$
-
-* Can always be decomposed as a **sum of complex exponentials**:
-$$x[n] = \sum_{k=0}^{N-1} c_k e^{j 2 \pi k n / N}, n=0,1,... N-1$$
-
-* Finding the coefficients $c_k$:
-$$c_k = \frac{1}{N} \sum_{n=0}^{N-1} x[n] e^{- j 2 \pi k n /N}$$
-
-
-### Comparison with  analog Fourier series
-
-* Compared to analog signals:
-    * consider fundamental frequency $f_0 = 1/N$
-    * only $N$ terms, with frequencies $k \cdot f_0$:
-        * $0, f_0, 2 f_0, ... (N-1) f_0$
-    * only $N$ distinct coefficients $c_k$
-    * the $N$ coefficients $c_k$ can be chosen like $- \frac{N}{2} < k  \leq \frac{N}{2}$
-    => the frequencies span the range $-1/2 ... 1/2$
-$$-\frac{1}{2} < f_k \leq \frac{1}{2}$$
-$$-\pi < \omega_k \leq \pi$$
-
-    
-### Basic properties of Fourier coefficients
-
-1. Signal is **discrete** --> coefficients are **periodic** with period N
-$$c_{k+N} = \frac{1}{N} \sum_{n=0}^{N-1} x[n] e^{- j 2 \pi (k+N) n / N} = \frac{1}{N} \sum_{n=0}^{N-1} x[n] e^{- j 2 \pi k n / N}$$
-
-2. If signal is real $x[n] \in \mathbb{R}$, the coefficients are **even**:
-    * $c_k^* = c_{-k}$
-    * $|c_k| = |c_{-k}|$
-    * $\angle c_k = \angle c_{-k}$
-    
-* Together with periodicity:
-    * $|c_k| = |c_{-k}| = |c_{N-k}|$
-    * $\angle c_k = - \angle c_{-k} = - \angle c_{N-k}$
-
-### Expressing as sum of sinusoids
-
-* Grouping terms with $c_k$ and $c_{-k}$ we get
-$$x[n] = c_0 + 2 \sum_{k=1}^L |c_k| cos(2 \pi \frac{k}{N} + \angle c_k)$$
-where $L = N/2$ or $L = (N-1)/2$ depending if $N$ is even or odd
-
-* Signal = DC value + a finite sum of sinusoids with frequencies $k f_0$
-    * $|c_k|$ give the amplitudes (x 2)
-    * $\angle c_k$ give the phases
-
-
-### Power spectral density
-
-* The average power of a discrete periodic signal
-$$P = \frac{1}{N} \sum_{n=0}^{N-1}|x[n]|^2$$
-
-* Is the same in the frequency domain (with proof):
-$$P = \sum_{k=0}^{N-1} |c_k|^2$$
-
-* Power spectral density of the signal is
-$$S_{xx}[k] = |c_k|^2$$
-
-* Energy over one period is
-$$E = \sum_{n-0}^{N-1} |x[n]|^2 = N \sum_{k-0}^{N-1} |c_k|^2$$
-
-
-### 2018-2019 Exam
-
-2018-2019 Exam
-
-* Properties of Fourier series: only 1, 2, and 5
-
-
-### Properties of Fourier series
-
-#### 1. Linearity
-
-If the signal $x_1[n]$ has the Fourier series coefficients $\lbrace c_k^{(1)} \rbrace$, 
-and $x_2[n]$ has $\lbrace c_k^{(2)} \rbrace$, then their sum has 
-
-$a \cdot x_1[n] + b\cdot x_2[n] \leftrightarrow \lbrace a \cdot c_k^{(1)} + b\cdot c_k^{(2)} \rbrace$
-
-Proof: via definition
-
-### Properties of Fourier series
-
-####  2. Shifting in time
-
-If $x[n] \leftrightarrow \lbrace c_k \rbrace$, then
-$$x[n - n_0] \leftrightarrow \lbrace e^{(-j 2 \pi k n_0 / N)} c_k \rbrace$$
-
-Proof: via definition
-
-* The amplitudes $|c_k|$ are not affected, shifting in time affects only the phase
-
-### Properties of Fourier series
-
-#### 3. Modulation in time
-$$e^{j 2 \pi k_0 n / N} \leftrightarrow \lbrace c_{k-k_0} \rbrace$$
-
-#### 4. Complex conjugation
-
-$$x^*[n] \leftrightarrow \lbrace c^*_{-k} \rbrace$$
-
-### Properties of Fourier series
-
-#### 5. Circular convolution
-
-Circular convolution of two signals $\leftrightarrow$ product of coefficients
-
-$$x_1[n] \otimes x_2[n] \leftrightarrow \lbrace N \cdot c_k^{(1)} \cdot c_k^{(2)} \rbrace$$
-
-Circular convolution:
-
-$$x_1[n] \otimes x_2[n] = \sum_{k=0}^{N-1} x_1[k] x_2[(n-k)_N]$$
-
-* takes two periodic signals of period N, result is also periodic with period N
-* Example at the whiteboard: how it is computed
-
-### Properties of Fourier series
-
-#### 6. Product in time
-
-Product in time $\leftrightarrow$ circular convolution of Fourier series coefficients
-$$x_1[n] \cdot  x_2[n] \leftrightarrow \sum_{m=0}^{N-1} c_m^{(1)} c_{(k-m)_N}^{(2)} = c_k^{(1)} \otimes c_k^{(2)}$$
-
-
-### Fourier transform of discrete non-periodical signals
-
-* Non-periodical signals contain all frequencies, not only the multiples of $f_0$
-
-* The Fourier transform of a discrete signal:
-$$X(\omega) = \sum_{n=-\infty}^\infty x[n] e^{-j \omega n}$$
-
-* The inverse Fourier transform:
-$$x[n] = \frac{1}{2 \pi} \int_{-\pi}^\pi X(\omega) e^{j \omega n} d\omega$$
-
-### Comparison
-
-* Compared with the Fourier transform of analog signals
-    * sum instead of integral in Fourier transform
-    * spectrum is only in range:
-    $$\omega \in [-\pi, \pi]$$
-    $$f \in [-\frac{1}{2}, \frac{1}{2}]$$
-
-* Compared with the Fourier series of discrete periodical signals
-    * general $\omega$ instead of $2 \pi k f_0$
-    * spectrum is continuous, not discrete 
-    * integral, not sum  in inverse Fourier transform
-
-### Parseval theorem
-
-* **Parseval theorem**: energy of the signal is the same in time and frequency domains
-$$E = \sum_{-\infty}^\infty |x[n]|^2 = \frac{1}{2 \pi}\int_{-\pi}^\pi |X(\omega)|^2$$
-
-* Proof: on whiteboard
-
-* The **energy spectral density** gives the energy contained for each frequency
-$$S_{xx}(\omega) = |X(\omega)|^2$$
-
-### Basic properties of Fourier transform
-
-* It is **periodical** with period $2 \pi$
-$$X(\omega + 2 \pi) = X(\omega)$$
-
-* If the signal $x[n]$ is real, the Fourier transform is **even**
-$$x[n] \in \mathbb{R} \rightarrow X^*(\omega) = X(-\omega)$$
-
-* This means
-    * modulus is even: $|X(\omega)| = |X(-\omega)|$
-    * phase is odd: $X(\omega) = - X(-\omega)$
-
-
-### Relation between Fourier series and Fourier transform
-
-* If apply Fourier transform to periodical discrete signals, $X(\omega)$ 
-contains Diracs
-* The Diracs are at frequencies $k f_0$, just like the Fourier series
-* The value of an impulse = the coefficient $c_k$ of the Fourier series
-
-* **The Fourier series $\approx$ the Fourier transform of periodic signals**
-    * we directly compute the coefficients $c_k$ of the impulses in the spectrum
-
-### Fourier transform and Z transform
-
-* Definition of Fourier transform = Z transform with:
-$$z = e^{j \omega}$$
-
-* $e^{j \omega}$ = points on the unit circle
-
-* Fourier transform = Z transform evaluated **on the unit circle**
-    * if the unit circle is in the convergence region of Z transform
-    * otherwise, equivalence does not hold
-
-* This is true for most usual signals we work with
-    * there are exceptions, but they are outside the scope of this class
-
-### 2018-2019 Exam
-
-2018-2019 Exam
-
-* Properties of Fourier transform: only 1, 2, 5, and Parseval theorem
-
-### Properties of Fourier transform
+### Properties of DTFT
 
 #### 1. Linearity
 
@@ -649,7 +501,7 @@ $$a \cdot x_1[n] + b\cdot x_2[n] \leftrightarrow a \cdot X_1(\omega)+ b\cdot X_2
 
 Proof: via definition
 
-### Properties of Fourier transform
+### Properties of DTFT
 
 ####  2. Shifting in time
 
@@ -659,7 +511,7 @@ Proof: via definition
 
 * The amplitudes $|X(\omega)|$ is not affected, shifting in time affects only the phase
 
-### Properties of Fourier transform
+### Properties of DTFT
 
 #### 3. Modulation in time
 $$e^{j \omega_0 n} x[n]\leftrightarrow X(\omega - \omega_0)$$
@@ -668,7 +520,7 @@ $$e^{j \omega_0 n} x[n]\leftrightarrow X(\omega - \omega_0)$$
 
 $$x^*[n] \leftrightarrow X^*(-\omega)$$
 
-### Properties of Fourier transform
+### Properties of DTFT
 
 #### 5. Convolution
 
@@ -676,14 +528,14 @@ $$x_1[n] * x_2[n] \leftrightarrow X_1(\omega) \cdot X_2(\omega)$$
 
 * Not circular convolution, this is the normal convolution
 
-### Properties of Fourier transform
+### Properties of DTFT
 
 #### 6. Product in time
 
 Product in time $\leftrightarrow$ convolution of Fourier transforms
 $$x_1[n] \cdot  x_2[n] \leftrightarrow \frac{1}{2 \pi} \int_{-\pi}^\pi X_1(\lambda) X_2(\omega - \lambda) d\lambda$$
 
-### Properties of Fourier transform
+### Properties of DTFT
 
 #### Correlation theorem
 
@@ -694,59 +546,233 @@ $$r_{x_1x_2}[l] \leftrightarrow X_1(\omega) X_2(-\omega)$$
 Autocorrelation of a signal $\leftrightarrow$ Power spectral density
 $$r_{xx}[l] \leftrightarrow S_{xx}(\omega) = |X(\omega)|^2$$
 
-### Properties of Fourier transform
+### Parseval theorem
 
-#### Parseval theorem
-Energy is the same when computed in the time or frequency domain
+- **Parseval theorem**: energy of the signal is the same in time and frequency domains
+  $$E = \sum_{-\infty}^\infty |x[n]|^2 = \frac{1}{2 \pi}\int_{-\pi}^\pi |X(\omega)|^2$$
+  
+- Is true for all orthonormal bases
 
-$$\sum|x[n]|^2 = \frac{1}{2 \pi} \int_{-\pi}^{\pi} |X(\omega)|^2 d\omega$$
+## IV.4 The Discrete Fourier Transform (DFT)
 
-### Relationship of Fourier transform and Fourier series
+### Definitions
 
-* How are they related?
-    * Fourier transform: for non-periodical signals
-    * Fourier series: for periodical series
+Definitions (again)
 
-* Duality: periodic in time $\leftrightarrow$ discrete in frequency
+**Inverse Discrete Fourier Transform (DFT)**
+  $$x[n] = \sum_{k=0}^{N-1} X_k e^{j 2 \pi k n / N}$$
 
-* If we **periodize** a signal $x[n]$ by repeating with period N:
-$$x_N[n] = \sum_{k=-\infty}^{\infty} x[n - k N]$$
+**Discrete Fourier Transform (DFT)**
+  $$X_k = \frac{1}{N} \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=0}^{N-1} x[n] e^{- j 2 \pi k n / N}$$
 
-* then the Fourier transform w is discrete (made of Diracs):
-$$X_N(\omega) = 2 \pi c_k \delta(\omega - k \frac{2 \pi}{N})$$
+  
+### Periodicity and notation
+  
+- In discrete domain, $f = \frac{N-k}{N} = \frac{-k}{N}$  (aliasing, we can subtract 1 from $f$)
 
-* The coefficients of the Diracs = exactly the Fourier series coefficients
+- We can consider $X_{N-k}$ as $X_{-k}$, due to periodicity
 
-### Relationship of Fourier transform and Fourier series
+- Example: a signal with period $N = 6$ has 6 DFT coefficients
+  
+   - we can call them $X_0$, $X_1$, $X_2$, $X_3$, $X_4$, $X_5$
+   - we have $X_5 = X_{-1}$, $X_4 = X_{-2}$
+   - we can also call them $X_{-2}$, $X_{-1}$, $X_0$, $X_1$, $X_2$, $X_3$
+  
+### Basic Properties of the DFT
 
-* So, Fourier transform can be considered for both periodic and non-periodic signals
+- $X_k$ is complex (has $| X_k |$, $\angle X_k$)
 
-* Fourier transform for periodic signals = discrete (sum of Diracs with some coefficients)
-    * Diracs at frequencies $f_0 = 1/N$ and its multiplies
+- If the signal $x[n]$ is real, the coefficients are **even**
+  $$x[n] \in \mathbb{R} \rightarrow X_{-k} = X_k^*$$
 
-* Fourier series for periodic signals = gives the coefficients of the Diracs directly
-    * it just omits to write the Diracs explicitly in the equation
+  - This means:
+  
+    - modulus is even: $|X_k| = |X_{-k}|$
+    - phase is odd: $\angle X_{-k} = -\angle X_k$
+
+### Expressing as sum of sinusoids
+
+- Grouping terms with $k$ and $-k$:
+
+- If $N$ is odd, we have $X_0$ and pairs ($X_k$, $X_{-k}$):
+
+  $$\begin{split}
+  x[n] &= X_0 e^{j 0 n} + \frac{1}{N} \sum_{k=-(N-1)/2}^0 X_k e^{j 2 \pi k n / N} + \frac{1}{N} \sum_{k=0}^{(N-1)/2} X_k e^{j 2 \pi k n / N}\\
+       &= X(0) + \frac{1}{N} \sum_{k=0}^{(N-1)/2} (X_k e^{j 2 \pi k n / N}  + X_{-k} e^{- j 2 \pi k n / N} )\\
+       &= X(0) + \frac{1}{N} \sum_{k=0}^{(N-1)/2} 2|X_k| ( e^{j 2 \pi k n /N + \angle{X(k)}}  +  e^{- j 2 \pi k n / N - \angle{X(\omega)}} )\\
+       &= X(0) + \frac{1}{N} \sum_{k=0}^{(N-1)/2} 2 |X_k| \cos(2 \pi k/N n + \angle X_k)
+  \end{split}$$
+
+### Expressing as sum of sinusoids
+
+- If $N$ is even, we have $X_0$ and pairs ($X_k$, $X_{-k}$), with an extra
+term $X_{N/2}$ which has no pair
+ 
+  - e.g. N = 6: $X_{-2}, X_{-1}, X_0, X_1, X_2, X_3$
+
+- $X_{N/2}$ must be a real number
+
+- The extra term will be $\frac{1}{N} X_{N/2} e^{j 2 \pi N/2 n /N} = X_{N/2} \cos(n \pi)$
+
+- Overall:
+  $$x[n] = X(0) + \frac{1}{N} \sum_{k=0}^{(N-2)/2} 2 |X_k| \cos(2 \pi k/N n + \angle X_k) + \frac{1}{N} X_{N/2} \cos(n \pi)$$
+ 
+- Any signal $x[n]$ is **a sum of sinusoids with frequencies** $f =$ 0, 1/N, 2/N, ... (N-1)/2 or N/2
+    
+### Expressing as sum of sinusoids
+
+- Any periodic signal $x[n]$ with period $N$ is **a sum of N sinusoids with frequencies** $f =$ 0, 1/N, 2/N, ... (N-1)/2 or N/2
+
+- The **modulus** $|X_k|$ gives the **amplitude** of the sinusoids (sometimes $\times$ 2)
+    
+    - for $\omega = 0$, $|X_0|$ = the DC component
+    
+    - when modulus = 0, that frequency has amplitude 0
+ 
+- The **phase** $\angle X_k$ gives the initial phase
 
 
-### Relation of Fourier transform and Z transform
+### Properties of the DFT
 
-* Fourier transform: $X(\omega) = \sum_{-\infty}^{\infty}x[n] e^{-j \omega n}$
-* Z transform: $X(z) = \sum_{-\infty}^{\infty}x[n] z^{-n}$
+#### 1. Linearity
 
-* **Fourier tranform = Z transform for $z = e^{j \omega}$**
+If the signal $x_1[n]$ has the DFT coefficients $\lbrace X_k^{(1)} \rbrace$, 
+and $x_2[n]$ has $\lbrace X_k^{(2)} \rbrace$, then their sum has 
 
-* $z = e^{j \omega}$ means **evaluated on the unit circle**:
-    * $|z| = |e^{j \omega}| = 1 (modulus)$
-    * $\angle{z} = \angle{e^{j \omega}} = \omega (phase)$
+$a \cdot x_1[n] + b\cdot x_2[n] \leftrightarrow \lbrace a \cdot X_k^{(1)} + b\cdot X_k^{(2)} \rbrace$
+
+Proof: via definition
+
+### Properties of Fourier series
+
+####  2. Shifting in time
+
+If $x[n] \leftrightarrow \lbrace X_k \rbrace$, then
+$$x[n - n_0] \leftrightarrow \lbrace e^{(-j 2 \pi k n_0 / N)} X_k \rbrace$$
+
+Proof: via definition
+
+- The amplitudes $|X_k|$ are not affected, shifting in time **affects only the phase**
+
+### Properties of Fourier series
+
+#### 3. Modulation in time
+$$e^{j 2 \pi k_0 n / N} \leftrightarrow \lbrace X_{k-k_0} \rbrace$$
+
+#### 4. Complex conjugation
+
+$$x^*[n] \leftrightarrow \lbrace X_{-k}^* \rbrace$$
+
+### Properties of Fourier series
+
+#### 5. Circular convolution
+
+Circular convolution of two signals $\leftrightarrow$ product of coefficients
+
+$$x_1[n] \otimes x_2[n] \leftrightarrow \lbrace N \cdot X_k^{(1)} \cdot X_k^{(2)} \rbrace$$
+
+**Circular convolution** definition:
+
+$$x_1[n] \otimes x_2[n] = \sum_{k=0}^{N-1} x_1[k] x_2[(n-k)_N]$$
+
+- takes two periodic signals of period N, result is also periodic with period N
+
+- Example at the whiteboard: how it is computed
+
+### Circular convolution
+
+- We are in the vector space of **periodic signals** with period N 
+
+- Linear (e.g. normal) convolution produces a result which is longer periodic with period N
+
+- Circular convolution takes two sequences of length N and produces another sequence of length N
+  
+  - each sequence is a period of a periodic signal
+  - circular convolution = like a convolution of periodic signals 
+
+### Properties of Fourier series
+
+#### 6. Product in time
+
+Product in time $\leftrightarrow$ circular convolution of Fourier series coefficients
+$$x_1[n] \cdot  x_2[n] \leftrightarrow \sum_{m=0}^{N-1} X_m^{(1)} X_{(k-m)_N}^{(2)} = X_k^{(1)} \otimes X_k^{(2)}$$
+
+### Properties of Fourier series
+
+- **Parseval theorem**: energy of the signal is the same in time and frequency domains
+  $$E = \sum_{0}^{N-1} |x[n]|^2 = \frac{1}{2 \pi} \sum |X_k|^2$$
+  
+- Is true for all orthonormal bases
 
 
-* Conditions:
-    * unit circle must be in the Convergence Region of Z transform
-    * some signals can have Fourier transform even though unit circle not in CR
+### Relationship between DTFT and DFT
 
-* If signal has pole on unit circle --> Dirac (infinite) in Fourier transform 
-    * e.g. $u[n]$
-    * some signals are non-convergent on unit circle, but have Fourier transform (e.g. $u[n]$)
+- How are DTFT and DFT related?
+    
+- Discrete Time Fourier Transform: 
+  - for non-periodical signals
+  - spectrum is continuous
+
+- Discrete Fourier Transform
+  - for periodical signals
+  - spectrum is discrete
+
+- Duality: periodic in time $\leftrightarrow$ discrete in frequency
+
+### Relationship between DTFT and DFT
+
+- Consider a non-periodic signal $x[n]$
+
+- It has a continuous spectrum $X(\omega)$
+
+- If we **periodize** it by repeating with period N:
+  $$x_N[n] = \sum_{k=-\infty}^{\infty} x[n - k N]$$
+
+- then the Fourier transform is **discrete** (made of Diracs):
+  $$X_N(\omega) = 2 \pi X_k \delta(\omega - k \frac{2 \pi}{N})$$
+
+- The coefficients of the Diracs = the DFT coefficients
+  $$X_k = X(2 \pi k/N n)$$
+  
+### Relationship between DTFT and DFT
+
+- Example: consider a sequence of 7 values
+  $$x = [6, 3, -4, 2, 0, 1, 2]$$
+  
+- If we consider a non-periodic $x[n]$ with infinitely long zeros on either side, we have a continuous spectrum $X(\omega)$ (DTFT)
+
+- If we consider that $x$ is just a period of a periodic signal, we have a discrete spectrum $X_k$ (DFT)
+
+- Moreover, the discrete $X_k$ are just **samples from $X(\omega)$**:
+  $$X_k = X(2 \pi k/N n)$$
+
+
+### Relation between DTFT and Z transform
+
+- Z transform:
+  $$X(z) = \sum_n x[n] z^{-n}$$
+
+- DTFT:
+  $$X(\omega) = \sum_n x[n] e^{-j \omega n}$$
+
+- DTFT can be obtained from Z transform with
+  $$z = e^{j \omega}$$
+
+- These $z = e^{j \omega}$ are **points on the unit circle**
+    
+    - $|z| = |e^{j \omega}| = 1 (modulus)$
+    - $\angle{z} = \angle{e^{j \omega}} = \omega (phase)$
+
+### Relation between DTFT and Z transform
+
+- Fourier transform = Z transform evaluated **on the unit circle**
+
+    - if the unit circle is in the convergence region of Z transform
+    - otherwise, equivalence does not hold
+
+- This is true for most usual signals we work with
+
+    - some details and discussions are skipped
 
 
 ### Geometric interpretation of Fourier transform
@@ -763,72 +789,77 @@ $$\angle{X} = \angle{C} + \angle (e^{j \omega}-z_1) + \cdots + \angle(e^{j \omeg
 
 ### Geometric interpretation of Fourier transform
 
-* For complex numbers:
-    * modulus of $|a - b|$ = the length of the segment between $a$ and $b$
-    * phase of $|a - b|$ = the angle of the segment from $b$ to $a$ (direction is important)
+- For complex numbers:
+    
+  - modulus of $|a - b|$ = the length of the segment between $a$ and $b$
+  - phase of $|a - b|$ = the angle of the segment from $b$ to $a$ (direction is important)
 
 
-* So, for a point on the unit circle $z = e^{j \omega}$
-    * modulus $|X(\omega)|$ is **given by the distances to the zeros and to the poles**
-    * phase $\angle{X(\omega)}$ is **given by the angles from the zeros and poles to z**
+- So, for a point on the unit circle $z = e^{j \omega}$
+  - modulus $|X(\omega)|$ is **given by the distances to the zeros and to the poles**
+  - phase $\angle{X(\omega)}$ is **given by the angles from the zeros and poles to z**
 
 
 ### Geometric interpretation of Fourier transform
 
-* Consequences:
-    * when a **pole** is very close to unit circle --> Fourier transform is **large** at this point
-    * when a **zero** is very close to unit circle --> Fourier transform is **small** at this point
+- Consequences:
 
-* Examples:...
+  - when a **pole** is very close to unit circle --> Fourier transform is **large** at this point
+  - when a **zero** is very close to unit circle --> Fourier transform is **small** at this point
 
-### Geometric interpretation of Fourier transform
-
-* Simple interpretation for modulus $|X(\omega)|$:
-    * Z transform $X(z)$ is a *"landscape"*
-        * poles = mountains of infinite height
-        * zeros = valleys of zero height
-
-    * Fourier transform $X(\omega)$ = "*Walking over this landscape along the unit circle*" --> the heights give the Fourier transform 
-
-    * When close to a mountain --> road is high --> Fourier transform has large amplitude
-    * When close to a valley --> road is low --> Fourier transform has small amplitude
-
-* Enough to sketch the Fourier transform for signals with few poles/zeros
+- Examples: ...
 
 ### Geometric interpretation of Fourier transform
 
-* Note: $X(z)$ might also have a constant $C$ in front!
-    * It does not appear in pole-zero plot
-    * The value of $|C|$ and $\angle{C}$ must be determined separately
+- Simple interpretation for modulus $|X(\omega)|$:
 
-* This "geometric method" can be applied for both modulus and phase
+  - Z transform $X(z)$ is like **a landscape**
+  
+    - **poles = mountains** of infinite height
+    - **zeros = valleys** of zero height
+
+  - Fourier transform $X(\omega)$ = "*Walking over this landscape along the unit circle*"
+
+  - The height profile of the walk gives the amplitude of the Fourier transform 
+
+  - When close to a mountain --> road is high --> Fourier transform has large amplitude
+  
+  - When close to a valley --> road is low --> Fourier transform has small amplitude
+
+### Geometric interpretation of Fourier transform
+
+- Note: $X(z)$ might also have a constant $C$ in front!
+    
+  - It does not appear in pole-zero plot
+  - The value of $|C|$ and $\angle{C}$ must be determined separately
+
+- This "geometric method" can be applied for phase as well
 
 
 ### Time-frequency duality
 
-* **Duality** properties related to Fourier transform/series
+- **Duality** properties related to Fourier transform/series
 
-* Discrete $\leftrightarrow$ Periodic
-    * **discrete** in time --> **periodic** in frequency
-    * **periodic** in time --> **discrete** in frequency
+- Discrete $\leftrightarrow$ Periodic
+  - **discrete** in time --> **periodic** in frequency
+  - **periodic** in time --> **discrete** in frequency
 
-* Continuous $\leftrightarrow$ Non-periodic
-    * **continous** in time --> **non-periodic** in frequency
-    * **non-periodic** in time --> **continuous** in frequency
+- Continuous $\leftrightarrow$ Non-periodic
+  - **continous** in time --> **non-periodic** in frequency
+  - **non-periodic** in time --> **continuous** in frequency
 
-### Frequency-based classification of signals
+### Terminology
 
-* Based on frequency content:
-    * **low-frequency** signals
-    * **mid-frequency** signals (band-pass)
-    * **high-frequency** signals
+- Based on frequency content:
+  - **low-frequency** signals
+  - **mid-frequency** signals (band-pass)
+  - **high-frequency** signals
 
-* **Band-limited** signals: spectrum is 0 over some frequency $f_{max}$
-* **Time-limited** signals: signal value is 0 outside some time interval
+- **Band-limited** signals: spectrum is 0 beyond some frequency $f_{max}$
 
-* **Bandwitdh** $B$: frequency interval [$F_1$, $F_2$] which contains $95\%$ of energy
-    * $B = F_2 - F_1$
+- **Bandwitdh** $B$: frequency interval [$F_1$, $F_2$] which contains $95\%$ of energy
+  - $B = F_2 - F_1$
 
-* Based on bandwidth $B$:
-    * **Narrow-band** signals: $B << $ central frequency $\frac{F_1 + F_2}{2}$
-    * **Wide-band** signals: not narrow-band
+- Based on bandwidth $B$:
+  - **Narrow-band** signals: $B <<$ central frequency $\frac{F_1 + F_2}{2}$
+  - **Wide-band** signals: not narrow-band
