@@ -5,14 +5,17 @@ documentclass: scrartcl
 fontsize: 12pt
 ---
 
-1. Compute the circular convolution of the two signals:
-  $$x_1[n] = [1, 3, 1, 3]$$
-  $$x_2[n] = [2, 2, 5, 5]$$
+Left-over exercise from last week:
 
-1. Compute the circular convolution in $N = 7$ points of the same two signals 
-(i.e. append zeros to make length 7, then do circular convolution)
+2. A causal LTI system has the property that if the input signal is 
+$$x[n] = \left( \frac{1}{3} \right)^n u[n] - \frac{1}{4} \left( \frac{1}{3} \right)^n u[n-1],$$
+then the output signal is
+$$y[n] = \left( \frac{1}{4} \right)^n u[n]$$
 
-1. Find the DFT coefficients of the periodic signal with period $\{1, 1, 0, 0\}$,
-and write the signal as a sum of sinusoidal components.
-
-2. Find the DTFT of the signal $\{1, 1, 0, 0\}, considering it is surrounded with infinitely-long zeros on both sides
+    a. Find the system function H(z), draw the pole-zero diagram
+    b. Compute the impulse response $h[n]$ of the system
+    c. Find the difference equation of the system
+    d. Characterize the system with respect to:
+        - length of impulse response (FIR or IIR)
+        - implementation (recursive or non-recursive)
+        - stability
