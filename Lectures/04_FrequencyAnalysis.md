@@ -631,7 +631,21 @@ term $X_{N/2}$ which has no pair
  
 - The **phase** $\angle X_k$ gives the initial phase
 
+### Example
 
+- Consider a periodic signal $x[n]$ with period $N=6$ and the DFT coefficients:
+    
+  $X_k$ = [15.0000 + 0.0000i , -2.5000 + 3.4410i , -2.5000 + 0.8123i , -2.5000 - 0.8123i , -2.5000 - 3.4410i]
+  
+  Write $x[n]$ as a sum of sinusoids.
+    
+
+- Do the same for a periodic signal $x[n]$ with period $N=5$ and the DFT coefficients:
+    
+  $X_k$ = [21.0000 + 0.0000i , -3.0000 + 5.1962i , -3.0000 + 1.7321i , -3.0000 + 0.0000i , -3.0000 - 1.7321i , -3.0000 - 5.1962i]
+  
+  Write $x[n]$ as a sum of sinusoids.
+  
 ### Properties of the DFT
 
 #### 1. Linearity
@@ -643,7 +657,7 @@ $a \cdot x_1[n] + b\cdot x_2[n] \leftrightarrow \lbrace a \cdot X_k^{(1)} + b\cd
 
 Proof: via definition
 
-### Properties of Fourier series
+### Properties of the DFT
 
 ####  2. Shifting in time
 
@@ -654,7 +668,7 @@ Proof: via definition
 
 - The amplitudes $|X_k|$ are not affected, shifting in time **affects only the phase**
 
-### Properties of Fourier series
+### Properties of the DFT
 
 #### 3. Modulation in time
 $$e^{j 2 \pi k_0 n / N} \leftrightarrow \lbrace X_{k-k_0} \rbrace$$
@@ -663,7 +677,7 @@ $$e^{j 2 \pi k_0 n / N} \leftrightarrow \lbrace X_{k-k_0} \rbrace$$
 
 $$x^*[n] \leftrightarrow \lbrace X_{-k}^* \rbrace$$
 
-### Properties of Fourier series
+### Properties of the DFT
 
 #### 5. Circular convolution
 
@@ -679,6 +693,10 @@ $$x_1[n] \otimes x_2[n] = \sum_{k=0}^{N-1} x_1[k] x_2[(n-k)_N]$$
 
 - Example at the whiteboard: how it is computed
 
+### Example
+
+Example (write on slides)
+
 ### Circular convolution
 
 - We are in the vector space of **periodic signals** with period N 
@@ -690,14 +708,14 @@ $$x_1[n] \otimes x_2[n] = \sum_{k=0}^{N-1} x_1[k] x_2[(n-k)_N]$$
   - each sequence is a period of a periodic signal
   - circular convolution = like a convolution of periodic signals 
 
-### Properties of Fourier series
+### Properties of the DFT
 
 #### 6. Product in time
 
-Product in time $\leftrightarrow$ circular convolution of Fourier series coefficients
+Product in time $\leftrightarrow$ circular convolution of DFT coefficients
 $$x_1[n] \cdot  x_2[n] \leftrightarrow \sum_{m=0}^{N-1} X_m^{(1)} X_{(k-m)_N}^{(2)} = X_k^{(1)} \otimes X_k^{(2)}$$
 
-### Properties of Fourier series
+### Properties of the DFT
 
 - **Parseval theorem**: energy of the signal is the same in time and frequency domains
   $$E = \sum_{0}^{N-1} |x[n]|^2 = \frac{1}{2 \pi} \sum |X_k|^2$$
@@ -734,6 +752,8 @@ $$x_1[n] \cdot  x_2[n] \leftrightarrow \sum_{m=0}^{N-1} X_m^{(1)} X_{(k-m)_N}^{(
 - The coefficients of the Diracs = the DFT coefficients
   $$X_k = X(2 \pi k/N n)$$
   
+- They are **samples**  from the continuous $X(\omega)$ of the non-periodized signal
+  
 ### Relationship between DTFT and DFT
 
 - Example: consider a sequence of 7 values
@@ -745,6 +765,29 @@ $$x_1[n] \cdot  x_2[n] \leftrightarrow \sum_{m=0}^{N-1} X_m^{(1)} X_{(k-m)_N}^{(
 
 - Moreover, the discrete $X_k$ are just **samples from $X(\omega)$**:
   $$X_k = X(2 \pi k/N n)$$
+
+### Relationship between DTFT and DFT
+
+```{.python .cb.run session=plot}
+import matplotlib.pyplot as plt, numpy as np, scipy as sp
+x = np.array([6, 5, 4, -3, 2, -3, 4, 5, 6])
+N = x.size
+bigN = 1000*N
+n = np.arange(0,N)    # n = [0, 1, 2, ... N-1]
+plt.figure(figsize=(12,6))
+plt.stem(n*1000, np.abs(sp.fft.fft(x)))
+plt.plot(np.arange(0,bigN), np.abs(sp.fft.fft(x, bigN)), color='r', linestyle='--')
+plt.savefig('fig/04_RelationshipDTFTDFT.png', transparent=True, bbox_inches='tight', dpi=300)
+plt.close()
+```
+![](fig/04_RelationshipDTFTDFT.png){width=90% max-width=1000px}
+
+$x = [6, 5, 4, -3, 2, -3, 4, 5, 6]$
+
+- red line = DFT(x) if $x$ not periodical
+   - actually run as `fft(x, 10000)`, x is extended with 9991 zeros
+
+- blue = `fft(x)`
 
 
 ### Relation between DTFT and Z transform
@@ -838,7 +881,7 @@ $$\angle{X} = \angle{C} + \angle (e^{j \omega}-z_1) + \cdots + \angle(e^{j \omeg
 
 ### Time-frequency duality
 
-- **Duality** properties related to Fourier transform/series
+- **Duality** properties related to all Fourier transforms
 
 - Discrete $\leftrightarrow$ Periodic
   - **discrete** in time --> **periodic** in frequency
