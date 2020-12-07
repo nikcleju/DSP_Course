@@ -1,5 +1,5 @@
 ---
-title: Exercises Week 8
+title: Exercises Week 10
 subtitle: DSP
 documentclass: scrartcl
 fontsize: 12pt
