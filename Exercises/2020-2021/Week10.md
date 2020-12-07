@@ -12,6 +12,18 @@ fontsize: 12pt
 1. Compute the circular convolution in $N = 7$ points of the same two signals 
 (i.e. append zeros to make length 7, then do circular convolution)
 
+2. Do the same for a periodic signal $x[n]$ with period $N=6$ and the DFT coefficients:
+    
+   $X_k$ = [21.0000 + 0.0000i , -3.0000 + 5.1962i , -3.0000 + 1.7321i , -3.0000 + 0.0000i , -3.0000 - 1.7321i , -3.0000 - 5.1962i]
+  
+   Write $x[n]$ as a sum of sinusoids.
+
+1. Consider a periodic signal $x[n]$ with period $N=5$ and the DFT coefficients:
+    
+   $X_k$ = [15.0000 + 0.0000i , -2.5000 + 3.4410i , -2.5000 + 0.8123i , -2.5000 - 0.8123i , -2.5000 - 3.4410i]
+  
+   Write $x[n]$ as a sum of sinusoids.
+    
 1. Find the DFT coefficients of the periodic signal with period $\{1, 1, 0, 0\}$,
 and write the signal as a sum of sinusoidal components.
 
