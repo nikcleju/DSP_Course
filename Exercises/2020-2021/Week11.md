@@ -3,11 +3,12 @@ title: Exercises Week 10
 subtitle: DSP
 documentclass: scrartcl
 fontsize: 12pt
-    
+--- 
+
 1. Find the DFT coefficients of the periodic signal with period $\{1, 1, 0, 0\}$,
 and write the signal as a sum of sinusoidal components.
 
-2. Find the DTFT of the signal $\{1, 1, 0, 0\}, considering it is surrounded with infinitely-long zeros on both sides
+2. Find the DTFT of the signal $\{1, 1, 0, 0\}$, considering it is surrounded with infinitely-long zeros on both sides
 
 3. A signal $x[n]$ has a Z transform with one pole $p_1 = -0.5$ and one zero $z_1 = 0.9$.
 It is known that at $\omega = \pi$, the modulus of the Fourier transform is $|X(\omega=\pi)| = 1$.
