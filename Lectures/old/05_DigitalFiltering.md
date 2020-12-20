@@ -1,3 +1,4 @@
+
 # Chapter V. Digital filtering
 
 ### Response of LTI systems to harmonic signals
@@ -16,9 +17,6 @@ y[n] &= \sum_{k=-\infty}^\infty h[k] x[n-k]\\
 
 - $H(\omega_0)$ = Fourier transform of $h[[n]$ evaluated for $\omega = \omega_0$
 
-### Response of LTI systems to harmonic signals
-
-![Output = a constant $\times$ Input](drawio/V_Exp.png)
 
 ### Eigen-function
 
@@ -265,3 +263,4 @@ $$H_I(z) = \frac{1}{H(z)}$$
 outside unit circle --> unstable
 
 - Examples at blackboard
+
