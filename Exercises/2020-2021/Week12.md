@@ -13,13 +13,13 @@ It is known that at $\omega = \pi$, the modulus of the Fourier transform is $|X(
     d. Sketch $|X(\omega)|$
 
 2. Design the pole-zero plot of a signal with:
-    - low frequency content
+    - content mainly at low frequencies
     - frequency content around the frequency $\omega = \frac{\pi}{2}$
 
 3. A digital filter has the following properties:
     - it is a high-pass filter of order 1
     - the pole is situated at a distance 0.9 from the origin
-    - continuous signals are completely blocked by the filter
+    - constant signals are completely blocked by the filter
 
 	Requirements:
 
@@ -27,8 +27,3 @@ It is known that at $\omega = \pi$, the modulus of the Fourier transform is $|X(
 	  b. Compute the amplitude response and the phase response of the filter
 	  c. Normalize the filter such that $| H(\pi) | = 1$
 	  d. Find the output signal $y[n]$ if the input signal is $x[n] = 2 \cos(\frac{\pi}{6}n + \frac{\pi}{4}), n \in \mathbb{Z}$
-
-
-4. Design two filters of order 2 of the following types, and write their difference equation:
-    - a low-pass filter
-    - a band-pass filter with central frequency around the frequency $\omega = \frac{3\pi}{4}$
