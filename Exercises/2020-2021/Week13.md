@@ -5,7 +5,7 @@ documentclass: scrartcl
 fontsize: 12pt
 --- 
 
-1. Design two filters of order 2 of the following types, and write their difference equation:
+1. Design two filters of order 2 of the following types, and write their equation:
     - a low-pass filter
     - a band-pass filter with central frequency around the frequency $\omega = \frac{3\pi}{4}$
     
