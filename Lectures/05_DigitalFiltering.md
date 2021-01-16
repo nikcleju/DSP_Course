@@ -323,6 +323,37 @@ What type of filters can have linear phase?
 
 - For causal, we need to delay $h[n]$ to be wholly on the right side => delay
 
+### Example
+
+- Linear-phase filter (low-pass):
+
+![Transfer function of linear-phase filter ](img/LinearPhase.png){height=70%}
+
+### Example
+
+- The impulse response (positive symmetry):
+
+![Impulse response of linear-phase filter](img/LinearPhase_h.png){height=70%}
+
+### Example
+
+- ECG signal: original and filtered. Filtering introduces **delay**
+
+![Delay introduced by filtering](img/ECGfilt.png){height=70%}
+
+### Example
+
+- Solution: zero-phase filter (positive symmetry, and centered in 0):
+- But filter is **not causal** anymore
+
+![Impulse response of zero-phase filter](img/ZeroPhase_h.png){height=65%}
+
+### Example
+
+- Filtering with zero-phase filter introduces **no delay**
+
+![Zero-phase filter introduces no delay](img/ECGfilt_zerophase.png){height=70%}
+
 
 ### Particular classes of filters
 
