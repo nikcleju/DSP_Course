@@ -32,6 +32,8 @@ All lecture slides are available as pdf files in the Lectures folder:
 - [Lectures\07_ApplicationsOfDSP.pdf](Lectures/07_ApplicationsOfDSP.pdf)
 -->
 
+The **annotated** lectures (written on during the courses) are available in the [Lectures/online/](Lectures/online) folder
+
 ### Exercises
 
 The exercises done throughout the lectures are available in the Exercises folder.
@@ -44,8 +46,7 @@ The laboratory files are available in the Labs folder.
 
 ### Exam
 
-A sample exam sheet is here: [SampleExam\SampleExamSheet.pdf](SampleExam/SampleExamSheet.pdf)
-
+Sample exam sheers are available in the [SampleExam](SampleExam/) folder
 
 ### Grades
 
