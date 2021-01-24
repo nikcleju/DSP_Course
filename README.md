@@ -19,7 +19,7 @@ autumn semester at ETTI, TUIASI.
 
 ### Lectures 
 
-All lecture slides are available as pdf files in the Lectures folder:
+All lecture slides are available as pdf files in the [Lectures](Lectures/) folder:
 
 - [Lectures\00_Introduction.pdf](Lectures/00_Introduction.pdf)
 - [Lectures\01_Sampling.pdf](Lectures/01_Sampling.pdf)
@@ -32,15 +32,16 @@ All lecture slides are available as pdf files in the Lectures folder:
 - [Lectures\07_ApplicationsOfDSP.pdf](Lectures/07_ApplicationsOfDSP.pdf)
 -->
 
-The **annotated** lectures (written on during the courses) are available in the [Lectures/online/](Lectures/online) folder
+The **annotated** lectures (written on during the classes) are available in the [Lectures/online/](Lectures/online) folder.
+The files are named as `<chapter>_annotated.pdf`.
 
 ### Exercises
 
-The exercises done throughout the lectures are available in the Exercises folder.
+The exercises done throughout the lectures are available in the [Exercises](Exercises/) folder.
 
 ### Laboratory
 
-The laboratory files are available in the Labs folder.
+The laboratory files are available in the [Labs](Labs/) folder.
 
 ## Evaluation
 
