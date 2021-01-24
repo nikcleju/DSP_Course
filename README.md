@@ -25,10 +25,12 @@ All lecture slides are available as pdf files in the Lectures folder:
 - [Lectures\01_Sampling.pdf](Lectures/01_Sampling.pdf)
 - [Lectures\02_SignalsAndSystems.pdf](Lectures/02_SignalsAndSystems.pdf)
 - [Lectures\03_Z_Transform.pdf](Lectures/03_Z_Transform.pdf)
-- [Lectures\04_FrequencyAnalysisOfDiscreteSignals.pdf](Lectures/04_FrequencyAnalysisOfDiscreteSignals.pdf)
-- [Lectures\05_FrequencyAnalysisOfDiscreteSystems.pdf](Lectures/05_FrequencyAnalysisOfDiscreteSystems.pdf)
+- [Lectures\04_FrequencyAnalysis.pdf](Lectures/04_FrequencyAnalysis.pdf)
+- [Lectures\05_DigitalFiltering.pdf](Lectures/05_DigitalFiltering.pdf)
+<!--
 - [Lectures\06_ImplementationOfDigitalSystems.pdf](Lectures/06_ImplementationOfDigitalSystems.pdf)
 - [Lectures\07_ApplicationsOfDSP.pdf](Lectures/07_ApplicationsOfDSP.pdf)
+-->
 
 ### Exercises
 
