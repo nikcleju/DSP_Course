@@ -8,9 +8,7 @@ fontsize: 12pt
 
 # Information
 
-- The test will last for 1 hour
-
-- You will upload the Matlab files on  Moodle (or send by email)
+- The test is taken in the lab, and lasts for 1 hour
 
 - General Matlab stuff you need to know is listed in the **Syllabus** section.
   This is not an exhaustive list. There may be things I forgot to put in the list, 
@@ -28,8 +26,8 @@ fontsize: 12pt
   - Generate constant vectors (zeros, ones, some value)
   - Generate sin and cos signals of a certain length, 
     with various amplitude, frequencies and initial phase
-  - Generate random numbers, vectors and matrices 
-  - Generate linearly spaces values between a start value and a stop value (e.g.  `linspace()`)
+  - Generate random numbers, vectors and matrices, using `rand` and `randn`
+  - Generate linearly spaces values between a start value and a stop value (e.g. `linspace()` or `start:step:stop`)
 
 - Concatenate vectors and matrices. Build longer signals from more parts.
 
@@ -39,11 +37,12 @@ fontsize: 12pt
 
 - Display a text message (`disp()` or `fprintf()`)
 
-- Use simple instructions (if, for, while)
+- Use simple instructions (`if`, `for`, `while`)
 
 - Make plots
 
   - Plot a vector
+  - Plot a vector against another vector (e.g. put the vector `n` on the horizontal axis)
   - Plot multiple signals on the same figure
   - Use subplots
 
@@ -65,7 +64,7 @@ fontsize: 12pt
 
 - Create and use Matlab functions
 
-- Implement a system in a Matlab function, based on the equation
+- Implement a system in a Matlab function, based on the system equation
   
   - the function takes `x` as input and outputs the result vector `y`
 
@@ -73,18 +72,19 @@ fontsize: 12pt
 
 - Do convolutions of vectors with `conv()`
 
-- Compute Fourier transform (DFT) of a vector, compute and display the modulus and the phase of the Fourier transform
+- Compute the Discrete Fourier transform (DFT) of a vector, compute and display the modulus and the phase of the Fourier transform
 
 - Implement a system in Simulink based on the equation 
 
   - Also apply some input, visualize the output
   - Apply an impulse and visualize the impulse response
 
-- Test linearity and time-invariance of systems in Simulink
+- Test linearity ~~and time-invariance~~ of systems in Simulink
 
-- Design a low-pass/high-pass etc filter with `fdatool` and implement it in Simulink (Lab 11)
+- Design a low-pass/high-pass etc. filter with `fdatool` GUI, and implement it in Simulink (Lab 11)
 
 - Design an oscillator with a prescribed frequency, and implement it in Simulink (Lab 11)
+
 
 # Template Subjects
 
@@ -197,16 +197,16 @@ $$y[n] = H_1\{x[n]\} = 0.8 y[n-1] + 0.25 x[n]  + 0.1 x[n-1]$$
     - add the outputs of the systems which have `x` and `y` as inputs, then subtract the output of the system which has `x + y` as input
     - show the resulting signal. Is the system linear?
     
-## Lab 7 Variant 2
+## ~~Lab 7 Variant 2~~
 
-Same thing, but test time invariance instead of linearity (Ex. 5):
+~~Same thing, but test time invariance instead of linearity (Ex. 5):~~
  
-  - the system will be applied to an input vector `x`, and to  `x` prepended with  a variable number of zeros (i.e. time delayed)
-  - the outputs shall be checked if they verify the time invariance equation
+  - ~~the system will be applied to an input vector `x`, and to  `x` prepended with  a variable number of zeros (i.e. time delayed)~~
+  - ~~the outputs shall be checked if they verify the time invariance equation~~
 
 ## Lab 8
 
-1. Load an audio signal and extract an 10 seconds long sequence of it.
+1. Load an audio signal and extract a 10 seconds long sequence of it.
 
 	a. Convolve the sequence with the impulse response $\{ 1/6, 1/6, 1/6, 1/6, 1/6, 1/6\}$. Play the resulting sequence.
     
