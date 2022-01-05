@@ -1,6 +1,6 @@
 ---
 title: Laboratory Test
-subtitle: DSP 2020-2021
+subtitle: DSP 2021-2022
 documentclass: scrartcl
 fontsize: 12pt
 ---
