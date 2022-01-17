@@ -69,6 +69,30 @@ y[n] =& -\sum_{k=1}^N a_k y[n-k] + -\sum_{k=1}^M b_k x[n-k] \\
 
 - Draw here: Direct-Form I Transposed, Direct-Form II transposed
 
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
 ### FIR systems
 
 * For FIR systems, $a_i = 0$ so the graphs become simpler
