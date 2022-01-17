@@ -12948,10 +12948,10 @@ ul.typeahead-list  > li > a.pull-right {
     </style>
 <style type="text/css">
     pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: #ffffcc }
 .highlight { background: #f8f8f8; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
@@ -13083,7 +13083,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="DSP-Lab-12:-Filtering-of-an-ECG-signal">DSP Lab 12: Filtering of an ECG signal<a class="anchor-link" href="#DSP-Lab-12:-Filtering-of-an-ECG-signal">&#182;</a></h1><h1 id="Objective">Objective<a class="anchor-link" href="#Objective">&#182;</a></h1><p>Students should be able to design a basic filters and perform signal filtering operations in Matlab</p>
-<h1 id="Theoretical-notions">Theoretical notions<a class="anchor-link" href="#Theoretical-notions">&#182;</a></h1><h1 id="Matlab-functions">Matlab functions<a class="anchor-link" href="#Matlab-functions">&#182;</a></h1><h2 id="Filter-design">Filter design<a class="anchor-link" href="#Filter-design">&#182;</a></h2><p>Use <code>fdatool()</code> for a filter design GUI. Use <code>fir1()</code>, <code>fir2()</code> or <code>firpm()</code> to design a FIR filter programmatically.</p>
+<h1 id="Theoretical-notions">Theoretical notions<a class="anchor-link" href="#Theoretical-notions">&#182;</a></h1><h1 id="Matlab-functions">Matlab functions<a class="anchor-link" href="#Matlab-functions">&#182;</a></h1><h2 id="Filter-design">Filter design<a class="anchor-link" href="#Filter-design">&#182;</a></h2><p>Use <code>fdatool</code> in Matlab for a filter design GUI tool. Use <code>fir1()</code>, <code>fir2()</code> or <code>firpm()</code> to design a FIR filter programmatically.</p>
 <p>You can also use online tools like TFilter (<a href="http://t-filter.engineerjs.com/">http://t-filter.engineerjs.com/</a>).</p>
 <h2 id="Filtering">Filtering<a class="anchor-link" href="#Filtering">&#182;</a></h2><p>Use <code>filter()</code> to apply a filter to an input signal:</p>
 
@@ -13095,7 +13095,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">y</span> <span class="p">=</span> <span class="n">filter</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<div class=" highlight hl-python"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13120,22 +13120,94 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Zero-phase-filtering">Zero-phase filtering<a class="anchor-link" href="#Zero-phase-filtering">&#182;</a></h2><p>The function <code>filtfilt()</code> achieves zero-phase filtering of a vector <code>x</code> by filtering it twice:</p>
+<ul>
+<li>once in the normal direction (start to end)</li>
+<li>then flip the result and filter again (i.e. in the opposite direction)</li>
+</ul>
+<p>In this way:</p>
+<ul>
+<li>the amplitude response is applied twice (i.e. the signal is multiplied with $|H(\omega)|^2$ instead of $|H(\omega)|^2$)</li>
+<li>the phase is canceled (zero-phase filter)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Filtering-an-image">Filtering an image<a class="anchor-link" href="#Filtering-an-image">&#182;</a></h2><p>We can obtain a 2D filtering of an image by filtering the rows and then the columns (the order doesn;t matter), i.e. with successive 1D filtering of the rows and columns.</p>
+<p>We can use <code>filter()</code> on images. We pass an image (matrix) as the input signal and we specify the dimension along we filter in a fourth argument <code>dim</code>.
+Then the rows (if <code>dim=2</code>) or columns (if <code>dim=1</code>) are filtered independently, as if they were 1D signals.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">I2</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>   <span class="c1"># Filter the columns of image I, independently</span>
+<span class="n">I3</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">I2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>  <span class="c1"># Then take the result and filter its rows, independently</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On the contrary, <code>filtfilt()</code> on images only filters across the first dimension (it doesn't have an argument <code>dim</code>. In this case we must transpose the image ourselves.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">I2</span> <span class="o">=</span> <span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">I</span><span class="p">)</span>     <span class="c1"># Filter the columns of image I, independently</span>
+<span class="n">I2</span> <span class="o">=</span> <span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">I2</span><span class="s1">&#39;)   # Then take the result, transpose, filter again</span>
+<span class="n">I2</span> <span class="o">=</span> <span class="n">I2</span><span class="s1">&#39;;                  # Then transpose again to get back original shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h1><ol>
 <li><p>Load the signal from <code>ECGsignal.mat</code> and display it.</p>
 </li>
-<li><p>Filter the ECG signal with a band-pass filter between 5Hz and 100Hz (according to the recommendations here: <a href="https://www.hindawi.com/journals/isrn/2012/706217/">https://www.hindawi.com/journals/isrn/2012/706217/</a>. 
-The sampling frequency of the ECG signal is 360 Hz.</p>
+<li><p>Design several linear-phase FIR band-pass filters, of order at least 20, and filter the ECG signal with them using <code>filter()</code>.</p>
+<p>Display the original signal and the four filtered versions as 5 subplots of a window.</p>
+<p>According to the recommendations in <a href="https://www.hindawi.com/journals/isrn/2012/706217/">https://www.hindawi.com/journals/isrn/2012/706217/</a>, the filters should have the folllwing pass bands:</p>
 <ul>
-<li>compute the discrete cutoff frequencies of the band-pass filter</li>
-<li>use the online tool TFilter to design a linear-phase bandpass filter with the required specifications</li>
-<li>copy-paste the impulse response in a Matlab or Octave script</li>
-<li>filter the ECG signal and display the output and the input signals</li>
-<li>what is the delay introduced by filtering? (look at the peaks)</li>
+<li>0.05 Hz - 40 Hz</li>
+<li>0.05 Hz - 100 Hz</li>
+<li>0.5 Hz - 40 Hz</li>
+<li><p>0.5 Hz - 100 Hz</p>
+<p>The sampling frequency of the ECG signal is 360 Hz.</p>
+</li>
 </ul>
 </li>
 </ol>
 <ol>
-<li>Use <code>filtfilt()</code> instead of <code>filter()</code> to perform zero-phase filtering of the same signal (in fact, it runs the filter twice, once from left to right and a second time from right to left). Plot the result against the original signal. Is there a delay?</li>
+<li><p>What is the delay introduced by the filters?</p>
+<p>Replace <code>filter()</code> with <code>filtfilt()</code> and regenerate the plot. What is the delay now?</p>
+</li>
+<li><p>Load the <code>Lena</code> image and display it.</p>
+<p>Filter the image with one of the filters designed, using <code>filter</code>(), and display it.</p>
+<p>Then filter the image using <code>filtfilt()</code> and display.</p>
+</li>
 </ol>
 <h1 id="Final-questions">Final questions<a class="anchor-link" href="#Final-questions">&#182;</a></h1><p>TBD</p>
 
