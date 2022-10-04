@@ -1,5 +1,6 @@
-
-# I. Sampling of analog signals
+---
+title: "Sampling of analog signals"
+---
 
 ## I.1. Analog and Digital Signals
 
@@ -7,42 +8,42 @@
 
 - Signal = a measurable quantity which varies in time, space or some other variable
 
-* Examples:
-    - a voltage which varies in time (1D voltage signal)
-    - sound pressure which varies in time (sound signal)
-    - intensity of light which varies across a photo (2D image)
+- Examples:
+  - a voltage which varies in time (1D voltage signal)
+  - sound pressure which varies in time (sound signal)
+  - intensity of light which varies across a photo (2D image)
 
 - Represented as a mathematical function, e.g. $v(t)$.
 
 ### Glossary
 
 - Glossary:
-    - "e.g." = "*exampli gratia*" (lat.) = "for example" (eng.) = "de exemplu" (rom.)
-    - "i.e." = "*id est*" (lat) = "that is" (eng.) = "adică" (rom.)
+  - "e.g." = "*exampli gratia*" (lat.) = "for example" (eng.) = "de exemplu" (rom.)
+  - "i.e." = "*id est*" (lat) = "that is" (eng.) = "adică" (rom.)
 
 ### Signal dimension
 
 - **Unidimensional** (1D) signal = a function of a single variable
-    - Example: a voltage signal $v(t)$ only varies in time.
+  - Example: a voltage signal $v(t)$ only varies in time.
 
 - **Multidimensional** (2D, 3D ... M-D) signal = a function of a multiple variables
-    - Example: intensity of a grayscale image $I(x,y)$ across the surface of a photo
+  - Example: intensity of a grayscale image $I(x,y)$ across the surface of a photo
 
 - In these lectures we consider only 1D signals, but the theory is similar
 
 ### Continuous and discrete signals
 
 - Continuous (analog) signal = function of a continuous variable
-    - Signal has a value for possible value of the variable in the defined range
-    - The variable may be defined only in a certain range (e.g. $t \in [0,100]$),
+  - Signal has a value for possible value of the variable in the defined range
+  - The variable may be defined only in a certain range (e.g. $t \in [0,100]$),
     but it is a compact range
 
 - Discrete signal = function of a discrete variable
-    - Signal has values only at certain discrete values (*samples*)
-    - Indexed with natural numbers: $x[-1]$, $x[0]$, $x[1]$ etc.
-    - Outside the samples, the signal is **not defined**
+  - Signal has values only at certain discrete values (*samples*)
+  - Indexed with natural numbers: $x[-1]$, $x[0]$, $x[1]$ etc.
+  - Outside the samples, the signal is **not defined**
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
 tanalog = np.arange(0,100)                 # this means 0,1,2,...100
 vanalog = np.sin(2*math.pi*0.03*tanalog)   # sin(2*pi*f*t)
@@ -76,47 +77,103 @@ plt.close()
 
 ### Signals with continuous and discrete values 
 
-- Not only the time can be continuous or discrete
+- Not only the time (Ox axis) can be continuous or discrete
 
-- The signal **values** can also be continuous or discrete
+- The signal **values** (Oy axis) can also be continuous or discrete
     - Example: signal values stored as 8-bit or 16-bit values
 
 - On digital systems, signals always have discrete values due to finite number precision
 
-### Discrete frequency
+- Here, we mostly consider signals which are discrete on Ox axis,  
+  but continuous (any value) on Oy axis
 
-- A signal is **periodic** if the values repeat themselves after a certain time (**period**)
+### Periodic signals
 
-- Frequency = inverse of period
-
-- Pulsation $\omega$ = 2 * $\pi$ * frequency
+- A signal is **periodic** if the values repeat themselves after a certain time (**fundamental period**)
 
 - Continuous signals:
     - Periodic: $x_a(t) = x(t + T)$
     - $T$ is usually measured in seconds (or some other unit)
-    - $F = \frac{1}{T}$ is measured in Hz = $\frac{1}{s}$ (Hertz)
 
 - Discrete signals:
     - Periodic: $x[n] = x[n + N]$
     - $N$ **has no unit**, because it is just a number
-    - $f = \frac{1}{N}$ **has no unit** also
 
-### Frequency limits
+### Discrete frequency
 
-- For continuous signals, $F$ can go to $\infty$
-    - Because period $T$ can be $T \to 0$
+- Harmonic signals have a frequency $f$:
+  $$x(t) = 2 \cdot \cos(2 \pi \cdot 400 \cdot t + \frac{\pi}{3})$$
+  $$x[n] = 5 \cdot \sin(2 \pi\cdot  0.12 \cdot t + \frac{\pi}{2})$$
 
-\smallskip
+- Pulsation $\omega$ = 2 $\pi \cdot$  frequency
 
-- For discrete signals, **largest frequency** is $f_{max} = \frac{1}{2}$
-    - Smallest period is $N = 2$ (excluding $N=1$, constant signals)
-    - Consequence of using natural numbers to index the samples (x[0], x[1], x[2]...),
-    without any physical unit attached
+- Continuous signals:
+    - $T = \frac{1}{f}$ is usually measured in seconds (or some other unit)
+    - $F = \frac{1}{T}$ is measured in Hz = $\frac{1}{s}$ (Hertz)
 
-\smallskip
+- Discrete signals:
+    - $N$ **has no unit**, because it is just a number
+    - $f$ **has no unit** also
 
-- For mathematical reasons, we will consider negative frequencies as well (remember SCS)
-  (e.g. $-\omega$)
+### Period and frequency
+
+- For continuous signals,  frequency $F$ = inverse of period $T$
+  - $T = \frac{1}{F}$, $F = \frac{1}{T}$
+
+- For discrete signals, $f$ is **not necessarily** $\frac{1}{N}$
+  - Because $\frac{1}{f}$ is not necessarily an integer, but $N$ must be integer
+
+- Example: $$x[n] = \cos(2 \pi \cdot 0.4 \cdot n)$$
+  - $f=0.4$
+  - $\frac{1}{f} = 2.5$ 
+  - $N = 5$
+
+### Period and frequency
+
+```{python .cb.run session=plot}
+import matplotlib.pyplot as plt, numpy as np, math
+Tmax = 10
+ta = np.arange(0, Tmax, 0.01)        # 
+td = np.arange(0, Tmax, 1)           # 
+xa = np.sin(2*math.pi*0.4*ta)        # analog signal
+xd = np.sin(2*math.pi*0.4*td)        # discrete signal
+
+plt.plot(ta,xa,'--r')                # plotting
+plt.stem(td,xd, use_line_collection=True)
+plt.xlabel('Time')
+plt.ylabel('Value')
+plt.title('Discrete signal and its envelope')
+plt.savefig('fig/01_DiscreteFreqPeriod.png', transparent=True, bbox_inches='tight', dpi=300)
+plt.close()
+```
+<!-- ![](fig/01_DiscreteFreqPeriod.png){width=100% max-width=1000px} -->
+![](fig/01_DiscreteFreqPeriod.png){max-width=1000px, height=80%}
+
+- Discrete signal period $N = 5$, frequency $f = 0.4$
+
+### Period and frequency
+
+- Quasi-periodic signals: $$x[n] = \cos(5 \cdot n)$$
+- Frequency = irrational number, period = never
+
+```{python .cb.run session=plot}
+import matplotlib.pyplot as plt, numpy as np, math
+Tmax = 30
+ta = np.arange(0, Tmax, 0.01)        # 
+td = np.arange(0, Tmax, 1)           # 
+xa = np.sin(2*0.4*ta)        # analog signal
+xd = np.sin(2*0.4*td)        # discrete signal
+
+plt.plot(ta,xa,'--r')                # plotting
+plt.stem(td,xd, use_line_collection=True)
+plt.xlabel('Time')
+plt.ylabel('Value')
+plt.title('Quasi-periodical signal$')
+plt.savefig('fig/01_QuasiPeriodical.png', transparent=True, bbox_inches='tight', dpi=300)
+plt.close()
+```
+<!-- ![](fig/01_DiscreteFreqPeriod.png){width=100% max-width=1000px} -->
+![](fig/01_QuasiPeriodical.png){max-width=1000px, height=70%}
 
 ### Domain of definition
 
@@ -158,7 +215,7 @@ plt.close()
 
 ### Graphical example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
 t = np.arange(0,100)                 # 
 xa = np.sin(2*math.pi*0.03*t)        # analog signal
@@ -189,28 +246,26 @@ analog signal $x_a(t)$ taken after $n$ sampling periods, at time $n \cdot T_s$
 
 ### Sampling of harmonic signals
 
-- Let's sample a cosine: $x_a(t) = cos (2 \pi F t)$
+- Let's sample a cosine: $x_a(t) = \cos (2 \pi F t)$
 
 $$\begin{split}
 x[n] =& x_a(n T_s) \\
-=& cos(2 \pi F n T_s)\\
-=& cos(2 \pi F n \frac{1}{F_s})\\
-=& cos(2 \pi \underbrace{\frac{F}{F_s}}_{f} n)
+=& \cos(2 \pi F n T_s)\\
+=& \cos(2 \pi F n \frac{1}{F_s})\\
+=& \cos(2 \pi \underbrace{\frac{F}{F_s}}_{f} n)\\
+=& \cos(2 \pi f n)
 \end{split}$$
+
+- Same for sine instead of cosine
+
+### Discrete frequency is relative
 
 - Sampling a continuous (cosine produces a discrete cosine
   with **discrete frequency**:
 $$f = \frac{F}{F_s}$$
 
-- Same for sine instead of cosine
-
-
-### Discrete frequency is relative
-
-$$f = \frac{F}{F_s}$$
-
 - Discrete frequency should be understood as a value **relative to the sampling frequency**
- 
+
 - Example: $f = \frac{1}{4}$ means 
 "coming from an analog frequency F which was $\frac{1}{4}$ of the sampling frequency"
     - it could have been a 100Hz signal sampled with 400Hz
@@ -221,7 +276,7 @@ $$f = \frac{F}{F_s}$$
 
 - **Note:** A discrete sinusoidal signal might not _look_ sinusoidal, when its frequency is high (close to $\frac{1}{2}$).
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
 t = np.arange(0,40)                  #
 x1 = np.sin(2*math.pi*0.05*t)         #  frequency 
@@ -246,7 +301,7 @@ The Nyquist-Shannon sampling theorem:
 - If a signal $x_a(t)$ that has maximum frequency $F_{max}$ is sampled with a a sampling frequency 
 $$F_s \ge 2 F_{max},$$
     then it can be perfectly reconstructed from its samples using the formula:
-$$x_a(t) = \sum_{n=-\infty}^{+\infty} x[n] \cdot \frac{sin(\pi (F_s t - n))}{\pi (F_s t - n)}.$$
+$$x_a(t) = \sum_{n=-\infty}^{+\infty} x[n] \cdot \frac{\sin(\pi (F_s t - n))}{\pi (F_s t - n)}.$$
 
 
 ### Comments on the sampling theorem
@@ -285,9 +340,9 @@ Sampling theorem in action:
 
 $$\begin{split}
 x[n] =& x_a(n T_s) \\
-=& cos(2 \pi 600 n T_s)\\
-=& cos(2 \pi 600 n \frac{1}{1000})\\
-=& cos(2 \pi \underbrace{\frac{6}{10}}_{f} n)
+=& \cos(2 \pi 600 n T_s)\\
+=& \cos(2 \pi 600 n \frac{1}{1000})\\
+=& \cos(2 \pi \underbrace{\frac{6}{10}}_{f} n)
 \end{split}$$
 
 - Bad sign: We get a frequency larger than $f_{max} = \frac{1}{2}$
@@ -315,9 +370,26 @@ is **identical** (an "alias") with a frequency from this interval $f_{alias} \in
 
 - Just add or subtract 1's to $f$ until the result is in $[-\frac{1}{2}, \frac{1}{2}]$
 
+### Frequency limits
+
+- For continuous signals, $F$ can go to $\infty$
+    - Because period $T$ can be $T \to 0$
+
+\smallskip
+
+- For discrete signals, **largest frequency** is $f_{max} = \frac{1}{2}$
+    - Smallest period is $N = 2$ (excluding $N=1$, constant signals)
+    - Consequence of using natural numbers to index the samples (x[0], x[1], x[2]...),
+    without any physical unit attached
+
+\smallskip
+
+- For mathematical reasons, we will consider negative frequencies as well (remember SCS)
+  (e.g. $-\omega$)
+
 ### Aliasing example - low frequency signal
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
 t = np.arange(0,1000)                 # 
 Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
@@ -336,7 +408,7 @@ plt.close()
 
 ### Aliasing example - high frequency signal, same samples
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
 t = np.arange(0,1000)                 # 
 Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
@@ -354,7 +426,7 @@ plt.close()
 
 ### Aliasing example - samples only
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
 t = np.arange(0,1000)                 # 
 Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
@@ -379,9 +451,9 @@ plt.close()
 
 - Example:
   - all these discrete frequencies are identical:
-    $$ f = -0.4 = 0.4 = 0.6 = 1.6 = ...$$
+    $$ f = -0.4 = 0.6 = 1.6 = ...$$
 
-  - so if $F_s = 1000Hz$, the original signal could have been any frequency $F$ out of: 400Hz or 600Hz or 1400Hz or 1600Hz or ...
+  - so if $F_s = 1000Hz$, the original signal could have been any frequency $F$ out of: 600Hz or 1600Hz or ...
     
   - Exercise: check some of these
 
@@ -404,7 +476,7 @@ otherwise they will create a false frequency and bring confusion
 rejecting all frequencies $F > \frac{F_s}{2}$ from the signal before sampling
 
     - Standard practice in the design of processing systems
-   
+  
 ### Ideal signal reconstruction from samples   
 
 - Reconstruction = opposite of sampling
@@ -426,7 +498,7 @@ $$x_r(t) = x[\frac{t}{T_s}] = x[t \cdot F_s]$$
    - the resulting signal has all frequencies $F \leq \frac{F_s}{2} = F_N$ ( = "the Nyquist frequency")
 
 - **In exercises:** Always bring $f$ in the interval $[-\frac{1}{2}, \frac{1}{2}]$ before reconstruction
-    
+  
 - Reconstruction always produces signals with frequencies in $[-\frac{Fs}{2}, \frac{Fs}{2}]$
    - Only signals or components sampled according to the sampling theorem will be reconstructed identically
    - Any other components are replaced with their aliased counterparts
@@ -435,16 +507,16 @@ $$x_r(t) = x[\frac{t}{T_s}] = x[t \cdot F_s]$$
 
 - Sampling + quantization + coding is usually done by an **Analog to Digital Converter (ADC)** 
     - It takes an analog signal and produces a sequence of binary-coded values
-   
+
 \smallskip
-   
+
 - Reconstructing an analog signal from numeric samples is done by a **Digital to Analog Converter (DAC)**
     - Usually the reconstruction is not based on sampling theorem equation, which is too complicated, but with simpler empirical solutions  
 
 \smallskip
 
 - You have ADCs and DACs for any In or Out audio jack (phone, computer etc)
-    
+  
 ### Signal quantization and coding   
 
 - In practice, the amplitudes of the samples are converted to binary representation

@@ -1,0 +1,15 @@
+project:
+  title: "DSP Lectures"
+  render:
+    - 00_Introduction.md
+    - 01_Sampling.qmd
+format:
+  beamer:
+    code-fold: true
+    theme: Madrid
+    outertheme: default
+    number-sections: false
+    section-titles: false
+    include-in-header: macros.md
+execute: 
+  cache: true
