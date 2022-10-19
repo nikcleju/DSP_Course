@@ -835,7 +835,7 @@ plt.close()
 
 ### Interpretation of the convolution equation
 
-The convolution equation can be interpreted in two ways:
+The convolution equation can be interpreted in three ways:
 
 1. The output signal $y[n]$ = a sum of a lot of impulse responses $h[n]$,
 each one delayed by $k$ (hence $[n-k]$) and scaled by $x[k]$
@@ -885,7 +885,7 @@ The impulse response can be read directly from the system equation (for non-recu
 
 ### Convolution as matrix multiplication
 
-- Convolution can we written as multiplication with a **circulant** (or "**Toeplitz**") matrix
+- 3. Convolution can we written as multiplication with a **circulant** (or "**Toeplitz**") matrix
 
   - in this example, assuming $h[n]$ is non-zero only from $h[-1]$ to $h[3]$
 
