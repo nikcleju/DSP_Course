@@ -1180,7 +1180,7 @@ $$\begin{split}
   $$\begin{split}
   y[n] =& -a_1 y[n-1] - a_2 y[n-2] -... - a_N y[n-N] + \\ 
   & + b_0 x[n] + b_1 x[n-1] + ... + b_M x[n-M] \\
-  =& -\sum_{k=1}^N a_k y[n-k] + \sum_{k=1}^M b_k x[n-k] \\
+  =& -\sum_{k=1}^N a_k y[n-k] + \sum_{k=0}^M b_k x[n-k] \\
   \end{split}$$
 
   - the impulse response cannot be read explicitly from the equation
@@ -1195,7 +1195,7 @@ Recap:
   $$\begin{split}
   y[n] =& -a_1 y[n-1] - a_2 y[n-2] -... - a_N y[n-N] + \\ 
   & + b_0 x[n] + b_1 x[n-1] + ... + b_M x[n-M] \\
-  =& -\sum_{k=1}^N a_k y[n-k] + \sum_{k=1}^M b_k x[n-k] \\
+  =& -\sum_{k=1}^N a_k y[n-k] + \sum_{k=0}^M b_k x[n-k] \\
   \end{split}$$
 
 - If all $a_i = 0$, it is a FIR system, no $y[n-k]$ term
