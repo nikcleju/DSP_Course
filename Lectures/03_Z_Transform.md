@@ -425,11 +425,12 @@ then the corresponding signal $x[n]$ is **complex**
 - A rational Z transform $X(z)$ = sum of partial fractions, as we just saw
   - and some initial terms $z^{k}$ in front
 
-- Each **partial fraction** (pole) generates an **exponential signal**: 
-        
-		- $a^n u[n]$, or
-		
-        - $-a^n u[-n-1]$
+- Each **partial fraction** (pole) generates an **exponential signal**:
+  - $a^n u[n]$, 
+  
+  OR
+  
+  - $-a^n u[-n-1]$
 
 - For a single partial fraction (one pole only), 
 we will analyze the relation between the
