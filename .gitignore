@@ -1,3 +1,4 @@
 .xopp~
 *.xopp~
 /Lectures/.jupyter_cache
+/Lectures/_codebraid/*
