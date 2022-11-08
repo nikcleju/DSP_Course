@@ -9,7 +9,7 @@ format:
     theme: Madrid
     outertheme: default
     number-sections: false
-    section-titles: false
+    #section-titles: false
     include-in-header: macros.md
 execute: 
   cache: true

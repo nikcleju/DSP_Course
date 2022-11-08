@@ -375,7 +375,7 @@ produces an output proportional to it
 
 
 **Discrete-Time Fourier Transform (DTFT)**
-  $$X(f) = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=\infty}^{\infty} x[n] e^{- j 2 \pi f n}$$
+  $$X(f) = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=-\infty}^{\infty} x[n] e^{- j 2 \pi f n}$$
 
   - The coefficient $X(f)$ of every $\lbrace e^{j 2 \pi f n} \rbrace$ is found using the inner product $\langle \vec{x}, e^{j 2 \pi f n} \rangle$
 
@@ -414,12 +414,12 @@ produces an output proportional to it
 ### Discrete Fourier Transform (DFT)
 
 **Inverse Discrete Fourier Transform**
-  $$x[n] = \sum_{k=0}^{N-1} X_k e^{j 2 \pi k n / N}$$
+  $$x[n] = \frac{1}{N} \sum_{k=0}^{N-1} X_k e^{j 2 \pi k n / N}$$
 
   - A periodic signal $x[n]$ can be written as a linear combination of $k$ signals $\lbrace e^{j 2 \pi k n / N} \rbrace$, with some coefficients $X_k$
 
 **Discrete Fourier Transform**
-  $$X_k = \frac{1}{N} \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=0}^{N-1} x[n] e^{- j 2 \pi k n / N}$$
+  $$X_k = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=0}^{N-1} x[n] e^{- j 2 \pi k n / N}$$
 
   - The coefficient $X(f)$ of every $\lbrace e^{j 2 \pi f n} \rbrace$ is found using the inner product $\langle \vec{x}, e^{j 2 \pi f n} \rangle$
 
@@ -448,7 +448,7 @@ Definitions (again):
 
 
 **Discrete-Time Fourier Transform (DTFT)**
-  $$X(f) = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=\infty}^{\infty} x[n] e^{- j 2 \pi f n}$$
+  $$X(f) = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=-\infty}^{\infty} x[n] e^{- j 2 \pi f n}$$
 
 
 ### Basic properties of DTFT
@@ -560,10 +560,10 @@ $$r_{xx}[l] \leftrightarrow S_{xx}(\omega) = |X(\omega)|^2$$
 Definitions (again)
 
 **Inverse Discrete Fourier Transform (DFT)**
-  $$x[n] = \sum_{k=0}^{N-1} X_k e^{j 2 \pi k n / N}$$
+  $$x[n] = \frac{1}{N} \sum_{k=0}^{N-1} X_k e^{j 2 \pi k n / N}$$
 
 **Discrete Fourier Transform (DFT)**
-  $$X_k = \frac{1}{N} \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=0}^{N-1} x[n] e^{- j 2 \pi k n / N}$$
+  $$X_k = \langle x[n], e^{j 2 \pi f n} \rangle = \sum_{n=0}^{N-1} x[n] e^{- j 2 \pi k n / N}$$
 
   
 ### Periodicity and notation
@@ -590,20 +590,20 @@ Definitions (again)
     - modulus is even: $|X_k| = |X_{-k}|$
     - phase is odd: $\angle X_{-k} = -\angle X_k$
 
-### Expressing as sum of sinusoids
+### Expressing as sum of sinusoids, N = odd
 
 - Grouping terms with $k$ and $-k$:
 
 - If $N$ is odd, we have $X_0$ and pairs ($X_k$, $X_{-k}$):
 
   $$\begin{split}
-  x[n] &= X_0 e^{j 0 n} + \frac{1}{N} \sum_{k=-(N-1)/2}^0 X_k e^{j 2 \pi k n / N} + \frac{1}{N} \sum_{k=0}^{(N-1)/2} X_k e^{j 2 \pi k n / N}\\
-       &= X(0) + \frac{1}{N} \sum_{k=0}^{(N-1)/2} (X_k e^{j 2 \pi k n / N}  + X_{-k} e^{- j 2 \pi k n / N} )\\
-       &= X(0) + \frac{1}{N} \sum_{k=0}^{(N-1)/2} 2|X_k| ( e^{j 2 \pi k n /N + \angle{X(k)}}  +  e^{- j 2 \pi k n / N - \angle{X(\omega)}} )\\
-       &= X(0) + \frac{1}{N} \sum_{k=0}^{(N-1)/2} 2 |X_k| \cos(2 \pi k/N n + \angle X_k)
+  x[n] &= \frac{1}{N} X_0 e^{j 0 n} + \frac{1}{N} \sum_{k=-(N-1)/2}^{-1} X_k e^{j 2 \pi k n / N} + \frac{1}{N} \sum_{k=1}^{(N-1)/2} X_k e^{j 2 \pi k n / N}\\
+       &= \frac{1}{N} X_0 + \frac{1}{N} \sum_{k=1}^{(N-1)/2} (X_k e^{j 2 \pi k n / N}  + X_{-k} e^{- j 2 \pi k n / N} )\\
+       &= \frac{1}{N} X_0 + \frac{1}{N} \sum_{k=1}^{(N-1)/2} |X_k| ( e^{j 2 \pi k n /N + \angle{X(k)}}  +  e^{- j 2 \pi k n / N - \angle{X(\omega)}} )\\
+       &= \frac{1}{N} X_0 + \frac{1}{N} \sum_{k=0}^{(N-1)/2} 2 |X_k| \cos(2 \pi k/N n + \angle X_k)
   \end{split}$$
 
-### Expressing as sum of sinusoids
+### Expressing as sum of sinusoids, N = even
 
 - If $N$ is even, we have $X_0$ and pairs ($X_k$, $X_{-k}$), with an extra
 term $X_{N/2}$ which has no pair
@@ -615,13 +615,13 @@ term $X_{N/2}$ which has no pair
 - The extra term will be $\frac{1}{N} X_{N/2} e^{j 2 \pi N/2 n /N} = X_{N/2} \cos(n \pi)$
 
 - Overall:
-  $$x[n] = X(0) + \frac{1}{N} \sum_{k=0}^{(N-2)/2} 2 |X_k| \cos(2 \pi k/N n + \angle X_k) + \frac{1}{N} X_{N/2} \cos(n \pi)$$
+  $$x[n] = \frac{1}{N} X_0 + \frac{1}{N} \sum_{k=0}^{(N-2)/2} 2 |X_k| \cos(2 \pi k/N n + \angle X_k) + \frac{1}{N} X_{N/2} \cos(n \pi)$$
  
-- Any signal $x[n]$ is **a sum of sinusoids with frequencies** $f =$ 0, 1/N, 2/N, ... (N-1)/2 or N/2
+- Any signal $x[n]$ is **a sum of sinusoids with frequencies** $f =$ 0, 1/N, 2/N, ... (N-1)/2 or N/2 (not over 1/2)
     
 ### Expressing as sum of sinusoids
 
-- Any periodic signal $x[n]$ with period $N$ is **a sum of N sinusoids with frequencies** $f =$ 0, 1/N, 2/N, ... (N-1)/2 or N/2
+- Any periodic signal $x[n]$ with period $N$ is **a sum of N sinusoids with frequencies** $f =$ 0, 1/N, 2/N, ... (N-1)/2 or N/2 (not over 1/2)
 
 - The **modulus** $|X_k|$ gives the **amplitude** of the sinusoids (sometimes $\times$ 2)
     
