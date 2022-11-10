@@ -1,0 +1,114 @@
+---
+title: "DSP Lab 06: Implementing digital systems in Simulink"
+
+format: 
+  html: default
+  pdf: default
+  ipynb: default
+
+toc: true
+number-depth: 2
+number-sections: true
+
+jupyter: python3
+execute:
+  freeze: true
+  eval: false
+    
+---
+
+# 1. Objective
+
+Students should implement basic digital systems in the Simulink environment
+
+# 2. Theoretical aspects
+
+## 2.1 Simulink
+Simulink is a graphical computational environment in Matlab,
+which can be used to design and simulate continuous and discrete signals and systems.
+
+Simulink is opened from the `Simulink` button in the toolbar.
+
+![](img/L6_2022-11-10-22-47-12.png)
+
+In Simulink one creates schematics of systems ("models") based on predefined building blocks,
+which are available in the Library Browser.
+
+Simulink model files are saved with extension ".slx"
+    
+## Basic Simulink blocks for digital signal processing
+
+ A quick overview of basic blocks is provided in @fig-blocks.
+
+::: {#fig-blocks layout-nrow=4 layout-ncol=2}
+![Operations with signals](img/L6_2022-11-10-22-53-46.png)
+
+![Mathematical operations](img/L6_2022-11-10-23-16-33.png)
+
+![Delaying signals](img/L6_2022-11-10-22-54-36.png)
+
+![Signal sources](img/L6_2022-11-10-22-55-36.png)
+
+![Signal visualization (sink)](img/L6_2022-11-10-22-56-04.png)
+
+![Signal routing](img/L6_2022-11-10-22-56-51.png)
+
+![Read & save data to variables in Matlab Workspace](img/L6_2022-11-10-22-57-25.png)
+
+![Read / Listen to audio files](img/L6_2022-11-10-22-58-31.png)
+:::
+
+## Special settings needed for our models
+
+Running a model requires special settings, as depicted in @fig-settings.
+
+![Model settings for discrete models](img/Settings_Model.png){#fig-settings}
+
+## Setting needed for the *From Multimedia Device* block
+
+In our work, using the `From Multimedia File` block requires special settings as well:
+    
+![Settings for the *From Multimedia Device* block - part 1](img/L4_Settings_FromMMDevice_1.png){width=50%}
+![Settings for the *From Multimedia Device* block - part 2](img/L4_Settings_FromMMDevice_2.png){width=50%}
+
+# Exercises
+
+1.  Open Simulink and implement the following model.
+
+    ![](img/L6_2022-11-10-23-10-13.png)
+
+    Answer the following questions:
+
+    - What is the equation of the system? $y[n] = ...$
+    - What is the system function? $H(z) = ...$
+    - What happens to the slopes of the rectangular pulses? What type of filter is this? (low-pass, high-pass, etc)
+    - Replace the Pulse Generator block with a Sine Wave 
+    
+      ![](img/L6_2022-11-10-23-19-21.png)
+
+
+1.  Create a Simulink model to implement the system $H_1$ with the following equation.
+    The system should be implemented as a Subsystem block with one input and one output signal
+
+    $$y[n] = H_1\{x[n]\} = \frac{1}{20} \left( -0.9 \cdot y[n-1]  + x[n] - x[n-1]) \right)$$
+
+    - What is the system function?
+    - Visualize the impulse response of the system, putting a `Discrete Impulse` block as input. 
+      Is this a FIR or an IIR system?
+    - Save the data to the workspace (use a `To Workspace` block) and plot the impulse response from Matlab
+
+3. Put at the input of the system a sine signal with frequency $f=0.3$ and amplitude $A=1$. Show both the input and the output signals in a Scope block.
+    
+    - What is the shape of the output signal (in permanent regime)?
+    - How long does the transient regime last (approximatively?)
+    - Measure the amplification and the delay (phase) introduced by the filter (e.g. the change in amplitude and phase of the output signal with respect to the input signal)
+
+4. Apply the system to the audio data (mp3 file) loaded with FromMultimediaFile and play the resulting output (ToAudioSink). How is the sound affected?
+ 
+    - make sure you set the properties of the *From Multimedia File* block as shown above
+
+
+# Final questions
+
+1. TBD
+
