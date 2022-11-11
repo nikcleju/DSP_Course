@@ -90,7 +90,7 @@ In our work, using the `From Multimedia File` block requires special settings as
 1.  Create a Simulink model to implement the system $H_1$ with the following equation.
     The system should be implemented as a Subsystem block with one input and one output signal
 
-    $$y[n] = H_1\{x[n]\} = \frac{1}{20} \left( -0.9 \cdot y[n-1]  + x[n] - x[n-1]) \right)$$
+    $$y[n] = H_1\{x[n]\} = -0.9 \cdot y[n-1]  + \frac{1}{20} \left(x[n] - x[n-1]) \right)$$
 
     - What is the system function?
     - Visualize the impulse response of the system, putting a `Discrete Impulse` block as input. 
