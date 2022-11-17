@@ -1,0 +1,88 @@
+---
+title: Basic filtering in Simulink and Matlab
+subtitle: DSP Lab 07
+format: 
+  html: default
+  pdf: default
+  ipynb: default
+
+toc: true
+number-depth: 2
+number-sections: true
+
+jupyter: python3
+execute:
+  freeze: true
+  eval: false
+    
+---
+
+## Objective
+
+Students should implement direct filtering techniques in Simulink and Matlab.
+
+## Theoretical aspects
+
+TBD
+
+### Basic Simulink blocks for audio signal processing
+    
+   Advanced Multimedia blocks from the DSP Toolbox: FromMultimediaFile, AudioDeviceWriter, Buffer
+
+### Settings needed for our models
+
+Running a discrete model requires configuring some settings, as depicted in @fig-settings.
+
+![Model settings for discrete models](img/Settings_Model.png){#fig-settings}
+
+### Setting needed for the *From Multimedia Device* block
+
+In our work, using the `From Multimedia File` block requires special settings as well:
+    
+![Settings for the *From Multimedia Device* block - part 1](img/L4_Settings_FromMMDevice_1.png){width=50%}
+![Settings for the *From Multimedia Device* block - part 2](img/L4_Settings_FromMMDevice_2.png){width=50%}
+
+### Setting needed for the *Buffer* block
+
+The `Buffer` block also needs changing the buffer size to a value like 512 or 1024.
+
+   
+## Exercises
+
+1. Implement a Simulink model for the following filter. 
+   Use it to filter the file `Kalimba.mp3` (use FromMultimediaFile) and play the resulting output (Buffer + AudioDeviceWriter).
+   $$y[n] = \frac{1}{9} \cdot \left( 0.8 y[n-1] + x[n] + 0.8 x[n-1] \right)$$
+
+   Make sure you set the properties of the *From Multimedia File* block as shown above.
+
+   a. Listen to the original sound and the filtered sound. Is there an audible difference?
+ 
+   b. Plot the input and the output signals 
+    
+   c. Repeat with the following filter: 
+   $$y[n] = \frac{1}{9} \cdot \left( -0.8 y[n-1] + x[n] - 0.8 x[n-1] \right)$$
+
+2. Do the same filtering with Matlab code. Load the same audio file with `audioread()` and use a `for` loop to implement the system equation at every time moment `n`.
+
+   a. Listen to the original sound and the filtered sound (`sound()`)
+ 
+   b. Plot the input and the output signals
+
+3. In Simulink, check the linearity of these systems by checking if the linearity equation holds:
+    - create multiple copies of the system inside the model (copy/paste)
+    - use two randomly generated input vectors `x` and `y` (use one of the *Random* blocks), and some two constants `a` and `b`
+    - check that the output of the system when the input is `a*x + b*y` is exactly equal to the weighted sum of the outputs applied separately to `x` and `y`
+
+4. Test time-invariance in a similar way
+    - the system will be applied to an input vector `x`, and to  `x` prepended with a variable number of zeros (i.e. time delayed)
+    - the outputs shall be checked if they verify the time invariance equation
+
+5. Find an input signal $x[n]$ to show that the system $y[n] = y[n-1] + x[n]$ is unstable. 
+Show it by simulating the model and displaying the output.
+
+
+
+## Final questions
+
+1. TBD
+

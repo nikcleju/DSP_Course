@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.175">
+<meta name="generator" content="quarto-1.1.179">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -46,10 +46,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective"><span class="toc-section-number">1</span>  1. Objective</a></li>
-  <li><a href="#theoretical-aspects" id="toc-theoretical-aspects" class="nav-link" data-scroll-target="#theoretical-aspects"><span class="toc-section-number">2</span>  2. Theoretical aspects</a>
+  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective"><span class="toc-section-number">1</span>  Objective</a></li>
+  <li><a href="#theoretical-aspects" id="toc-theoretical-aspects" class="nav-link" data-scroll-target="#theoretical-aspects"><span class="toc-section-number">2</span>  Theoretical aspects</a>
   <ul class="collapse">
-  <li><a href="#simulink" id="toc-simulink" class="nav-link" data-scroll-target="#simulink"><span class="toc-section-number">2.1</span>  2.1 Simulink</a></li>
+  <li><a href="#simulink" id="toc-simulink" class="nav-link" data-scroll-target="#simulink"><span class="toc-section-number">2.1</span>  Simulink</a></li>
   <li><a href="#basic-simulink-blocks-for-digital-signal-processing" id="toc-basic-simulink-blocks-for-digital-signal-processing" class="nav-link" data-scroll-target="#basic-simulink-blocks-for-digital-signal-processing"><span class="toc-section-number">2.2</span>  Basic Simulink blocks for digital signal processing</a></li>
   <li><a href="#special-settings-needed-for-our-models" id="toc-special-settings-needed-for-our-models" class="nav-link" data-scroll-target="#special-settings-needed-for-our-models"><span class="toc-section-number">2.3</span>  Special settings needed for our models</a></li>
   <li><a href="#setting-needed-for-the-from-multimedia-device-block" id="toc-setting-needed-for-the-from-multimedia-device-block" class="nav-link" data-scroll-target="#setting-needed-for-the-from-multimedia-device-block"><span class="toc-section-number">2.4</span>  Setting needed for the <em>From Multimedia Device</em> block</a></li>
@@ -78,13 +78,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <section id="objective" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> 1. Objective</h1>
+<h1 data-number="1"><span class="header-section-number">1</span> Objective</h1>
 <p>Students should implement basic digital systems in the Simulink environment</p>
 </section>
 <section id="theoretical-aspects" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> 2. Theoretical aspects</h1>
+<h1 data-number="2"><span class="header-section-number">2</span> Theoretical aspects</h1>
 <section id="simulink" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="simulink"><span class="header-section-number">2.1</span> 2.1 Simulink</h2>
+<h2 data-number="2.1" class="anchored" data-anchor-id="simulink"><span class="header-section-number">2.1</span> Simulink</h2>
 <p>Simulink is a graphical computational environment in Matlab, which can be used to design and simulate continuous and discrete signals and systems.</p>
 <p>Simulink is opened from the <code>Simulink</code> button in the toolbar.</p>
 <p><img src="img/L6_2022-11-10-22-47-12.png" class="img-fluid"></p>
@@ -194,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="img/L6_2022-11-10-23-19-21.png" class="img-fluid"></p></li>
 </ul></li>
 <li><p>Create a Simulink model to implement the system <span class="math inline">\(H_1\)</span> with the following equation. The system should be implemented as a Subsystem block with one input and one output signal</p>
-<p><span class="math display">\[y[n] = H_1\{x[n]\} = \frac{1}{20} \left( -0.9 \cdot y[n-1]  + x[n] - x[n-1]) \right)\]</span></p>
+<p><span class="math display">\[y[n] = H_1\{x[n]\} = -0.9 \cdot y[n-1]  + \frac{1}{20} \left(x[n] - x[n-1]) \right)\]</span></p>
 <ul>
 <li>What is the system function?</li>
 <li>Visualize the impulse response of the system, putting a <code>Discrete Impulse</code> block as input. Is this a FIR or an IIR system?</li>

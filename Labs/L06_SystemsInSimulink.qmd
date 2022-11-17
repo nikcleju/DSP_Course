@@ -17,13 +17,13 @@ execute:
     
 ---
 
-# 1. Objective
+# Objective
 
 Students should implement basic digital systems in the Simulink environment
 
-# 2. Theoretical aspects
+# Theoretical aspects
 
-## 2.1 Simulink
+## Simulink
 Simulink is a graphical computational environment in Matlab,
 which can be used to design and simulate continuous and discrete signals and systems.
 
