@@ -51,16 +51,20 @@ The `Buffer` block also needs changing the buffer size to a value like 512 or 10
 
 1. Implement a Simulink model for the following filter. 
    Use it to filter the file `Kalimba.mp3` (use FromMultimediaFile) and play the resulting output (Buffer + AudioDeviceWriter).
-   $$y[n] = \frac{1}{9} \cdot \left( 0.8 y[n-1] + x[n] + 0.8 x[n-1] \right)$$
+   $$y[n] = 0.8 y[n-1] + \frac{1}{9} \cdot \left( x[n] + 0.8 x[n-1] \right)$$
 
    Make sure you set the properties of the *From Multimedia File* block as shown above.
 
    a. Listen to the original sound and the filtered sound. Is there an audible difference?
  
    b. Plot the input and the output signals 
+
+   c. What is the system function $H(z)$ of this system?
+
+   d. Change the filter to implement the system function $H(z) + 1$. What is this filter doing?
     
-   c. Repeat with the following filter: 
-   $$y[n] = \frac{1}{9} \cdot \left( -0.8 y[n-1] + x[n] - 0.8 x[n-1] \right)$$
+   c. Repeat the exercise with the following filter: 
+   $$y[n] = -0.8 y[n-1] + \frac{1}{9} \cdot \left( x[n] - 0.8 x[n-1] \right)$$
 
 2. Do the same filtering with Matlab code. Load the same audio file with `audioread()` and use a `for` loop to implement the system equation at every time moment `n`.
 

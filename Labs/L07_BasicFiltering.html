@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.179">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -112,12 +112,14 @@ ul.task-list li input[type="checkbox"] {
 <section id="exercises" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3</span> Exercises</h2>
 <ol type="1">
-<li><p>Implement a Simulink model for the following filter. Use it to filter the file <code>Kalimba.mp3</code> (use FromMultimediaFile) and play the resulting output (Buffer + AudioDeviceWriter). <span class="math display">\[y[n] = \frac{1}{9} \cdot \left( 0.8 y[n-1] + x[n] + 0.8 x[n-1] \right)\]</span></p>
+<li><p>Implement a Simulink model for the following filter. Use it to filter the file <code>Kalimba.mp3</code> (use FromMultimediaFile) and play the resulting output (Buffer + AudioDeviceWriter). <span class="math display">\[y[n] = 0.8 y[n-1] + \frac{1}{9} \cdot \left( x[n] + 0.8 x[n-1] \right)\]</span></p>
 <p>Make sure you set the properties of the <em>From Multimedia File</em> block as shown above.</p>
 <ol type="a">
 <li><p>Listen to the original sound and the filtered sound. Is there an audible difference?</p></li>
 <li><p>Plot the input and the output signals</p></li>
-<li><p>Repeat with the following filter: <span class="math display">\[y[n] = \frac{1}{9} \cdot \left( -0.8 y[n-1] + x[n] - 0.8 x[n-1] \right)\]</span></p></li>
+<li><p>What is the system function <span class="math inline">\(H(z)\)</span> of this system?</p></li>
+<li><p>Change the filter to implement the system function <span class="math inline">\(H(z) + 1\)</span>. What is this filter doing?</p></li>
+<li><p>Repeat the exercise with the following filter: <span class="math display">\[y[n] = -0.8 y[n-1] + \frac{1}{9} \cdot \left( x[n] - 0.8 x[n-1] \right)\]</span></p></li>
 </ol></li>
 <li><p>Do the same filtering with Matlab code. Load the same audio file with <code>audioread()</code> and use a <code>for</code> loop to implement the system equation at every time moment <code>n</code>.</p>
 <ol type="a">
