@@ -23,4 +23,4 @@ Left-over from last week:
 1. Find the DTFT of the signal $\{1, 1, 1, 0, 0, ...\}$, considering it is surrounded with infinitely-long zeros on both sides
 
    - write the expression of $|X(\omega)|$  and $\angle{X(\omega)}$
-   - what is the signal's sinusoidal component with frequency $f=\frac{1}{2}$?
+   - what is the signal's spectrum (modulus and phase) at frequency $f=\frac{1}{2}$?

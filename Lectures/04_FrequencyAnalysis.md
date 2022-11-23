@@ -646,6 +646,15 @@ term $X_{N/2}$ which has no pair
   
   Write $x[n]$ as a sum of sinusoids.
   
+### DFT matrix
+
+- The DFT (and the inverse IDFT) is equivalent with a matrix multiplication:
+
+  - on whiteboard 
+
+- In the world of discrete signals, there are many signal transforms possible, and many of them
+  can be expressed as matrix multiplications, just like the DFT.
+  
 ### Properties of the DFT
 
 #### 1. Linearity
@@ -770,12 +779,13 @@ $$x_1[n] \cdot  x_2[n] \leftrightarrow \sum_{m=0}^{N-1} X_m^{(1)} X_{(k-m)_N}^{(
 
 ```{.python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, scipy as sp
+import scipy.fftpack
 x = np.array([6, 5, 4, -3, 2, -3, 4, 5, 6])
 N = x.size
 bigN = 1000*N
 n = np.arange(0,N)    # n = [0, 1, 2, ... N-1]
 plt.figure(figsize=(12,6))
-plt.stem(n*1000, np.abs(sp.fft.fft(x)))
+plt.stem(n*1000, np.abs(sp.fftpack.fft(x)))
 plt.plot(np.arange(0,bigN), np.abs(sp.fft.fft(x, bigN)), color='r', linestyle='--')
 plt.savefig('fig/04_RelationshipDTFTDFT.png', transparent=True, bbox_inches='tight', dpi=300)
 plt.close()
