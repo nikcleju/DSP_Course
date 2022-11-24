@@ -1,21 +1,29 @@
 ---
-jupyter:
-  kernelspec:
-    display_name: Matlab
-    language: matlab
-    name: matlab
+title: Convolution and some of its applications
+subtitle: DSP Lab 08
+format: 
+  html: default
+  pdf: default
+  ipynb: default
+
+toc: true
+number-depth: 2
+number-sections: true
+
+jupyter: python3
+execute:
+  freeze: true
+  eval: false
+    
 ---
 
-# DSP Lab 08: Convolution and some of its applications
-
-
-## 1. Objective
+## Objective
 
 Students should understand the convolution equation, and how to use convolution in Matlab.
 
-## 2. Theoretical aspects
+## Theoretical aspects
 
-### 2.1 Convolution operation
+### Convolution operation
 
 For two signals $x[n]$ and $h[n]$, the **convolution** operation is defined as
 
@@ -39,17 +47,17 @@ LTI systems interconnection:
   * systems connected in parallel $<=>$ sum of their impulse responses
 
   
-### 2.2 Convolution in Matlab
+### Convolution in Matlab
 
 Convolution of two vectors in Matlab is achieved with the function `conv()`:
 
-```{matlab}
+```matlab
 a = [1, 2, 3, 4, 5];
 b = [2, 1, 0, 3];
 y = conv(a,b)           % Convolution of vectors a and b
 ```
 
-### 2.3 Echo (reverb) in sound processing
+### Echo (reverb) in sound processing
 
 One of the prominent applications of convolution is in music/sound effects. As an example, consider an **echo** (or **reverberation** or **reverb** efect.
 
@@ -61,7 +69,7 @@ There are techniques to actually measure the **impulse response of a room** (a c
 
 Then one can transplant reverberation effect over a sound signal by preforming a convolution between the sound signal and the impulse reponse which characterizes that particular room or open space.
 
-## 3. Exercises
+## Exercises
 
 1. Load an audio signal and extract an 100000-long sequence of it.
 Convolve the sequence with the impulse response $\{ 1/6, 1/6, 1/6, 1/6, 1/6, 1/6\}$, using
@@ -97,7 +105,7 @@ rule: what is length of the convolution of two signals of lengths $L_1$ and $L_2
 The function is given two input vectors and outputs the resulting vector.
 
 
-# Final questions
+## Final questions
 
 
 1. TBD
