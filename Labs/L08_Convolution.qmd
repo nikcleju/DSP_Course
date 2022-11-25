@@ -98,12 +98,22 @@ It contains impulse responses that create a reverberation effect.
     
     b. Compute and Display the equivalent impulse response of the complete system
 
+1. Implement a simpler echo scheme which just replicates the same sound a few times, with different delays and attenuations:
+(https://www.dsprelated.com/showcode/41.php). The same sound should be repeated five times:
+
+   - after 0.05 seconds, with attenuation 1
+   - after 0.1 seconds, with attenuation 0.9
+   - after 0.14 seconds, with attenuation 0.75
+   - after 0.4 seconds, with attenuation 0.4
+   - after 0.6 seconds, with attenuation 0.2
+
+2. Implement the same scheme in Simulink
+
 4. Check the length of the convolution result vector, and deduce the general
 rule: what is length of the convolution of two signals of lengths $L_1$ and $L_2$?
 
 1. Implement a Matlab function `y = myconv(x,h)` which implements convolution.
 The function is given two input vectors and outputs the resulting vector.
-
 
 ## Final questions
 
