@@ -197,16 +197,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Load the first 4 seconds of “Kalimba.mp3” (use <code>audioread()</code>), convolve first with one impulse response, and then convolve the result with a second impulse response from the pack.</p>
 <ol type="a">
 <li><p>Play the resulting signal. How does the signal sound?</p></li>
-<li><p>Compute and Display the equivalent impulse response of the complete system</p></li>
+<li><p>Compute and display the equivalent impulse response of the complete system</p></li>
 </ol></li>
-<li><p>Implement a simpler echo scheme which just replicates the same sound a few times, with different delays and attenuations: (https://www.dsprelated.com/showcode/41.php). The same sound should be repeated five times:</p>
+<li><p>Implement a simpler echo scheme which just replicates the same sound a few times, with different delays and attenuations: (https://www.dsprelated.com/showcode/41.php). The same sound should be repeated three times:</p>
 <ul>
 <li>after 0.05 seconds, with attenuation 1</li>
 <li>after 0.1 seconds, with attenuation 0.9</li>
 <li>after 0.14 seconds, with attenuation 0.75</li>
-<li>after 0.4 seconds, with attenuation 0.4</li>
-<li>after 0.6 seconds, with attenuation 0.2</li>
-</ul></li>
+</ul>
+<p>What is the corresponding impulse response <code>h</code>? Find <code>h</code> and then apply the echo with <code>conv()</code>.</p></li>
 <li><p>Implement the same scheme in Simulink</p></li>
 <li><p>Check the length of the convolution result vector, and deduce the general rule: what is length of the convolution of two signals of lengths <span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span>?</p></li>
 <li><p>Implement a Matlab function <code>y = myconv(x,h)</code> which implements convolution. The function is given two input vectors and outputs the resulting vector.</p></li>

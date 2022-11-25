@@ -96,16 +96,16 @@ It contains impulse responses that create a reverberation effect.
   
     a. Play the resulting signal. How does the signal sound? 
     
-    b. Compute and Display the equivalent impulse response of the complete system
+    b. Compute and display the equivalent impulse response of the complete system
 
 1. Implement a simpler echo scheme which just replicates the same sound a few times, with different delays and attenuations:
-(https://www.dsprelated.com/showcode/41.php). The same sound should be repeated five times:
+(https://www.dsprelated.com/showcode/41.php). The same sound should be repeated three times:
 
    - after 0.05 seconds, with attenuation 1
    - after 0.1 seconds, with attenuation 0.9
    - after 0.14 seconds, with attenuation 0.75
-   - after 0.4 seconds, with attenuation 0.4
-   - after 0.6 seconds, with attenuation 0.2
+
+   What is the corresponding impulse response `h`? Find `h` and then apply the echo with `conv()`.
 
 2. Implement the same scheme in Simulink
 
