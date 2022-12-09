@@ -135,24 +135,32 @@ plot(S_mod)                % Plot is displayed in the second part
 
 1.  In this first exercise, we will use the `fft()` function to compute the Discrete Fourier Transform (DFT) of a signal.
 
-   a. Generate a 100 samples long signal `x` defined as 
-      $x[n] = 0.7 \cos(2 \pi f_1 n) + 1.2 \sin(2 \pi f_2 n),$
-      with $f_1 = 0.05$ and $f_1 = 0.1$.
+    a. Generate a 100 samples long signal `x` defined as 
+       $x[n] = 0.7 \cos(2 \pi f_1 n) + 1.2 \sin(2 \pi f_2 n),$
+       with $f_1 = 0.05$ and $f_1 = 0.1$.
     
-   a. Plot the signal in the top third of a figure (use `subplot()`).
+    a. Plot the signal in the top third of a figure (use `subplot()`).
   
-   b. Compute the Fourier series coefficients with `fft()` and 
-   plot their magnitude in the middle third, and their phase in the lower third.
-  
-   c. Repeat the plot but do the FFT in N=1000 points (use `fft(x, N)`. What changes?
-    
-   d. Explain the relationship between the time domain and frequency domain representations of the signal.
-    
+    b. Compute the Fourier series coefficients with `fft()` and 
+    plot their magnitude in the middle third, and their phase in the lower third.
+   
+    d. Explain the relationship between the time domain and frequency domain representations of the signal.
 
-3. Repeat Exercise 1 for a signal length of 93 samples. Why do additional frequency components appear in the spectrum?
+2. Repeat Exercise 1 for a signal length of 93 samples. Why do additional frequency components appear in the spectrum?
+
+3. Repeat the plot but do the FFT in N=1000 points (use `fft(x, N)`). What changes?
 
 
-2. Repeat Exercise 1 for:
+1. Repeat exercise 1 for the ECG signal loaded from the file `ECG_Signal.mat`. What is the dominant frequency here? Why?
+
+   Find the average heartbeat rate (in beats per minute), as follows:
+   
+   - locate the highest frequency component in the spectrum (ignore the DC component)
+   - identify the frequency $f$ associated with its
+   - knowing that the ECG signal was sampled with $F_S = 300$Hz, $f = \frac{F}{F_S}$, compute the analog frequency $F$ in Hz
+   - translate $F$ in beats-per-minute
+
+3. Repeat Exercise 1 for:
   
    a) a signal $x$ containing the first 10 samples of a square wave with period 8, i.e. $x$ = [1, 1, 1, 1, -1, -1, -1, -1].
 
@@ -160,7 +168,7 @@ plot(S_mod)                % Plot is displayed in the second part
   
    b) an impulse of height 5: $x = [5, 0,0,0,0, \dots]$, 100 samples long in total
   
-   c) The ECG signal loaded from the file `ECG_Signal.mat`. What is the dominant frequency here? Why?
+
   
    d) A random signal of length 1000
   
