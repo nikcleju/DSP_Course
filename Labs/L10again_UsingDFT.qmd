@@ -101,8 +101,8 @@ Note that in both cases, the fft and ifft functions can be replaced by the fft2 
     b. Perform **circular convolution** via the frequency domain, using 
     `fft()` and `ifft()`.
     
-    c. Perform **linear convolution** via the frequency domain using
-    the `fft` in $N$ points, with N larger then 19.
+    c. Perform **linear convolution** via the frequency domain, using 
+    `fft()` and `ifft()`.
     
     d. Which method of linear convolution is is faster, `conv()` or via `fft()`?
     Use long signals (e.g. length 40000).
