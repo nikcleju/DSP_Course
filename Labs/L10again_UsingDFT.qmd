@@ -72,8 +72,12 @@ Note that in both cases, the fft and ifft functions can be replaced by the fft2 
    f. Explain how the manipulation of the frequency domain representation of the signal affected the time domain signal.
 
 1. Repeat exercise 1, but this time set the last 8 coefficients of `S` to 0.
-   
-4. Generate a 39 samples long **triangular** signal `x` defined as:
+
+1. Repeat exercise 1, but this time set the the phase of all coefficients of `S` to 0.
+
+   You can do this by replacing the original values of `S` with their modulus.
+
+2. Generate a 39 samples long **triangular** signal `x` defined as:
 
       - first 10 samples are zeros
       - next, `x` increases linearly from `x(10) = 0` up to `x(19) = 4`, then decreases linearly 
