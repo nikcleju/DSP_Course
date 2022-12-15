@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Designing FIR Digital Filters</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="L12_FIRFilterDesign_files/libs/clipboard/clipboard.min.js"></script>
+<script src="L12_FIRFilterDesign_files/libs/quarto-html/quarto.js"></script>
+<script src="L12_FIRFilterDesign_files/libs/quarto-html/popper.min.js"></script>
+<script src="L12_FIRFilterDesign_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="L12_FIRFilterDesign_files/libs/quarto-html/anchor.min.js"></script>
+<link href="L12_FIRFilterDesign_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="L12_FIRFilterDesign_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="L12_FIRFilterDesign_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="L12_FIRFilterDesign_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="L12_FIRFilterDesign_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective"><span class="toc-section-number">1</span>  Objective</a></li>
+  <li><a href="#theoretical-notions" id="toc-theoretical-notions" class="nav-link" data-scroll-target="#theoretical-notions"><span class="toc-section-number">2</span>  Theoretical notions</a></li>
+  <li><a href="#zero-phase-filtering" id="toc-zero-phase-filtering" class="nav-link" data-scroll-target="#zero-phase-filtering"><span class="toc-section-number">3</span>  Zero-phase filtering</a></li>
+  <li><a href="#matlab-functions-for-filter-design" id="toc-matlab-functions-for-filter-design" class="nav-link" data-scroll-target="#matlab-functions-for-filter-design"><span class="toc-section-number">4</span>  Matlab functions for filter design</a>
+  <ul class="collapse">
+  <li><a href="#fir-filter-design" id="toc-fir-filter-design" class="nav-link" data-scroll-target="#fir-filter-design">FIR filter design</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">5</span>  Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1---filtering-an-ecg-signal" id="toc-exercise-1---filtering-an-ecg-signal" class="nav-link" data-scroll-target="#exercise-1---filtering-an-ecg-signal">Exercise 1 - Filtering an ECG signal</a></li>
+  <li><a href="#exercise-2---zero-phase-filtering" id="toc-exercise-2---zero-phase-filtering" class="nav-link" data-scroll-target="#exercise-2---zero-phase-filtering">Exercise 2 - Zero-phase filtering</a></li>
+  <li><a href="#exercise-3---filtering-an-image" id="toc-exercise-3---filtering-an-image" class="nav-link" data-scroll-target="#exercise-3---filtering-an-image">Exercise 3 - Filtering an image</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Designing FIR Digital Filters</h1>
+<p class="subtitle lead">DSP Lab 12</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="objective" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="objective"><span class="header-section-number">1</span> Objective</h2>
+<p>Use filter design functions in Matlab and the Filter Design and Analysis tool quick FIR filter design and evaluation.</p>
+</section>
+<section id="theoretical-notions" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="theoretical-notions"><span class="header-section-number">2</span> Theoretical notions</h2>
+</section>
+<section id="zero-phase-filtering" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="zero-phase-filtering"><span class="header-section-number">3</span> Zero-phase filtering</h2>
+<p>The function <code>filtfilt()</code> achieves zero-phase filtering of a vector <code>x</code> by filtering it twice:</p>
+<ul>
+<li>once in the normal direction (start to end)</li>
+<li>then flip the result and filter again (i.e.&nbsp;in the opposite direction)</li>
+</ul>
+<p>It operates as following:</p>
+<ul>
+<li>the amplitude response is applied twice (i.e.&nbsp;the signal is multiplied with <span class="math inline">\(|H(\omega)|^2\)</span> instead of <span class="math inline">\(|H(\omega)|^2\)</span>)</li>
+<li>the phase is canceled (zero-phase filter)</li>
+</ul>
+</section>
+<section id="matlab-functions-for-filter-design" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="matlab-functions-for-filter-design"><span class="header-section-number">4</span> Matlab functions for filter design</h2>
+<section id="fir-filter-design" class="level3">
+<h3 class="anchored" data-anchor-id="fir-filter-design">FIR filter design</h3>
+<ul>
+<li><p><code>fir1()</code>: This function designs a finite impulse response (FIR) filter with a specified frequency response using the windowing method</p></li>
+<li><p><code>firpm()</code>: This function designs a minimum-phase (linear-phase) FIR filter using a specified magnitude response.</p></li>
+<li><p>and several others</p></li>
+</ul>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<section id="linear-phase-fir-filter-with-fir1" class="level4">
+<h4 class="anchored" data-anchor-id="linear-phase-fir-filter-with-fir1">Linear-phase FIR filter with <code>fir1()</code></h4>
+<p>The windowing method computes the impulse respose of an ideal filter, then applies a window to keep only a limited number of elements.</p>
+<p>Examples:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">b</span> <span class="op">=</span> <span class="va">fir1</span>(<span class="fl">48</span><span class="op">,</span>[<span class="fl">0.65</span>]<span class="op">,</span> <span class="ss">'low'</span>)<span class="op">;</span>   <span class="co">% Design a low-pass filter, order 48, </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                              <span class="co">% with specified cutoff frequency</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">freqz</span>(<span class="va">b</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">b</span> <span class="op">=</span> <span class="va">fir1</span>(<span class="fl">48</span><span class="op">,</span>[<span class="fl">0.4</span> <span class="fl">0.7</span>]<span class="op">,</span> <span class="ss">'bandpass'</span>)<span class="op">;</span>   <span class="co">% Design a band-pass filter, order 30, </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="co">% with specified cutoff frequencies</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">fvtool</span>(<span class="va">b</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="linear-phase-fir-filter-with-firpm" class="level4">
+<h4 class="anchored" data-anchor-id="linear-phase-fir-filter-with-firpm">Linear-phase FIR filter with <code>firpm()</code></h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">f</span>   <span class="op">=</span> [<span class="fl">500</span> <span class="fl">600</span>] <span class="op">/</span> <span class="fl">2000</span><span class="op">;</span>    <span class="co">% Frequency bands: [0 to 500]/2000, [600 2000]/2000</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">a</span>   <span class="op">=</span> [<span class="fl">1</span> <span class="fl">0</span>]<span class="op">;</span>               <span class="co">% Desired (ideal) amplitudes in the bands. Not in dB.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">dev</span> <span class="op">=</span> [<span class="fl">0.001</span><span class="op">,</span> <span class="fl">0.01</span>]<span class="op">;</span>       <span class="co">% Maximum allowed deviations from the desired amplitudes. </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                           <span class="co">% Values not in dB</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">% Estimate filter order</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>[<span class="va">n</span><span class="op">,</span><span class="va">fo</span><span class="op">,</span><span class="va">ao</span><span class="op">,</span><span class="va">w</span>] <span class="op">=</span> <span class="va">firpmord</span>(<span class="va">f</span><span class="op">,</span><span class="va">a</span><span class="op">,</span><span class="va">dev</span>)<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">% Design filter</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="va">b</span> <span class="op">=</span> <span class="va">firpm</span>(<span class="va">n</span><span class="op">,</span><span class="va">fo</span><span class="op">,</span><span class="va">ao</span><span class="op">,</span><span class="va">w</span>)<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">% View frequency response</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="va">fvtool</span>(<span class="va">b</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="exercises" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5</span> Exercises</h2>
+<section id="exercise-1---filtering-an-ecg-signal" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1---filtering-an-ecg-signal">Exercise 1 - Filtering an ECG signal</h3>
+<p>Design an FIR filter and use it to filter an ECG signal.</p>
+<ol type="1">
+<li><p>Load the ECG signal from the file <code>ECGsignal.mat</code> and display it in a subplot of a window.</p></li>
+<li><p>Design four linear-phase FIR band-pass filters, of order at least 20, with the following pass bands:</p>
+<ul>
+<li>0.05 Hz - 40 Hz</li>
+<li>0.05 Hz - 100 Hz</li>
+<li>0.5 Hz - 40 Hz</li>
+<li>0.5 Hz - 100 Hz</li>
+</ul>
+<p>Use the <code>firpm()</code> function to design the filters. The sampling frequency of the ECG signal is 360 Hz.</p></li>
+<li><p>Apply each of the four filters to the ECG signal.</p></li>
+<li><p>Display the original ECG signal and the four filtered versions as five separate subplots of a window.</p>
+<p>The resulting plot should show the effects of the different filter pass bands on the ECG signal.</p></li>
+</ol>
+</section>
+<section id="exercise-2---zero-phase-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2---zero-phase-filtering">Exercise 2 - Zero-phase filtering</h3>
+<p>Let’s investigate the delay introduced by the filters. We work on a copy of the previous exercise.</p>
+<ol type="1">
+<li><p>Is there a delay introduced by the filters? Measure the location of the R-peaks in the original vs filtered ECG signals.</p></li>
+<li><p>Make all the filter orders twice as large. What happens to the delay?</p></li>
+<li><p>Replace <code>filter()</code> with <code>filtfilt()</code> and regenerate the plot. What is the delay now?</p></li>
+</ol>
+</section>
+<section id="exercise-3---filtering-an-image" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3---filtering-an-image">Exercise 3 - Filtering an image</h3>
+<p>We apply FIR filters on an image, operating first on volumns, then on rows.</p>
+<ol type="1">
+<li><p>Load the <code>Lena512.bmp</code> image and display it.</p></li>
+<li><p>Filter the image with one of the filters designed, using <code>filter</code>(), and display it. Do the filtering as follows:</p>
+<ul>
+<li>filter every row in the image, separately</li>
+<li>then filter every column in the resulting matrix.</li>
+</ul></li>
+<li><p>Repeat the filtering using <code>filtfilt()</code> and display. Is there a difference?</p></li>
+</ol>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

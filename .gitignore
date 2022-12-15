@@ -2,3 +2,12 @@
 *.xopp~
 /Lectures/.jupyter_cache
 /Lectures/_codebraid/*
+/Labs/L07_BasicFiltering_files/*
+/Labs/L08_Convolution_files/*
+/Labs/L09_DiscreteFourierTransform_files/l*
+/Labs/L10_FilterDesignPoleZeroPlacement_files/*
+/Labs/L10again_UsingDFT_files/*
+/Labs/L10new_Fdatool_files/*
+/Labs/L11_IIRFilterDesign_files/*
+/Labs/L12_FIRFilterDesign_files/*
+/Labs/L13_FiltersAndOscillators_files/*

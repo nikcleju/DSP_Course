@@ -1,0 +1,70 @@
+---
+title: Designing Oscillators
+
+subtitle: DSP Lab 13
+format: 
+  html: default
+  pdf: default
+  ipynb: default
+
+toc: true
+number-depth: 2
+number-sections: true
+
+jupyter: python3
+execute:
+  freeze: true
+  eval: false
+---
+
+## Objective
+
+Students should be able to design basic filters and oscillators in Matlab
+and implement them in Simulink.
+
+## Theoretical notions
+
+Oscillators are unstable systems which have at least one pole exactly **on the unit circle**, i.e. the modulus of the pole value is exactly 1. 
+
+$$z = 1 \cdot e^{j \omega}$$
+
+In order to have real values for the coefficients, if the pole is outside of the real axis, there must also be a complex conjugate pole,
+i.e. there will be a pair of complex conjugate poles.
+
+The phase of the zero, i.e. its angle in the graphical representation, determines the frequency (pulsation) of the oscillator.
+
+## Exercises
+
+1. Use the Filter Design tool in Matlab (`fdatool`) to design a 
+IIR high-pass filter with order 3, with cutoff frequency $0.07$. Implement the filter in Simulink and then:
+
+   1. Apply the filter on an audio file and listen to the result (if possible)
+   2. Apply at the input the signal $x[n] = \cos(2 \pi 0.03 n) + \cos(2 \pi 0.18 n)$ and visualize the output $y[n]$. Compare with the input signal.
+
+2. Use the Filter Design tool in Matlab (`fdatool`) to design an oscillator
+with frequency 0.05. Implement it in Simulink, visualize & play the output signal.
+
+   Use the following steps to design the oscillator:
+
+   1. Design a system of order 2 with 2 conjugate poles placed **on the unit circle**
+   at the correct frequency, and 2 zeros at low & high frequencies
+   2. Export the filter coefficients in the Matlab workspace
+   2. Implement the system in Simulink, **omitting the input signal** (not necessary)
+   3. Set a non-zero initial condition in the system, to start-up the oscillator
+
+3. Implement in code the same operations like in the Simulink model, using the following procedure:
+
+   1. Prepare a long vector full of zeros
+   2. Set a non-zero value on one (or both) of the first two values
+   3. Use a loop to compute every value of the vector based on the preceding two values, starting from the third.
+   4. Plot the resulting signal
+
+
+
+## Final questions
+
+1. Why do we need a non-zero initial condition in Simulink? What happens if we don't set it?
+
+2. What happens if we have double poles on the unit circle, instead of single poles?
+
+3. Do the position of the zeros influence the behavior or the implementation of the oscillator?

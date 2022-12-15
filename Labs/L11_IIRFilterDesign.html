@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Designing IIR Digital Filters with indirect methods</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="L11_IIRFilterDesign_files/libs/clipboard/clipboard.min.js"></script>
+<script src="L11_IIRFilterDesign_files/libs/quarto-html/quarto.js"></script>
+<script src="L11_IIRFilterDesign_files/libs/quarto-html/popper.min.js"></script>
+<script src="L11_IIRFilterDesign_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="L11_IIRFilterDesign_files/libs/quarto-html/anchor.min.js"></script>
+<link href="L11_IIRFilterDesign_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="L11_IIRFilterDesign_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="L11_IIRFilterDesign_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="L11_IIRFilterDesign_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="L11_IIRFilterDesign_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective"><span class="toc-section-number">1</span>  Objective</a></li>
+  <li><a href="#theoretical-notions" id="toc-theoretical-notions" class="nav-link" data-scroll-target="#theoretical-notions"><span class="toc-section-number">2</span>  Theoretical notions</a>
+  <ul class="collapse">
+  <li><a href="#poles-and-zeros" id="toc-poles-and-zeros" class="nav-link" data-scroll-target="#poles-and-zeros">Poles and zeros</a></li>
+  <li><a href="#filter-design-and-analysis-toolbox" id="toc-filter-design-and-analysis-toolbox" class="nav-link" data-scroll-target="#filter-design-and-analysis-toolbox">Filter Design and Analysis Toolbox</a></li>
+  </ul></li>
+  <li><a href="#matlab-functions-for-filter-design" id="toc-matlab-functions-for-filter-design" class="nav-link" data-scroll-target="#matlab-functions-for-filter-design"><span class="toc-section-number">3</span>  Matlab functions for filter design</a>
+  <ul class="collapse">
+  <li><a href="#iir-filter-design-indirect-methods" id="toc-iir-filter-design-indirect-methods" class="nav-link" data-scroll-target="#iir-filter-design-indirect-methods">IIR filter design, indirect methods</a></li>
+  <li><a href="#fir-filter-design" id="toc-fir-filter-design" class="nav-link" data-scroll-target="#fir-filter-design">FIR filter design</a></li>
+  <li><a href="#visualization-functions" id="toc-visualization-functions" class="nav-link" data-scroll-target="#visualization-functions">Visualization functions</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">4</span>  Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-designing-a-chebyshev-i-low-pass-filter-fdatool" id="toc-exercise-1-designing-a-chebyshev-i-low-pass-filter-fdatool" class="nav-link" data-scroll-target="#exercise-1-designing-a-chebyshev-i-low-pass-filter-fdatool">Exercise 1: Designing a Chebyshev I Low-Pass Filter, FDATool</a></li>
+  <li><a href="#exercise-2-designing-a-chebyshev-i-low-pass-filter-code" id="toc-exercise-2-designing-a-chebyshev-i-low-pass-filter-code" class="nav-link" data-scroll-target="#exercise-2-designing-a-chebyshev-i-low-pass-filter-code">Exercise 2: Designing a Chebyshev I Low-Pass Filter, code</a></li>
+  <li><a href="#exercise-3-designing-a-butterworth-high-pass-filter-fdatool" id="toc-exercise-3-designing-a-butterworth-high-pass-filter-fdatool" class="nav-link" data-scroll-target="#exercise-3-designing-a-butterworth-high-pass-filter-fdatool">Exercise 3: Designing a Butterworth High-Pass Filter, FDATool</a></li>
+  <li><a href="#exercise-4-designing-a-butterworth-high-pass-filter-code" id="toc-exercise-4-designing-a-butterworth-high-pass-filter-code" class="nav-link" data-scroll-target="#exercise-4-designing-a-butterworth-high-pass-filter-code">Exercise 4: Designing a Butterworth High-Pass Filter, code</a></li>
+  <li><a href="#exercise-5-designing-a-elliptic-band-pass-filter-fdatool" id="toc-exercise-5-designing-a-elliptic-band-pass-filter-fdatool" class="nav-link" data-scroll-target="#exercise-5-designing-a-elliptic-band-pass-filter-fdatool">Exercise 5: Designing a Elliptic Band-Pass Filter, FDATool</a></li>
+  <li><a href="#exercise-6-designing-a-elliptic-band-pass-filter-code" id="toc-exercise-6-designing-a-elliptic-band-pass-filter-code" class="nav-link" data-scroll-target="#exercise-6-designing-a-elliptic-band-pass-filter-code">Exercise 6: Designing a Elliptic Band-Pass Filter, code</a></li>
+  <li><a href="#exercise-7-filtering-a-signal" id="toc-exercise-7-filtering-a-signal" class="nav-link" data-scroll-target="#exercise-7-filtering-a-signal">Exercise 7: Filtering a Signal</a></li>
+  <li><a href="#exercise-8-filtering-a-sinusoidal-signal" id="toc-exercise-8-filtering-a-sinusoidal-signal" class="nav-link" data-scroll-target="#exercise-8-filtering-a-sinusoidal-signal">Exercise 8: Filtering a sinusoidal signal</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Designing IIR Digital Filters with indirect methods</h1>
+<p class="subtitle lead">DSP Lab 11</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="objective" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="objective"><span class="header-section-number">1</span> Objective</h2>
+<p>Use filter design functions in Matlab and the Filter Design and Analysis tool quick IIR filter design and evaluation.</p>
+</section>
+<section id="theoretical-notions" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="theoretical-notions"><span class="header-section-number">2</span> Theoretical notions</h2>
+<section id="poles-and-zeros" class="level3">
+<h3 class="anchored" data-anchor-id="poles-and-zeros">Poles and zeros</h3>
+<p>In this class, we frequently used Z transforms with polynomials as numerator and denominator, denoted as <span class="math inline">\(B(z)\)</span> (numerator) and <span class="math inline">\(A(z)\)</span> (denominator). Any polynomial is completely determined by its roots and a scaling factor.</p>
+<p>Poles and zeros:</p>
+<ul>
+<li>the <strong>zeros</strong> of <span class="math inline">\(X(z)\)</span> are the roots of the numerator <span class="math inline">\(B(z)\)</span></li>
+<li>the <strong>poles</strong> of <span class="math inline">\(X(z)\)</span> are the roots of the denominator <span class="math inline">\(A(z)\)</span></li>
+</ul>
+<p>The zeros are usually named <span class="math inline">\(z_1, z_2, ... z_M\)</span>, and the poles <span class="math inline">\(p_1, p_2, ... p_N\)</span>.</p>
+<p>The poles and zeros are typically represented graphically in the complex plane, and in simple cases their position can indicate rapidly some properties of the filters.</p>
+<p>In this laboratory we will study how the position of zeros and poles influences the magnitude and phase response of a filter.</p>
+</section>
+<section id="filter-design-and-analysis-toolbox" class="level3">
+<h3 class="anchored" data-anchor-id="filter-design-and-analysis-toolbox">Filter Design and Analysis Toolbox</h3>
+<p>Digital filters are a key tool in many fields, including engineering, science, and economics. They are used to process and analyze signals, and can perform a wide range of tasks, such as noise reduction, echo cancellation, and system identification. In this paper, we will discuss the use of FDAtool in MATLAB for designing digital filters.</p>
+<p>FDATool, or the Filter Design and Analysis Toolbox, is a graphical user interface (GUI) that allows users to easily design and implement digital filters in MATLAB. It provides a convenient and user-friendly way to design and analyze filters, and generate code for implementation in other programs.</p>
+<p>To use FDATool, users first need to launch it from the MATLAB command window by typing <code>fdatool</code> and pressing enter. This will open the FDATool GUI, which consists of three main windows: the Filter Design and Analysis Tool, the Filter Visualization Tool, and the Filter Implementation Tool.</p>
+</section>
+</section>
+<section id="matlab-functions-for-filter-design" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="matlab-functions-for-filter-design"><span class="header-section-number">3</span> Matlab functions for filter design</h2>
+<section id="iir-filter-design-indirect-methods" class="level3">
+<h3 class="anchored" data-anchor-id="iir-filter-design-indirect-methods">IIR filter design, indirect methods</h3>
+<p>These functions first design an analog low-pass prorotype filter, and then convert it into the required digital filter using the bilinear transformation.</p>
+<p>Design functions:</p>
+<ul>
+<li><p><code>butter()</code>: This function designs a Butterworth filter, which has a maximally flat frequency response in the passband.</p></li>
+<li><p><code>cheby1()</code>: This function designs a Chebyshev type I filter, which has a steeper roll-off and more ripple in the passband than a Butterworth filter.</p></li>
+<li><p><code>cheby2()</code>: This function designs a Chebyshev type II filter, which has less steep roll-off than Chebyshev type I, but less ripple in the passband</p></li>
+<li><p><code>ellip()</code>: This function designs an elliptical filter, which has a steeper roll-off and more ripple in both the passband and stopband than a Chebyshev type I filter.</p></li>
+</ul>
+<p>Functions to find the minimum filter order according to specifications:</p>
+<ul>
+<li><code>buttord()</code>, <code>cheb1ord</code>, <code>cheb2ord()</code>, <code>ellipord()</code></li>
+</ul>
+</section>
+<section id="fir-filter-design" class="level3">
+<h3 class="anchored" data-anchor-id="fir-filter-design">FIR filter design</h3>
+<ul>
+<li><p><code>fir1()</code>: This function designs a finite impulse response (FIR) filter with a specified frequency response.</p></li>
+<li><p><code>firpm()</code>: This function designs a minimum-phase FIR filter using a specified magnitude response.</p></li>
+<li><p><code>kaiser()</code>: This function designs a Kaiser window filter, which can be used to design FIR filters with a specified stopband attenuation and transition width.</p></li>
+<li><p>and several others</p></li>
+</ul>
+</section>
+<section id="visualization-functions" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-functions">Visualization functions</h3>
+<ul>
+<li><code>fvtool(b, a)</code>: Filter visualization tool</li>
+<li><code>freqz(b, a)</code>: Compute and display frequency response</li>
+<li><code>zplane(b, a)</code>: Display pole-zero plot</li>
+<li><code>impz(b, a)</code>: Compute and display impulse response</li>
+</ul>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<section id="butterworth-filter-iir-low-pass" class="level4">
+<h4 class="anchored" data-anchor-id="butterworth-filter-iir-low-pass">Butterworth filter, IIR, low-pass</h4>
+<p>This code uses the <code>buttord()</code> function to compute the filter order and cut-off frequency based on the specified passband and stopband frequencies, as well as the passband ripple and stopband attenuation. The <code>butter()</code> function is then used to design a Butterworth filter with these parameters. The <code>freqz()</code> function is used to plot the frequency response of the filter. You can adjust the filter specifications as needed to meet your design requirements</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Define the filter specifications</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">Fpass</span> <span class="op">=</span> <span class="fl">0.2</span><span class="op">;</span>   <span class="co">% Passband-edge frequency</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">Fstop</span> <span class="op">=</span> <span class="fl">0.3</span><span class="op">;</span>   <span class="co">% Stopband-edge frequency</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">Apass</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span>     <span class="co">% Passband ripple (dB)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">Astop</span> <span class="op">=</span> <span class="fl">60</span><span class="op">;</span>    <span class="co">% Stopband attenuation (dB)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">% Compute the filter order and cutoff frequency</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>[<span class="va">N</span><span class="op">,</span> <span class="va">Wn</span>] <span class="op">=</span> <span class="va">buttord</span>(<span class="va">Fpass</span><span class="op">,</span> <span class="va">Fstop</span><span class="op">,</span> <span class="va">Apass</span><span class="op">,</span> <span class="va">Astop</span>)<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">% Design the Butterworth filter using the butter function</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>[<span class="va">b</span><span class="op">,</span><span class="va">a</span>] <span class="op">=</span> <span class="va">butter</span>(<span class="va">N</span><span class="op">,</span> <span class="va">Wn</span>)<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot the frequency response of the filter</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="va">freqz</span>(<span class="va">b</span><span class="op">,</span><span class="va">a</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="chebyshev-type-i-iir-high-pass" class="level4">
+<h4 class="anchored" data-anchor-id="chebyshev-type-i-iir-high-pass">Chebyshev type I, IIR, high-pass</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Define the filter specifications</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">Fpass</span> <span class="op">=</span> <span class="fl">0.2</span><span class="op">;</span>   <span class="co">% Passband-edge frequency</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">Fstop</span> <span class="op">=</span> <span class="fl">0.3</span><span class="op">;</span>   <span class="co">% Stopband-edge frequency</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">Apass</span> <span class="op">=</span> <span class="fl">1</span><span class="op">;</span>     <span class="co">% Passband ripple (dB)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">Astop</span> <span class="op">=</span> <span class="fl">60</span><span class="op">;</span>    <span class="co">% Stopband attenuation (dB)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">% Compute the filter order and cutoff frequency</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>[<span class="va">N</span><span class="op">,</span> <span class="va">Wn</span>] <span class="op">=</span> <span class="va">cheb1ord</span>(<span class="va">Fpass</span><span class="op">,</span> <span class="va">Fstop</span><span class="op">,</span> <span class="va">Apass</span><span class="op">,</span> <span class="va">Astop</span>)<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">% Design the Chebyshev type I filter using the cheby1 function</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>[<span class="va">b</span><span class="op">,</span><span class="va">a</span>] <span class="op">=</span> <span class="va">cheby1</span>(<span class="va">N</span><span class="op">,</span> <span class="va">Apass</span><span class="op">,</span> <span class="va">Wn</span>)<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot the frequency response of the filter</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="va">fvtool</span>(<span class="va">b</span><span class="op">,</span><span class="va">a</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="chebyshev-type-2-iir-stop-band" class="level4">
+<h4 class="anchored" data-anchor-id="chebyshev-type-2-iir-stop-band">Chebyshev type 2, IIR, stop-band</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">Wp</span> <span class="op">=</span> [<span class="fl">75</span> <span class="fl">250</span>]<span class="op">/</span><span class="fl">500</span><span class="op">;</span>    <span class="co">% Band-pass frequencies, larger than the stop-band</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">Ws</span> <span class="op">=</span> [<span class="fl">100</span> <span class="fl">200</span>]<span class="op">/</span><span class="fl">500</span><span class="op">;</span>   <span class="co">% Stop-band frequencies</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">Rp</span> <span class="op">=</span> <span class="fl">3</span><span class="op">;</span>               <span class="co">% Passband ripple (dB)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">Rs</span> <span class="op">=</span> <span class="fl">40</span><span class="op">;</span>              <span class="co">% Stopband attenuation (dB)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">% Compute the filter order and cutoff frequencies</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>[<span class="va">N</span><span class="op">,</span> <span class="va">Wn</span>] <span class="op">=</span> <span class="va">cheb2ord</span>(<span class="va">Wp</span><span class="op">,</span> <span class="va">Ws</span><span class="op">,</span> <span class="va">Rp</span><span class="op">,</span> <span class="va">Rs</span>)<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">% Design the Chebyshev type II filter using the cheby2 function</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>[<span class="va">b</span><span class="op">,</span><span class="va">a</span>] <span class="op">=</span> <span class="va">cheby2</span>(<span class="va">N</span><span class="op">,</span> <span class="va">Rs</span><span class="op">,</span> <span class="va">Wn</span><span class="op">,</span> <span class="ss">'stop'</span>)<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot the frequency response of the filter</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="va">fvtool</span>(<span class="va">b</span><span class="op">,</span><span class="va">a</span>)<span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">% Show the pole-zero plot</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="va">zplane</span>(<span class="va">b</span><span class="op">,</span><span class="va">a</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="elliptic-iir-band-pass" class="level4">
+<h4 class="anchored" data-anchor-id="elliptic-iir-band-pass">Elliptic, IIR, band-pass</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">Wp</span> <span class="op">=</span> [<span class="fl">200</span> <span class="fl">250</span>]<span class="op">/</span><span class="fl">1000</span><span class="op">;</span>   <span class="co">% Band-pass frequencies, larger than the stop-band</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">Ws</span> <span class="op">=</span> [<span class="fl">175</span> <span class="fl">275</span>]<span class="op">/</span><span class="fl">1000</span><span class="op">;</span>   <span class="co">% Stop-band frequencies</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">Rp</span> <span class="op">=</span> <span class="fl">3</span><span class="op">;</span>                <span class="co">% Passband ripple (dB)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">Rs</span> <span class="op">=</span> <span class="fl">40</span><span class="op">;</span>               <span class="co">% Stopband attenuation (dB)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">% Compute the filter order and cutoff frequencies</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>[<span class="va">N</span><span class="op">,</span> <span class="va">Wn</span>] <span class="op">=</span> <span class="va">ellipord</span>(<span class="va">Wp</span><span class="op">,</span> <span class="va">Ws</span><span class="op">,</span> <span class="va">Rp</span><span class="op">,</span> <span class="va">Rs</span>)<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">% Design the Elliptic filter using the ellip function</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>[<span class="va">b</span><span class="op">,</span><span class="va">a</span>] <span class="op">=</span> <span class="va">ellip</span>(<span class="va">N</span><span class="op">,</span> <span class="va">Rp</span><span class="op">,</span> <span class="va">Rs</span><span class="op">,</span> <span class="va">Wn</span><span class="op">,</span> <span class="ss">'bandpass'</span>)<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot the frequency response of the filter</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="va">freqz</span>(<span class="va">b</span><span class="op">,</span><span class="va">a</span>)<span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">% Show the impulse response, first 40 samples</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="va">h</span> <span class="op">=</span> <span class="va">impz</span>(<span class="va">b</span><span class="op">,</span><span class="va">a</span><span class="op">,</span><span class="fl">40</span>)<span class="op">;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span>()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="va">stem</span>(<span class="va">h</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="filtering-with-filter" class="level4">
+<h4 class="anchored" data-anchor-id="filtering-with-filter">Filtering with <code>filter()</code></h4>
+<p>Given a filter with coefficients <code>a</code> and <code>b</code>, filtering a signal <code>x</code> can be done with <code>filter()</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Generate a signal</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">x</span> <span class="op">=</span> <span class="va">ones</span>(<span class="fl">1</span><span class="op">,</span> <span class="fl">100</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">% Design a filter</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>[<span class="va">b</span><span class="op">,</span><span class="va">a</span>] <span class="op">=</span> <span class="va">butter</span>(<span class="fl">10</span><span class="op">,</span> <span class="fl">0.2</span>)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">% Filter</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="va">y</span> <span class="op">=</span> <span class="va">filter</span>(<span class="va">b</span><span class="op">,</span><span class="va">a</span><span class="op">,</span> <span class="va">x</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">% Plot</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="va">stem</span>(<span class="va">x</span>)<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="va">hold</span> <span class="va">on</span><span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="va">stem</span>(<span class="va">y</span><span class="op">,</span> <span class="ss">'r'</span>)<span class="op">;</span>   <span class="co">% The 'r' flag indicates to use the color red</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="va">hold</span> <span class="va">off</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="exercises" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">4</span> Exercises</h2>
+<section id="exercise-1-designing-a-chebyshev-i-low-pass-filter-fdatool" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-designing-a-chebyshev-i-low-pass-filter-fdatool">Exercise 1: Designing a Chebyshev I Low-Pass Filter, FDATool</h3>
+<p>In this exercise, we will use FDATool to design a low-pass filter</p>
+<ol type="1">
+<li>Launch FDATool</li>
+<li>Design a Chebyshev I low-Pass filter of order 3, IIR, with cutoff frequency of 500 Hz for a sampling frequency of 5000Hz, and other parameters as desired.</li>
+<li>In the Filter Visualization Tool, visualize the frequency response of the filter.</li>
+<li>Visualize the pole-zero plot of the system function <span class="math inline">\(H(z)\)</span></li>
+<li>Visualize the filter coefficients.</li>
+<li>Export the filter coefficients to Matlab’s workspace</li>
+</ol>
+</section>
+<section id="exercise-2-designing-a-chebyshev-i-low-pass-filter-code" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-designing-a-chebyshev-i-low-pass-filter-code">Exercise 2: Designing a Chebyshev I Low-Pass Filter, code</h3>
+<p>Use Matlab code to design the same filter:</p>
+<ol type="1">
+<li>Design a Chebyshev I low-pass filter of order 3, IIR, with cutoff frequency of 500 Hz for a sampling frequency of 5000Hz, and pass-band ripple of 0.2 dB</li>
+<li>Plot the frequency response</li>
+<li>Display the pole-zero plot</li>
+<li>Plot the impulse response</li>
+</ol>
+</section>
+<section id="exercise-3-designing-a-butterworth-high-pass-filter-fdatool" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-designing-a-butterworth-high-pass-filter-fdatool">Exercise 3: Designing a Butterworth High-Pass Filter, FDATool</h3>
+<p>Repeat the steps in exercise 1, to design a high-pass Butterworth filter of minimum order, IIR, with a transition zone between 0.2 and 0.25 (or 2000 to 2500Hz Hz for a sampling frequency of 10000Hz), with an passband ripple of 2 dB and a minimum stop-band attenuation of 60 dB.</p>
+</section>
+<section id="exercise-4-designing-a-butterworth-high-pass-filter-code" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-designing-a-butterworth-high-pass-filter-code">Exercise 4: Designing a Butterworth High-Pass Filter, code</h3>
+<p>Use Matlab code to design the same filter:</p>
+<ol type="1">
+<li>Design a high-pass Butterworth filter of minimum order, IIR, with a transition zone between 0.2 and 0.25 (or 2000 to 2500Hz Hz for a sampling frequency of 10000Hz), with an passband ripple of 2 dB and a minimum stop-band attenuation of 60 dB.</li>
+<li>Plot the frequency response</li>
+<li>Display the pole-zero plot</li>
+<li>Plot the impulse response</li>
+</ol>
+</section>
+<section id="exercise-5-designing-a-elliptic-band-pass-filter-fdatool" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5-designing-a-elliptic-band-pass-filter-fdatool">Exercise 5: Designing a Elliptic Band-Pass Filter, FDATool</h3>
+<p>Repeat the steps in exercise 1, to design a band-pass elliptic filter of order 4, IIR, with pass-band between 0.25 and 0.3 (or 2500 Hz to 3000 Hz for a sampling frequency of 5000Hz ), transition bands of width 0.02, a passband ripple of 0.5 dB and a minimum stop-band attenuation of 50 dB.</p>
+</section>
+<section id="exercise-6-designing-a-elliptic-band-pass-filter-code" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-6-designing-a-elliptic-band-pass-filter-code">Exercise 6: Designing a Elliptic Band-Pass Filter, code</h3>
+<p>Repeat previous exercise, but this time use the Matlab functions instead of FDATool.</p>
+<ol type="1">
+<li>Design a band-pass elliptic filter of order 4, IIR, with pass-band between 0.25 and 0.3 (or 2500 Hz to 3000 Hz for a sampling frequency of 5000Hz ), transition bands of width 0.02, a passband ripple of 0.5 dB and a minimum stop-band attenuation of 50 dB.</li>
+<li>Plot the frequency response</li>
+<li>Display the pole-zero plot</li>
+<li>Plot the impulse response</li>
+</ol>
+</section>
+<section id="exercise-7-filtering-a-signal" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-7-filtering-a-signal">Exercise 7: Filtering a Signal</h3>
+<p>In this exercise, we will use the filters designed in the previous exercises to filter a signal.</p>
+<ol type="1">
+<li><p>Generate a 300-long periodic square signal, composed of 30 values of 1 followed by 30 values of 0, repeated for 5 times.</p></li>
+<li><p>Filter the signal with the filter obtained in Exercise 1/2.</p></li>
+<li><p>Filter the signal with the filter obtained in Exercise 3/4.</p></li>
+<li><p>Filter the signal with the filter obtained in Exercise 5/6.</p></li>
+<li><p>Visualize the filtered signals and compare them to the original signal.</p></li>
+</ol>
+</section>
+<section id="exercise-8-filtering-a-sinusoidal-signal" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-8-filtering-a-sinusoidal-signal">Exercise 8: Filtering a sinusoidal signal</h3>
+<p>Repeat previous exercise, but this time filter the following signal:</p>
+<p><span class="math display">\[s(n) = 2 \cdot \sin(2 \pi 0.15 n + \frac{\pi}{4})\]</span></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

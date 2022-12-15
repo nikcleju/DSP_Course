@@ -37,7 +37,7 @@ The zeros are usually named $z_1, z_2, ... z_M$, and the poles $p_1, p_2, ... p_
 
 The poles and zeros are typically represented graphically in the complex plane, and in simple cases their position can indicate rapidly some properties of the filters.
 
-In this laboratory we will study how the position of zeros and poles influences the amplitude response of a filter.
+In this laboratory we will study how the position of zeros and poles influences the magnitude response of a filter.
 
 ## Exercises
 
