@@ -112,6 +112,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective"><span class="toc-section-number">1</span>  Objective</a></li>
   <li><a href="#theoretical-notions" id="toc-theoretical-notions" class="nav-link" data-scroll-target="#theoretical-notions"><span class="toc-section-number">2</span>  Theoretical notions</a>
   <ul class="collapse">
+  <li><a href="#filter-specifications-and-terminology" id="toc-filter-specifications-and-terminology" class="nav-link" data-scroll-target="#filter-specifications-and-terminology">Filter specifications and terminology</a></li>
   <li><a href="#poles-and-zeros" id="toc-poles-and-zeros" class="nav-link" data-scroll-target="#poles-and-zeros">Poles and zeros</a></li>
   <li><a href="#filter-design-and-analysis-toolbox" id="toc-filter-design-and-analysis-toolbox" class="nav-link" data-scroll-target="#filter-design-and-analysis-toolbox">Filter Design and Analysis Toolbox</a></li>
   </ul></li>
@@ -162,6 +163,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="theoretical-notions" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="theoretical-notions"><span class="header-section-number">2</span> Theoretical notions</h2>
+<section id="filter-specifications-and-terminology" class="level3">
+<h3 class="anchored" data-anchor-id="filter-specifications-and-terminology">Filter specifications and terminology</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/L11_FilterSpecs.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Filter specifications and terminology, for a low-pass filter</figcaption><p></p>
+</figure>
+</div>
+</section>
 <section id="poles-and-zeros" class="level3">
 <h3 class="anchored" data-anchor-id="poles-and-zeros">Poles and zeros</h3>
 <p>In this class, we frequently used Z transforms with polynomials as numerator and denominator, denoted as <span class="math inline">\(B(z)\)</span> (numerator) and <span class="math inline">\(A(z)\)</span> (denominator). Any polynomial is completely determined by its roots and a scaling factor.</p>
@@ -353,13 +363,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="exercise-5-designing-a-elliptic-band-pass-filter-fdatool" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5-designing-a-elliptic-band-pass-filter-fdatool">Exercise 5: Designing a Elliptic Band-Pass Filter, FDATool</h3>
-<p>Repeat the steps in exercise 1, to design a band-pass elliptic filter of order 4, IIR, with pass-band between 0.25 and 0.3 (or 2500 Hz to 3000 Hz for a sampling frequency of 5000Hz ), transition bands of width 0.02, a passband ripple of 0.5 dB and a minimum stop-band attenuation of 50 dB.</p>
+<p>Repeat the steps in exercise 1, to design a band-pass elliptic filter of minium order, IIR, with pass-band between 0.25 and 0.3 (or 2500 Hz to 3000 Hz for a sampling frequency of 5000Hz ), transition bands of width 0.02, a passband ripple of 0.5 dB and a minimum stop-band attenuation of 50 dB.</p>
 </section>
 <section id="exercise-6-designing-a-elliptic-band-pass-filter-code" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6-designing-a-elliptic-band-pass-filter-code">Exercise 6: Designing a Elliptic Band-Pass Filter, code</h3>
 <p>Repeat previous exercise, but this time use the Matlab functions instead of FDATool.</p>
 <ol type="1">
-<li>Design a band-pass elliptic filter of order 4, IIR, with pass-band between 0.25 and 0.3 (or 2500 Hz to 3000 Hz for a sampling frequency of 5000Hz ), transition bands of width 0.02, a passband ripple of 0.5 dB and a minimum stop-band attenuation of 50 dB.</li>
+<li>Design a band-pass elliptic filter of minimum order, IIR, with pass-band between 0.25 and 0.3 (or 2500 Hz to 3000 Hz for a sampling frequency of 5000Hz ), transition bands of width 0.02, a passband ripple of 0.5 dB and a minimum stop-band attenuation of 50 dB.</li>
 <li>Plot the frequency response</li>
 <li>Display the pole-zero plot</li>
 <li>Plot the impulse response</li>

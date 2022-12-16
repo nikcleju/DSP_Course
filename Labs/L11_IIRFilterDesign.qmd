@@ -24,6 +24,10 @@ Use filter design functions in Matlab and the Filter Design and Analysis tool qu
 
 ## Theoretical notions
 
+### Filter specifications and terminology
+
+![Filter specifications and terminology, for a low-pass filter](img/L11_FilterSpecs.png)
+
 ### Poles and zeros
 
 In this class, we frequently used Z transforms with polynomials as numerator and denominator, denoted as $B(z)$ (numerator) and $A(z)$ (denominator).
@@ -229,13 +233,13 @@ Use Matlab code to design the same filter:
 
 ### Exercise 5: Designing a Elliptic Band-Pass Filter, FDATool
 
-Repeat the steps in exercise 1, to design a band-pass elliptic filter of order 4, IIR, with pass-band between 0.25 and 0.3 (or 2500 Hz to 3000 Hz for a sampling frequency of 5000Hz ), transition bands of width 0.02, a passband ripple of 0.5 dB and a minimum stop-band attenuation of 50 dB.
+Repeat the steps in exercise 1, to design a band-pass elliptic filter of minium order, IIR, with pass-band between 0.25 and 0.3 (or 2500 Hz to 3000 Hz for a sampling frequency of 5000Hz ), transition bands of width 0.02, a passband ripple of 0.5 dB and a minimum stop-band attenuation of 50 dB.
 
 ### Exercise 6: Designing a Elliptic Band-Pass Filter, code
 
 Repeat previous exercise, but this time use the Matlab functions instead of FDATool.
 
-1. Design a band-pass elliptic filter of order 4, IIR, with pass-band between 0.25 and 0.3 (or 2500 Hz to 3000 Hz for a sampling frequency of 5000Hz ), transition bands of width 0.02, a passband ripple of 0.5 dB and a minimum stop-band attenuation of 50 dB.
+1. Design a band-pass elliptic filter of minimum order, IIR, with pass-band between 0.25 and 0.3 (or 2500 Hz to 3000 Hz for a sampling frequency of 5000Hz ), transition bands of width 0.02, a passband ripple of 0.5 dB and a minimum stop-band attenuation of 50 dB.
 2. Plot the frequency response
 3. Display the pole-zero plot
 4. Plot the impulse response
