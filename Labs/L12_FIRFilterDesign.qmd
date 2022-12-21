@@ -95,10 +95,10 @@ Design an FIR filter and use it to filter an ECG signal.
 
 2. Design four linear-phase FIR band-pass filters, of order at least 20, with the following pass bands:
 
-   - 0.05 Hz - 40 Hz
-   - 0.05 Hz - 100 Hz
-   - 0.5 Hz - 40 Hz
-   - 0.5 Hz - 100 Hz
+   - 10 Hz - 40 Hz
+   - 10 Hz - 100 Hz
+   - 20 Hz - 40 Hz
+   - 20 Hz - 100 Hz
 
    Use the `firpm()` function to design the filters. The sampling frequency of the ECG signal is 360 Hz.
 
@@ -124,9 +124,11 @@ We apply FIR filters on an image, operating first on volumns, then on rows.
 
 1. Load the `Lena512.bmp` image and display it.
 
-2. Filter the image with one of the filters designed, using `filter`(), and display it. Do the filtering as follows:
+2. Design a low-pass filter of order 25 and cutoff frequency 0.2, using `fir1()`.
 
-   - filter every row in the image, separately
+2. Filter the image with this filter, using `filter`(), and display it. Do the filtering as follows:
+
+   - filter very row in the image, separately
    - then filter every column in the resulting matrix.
 
 3. Repeat the filtering using `filtfilt()` and display. Is there a difference?
