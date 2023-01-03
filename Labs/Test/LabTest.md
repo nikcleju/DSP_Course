@@ -1,6 +1,6 @@
 ---
 title: Laboratory Test
-subtitle: DSP 2021-2022
+subtitle: DSP 2022-2023
 documentclass: scrartcl
 fontsize: 12pt
 ---
@@ -8,7 +8,7 @@ fontsize: 12pt
 
 # Information
 
-- The test is taken in the lab, and lasts for 1 hour
+- The test is taken during the lab, and lasts for 1 hour
 
 - General Matlab stuff you need to know is listed in the **Syllabus** section.
   This is not an exhaustive list. There may be things I forgot to put in the list, 
@@ -23,21 +23,21 @@ fontsize: 12pt
 
 - Define scalars, vectors, matrices
 
-  - Generate constant vectors (zeros, ones, some value)
+  - Generate constant vectors (zeros, ones, some other value)
   - Generate sin and cos signals of a certain length, 
     with various amplitude, frequencies and initial phase
   - Generate random numbers, vectors and matrices, using `rand` and `randn`
   - Generate linearly spaces values between a start value and a stop value (e.g. `linspace()` or `start:step:stop`)
 
-- Concatenate vectors and matrices. Build longer signals from more parts.
+- Concatenate vectors and matrices. Build longer signals from several parts.
 
 - Access elements from vectors/matrices. Select rows or columns from matrices.
 
 - Do basic mathematical operations with scalars, vectors, matrices
 
-- Display a text message (`disp()` or `fprintf()`)
+<!-- - Display a text message (`disp()` or `fprintf()`) -->
 
-- Use simple instructions (`if`, `for`, `while`)
+- Use basic instructions (`if`, `for`, `while`)
 
 - Make plots
 
@@ -68,7 +68,7 @@ fontsize: 12pt
   
   - the function takes `x` as input and outputs the result vector `y`
 
-- Pass a function as argument to another function and use it inside
+<!-- - Pass a function as argument to another function and use it inside -->
 
 - Do convolutions of vectors with `conv()`
 
@@ -79,11 +79,15 @@ fontsize: 12pt
   - Also apply some input, visualize the output
   - Apply an impulse and visualize the impulse response
 
-- Test linearity ~~and time-invariance~~ of systems in Simulink
+<!-- - Test linearity ~~and time-invariance~~ of systems in Simulink -->
 
-- Design a low-pass/high-pass etc. filter with `fdatool` GUI, and implement it in Simulink (Lab 11)
+- Design a IIR or FIR low-pass/high-pass etc. filter with `fdatool` GUI, according to specifications.
+  
+  Export the coefficients to Matlab, or implement the filter in Simulink.
+  
+- Use the filter coefficients to filter a signal, or to filter an image by columns and rows.
 
-- Design an oscillator with a prescribed frequency, and implement it in Simulink (Lab 11)
+- Design an oscillator with a prescribed frequency, and implement it in Simulink (Lab 13)
 
 
 # Template Subjects
@@ -109,9 +113,7 @@ Concatenate the three matrices across third dimension, into a 3D tensor
 
 **Variant**: Make another simple flag or figure, color or grayscale, and show it
 
-
 ## Lab 3 version 2
-
 
 1. Load the `Lena` image (use `imread()`), convert it to double, convert it to grayscale, 
 scale the values to the [0, 1] range, and display the image (use `imshow()`).
@@ -125,9 +127,9 @@ y[i,j] = \frac{1}{9}x[i-1,j-1] + \frac{1}{9}x[i-1,j] + \frac{1}{9}x[i-1,j+1] \\
         +\frac{1}{9}x[i+1,j-1] + \frac{1}{9}x[i+1,j] + \frac{1}{9}x[i+1,j+1]
 \end{split}$$
 
-	Ignore the first and last row/column, if needed. 
+  Ignore the first and last row/column, if needed.
     
-	Display the resulting image in a new window. How did it change?
+  Display the resulting image in a new window
 
 
 ## Lab 4
@@ -160,7 +162,7 @@ Code template for creating a video sequence in Matlab:
 
 **Variant**: do another thing instead of scrolling, like change luminosity etc.
 
-## Lab 5
+<!-- ## Lab 5
 
 1. Create a function `mysys1()` that implements the following system $H_1$:
 $$y[n] = H_1\{x[n]\} = \frac{1}{4} x[n] - \frac{1}{2} x[n-1] + \frac{1}{4} x[n-2]$$
@@ -170,9 +172,9 @@ $$y[n] = H_1\{x[n]\} = \frac{1}{4} x[n] - \frac{1}{2} x[n-1] + \frac{1}{4} x[n-2
     - generate two random vectors `x` and `y` and two random numbers `a` and `b`
     - apply the function `mysys1()` to `a*x`, `b*y`, and `a*x + b*y`, and check if the results verify the linearity equation
     - display a message indicating if the system is linear or not linear
+ -->
 
-
-## Lab 6
+## Lab 6 & 7
 
 1. Create a Simulink model to implement the following system $H_1$:
 $$y[n] = H_1\{x[n]\} = \frac{1}{4}(x[n]  + x[n-1] + x[n-2] + x[n-3])$$
@@ -182,7 +184,9 @@ $$y[n] = H_1\{x[n]\} = \frac{1}{4}(x[n]  + x[n-1] + x[n-2] + x[n-3])$$
 
     - add a unit impulse as the input (hint: can be created from two unit ramp blocks, delayed)
     - add a Scope at the output to visualize the data
-    
+
+**Variant** 3. Filter some audio signal, or some other input signal.
+<!--     
     
 ## Lab 7 Variant 1
 
@@ -202,24 +206,21 @@ $$y[n] = H_1\{x[n]\} = 0.8 y[n-1] + 0.25 x[n]  + 0.1 x[n-1]$$
 ~~Same thing, but test time invariance instead of linearity (Ex. 5):~~
  
   - ~~the system will be applied to an input vector `x`, and to  `x` prepended with  a variable number of zeros (i.e. time delayed)~~
-  - ~~the outputs shall be checked if they verify the time invariance equation~~
+  - ~~the outputs shall be checked if they verify the time invariance equation~~ -->
 
 ## Lab 8
 
 1. Load an audio signal and extract a 10 seconds long sequence of it.
 
-	a. Convolve the sequence with the impulse response $\{ 1/6, 1/6, 1/6, 1/6, 1/6, 1/6\}$. Play the resulting sequence.
-    
-    b. Load another impulse response from the file "Scala Milan Opera Hall.wav" (use `audioread()`). Call the resulting vector **`h`**. Convolve the original audio signal with **`h`** and play the result.
-
-	c. Convolve the result from b) with another impulse response from the pack. Play the resulting signal.
-    
-    d. Compute and display the equivalent impulse response of the complete system in points b) and c).
-    
+   a. Convolve the sequence with the impulse response $\{ 1/6, 1/6, 1/6, 1/6, 1/6, 1/6\}$. Play the resulting sequence.
+   b. Load another impulse response from the file "Scala Milan Opera Hall.wav" (use `audioread()`). Call the resulting vector **`h`**. Convolve the original audio signal with **`h`** and play the result.
+   c. Convolve the result from b) with another impulse response from the pack. Play the resulting signal.
+   d. Compute and display the equivalent impulse response of the complete system in points b) and c).
+ 
 ## Lab 9
 
 1. Generate a 100 samples long signal `x` defined as 
-$x[n] = 0.7 \cos(2 \pi f_1 n) + 1.2 \sin(2 \pi f_2 n),$
+$x[n] = 0.3 \cos(2 \pi f_1 n) + 0.8 \sin(2 \pi f_2 n),$
 with $f_1 = 0.05$ and $f_1 = 0.1$.
     
     a. Plot the signal in the top third of a figure (use `subplot()`).
@@ -227,16 +228,38 @@ with $f_1 = 0.05$ and $f_1 = 0.1$.
     b. Compute the Fourier series coefficients with `fft()` and 
     plot their magnitude in the middle third, and their phase in the lower third.
     
-    c. Repeat the plot but do the FFT in N=1000 points (use `fft(x, N)`. What changes?
+    c. Repeat the plot but do the FFT in N=1000 points (use `fft(x, N)`)
 
-## Lab 11 Variant 1
+## Lab 11
 
-1. Use the Filter Design tool in Matlab (`fdatool`) to design a 
-IIR high-pass filter with order 3, with cutoff frequency $0.07$. Implement the filter in Simulink and then apply at the input the signal $x[n] = \cos(2 \pi 0.03 n) + \cos(2 \pi 0.18 n)$ and visualize the output $y[n]$. Compare with the input signal.
+1. Use the Filter Design tool in Matlab (`fdatool`) to design a IIR high-pass filter with order 3, with cutoff frequency $0.07$.
 
-## Lab 11 Variant 2
+   Export its coefficients to Matlab Workspace.
 
-2. Use the Filter Design tool in Matlab (`fdatool`) to design an oscillator
+2. Generate a 300-long periodic square signal, composed of 30 values of 1 followed by 30 values of 0, repeated for 5 times.
+
+   Filter the signal with the filter obtained in Exercise 1, and display the input and the output signal.
+
+## Lab 12
+
+1. Use the Filter Design tool in Matlab (`fdatool`) to design a FIR high-pass filter with order ..., with cutoff frequency $0.07$, etc.
+
+   Export its coefficients to Matlab Workspace.
+
+2. Generate a 300-long periodic square signal, composed of 30 values of 1 followed by 30 values of 0, repeated for 5 times.
+
+   Do a zero-phase filtering of the signal with the filter obtained in Exercise 1, and display the input and the output signal.
+
+or:
+
+1. Load the `Lena512.bmp` image and filter the image with this filter, as follows:
+
+   - filter very row in the image, separately
+   - then filter every column in the resulting matrix.
+
+## Lab 13
+
+1. Use the Filter Design tool in Matlab (`fdatool`) to design an oscillator
 with frequency 0.05. Implement it in Simulink, visualize & play the output signal.
 
    Use the following steps to design the oscillator:
@@ -245,4 +268,3 @@ with frequency 0.05. Implement it in Simulink, visualize & play the output signa
     at the correct frequency, and 2 zeros at low & high frequencies
     2. implement the system in Simulink, **omitting the input signal** (not necessary)
     3. set a non-zero initial condition in the system, to start-up the oscillator
-
