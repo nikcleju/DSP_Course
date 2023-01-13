@@ -36,10 +36,11 @@ The phase of the zero, i.e. its angle in the graphical representation, determine
 ## Exercises
 
 1. Use the Filter Design tool in Matlab (`fdatool`) to design a 
-IIR high-pass filter with order 3, with cutoff frequency $0.07$. Implement the filter in Simulink and then:
+IIR high-pass filter with order 3, with cutoff frequency $0.07$. 
 
-   1. Apply the filter on an audio file and listen to the result (if possible)
-   2. Apply at the input the signal $x[n] = \cos(2 \pi 0.03 n) + \cos(2 \pi 0.18 n)$ and visualize the output $y[n]$. Compare with the input signal.
+   1. Implement the filter in Simulink
+   2. Apply at the input the signal $x[n] = \cos(2 \pi 0.03 n)$ (use a `Sine Wave` block) and visualize the output $y[n]$. Is this signal rejected or not by the filter?
+   3. Change the input frequency from 0.03 to 0.2 and visualize the output. Is this signal rejected by the filter?
 
 2. Use the Filter Design tool in Matlab (`fdatool`) to design an oscillator
 with frequency 0.05. Implement it in Simulink, visualize & play the output signal.

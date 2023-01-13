@@ -87,10 +87,11 @@ ul.task-list li input[type="checkbox"] {
 <section id="exercises" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3</span> Exercises</h2>
 <ol type="1">
-<li><p>Use the Filter Design tool in Matlab (<code>fdatool</code>) to design a IIR high-pass filter with order 3, with cutoff frequency <span class="math inline">\(0.07\)</span>. Implement the filter in Simulink and then:</p>
+<li><p>Use the Filter Design tool in Matlab (<code>fdatool</code>) to design a IIR high-pass filter with order 3, with cutoff frequency <span class="math inline">\(0.07\)</span>.</p>
 <ol type="1">
-<li>Apply the filter on an audio file and listen to the result (if possible)</li>
-<li>Apply at the input the signal <span class="math inline">\(x[n] = \cos(2 \pi 0.03 n) + \cos(2 \pi 0.18 n)\)</span> and visualize the output <span class="math inline">\(y[n]\)</span>. Compare with the input signal.</li>
+<li>Implement the filter in Simulink</li>
+<li>Apply at the input the signal <span class="math inline">\(x[n] = \cos(2 \pi 0.03 n)\)</span> (use a <code>Sine Wave</code> block) and visualize the output <span class="math inline">\(y[n]\)</span>. Is this signal rejected or not by the filter?</li>
+<li>Change the input frequency from 0.03 to 0.2 and visualize the output. Is this signal rejected by the filter?</li>
 </ol></li>
 <li><p>Use the Filter Design tool in Matlab (<code>fdatool</code>) to design an oscillator with frequency 0.05. Implement it in Simulink, visualize &amp; play the output signal.</p>
 <p>Use the following steps to design the oscillator:</p>
