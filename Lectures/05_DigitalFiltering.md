@@ -300,6 +300,61 @@ What type of filters can have linear phase?
 - Check constraints for $H(0)$ and $H(\pi)$
 - For what types of filters is each case appropriate?
 
+### Proof example
+
+Linear-phase proof for a FIR system with positive symmetry, M = odd
+
+- Only for an example, it is simpler (general case at blackboard)
+
+- Suppose we have a FIR filter with $M=5$ coefficients:
+  $$h[n] = \lbrace 4, 3, 2, 3, 4 \rbrace$$
+  $$H(z) = 4 + 3 z^{-1} + 2 z^{-2} + 3z^{-3} + 4z^{-4} $$
+
+- having positive symmetry  (first = last, second = second to last, etc)
+
+- and length $M$ = odd, i.e. one coefficient is alone in the middle
+
+### Proof example
+
+- Let's compute $H(\omega)$:
+
+$$\begin{aligned}
+H(\omega) &= \sum_n h[n] e^{- j \omega n} \\
+&= 4 e^0 + 3 e^{-j \omega} + 2 e^{-j 2 \omega} + 3 e^{-j 3 \omega} + 4 e^{-j 4 \omega}\\
+&= e^{-j 2 \omega} (4 e^{j 2 \omega} + 3 e^{j \omega} + 2 + 3 e^{-j 1 \omega} + 4 e^{-j 2 \omega} ) \\
+&= e^{-j 2 \omega} (4 e^{j 2 \omega} + 4 e^{-j 2 \omega} + 3 e^{j \omega} + 3 e^{-j 1 \omega} + 2) \\
+&= e^{-j 2 \omega} (4 \cdot 2 \cos(2 \omega) + 3 \cdot 2 \cos(\omega) + 2 ) \\
+&= \underbrace{    e^{j \angle{H(\omega)}}   }_{e^{j \cdot phase}} \underbrace{|H(\omega)|}_{real} \\
+\end{aligned}$$
+
+- The phase is $\angle(H(\omega)) = - 2 \omega$, a **linear** function
+- The phase of the filter is linear
+
+### Proof explained
+
+Key points in this proof:
+
+- we pull a common factor, so that the first and last terms have the same exponents, but with opposite signs
+- we group first with last term, second with second-to-last:
+  - they have same coefficient in front, because of positive symmetry
+  - $e^{jx} + e^{-jx} = 2 \cos(x) = real$
+- everything remaining in the right-side paranthesis is a real-valued
+
+Since $H(\omega) = |H(\omega)| e^{j\angle{H(\omega)}}$, we identify the two terms:
+
+- $|H(\omega)|$ must be the real part in the right-side
+- $\angle{H(\omega)}$ must be the term $-2\omega$, which is a linear function of $\omega$
+(up to some changes in sign of the real part)
+
+### Other cases
+
+Generalizations:
+
+- the filter length can be anything, as long as it has symmetry
+- if $M$ is even, there is no single term remaining in the middle, but the proof stays the same
+- if we have **negative** symmetry, the terms have opposite signs, and we use: 
+  $$e^{jx} - e^{-jx} = 2 j \sin(x) = 2 \sin(x) \cdot e^{j \frac{\pi}{2}}$$
+
 ### Zero-phase FIR filters
 
 - Can we avoid delay altogether?
