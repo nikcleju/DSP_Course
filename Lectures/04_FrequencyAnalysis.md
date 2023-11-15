@@ -394,7 +394,7 @@ produces an output proportional to it
 
 - A non-periodic signal $x[n]$ has a **continuous spectrum** $X(\omega)$, with $f \in [-\frac{1}{2}, \frac{1}{2}]$
   
-  - e.g. $\omega \in [-\frac{1}{2}, \frac{1}{2}]$
+  - e.g. $\omega \in [-\pi, \pi]$
 
 
 ### Discrete Fourier Transform (DFT)
