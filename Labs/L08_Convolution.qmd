@@ -91,6 +91,11 @@ It contains impulse responses that create a reverberation effect.
     
     How does the signal sound? What audio effect did we implement here?
 
+   Other sites for impulses responses:
+     
+   - [http://pcfarina.eng.unipr.it/Public/IMP-RESP/](http://pcfarina.eng.unipr.it/Public/IMP-RESP/)
+   - [https://www.kvraudio.com/forum/viewtopic.php?t=107337&start=645](https://www.kvraudio.com/forum/viewtopic.php?t=107337&start=645)
+
 
 3. Load the first 4 seconds of "Kalimba.mp3" (use `audioread()`), convolve first with one impulse response, and then convolve the result with a second impulse response from the pack. 
   
