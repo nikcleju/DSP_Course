@@ -752,6 +752,22 @@ $$x_1[n] \cdot  x_2[n] \leftrightarrow \sum_{m=0}^{N-1} X_m^{(1)} X_{(k-m)_N}^{(
 
 - Is true for all orthonormal bases
 
+### Plot / sketch DTFT and DFT of various signals
+
+Let's plot / sketch DTFT and DFT of various signals
+
+DTFT of:
+
+- a constant signal $x[n] = A$
+- a rectangular signal $x[n] = A$ between $-\tau$ and $\tau$, 0 elsewhere
+- a cosine of frequency $f = 1/3$
+
+DFT, with N=20, of:
+
+- a constant signal $x[n] = A$
+- a rectangular signal $x[n] = A$ between $-\tau$ and $\tau$, 0 elsewhere
+- a cosine of frequency $f = 1/3$
+
 ### DFT matrix
 
 - The DFT (and the inverse IDFT) is equivalent with a matrix multiplication:
@@ -811,7 +827,6 @@ $$x_1[n] \cdot  x_2[n] \leftrightarrow \sum_{m=0}^{N-1} X_m^{(1)} X_{(k-m)_N}^{(
   - prohibitively large
 
 ### FFT
-
 
 - The Fast Fourier Transform (FFT) algorithm = a fast algorithm for computing the DFT, exploiting
   the particular nature (symmetries) in the DFT matrix
