@@ -760,13 +760,15 @@ DTFT of:
 
 - a constant signal $x[n] = A$
 - a rectangular signal $x[n] = A$ between $-\tau$ and $\tau$, 0 elsewhere
-- a cosine of frequency $f = 1/3$
+- a cosine of frequency precisely $f = k/N$
+- a cosine of frequency not $f = k/N$
 
 DFT, with N=20, of:
 
 - a constant signal $x[n] = A$
 - a rectangular signal $x[n] = A$ between $-\tau$ and $\tau$, 0 elsewhere
-- a cosine of frequency $f = 1/3$
+- a cosine of frequency precisely $f = k/N$
+- a cosine of frequency not $f = k/N$
 
 ### DFT matrix
 
@@ -850,8 +852,34 @@ DFT, with N=20, of:
   3. Which means $X = A^{-1} x$ (forward transform)
 
 - Why:
-  - compression: the discrete cosine transform is the basis for JPEG image compression
+  - compression: the discrete cosine transform is the basis for lossy JPEG image compression
   - ...
+
+### Example
+
+- Consider the exercise from Week 2:
+
+  $$x[n] = \lbrace ..., 0, \frac{1}{3}, \frac{2}{3}, 1, 1, 1, 1, 0, ... \rbrace$$
+  Write the expression of $x[n]$ based on the signal $u[n]$.
+
+  Solve this in Matlab using a matrix approach
+
+### Another example: JPEG
+
+![JPEG compression with DCT transform](img/JPG_DCT_BlockDiagram.png){width=80% max-width=1000px}
+
+- image from: JPEG Picture Compression Using Discrete Cosine Transform, N. K. More, S. Dubey, 2012
+
+### Another example: JPEG (cont'd)
+
+- Each 8x8 image block is a vector in a 64 dimensional space
+- Each 8x8 image block is decomposed into 64 basis vectors
+
+  ![8x8 DCT basis vectors](img/DCT-8x8.png){width=30% max-width=1000px}
+
+- Result: 64 coefficients, but many are small, negligible, quantizable => compression
+
+- image from: Wikipedia
 
 
 ### Relationship between DTFT and DFT
@@ -890,12 +918,17 @@ DFT, with N=20, of:
 - Example: consider a sequence of 7 values
   $$x = [6, 3, -4, 2, 0, 1, 2]$$
 
-- If we consider a non-periodic $x[n]$ with infinitely long zeros on either side, we have a continuous spectrum $X(\omega)$ (DTFT)
+- If we consider a $x$ surrounded by infinitely long zeros ($x[n]$ non-periodical), we have a continuous spectrum $X(\omega)$ (DTFT)
 
-- If we consider that $x$ is just a period of a periodic signal, we have a discrete spectrum $X_k$ (DFT)
+  $$x = [...0, 6, 3, -4, 2, 0, 1, 2, 0, ...]  \leftrightarrow X(\omega)$$
 
-- Moreover, the discrete $X_k$ are just **samples from $X(\omega)$**:
+- If we consider that $x$ is surrounded by repeating the sequences ($x[n]$ periodical), we have a discrete spectrum $X_k$ (DFT)
+
+  $$x = [..., -4, 2, 0, 1, 2, 0, 6, 3, -4, 2, 0, 1, 2, 0, 6, 3, -4, ...]  \leftrightarrow X_k $$
+
+- The discrete $X_k$ are just **samples from $X(\omega)$**:
   $$X_k = X(2 \pi k/N n)$$
+
 
 ### Relationship between DTFT and DFT
 
@@ -916,11 +949,95 @@ plt.close()
 
 $x = [6, 5, 4, -3, 2, -3, 4, 5, 6]$
 
-- red line = DFT(x) if $x$ not periodical
-   - actually run as `fft(x, 10000)`, x is extended with 9991 zeros
+- red line = DTFT of $x[n]$ (assuming surrounded by zeros)
+   - (actually run as `fft(x, 10000)`, x is extended with 9991 zeros)
 
-- blue = `fft(x)`
+- blue = DFT of $x$ (assumes periodic)= `fft(x)`
 
+### Study case
+
+```matlab
+n = 0:99;
+f = 0.015;
+x = cos(2*pi*f*n)
+plot(abs(fft(x)))
+```
+
+Discuss:
+
+1. Why is the spectrum not just 2 Diracs, like a normal `cos()`?
+1. FFT assumes periodicity. Are there boundary problems?
+2. What is the role of the rectangular window?
+3. What happens if we run `fft(x, 10000)` instead of `fft(x)`?
+
+### The need for windowing
+
+- When you have finite-length cosine vector $x$, you have just a part of your signal:
+$$x = cos(2 \pi f n) \cdot w[n]$$
+
+- The spectrum of $x = x[n] \cdot w[n]$ is Diracs * $W(\omega)$
+
+- Instead of Diracs, you have $W(\omega)$'s:
+  - wide peak
+  - secondary lobes
+
+- Working with a piece of a signal **always** means a windowing,
+  i.e. the spectrum is affected
+
+  - every Dirac is "smudged" into a $W(w)$
+
+### The need for windowing
+
+- What if we change the window $w[n]$
+
+  - Recangular window
+  - Hamming window
+  - Hann window
+  - ...
+
+- What they do: trade narrow peak vs small secondary lobes
+
+  - Rectangular window: widest peak, smallest secondary lobes
+  - Other windows : narrower peak, higher secondary lobes
+
+- What they do: attenuate endings, to reduce boundary problems
+
+### The need for windowing
+
+- Remember: every time we work with a piece of a signal
+  (e.g. we process an audio file in pieces of 1024 samples),
+  we are applying windowing
+
+- Even cutting a part of a signal, that's still applying a window
+
+- Even the rectangular window is still a window
+
+- Consider replacing the rectangular window with another one,
+  if you use `fft()` or other frequency-based operations
+
+### How to compute the DTFT
+
+- The DFT is computed with `fft(x)`
+
+- How to compute the DTFT?
+
+- You can't. You need to surround $x$ with infinitely long zeros
+
+- You can only surrounf it with many zeros, but still finite
+
+- Do this with `fft(x, 100000)` (DFT in N=100000 points)
+
+  - $x$ is surrounded with zeros unil total length = 100000
+  - it's still just `fft()`, so DFT, so you have points and not the full continuous function
+  - but it's many many points
+
+### How to compute the DTFT
+
+- Computing the `fft()` in N=100000 points is unrelated with windowing
+
+- Windowing changes the Diracs into $W(\omega)$'s
+
+- `fft()` in N points is just taking N points from the resulting continuous spectrum
 
 ### Relation between DTFT and Z transform
 
