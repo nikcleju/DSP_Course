@@ -886,32 +886,18 @@ DFT, with N=20, of:
 
 - How are DTFT and DFT related?
 
-- Discrete Time Fourier Transform:
+- Discrete Time Fourier Transform (DTFT):
   - for non-periodical signals
   - spectrum is continuous
 
-- Discrete Fourier Transform
+- Discrete Fourier Transform (DFT):
   - for periodical signals
   - spectrum is discrete
 
 - Duality: periodic in time $\leftrightarrow$ discrete in frequency
 
-### Relationship between DTFT and DFT
-
-- Consider a non-periodic signal $x[n]$
-
-- It has a continuous spectrum $X(\omega)$
-
-- If we **periodize** it by repeating with period N:
-  $$x_N[n] = \sum_{k=-\infty}^{\infty} x[n - k N]$$
-
-- then the Fourier transform is **discrete** (made of Diracs):
-  $$X_N(\omega) = 2 \pi X_k \delta(\omega - k \frac{2 \pi}{N})$$
-
-- The coefficients of the Diracs = the DFT coefficients
-  $$X_k = X(2 \pi k/N n)$$
-
-- They are **samples**  from the continuous $X(\omega)$ of the non-periodized signal
+- The Diracs of the DFT are samples from the continuous DTFT
+  of a single period of the signal
 
 ### Relationship between DTFT and DFT
 
@@ -919,16 +905,13 @@ DFT, with N=20, of:
   $$x = [6, 3, -4, 2, 0, 1, 2]$$
 
 - If we consider a $x$ surrounded by infinitely long zeros ($x[n]$ non-periodical), we have a continuous spectrum $X(\omega)$ (DTFT)
-
   $$x = [...0, 6, 3, -4, 2, 0, 1, 2, 0, ...]  \leftrightarrow X(\omega)$$
 
 - If we consider that $x$ is surrounded by repeating the sequences ($x[n]$ periodical), we have a discrete spectrum $X_k$ (DFT)
-
   $$x = [..., -4, 2, 0, 1, 2, 0, 6, 3, -4, 2, 0, 1, 2, 0, 6, 3, -4, ...]  \leftrightarrow X_k $$
 
-- The discrete $X_k$ are just **samples from $X(\omega)$**:
-  $$X_k = X(2 \pi k/N n)$$
-
+- The discrete $X_k$ are just **samples from $X(\omega)$**, at frequencies $k/N$:
+  $$X_k = X(2 \pi (k/N) n)$$
 
 ### Relationship between DTFT and DFT
 
@@ -949,10 +932,27 @@ plt.close()
 
 $x = [6, 5, 4, -3, 2, -3, 4, 5, 6]$
 
-- red line = DTFT of $x[n]$ (assuming surrounded by zeros)
+- red line = DTFT of $x$ (assuming surrounded by zeros)
    - (actually run as `fft(x, 10000)`, x is extended with 9991 zeros)
 
 - blue = DFT of $x$ (assumes periodic)= `fft(x)`
+
+### Relationship between DTFT and DFT
+
+- Consider a non-periodic signal $x[n]$
+
+- It has a continuous spectrum $X(\omega)$
+
+- If we **periodize** it by repeating with period N:
+  $$x_N[n] = \sum_{k=-\infty}^{\infty} x[n - k N]$$
+
+- then the Fourier transform is **discrete** (made of Diracs):
+  $$X_N(\omega) = 2 \pi X_k \delta(\omega - k \frac{2 \pi}{N})$$
+
+- The coefficients of the Diracs = the DFT coefficients
+  $$X_k = X(2 \pi k/N n)$$
+
+- They are **samples**  from the continuous $X(\omega)$ of the non-periodized signal
 
 ### Study case
 
@@ -970,25 +970,53 @@ Discuss:
 2. What is the role of the rectangular window?
 3. What happens if we run `fft(x, 10000)` instead of `fft(x)`?
 
-### The need for windowing
+### Signal windowing and frequency resolution
 
-- When you have finite-length cosine vector $x$, you have just a part of your signal:
-$$x = cos(2 \pi f n) \cdot w[n]$$
+- When you have finite-length cosine vector $x$, you have just a part of your signal
 
-- The spectrum of $x = x[n] \cdot w[n]$ is Diracs * $W(\omega)$
+- The true signal $x$, infinitely long, is actually multiplied with a rectangular window $w[n]$
+  $$x = cos(2 \pi f n) \cdot w[n]$$
+
+- Multiplication in time = convolution in frequency
+
+  The spectrum of $x = x[n] \cdot w[n]$ is Diracs * $W(\omega)$
 
 - Instead of Diracs, you have $W(\omega)$'s:
   - wide peak
   - secondary lobes
 
-- Working with a piece of a signal **always** means a windowing,
-  i.e. the spectrum is affected
+### Signal windowing and frequency resolution
 
-  - every Dirac is "smudged" into a $W(w)$
+- Working with a piece of a signal **always** distorts a signal
 
-### The need for windowing
+  - every Dirac is "smudged" into a $W(\omega)$
 
-- What if we change the window $w[n]$
+- This is unavoidable
+
+- If we have a segment of a cosine, in the DTFT (continuous) we never see Diracs, but $W(\omega)$
+
+  - The longer the piece, the better
+
+### Signal windowing and frequency resolution
+
+- So what's the problem if we see $W(\omega)$ instead of Diracs?
+
+- **Frequency resolution** = the ability to distinguish between closely spaced frequency components in a signal
+
+- Having $W(\omega)$ instead of a Dirac is bad because it **masks** the surrounding region
+
+  - a two close Diracs with similar height are be impossible to differentiate, because of the wide central lobe
+  - a Dirac further away but smaller is impossible to differentiate, because of secondary lobes
+
+- Analyzing a short segment of a signal leads to **low resolution in frequency**
+
+- Analyzing a longer segment leads to **higher resolution in frequency**
+
+- Frequency resolution is proportional to the length of the signal
+
+### Signal windowing and frequency resolution
+
+- We can change the window $w[n]$
 
   - Recangular window
   - Hamming window
@@ -1002,18 +1030,66 @@ $$x = cos(2 \pi f n) \cdot w[n]$$
 
 - What they do: attenuate endings, to reduce boundary problems
 
-### The need for windowing
+### Signal windowing and frequency resolution
 
 - Remember: every time we work with a piece of a signal
   (e.g. we process an audio file in pieces of 1024 samples),
   we are applying windowing
 
-- Even cutting a part of a signal, that's still applying a window
-
 - Even the rectangular window is still a window
 
-- Consider replacing the rectangular window with another one,
+- If you need to compute the spectrum, know that is is affected
+
+- Always consider replacing the rectangular window with another one,
   if you use `fft()` or other frequency-based operations
+
+### STFT and Spectrogram
+
+- How to analyze the frequency of a signal whose frequency components change in time
+(e.g. like a musical song)?
+
+- Short-Time Fourier Transform (STFT) = a technique for analyzing the frequency content of local sections of a signal as it changes over time.
+
+- STFT divides a longer time signal into shorter segments of equal length and then computes the Fourier Transform separately on each short segment.
+
+  - Split the signal into pieces (e.g. 1024-samples long)
+  - Compute the spectrum of every piece (e.g. `fft()`)
+  - Display the resulting sequence of spectra = "spectrogram"
+
+### STFT and Spectrogram
+
+- The STFT is a **time-frequency representation** of a signal
+
+- 2-Dimesional: time and frequency
+
+- Examples: [https://en.wikipedia.org/wiki/Spectrogram](https://en.wikipedia.org/wiki/Spectrogram)
+
+### STFT: Time and frequency resolution
+
+- Imagine you look at the spectrogram of a music piece, and you
+  want to pinpoint the moment where the bass guitar starts to play a chord of 100Hz
+
+- Do a STFT and look for the moment where you see a high spectrum atoun 100Hz
+
+- If the segments are short:
+  - good time resolution
+  - poor frequency resolution
+
+- If the segments are long:
+  - poor time resolution
+  - high frequency resolution
+
+### STFT: Time and frequency resolution
+
+**Time-frequency Uncertainty Principle**:
+
+- you cannot have very good time resolution and very good frequency resolution simultaneously
+
+### STFT: other issues
+
+- Other issues with STFT
+  - can change the window type, to alleviate boundary problems / artefacts
+  - allow some overlap between segments (e.g. 10%)
 
 ### How to compute the DTFT
 
@@ -1023,7 +1099,7 @@ $$x = cos(2 \pi f n) \cdot w[n]$$
 
 - You can't. You need to surround $x$ with infinitely long zeros
 
-- You can only surrounf it with many zeros, but still finite
+- You can only surround it with many zeros, but still finite
 
 - Do this with `fft(x, 100000)` (DFT in N=100000 points)
 
@@ -1033,7 +1109,9 @@ $$x = cos(2 \pi f n) \cdot w[n]$$
 
 ### How to compute the DTFT
 
-- Computing the `fft()` in N=100000 points is unrelated with windowing
+- Computing the `fft()` in N=100000 points is unrelated with frequency resolution
+
+- Frequency resolution is dependent on actual length of $x$
 
 - Windowing changes the Diracs into $W(\omega)$'s
 
