@@ -137,11 +137,11 @@ plot(S_mod)                % Plot is displayed in the second part
 
     a. Generate a 100 samples long signal `x` defined as 
        $x[n] = 0.7 \cos(2 \pi f_1 n) + 1.2 \sin(2 \pi f_2 n),$
-       with $f_1 = 0.05$ and $f_1 = 0.1$.
+       with $f_1 = 0.05$ and $f_2 = 0.1$.
     
     a. Plot the signal in the top third of a figure (use `subplot()`).
   
-    b. Compute the Fourier series coefficients with `fft()` and 
+    b. Compute the DFT coefficients with `fft()` and 
     plot their magnitude in the middle third, and their phase in the lower third.
    
     d. Explain the relationship between the time domain and frequency domain representations of the signal.
