@@ -28,7 +28,7 @@ Oscillators are unstable systems which have at least one pole exactly **on the u
 
 $$z = 1 \cdot e^{j \omega}$$
 
-In order to have real values for the coefficients, if the pole is outside of the real axis, there must also be a complex conjugate pole,
+In order to have a real-valued system (real-valued impulse response), if the pole is outside of the real axis, there must also be a complex conjugate pole,
 i.e. there will be a pair of complex conjugate poles.
 
 The phase of the poles, i.e. the angle $\omega$ of the poles in the graphical representation, is the pulsation $\omega = 2 \pi f$ of the oscillator.
