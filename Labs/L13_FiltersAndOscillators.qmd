@@ -2,7 +2,7 @@
 title: Designing Oscillators
 
 subtitle: DSP Lab 13
-format: 
+format:
   html: default
   pdf: default
   ipynb: default
@@ -24,19 +24,22 @@ and implement them in Simulink.
 
 ## Theoretical notions
 
-Oscillators are unstable systems which have at least one pole exactly **on the unit circle**, i.e. the modulus of the pole value is exactly 1. 
+Oscillators are unstable systems which have at least one pole exactly **on the unit circle**, i.e. the modulus of the pole value is exactly 1.
 
 $$z = 1 \cdot e^{j \omega}$$
 
 In order to have real values for the coefficients, if the pole is outside of the real axis, there must also be a complex conjugate pole,
 i.e. there will be a pair of complex conjugate poles.
 
-The phase of the zero, i.e. its angle in the graphical representation, determines the frequency (pulsation) of the oscillator.
+The phase of the poles, i.e. the angle $\omega$ of the poles in the graphical representation, is the pulsation $\omega = 2 \pi f$ of the oscillator.
+For example, if we have a pair of poles $e^{\pm j \frac{\pi}{2}}$ on the unit circle, situated at an angle of $\omega = \frac{\pi}{2}$,
+the oscillator will produce a sinusoidal signal $y[n] = \cos(\frac{\pi}{2} n)$.
+
 
 ## Exercises
 
-1. Use the Filter Design tool in Matlab (`fdatool`) to design a 
-IIR high-pass filter with order 3, with cutoff frequency $0.07$. 
+1. Use the Filter Design tool in Matlab (`fdatool`) to design a
+IIR high-pass filter with order 3, with cutoff frequency $0.07$.
 
    1. Implement the filter in Simulink
    2. Apply at the input the signal $x[n] = \cos(2 \pi 0.03 n)$ (use a `Sine Wave` block) and visualize the output $y[n]$. Is this signal rejected or not by the filter?
