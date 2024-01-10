@@ -35,6 +35,10 @@ y[n] =& -\sum_{k=1}^N a_k y[n-k] + -\sum_{k=1}^M b_k x[n-k] \\
 
 *[image from "Digital Signal Processing", Proakis & Manolakis, 3rd ed.]*
 
+### Direct-Form I
+
+![Direct-Form I structure](img/DF1.png){#id .class width=55%}
+
 
 ### Direct-Form II
 
@@ -53,6 +57,10 @@ y[n] =& -\sum_{k=1}^N a_k y[n-k] + -\sum_{k=1}^M b_k x[n-k] \\
 
 *[image from "Digital Signal Processing", Proakis & Manolakis, 3rd ed.]*
 
+### Direct-Form II
+
+![Direct-Form II structure](img/DF2.png){#id .class width=55%}
+
 ### Transposed forms
 
 * **Transposition of a graph** = reverse the direction of all branches, swap input and output
@@ -65,33 +73,13 @@ y[n] =& -\sum_{k=1}^N a_k y[n-k] + -\sum_{k=1}^M b_k x[n-k] \\
     * transpose the form 
     * different structures than the originals
 
-### Transposed forms
+### Direct-Form I Transposed
 
-- Draw here: Direct-Form I Transposed, Direct-Form II transposed
+![Direct-Form I Transposed structure](img/DF1T.png){#id .class width=55%}
 
-\bigskip
+### Direct-Form II Transposed
 
-\bigskip
-
-\bigskip
-
-\bigskip
-
-\bigskip
-
-\bigskip
-
-\bigskip
-
-\bigskip
-
-\bigskip
-
-\bigskip
-
-\bigskip
-
-\bigskip
+![Direct-Form II Transposed structure](img/DF2T.png){#id .class width=55%}
 
 ### FIR systems
 
