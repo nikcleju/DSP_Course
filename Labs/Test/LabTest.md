@@ -1,6 +1,5 @@
 ---
-title: Laboratory Test
-subtitle: DSP 2022-2023
+title: Laboratory Test DSP 2023-2024
 documentclass: scrartcl
 fontsize: 12pt
 ---
@@ -8,7 +7,7 @@ fontsize: 12pt
 
 # Information
 
-- The test is taken during the lab, and lasts for 1 hour
+- The test is taken during the lab, and lasts for ~~1 hour~~ up to 2 hours
 
 - General Matlab stuff you need to know is listed in the **Syllabus** section.
   This is not an exhaustive list. There may be things I forgot to put in the list, 
@@ -50,7 +49,7 @@ fontsize: 12pt
 
   - load a file
   - load only a certain part of a file (e.g. the first 5 seconds)
-  - extract a single channel 
+  - extract a single channel (column)
   - play with the data, e.g. swap channels
 
 - Operate with images 
@@ -68,7 +67,7 @@ fontsize: 12pt
   
   - the function takes `x` as input and outputs the result vector `y`
 
-<!-- - Pass a function as argument to another function and use it inside -->
+- ~~Pass a function as argument to another function and use it inside~~
 
 - Do convolutions of vectors with `conv()`
 
@@ -79,13 +78,13 @@ fontsize: 12pt
   - Also apply some input, visualize the output
   - Apply an impulse and visualize the impulse response
 
-<!-- - Test linearity ~~and time-invariance~~ of systems in Simulink -->
+- ~~Test linearity and time-invariance of systems in Simulink~~
 
 - Design a IIR or FIR low-pass/high-pass etc. filter with `fdatool` GUI, according to specifications.
   
   Export the coefficients to Matlab, or implement the filter in Simulink.
   
-- Use the filter coefficients to filter a signal, or to filter an image by columns and rows.
+- ~~Use the filter coefficients to filter a signal, or to filter an image by columns and rows.~~
 
 - Design an oscillator with a prescribed frequency, and implement it in Simulink (Lab 13)
 
@@ -95,7 +94,7 @@ fontsize: 12pt
 
 ## Lab 2
 
-1. Plot on the same figure the signals $sin(2 \pi f t + \frac{\pi}{4})$ and $cos(2 \pi f t + \frac{\pi}{8})$ , with $f = 0.3$ and $t \in [0, 10]$.
+1. Generate and plot on the same figure the signals $sin(2 \pi f t + \frac{\pi}{4})$ and $cos(2 \pi f t + \frac{\pi}{8})$ , with $f = 0.3$ and $t \in [0, 10]$.
 
 2. Load the audio file 'Kalimba.mp3' in the Matlab workspace. Only load samples between 1 and 200000 (to avoid out of memory error)
 
@@ -111,7 +110,7 @@ fontsize: 12pt
 Create three matrices for the R, G, B components of the image
 Concatenate the three matrices across third dimension, into a 3D tensor
 
-**Variant**: Make another simple flag or figure, color or grayscale, and show it
+**Variant**: Make another simple flag or figure, color or grayscale, and display it.
 
 ## Lab 3 version 2
 
@@ -236,10 +235,11 @@ with $f_1 = 0.05$ and $f_1 = 0.1$.
 
    Export its coefficients to Matlab Workspace.
 
-2. Generate a 300-long periodic square signal, composed of 30 values of 1 followed by 30 values of 0, repeated for 5 times.
+2. ~~Generate a 300-long periodic square signal, composed of 30 values of 1 followed by 30 values of 0, repeated for 5 times.~~
 
-   Filter the signal with the filter obtained in Exercise 1, and display the input and the output signal.
+   ~~Filter the signal with the filter obtained in Exercise 1, and display the input and the output signal.~~
 
+<!--
 ## Lab 12
 
 1. Use the Filter Design tool in Matlab (`fdatool`) to design a FIR high-pass filter with order ..., with cutoff frequency $0.07$, etc.
@@ -256,6 +256,7 @@ or:
 
    - filter very row in the image, separately
    - then filter every column in the resulting matrix.
+-->
 
 ## Lab 13
 
