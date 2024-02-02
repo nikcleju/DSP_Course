@@ -1,7 +1,7 @@
 # DSP_Course
 
-Here you will find all the materials for the class of Digital Signal Processing taught during 2020-2021
-autumn semester at ETTI, TUIASI.
+Here you will find all the materials for the class of Digital Signal Processing taught during
+3rd year undergraduate studies at ETTI, TUIASI.
 
 <!--
 ## Notes for 2018-2019 exam
