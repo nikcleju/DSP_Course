@@ -15,24 +15,30 @@ autumn semester at ETTI, TUIASI.
 * Semester tests are available here [Tests_2018_2019.zip](Tests_2018_2019.zip)
 -->
 
-## Course materials 
+## Course materials
 
-### Lectures 
+### Lecture notes
+
+A draft version of a lecture textbook, in web format, is available here: [DSP Lecture Notes](https://nikcleju.github.io/DSP_LectureNotes/).
+
+For now it only contains solved exercises (most of).
+
+### Lecture slides
 
 All lecture slides are available as pdf files in the [Lectures](Lectures/) folder:
 
+<!--
 - [Lectures\00_Introduction.pdf](Lectures/00_Introduction.pdf)
 - [Lectures\01_Sampling.pdf](Lectures/01_Sampling.pdf)
 - [Lectures\02_SignalsAndSystems.pdf](Lectures/02_SignalsAndSystems.pdf)
 - [Lectures\03_Z_Transform.pdf](Lectures/03_Z_Transform.pdf)
 - [Lectures\04_FrequencyAnalysis.pdf](Lectures/04_FrequencyAnalysis.pdf)
 - [Lectures\05_DigitalFiltering.pdf](Lectures/05_DigitalFiltering.pdf)
-<!--
 - [Lectures\06_ImplementationOfDigitalSystems.pdf](Lectures/06_ImplementationOfDigitalSystems.pdf)
 - [Lectures\07_ApplicationsOfDSP.pdf](Lectures/07_ApplicationsOfDSP.pdf)
 -->
 
-The **annotated** lectures (written on during the classes) are available in the [Lectures/online/](Lectures/online) folder.
+The **annotated** lectures (written on during online classes, if any) are available in the [Lectures/online/](Lectures/online) folder.
 The files are named as `<chapter>_annotated.pdf`.
 
 ### Exercises
