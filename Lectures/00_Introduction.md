@@ -7,7 +7,7 @@ title: "Introduction"
 - 6 credits
 - Professors
     - Lectures: Nicolae Cleju
-    - Laboratories: Nicolae Cleju
+    - Laboratories: Irina Pavel
 
 - Time schedule
     - 14 weeks of lectures (3h each)
