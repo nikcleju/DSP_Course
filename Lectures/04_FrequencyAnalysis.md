@@ -540,7 +540,7 @@ $$x_1[n] \cdot  x_2[n] \leftrightarrow \frac{1}{2 \pi} \int_{-\pi}^\pi X_1(\lamb
 
 #### Correlation theorem
 
-$$r_{x_1x_2}[l] \leftrightarrow X_1(\omega) X_2(-\omega)$$
+$$r_{x_1x_2}[l] \leftrightarrow X_1(\omega) X_2^\star(\omega)$$
 
 #### Wiener Khinchin theorem
 
@@ -584,7 +584,7 @@ To remember:
 
 - DTFT has only $N$ coefficients $X_k$, each $X_k$ corresponding to a frequency $f = \frac{k}{N}$
 
-- In discrete domain, $f = \frac{N-k}{N} = \frac{-k}{N}$  (aliasing, we can always add/subtract 1 from $f$)
+- In frequency domain, $f = \frac{N-k}{N} = \frac{-k}{N}$  (aliasing, we can always add/subtract 1 from $f$)
 
 - So we can consider $X_{N-k}$ as $X_{-k}$, due to periodicity
 
