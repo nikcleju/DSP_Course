@@ -1,6 +1,7 @@
 
 # Source md filenames, excluding macros.md and slides_header.md
 SOURCE_MD = $(filter-out macros.md slides_header.md, $(wildcard *.md))
+SOURCE_QMD = $(wildcard *.qmd)
 
 # Source mdw filenames
 SOURCE_MDW = $(wildcard *.mdw)
@@ -9,7 +10,7 @@ SOURCE_MDW = $(wildcard *.mdw)
 EXPORTED_DOCS_MD = $(SOURCE_MDW:.mdw=.md)
 
 # Exported pdf filenames
-EXPORTED_DOCS_PDF = $(SOURCE_MD:.md=.pdf)
+EXPORTED_DOCS_PDF = $(SOURCE_MD:.md=.pdf) $(SOURCE_QMD:.qmd=.pdf)
 
 # Exported odt filenames
 EXPORTED_DOCS_ODT = $(SOURCE_MD:.md=.odt)
@@ -21,6 +22,9 @@ EXPORTED_DOCS_TEX = $(SOURCE_MD:.md=.tex)
 # Pandoc options
 PANDOC = codebraid
 PANDOC_OPTIONS = pandoc --overwrite -f markdown+latex_macros --standalone -t beamer --slide-level 3 --include-in-header macros.md
+
+# Quarto options
+QUARTO = quarto
 
 # PWeave options
 PWEAVE = pweave
@@ -43,6 +47,9 @@ RM=/bin/rm
 %.tex : %.md
 	$(PANDOC) $(PANDOC_OPTIONS) -o $@ slides_header.md $<
 
+%.pdf : %.qmd
+	$(QUARTO) render $< --to beamer --output $@
+
 %.md : %.mdw
 ifeq ($(PWEAVE_FAST),TRUE)
 	echo "Skipping Pweave regeneration of images"
@@ -52,7 +59,7 @@ else
 endif
 
 # What is this?
-.PHONY: all clean
+.PHONY: all qmd clean
 
 all : pdf
 
@@ -61,6 +68,8 @@ debug: tex odt pdf
 odt : $(EXPORTED_DOCS_ODT)
 
 pdf : $(EXPORTED_DOCS_PDF)
+
+qmd : $(SOURCE_QMD:.qmd=.pdf)
 
 tex : $(EXPORTED_DOCS_TEX)
 

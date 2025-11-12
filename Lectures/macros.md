@@ -11,6 +11,10 @@
 
 \newcommand*{\underuparrow}[1]{\ensuremath{\underset{\uparrow}{#1}}}
 
+\providecommand{\IfDocumentMetadataTF}[2]{#2}
+\providecommand{\IfDocumentMetadataT}[1]{}
+\providecommand{\IfDocumentMetadataF}[1]{#1}
+
 \setbeamercolor{section name}{fg=white}  % Make section number white so it's not visible, see https://tex.stackexchange.com/a/468134
 \setbeamercolor{subsection name}{fg=white}  % Make section number white so it's not visible, see https://tex.stackexchange.com/a/468134
 
