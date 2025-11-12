@@ -1222,10 +1222,38 @@ A = tril(ones(7,7));
 a = linsolve(A, x)
 ```
 
-### Another example: Haar transform:
+### Another example: Haar transform
 
-TODO: example with Haar transform, equation + solution in Matlab
+- The Haar transform uses orthonormal basis vectors that are “square” waves. The first three Haar basis vectors ($N=4$) are:
 
+- Example: Find Haar transform of signal $x = [1/3, 2/3, 1, 1]$
+
+  $$\begin{bmatrix}1/3 \\
+2/3 \\
+1 \\
+1
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & 0 \\
+\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & 0 \\
+\frac{1}{2} & -\frac{1}{2} & 0 & \frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} & 0 & -\frac{1}{2} \\
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+c_0 \\ c_1 \\ c_2 \\ c_3
+\end{bmatrix}$$
+
+```matlab
+% Haar transform of a short signal
+H = (1/2)*[ 1  1  1  0;
+            1  1 -1  0;
+            1 -1  0  1;
+            1 -1  0 -1];
+x = [1/3; 2/3; 1; 1];
+c = linsolve(H, x)
+```
 
 ### Another example: JPEG
 
