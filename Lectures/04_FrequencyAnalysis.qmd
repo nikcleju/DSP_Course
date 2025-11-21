@@ -1447,6 +1447,105 @@ Discuss:
   - Compute the spectrum of every piece (e.g. `fft()`)
   - Display the resulting sequence of spectra = "spectrogram"
 
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+fs = 8000
+duration = 2.0
+t = np.arange(0, duration, 1 / fs)
+
+rng = np.random.default_rng(0)
+
+
+def compute_spectrogram(signal, frame_size=256, hop=64):
+    window = np.hanning(frame_size)
+    frames = []
+    for start in range(0, len(signal) - frame_size + 1, hop):
+        frame = signal[start:start + frame_size] * window
+        spectrum = np.fft.rfft(frame)
+        frames.append(np.abs(spectrum) ** 2)
+    frames = np.array(frames).T
+    freqs = np.fft.rfftfreq(frame_size, 1 / fs)
+    times = np.arange(frames.shape[1]) * hop / fs
+    return freqs, times, frames
+
+
+def plot_spec(signal, title, filename, ylim=2000):
+    freqs, times, power = compute_spectrogram(signal)
+    power_db = 10 * np.log10(power + 1e-12)
+
+    fig, axes = plt.subplots(2, 1, figsize=(9, 6), sharex=True)
+    axes[0].plot(t, signal)
+    axes[0].set_xlim(0, duration)
+    axes[0].set_ylabel("Amplitude")
+    axes[0].set_title(f"{title} — time domain")
+    axes[0].grid(alpha=0.3)
+
+    mesh = axes[1].pcolormesh(times, freqs, power_db, shading="gouraud", cmap="magma", vmin=-120)
+    axes[1].set_ylabel("Frequency [Hz]")
+    axes[1].set_xlabel("Time [s]")
+    axes[1].set_ylim(0, ylim)
+    cbar = fig.colorbar(mesh, ax=axes[1], pad=0.02)
+    cbar.set_label("Power [dB]")
+
+    fig.tight_layout()
+    fig.savefig(f"fig/{filename}", transparent=True, bbox_inches="tight", dpi=300)
+    plt.close(fig)
+
+
+# Example 1: sustained fundamental with a brief overtone
+fundamental = 0.6 * np.sin(2 * np.pi * 220 * t)
+overtone = 0.45 * np.sin(2 * np.pi * 660 * t) * ((t >= 0.65) & (t <= 1.05))
+tone_with_overtone = fundamental + overtone + 0.02 * rng.standard_normal(t.size)
+
+# Example 2: linear chirp
+f_sweep = np.linspace(120, 1600, t.size)
+chirp_phase = 2 * np.pi * np.cumsum(f_sweep) / fs
+chirp_signal = 0.8 * np.sin(chirp_phase) * np.hanning(t.size)
+
+# Example 3: stepped melody with percussive hits
+melody = np.zeros_like(t)
+note_duration = int(0.45 * fs)
+window = np.hanning(note_duration)
+notes = [196, 247, 330, 392]  # G major arpeggio
+for i, f0 in enumerate(notes):
+    start = i * note_duration
+    end = start + note_duration
+    if end > melody.size:
+        break
+    note_t = np.arange(note_duration) / fs
+    melody[start:end] += 0.75 * np.sin(2 * np.pi * f0 * note_t) * window
+
+percussion_starts = (np.array([0.25, 1.35, 1.7]) * fs).astype(int)
+percussion_len = int(0.08 * fs)
+decay = np.linspace(1, 0, percussion_len)
+for start in percussion_starts:
+    melody[start:start + percussion_len] += 0.5 * decay * rng.standard_normal(percussion_len)
+
+plot_spec(tone_with_overtone, "Sustained tone + short overtone", "04_Spectrogram_ToneBurst.png")
+plot_spec(chirp_signal, "Linear chirp (frequency sweep)", "04_Spectrogram_Chirp.png")
+plot_spec(melody, "Stepped melody with percussive hits", "04_Spectrogram_Melody.png")
+```
+
+### Spectrogram example
+
+- 220 Hz sustained tone with a short 660 Hz overtone burst. Horizontal line = steady pitch; short bright bar = overtone.
+
+![](fig/04_Spectrogram_ToneBurst.png){height=68% max-width=1000px}
+
+### More spectrograms
+
+- Linear chirp sweeping from 120 Hz to 1.6 kHz. Diagonal ridge shows how the pitch glides upward in time.
+
+![](fig/04_Spectrogram_Chirp.png){height=68% max-width=1000px}
+
+### More spectrograms — melody and transients
+
+- Four short notes stepping upward in pitch plus a few percussive hits. Horizontal bands = notes, vertical wide-band streaks = drum-like transients.
+
+![](fig/04_Spectrogram_Melody.png){height=68% max-width=1000px}
+
 ### STFT and Spectrogram
 
 - The STFT is a **time-frequency representation** of a signal
