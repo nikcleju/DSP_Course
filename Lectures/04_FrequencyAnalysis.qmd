@@ -598,8 +598,6 @@ plt.close(fig)
 ```
 ![](fig/04_DTFTDefinition.png){height=80% max-width=1000px}
 
-- DTFT of a short rectangular sequence spreads energy over all frequencies; because the time-domain pulse is symmetric, the phase is mostly zero except where the magnitude dips toward numerical noise.
-
 
 ### Basic properties of DTFT
 
