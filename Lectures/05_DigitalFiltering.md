@@ -2,7 +2,7 @@
 
 ### Response of LTI systems to harmonic signals
 
-- We consider an LTI system with $h[n]$
+- We consider an LTI system with impulse response $h[n]$
 
 - Input signal = complex harmonic (exponential) signal
 $x[n] = A e^{j \omega_0 n}$
@@ -31,24 +31,24 @@ of LTI systems:
 
 - $H(\omega_0)$ is a constant that multiplies the input signal
 
-   - Amplitude of input gets multiplies by $|H(\omega_0)|$
-   - Phase of input signal is added with $\angle H(\omega_0)$
+   - Amplitude of input gets multiplied by $|H(\omega_0)|$
+   - Phase of input signal is shifted by $\angle H(\omega_0)$
 
 - Why are sin/cos/exp functions important?
 
-   - If input signal = sum of complex exponential (like coses + sinuses),
+   - If input signal = sum of complex exponentials (like cosines and sines),
    - then output = same sum of complex exponentials, each scaled with some coefficients
 
 ### Response to cosine and sine
 
 - Cosine / sine = sum of two exponentials, via Euler
-  $$\cos(\omega n) = \frac{e^{j \omega n} + e^{-j \omega t}}{2}$$
+  $$\cos(\omega n) = \frac{e^{j \omega n} + e^{-j \omega n}}{2}$$
   $$\sin(\omega n) = \cos(\omega n - \frac{\pi}{2})$$
 
 - System is linear and real => 
   
     - amplitude is multiplied by $|H(\omega_0)|$
-    - phase increases by $\angle H(\omega_0)$
+    - phase is shifted by $\angle H(\omega_0)$
 
 - See proof at blackboard
 
@@ -62,11 +62,11 @@ of LTI systems:
 
 - Magnitude response is non-negative: $|H(\omega)| \geq 0$
 
-- Phase response is an angle: $\angle H(\omega) \in (-\pi, pi]$
+- Phase response is an angle: $\angle H(\omega) \in (-\pi, \pi]$
     
     - Phase response may have jumps of $2 \pi$ (wrapped phase)
     - Stitching the pieces in a continuous function = phase *unwrapping*
-    - Unwrapped phase: continuous function, may go outside interval $(-\pi, pi]$
+    - Unwrapped phase: continuous function, may go outside interval $(-\pi, \pi]$
     - Example: at blackboard
 
 ### Permanent and transient response
@@ -81,10 +81,10 @@ of LTI systems:
 
 - What if the signal starts at some time $n$?
 
-- Total response = transient response + permanent response
+- Total response = transient response + permanent (steady-state) response
 
-    - transient response  goes towards 0 as $n$ increases
-    - permanent response = what remains
+    - transient response goes towards 0 as $n$ increases (for a stable system)
+    - permanent response = what remains (steady state)
 
 - So the above relations are valid only in **permanent regime**
 
@@ -102,7 +102,7 @@ of LTI systems:
 - Then it can be represented as a Fourier series with coefficients $c_k$:
 $$x[n] = \frac{1}{N} \sum_{k=0}^{N-1}c_k e^{j 2 \pi k n / N}$$
 
-- Since the system is linear, each component $k$ gets multiplied with $H\left(\frac{2 \pi}{N}k\right)$
+- Since the system is linear, each component $k$ gets multiplied by $H\left(\frac{2 \pi}{N}k\right)$
 
 - So the total output is:
 $$y[n] = \frac{1}{N}\sum_{k=0}^{N-1}c_k H\left(\frac{2 \pi}{N}k\right) e^{j 2 \pi k n / N}$$
@@ -133,7 +133,7 @@ $$Y(\omega) = X(\omega) \cdot H(\omega)$$
         
         $$|Y(\omega)| = |X(\omega)| \cdot |H(\omega)|$$
     
-    - phases is added:
+    - phase is added:
     
         $$\angle{Y(\omega)} = \angle{X(\omega)} + \angle{H(\omega)}$$
 
@@ -143,13 +143,13 @@ $$Y(\omega) = X(\omega) \cdot H(\omega)$$
 
 - $H(\omega)$ = the **transfer function**
 - $H(z)$ = the **system function**
-- $H(\omega) = H(z=e^{j\omega})$ if unit circle is in CR
+- $H(\omega) = H(z=e^{j\omega})$ if the unit circle is in the ROC
 
 ### Power spectral density
 
-- $S_{zz}(\omega) = |Y(\omega)|^2 = |H(\omega)|^2 \cdot S_{xx}(\Omega)$ 
+- For a WSS input: $S_{yy}(\omega) = |H(\omega)|^2 \cdot S_{xx}(\omega)$ 
 
-- The poles and zeros of $S(\omega)$ come in pairs ($z, 1/z$ and $p, 1/p$)
+- The poles and zeros of $|H(\omega)|^2$ come in reciprocal pairs ($z, 1/z$ and $p, 1/p$) because $|H(\omega)|^2 = H(z) H(z^{-1})$ on the unit circle ($z = e^{j\omega}$)
 
 ### Digital filters
 
@@ -218,8 +218,8 @@ $$Y(\omega) = X(\omega) \cdot H(\omega)$$
 - Extra phase = delay
 
    - different frequencies are delayed differently
-   - phase 
-   
+   - the phase function controls how uniform that delay is across frequencies
+
 - **Linear-phase** filter: delays all frequencies 
   with the same amount of time 
    
@@ -253,14 +253,14 @@ $$Y(\omega) = X(\omega) \cdot H(\omega)$$
 
 ### Group delay
 
-- Group delay = The time delay experienced by a component of frequency $\omega$ when passing through the filter
+- Group delay = The time delay experienced by a component at frequency $\omega$ when passing through the filter
 
-  - as opposed to "phase delay" = the phase added by the filter
+  - as opposed to "phase delay" $= -\frac{\angle H(\omega)}{\omega}$, a frequency-dependent delay measured in samples
 
 - **Group delay** of the filter:
-$$\tau_g(\omega) = \frac{d \Theta(\omega)}{d \omega}$$
+$$\tau_g(\omega) = -\frac{d}{d \omega}\angle H(\omega)$$
 
-- Linear phase = constant group delay = all frequencies delayed the same = whole  signal delayed
+- Linear phase = constant group delay = all frequencies delayed the same = whole signal delayed
 
 
 ### Linear-phase FIR filters
@@ -321,14 +321,13 @@ Linear-phase proof for a FIR system with positive symmetry, M = odd
 $$\begin{aligned}
 H(\omega) &= \sum_n h[n] e^{- j \omega n} \\
 &= 4 e^0 + 3 e^{-j \omega} + 2 e^{-j 2 \omega} + 3 e^{-j 3 \omega} + 4 e^{-j 4 \omega}\\
-&= e^{-j 2 \omega} (4 e^{j 2 \omega} + 3 e^{j \omega} + 2 + 3 e^{-j 1 \omega} + 4 e^{-j 2 \omega} ) \\
-&= e^{-j 2 \omega} (4 e^{j 2 \omega} + 4 e^{-j 2 \omega} + 3 e^{j \omega} + 3 e^{-j 1 \omega} + 2) \\
+&= e^{-j 2 \omega} (4 e^{j 2 \omega} + 3 e^{j \omega} + 2 + 3 e^{-j \omega} + 4 e^{-j 2 \omega} ) \\
+&= e^{-j 2 \omega} (4 e^{j 2 \omega} + 4 e^{-j 2 \omega} + 3 e^{j \omega} + 3 e^{-j \omega} + 2) \\
 &= e^{-j 2 \omega} (4 \cdot 2 \cos(2 \omega) + 3 \cdot 2 \cos(\omega) + 2 ) \\
 &= \underbrace{    e^{j \angle{H(\omega)}}   }_{e^{j \cdot phase}} \underbrace{|H(\omega)|}_{real} \\
 \end{aligned}$$
 
 - The phase is $\angle(H(\omega)) = - 2 \omega$, a **linear** function
-- The phase of the filter is linear
 
 ### Proof explained
 
@@ -337,8 +336,8 @@ Key points in this proof:
 - we pull a common factor, so that the first and last terms have the same exponents, but with opposite signs
 - we group first with last term, second with second-to-last:
   - they have same coefficient in front, because of positive symmetry
-  - $e^{jx} + e^{-jx} = 2 \cos(x) = real$
-- everything remaining in the right-side paranthesis is a real-valued
+    - $e^{jx} + e^{-jx} = 2 \cos(x) = real$
+- everything remaining in the right-side parenthesis is real-valued
 
 Since $H(\omega) = |H(\omega)| e^{j\angle{H(\omega)}}$, we identify the two terms:
 
@@ -414,14 +413,14 @@ Generalizations:
 
 - **Digital resonators** = very selective band pass filters
 
-    - poles very close to unit circle
-    - may have zeros in 0 or at 1/-1
+    - poles very close to the unit circle
+    - may have zeros at $z=0$ or at $z=\pm 1$
 
 - **Notch filters**
 
     - have zeros exactly on unit circle
     - will completely reject certain frequencies
-    - has additional poles to make the rejection band very narrow
+    - have additional poles to make the rejection band very narrow
 
 - **Comb filters**
 
@@ -429,16 +428,16 @@ Generalizations:
 
 ### Digital oscillators
 
-- **Oscillator** = a system which produces an output signal even in absence of input
+- **Oscillator** = a system which produces an output signal even in the absence of input
 
-- Has a pair of complex conjugate poles **exactly on unit circle**
+- Has a pair of complex conjugate poles **exactly on unit circle** (marginally stable)
 
 - Example at blackboard
 
 
 ### Inverse filters
 
-- Sometimes is necessary to **undo** a filtering
+- Sometimes it is necessary to **undo** a filtering
     - e.g. undo attenuation of a signal passed through a channel
 
 - Inverse filter: has inverse system function:
