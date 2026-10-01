@@ -18,7 +18,7 @@ title: "Sampling of analog signals"
 ### Glossary
 
 - Glossary:
-  - "e.g." = "*exampli gratia*" (lat.) = "for example" (eng.) = "de exemplu" (rom.)
+  - "e.g." = "*exempli gratia*" (lat.) = "for example" (eng.) = "de exemplu" (rom.)
   - "i.e." = "*id est*" (lat) = "that is" (eng.) = "adică" (rom.)
 
 ### Signal dimension
@@ -26,7 +26,7 @@ title: "Sampling of analog signals"
 - **Unidimensional** (1D) signal = a function of a single variable
   - Example: a voltage signal $v(t)$ only varies in time.
 
-- **Multidimensional** (2D, 3D ... M-D) signal = a function of a multiple variables
+- **Multidimensional** (2D, 3D ... M-D) signal = a function of multiple variables
   - Example: intensity of a grayscale image $I(x,y)$ across the surface of a photo
 
 - In these lectures we consider only 1D signals, but the theory is similar
@@ -34,13 +34,13 @@ title: "Sampling of analog signals"
 ### Continuous and discrete signals
 
 - Continuous (analog) signal = function of a continuous variable
-  - Signal has a value for possible value of the variable in the defined range
+  - Signal has a value for every possible value of the variable in the defined range
   - The variable may be defined only in a certain range (e.g. $t \in [0,100]$),
-    but it is a compact range
+    but it is a continuous range
 
 - Discrete signal = function of a discrete variable
   - Signal has values only at certain discrete values (*samples*)
-  - Indexed with natural numbers: $x[-1]$, $x[0]$, $x[1]$ etc.
+  - Indexed with integer numbers: $x[-1]$, $x[0]$, $x[1]$ etc.
   - Outside the samples, the signal is **not defined**
 
 ```{python .cb.run session=plot}
@@ -48,10 +48,10 @@ import matplotlib.pyplot as plt, numpy as np, math
 tanalog = np.arange(0,100)                 # this means 0,1,2,...100
 vanalog = np.sin(2*math.pi*0.03*tanalog)   # sin(2*pi*f*t)
 tdiscrete = np.arange(-2, 9)
-vdiscrete = np.array([0, 1, 2, 2, 1, 0, -1, -2, -2, -1, 0]) 
+vdiscrete = np.array([0, 1, 2, 2, 1, 0, -1, -2, -2, -1, 0])
 plt.figure(figsize=(10, 3));
 plt.subplot(121)
-plt.plot(tanalog,vanalog); plt.title('Analog signal $a(t)$')
+plt.plot(tanalog,vanalog); plt.title('Analog signal $x_a(t)$')
 plt.subplot(122)
 plt.stem(tdiscrete,vdiscrete, use_line_collection=True); plt.title ('Discrete signal $b[n]$');
 plt.savefig('fig/01_Sampling_AnalogVsDiscrete.png', transparent=True, bbox_inches='tight', dpi=300)
@@ -64,10 +64,10 @@ plt.close()
 - We use the following notation:
 
 - Continuous signal
-    - Has **round parantheses**, e.g. $x_a(t)$
+    - Has **round parentheses**, e.g. $x_a(t)$
     - Sometimes has the $a$ subscript
     - The variable is usually $t$ (time)
-    - $x(2.3)$ = the value of the signal $a(t)$ at $t = 2.3$
+    - $x_a(2.3)$ = the value of the signal $x_a(t)$ at $t = 2.3$
 
 - Discrete signal
     - Has **square brackets**, e.g. $x[n]$
@@ -75,7 +75,7 @@ plt.close()
     - $x[3]$ = the value of the signal $x[n]$ for $n = 3$
     - $x[1.5]$ = does not exist
 
-### Signals with continuous and discrete values 
+### Signals with continuous and discrete values
 
 - Not only the time (Ox axis) can be continuous or discrete
 
@@ -84,7 +84,7 @@ plt.close()
 
 - On digital systems, signals always have discrete values due to finite number precision
 
-- Here, we mostly consider signals which are discrete on Ox axis,  
+- Here, we mostly consider signals which are discrete on Ox axis,
   but continuous (any value) on Oy axis
 
 ### Periodic signals
@@ -92,18 +92,18 @@ plt.close()
 - A signal is **periodic** if the values repeat themselves after a certain time (**fundamental period**)
 
 - Continuous signals:
-    - Periodic: $x_a(t) = x(t + T)$
+    - Periodic: $x_a(t) = x_a(t + T), \forall t, \textrm{ where } T > 0$
     - $T$ is usually measured in seconds (or some other unit)
 
 - Discrete signals:
-    - Periodic: $x[n] = x[n + N]$
+    - Periodic: $x[n] = x[n + N], \forall n, \textrm{ where } N > 0$
     - $N$ **has no unit**, because it is just a number
 
 ### Discrete frequency
 
 - Harmonic signals have a frequency $f$:
   $$x(t) = 2 \cdot \cos(2 \pi \cdot 400 \cdot t + \frac{\pi}{3})$$
-  $$x[n] = 5 \cdot \sin(2 \pi\cdot  0.12 \cdot t + \frac{\pi}{2})$$
+  $$x[n] = 5 \cdot \sin(2 \pi \cdot  0.12 \cdot n + \frac{\pi}{2})$$
 
 - Pulsation $\omega$ = 2 $\pi \cdot$  frequency
 
@@ -117,15 +117,16 @@ plt.close()
 
 ### Period and frequency
 
-- For continuous signals,  frequency $F$ = inverse of period $T$
+- For continuous signals, frequency $F$ = inverse of period $T$
   - $T = \frac{1}{F}$, $F = \frac{1}{T}$
 
-- For discrete signals, $f$ is **not necessarily** $\frac{1}{N}$
+- For discrete signals, $f$ is **not necessarily** equal to $\frac{1}{N}$
   - Because $\frac{1}{f}$ is not necessarily an integer, but $N$ must be integer
+  - The period $N$ is the **smallest integer multiple** of $\frac{1}{f}$
 
 - Example: $$x[n] = \cos(2 \pi \cdot 0.4 \cdot n)$$
   - $f=0.4$
-  - $\frac{1}{f} = 2.5$ 
+  - $\frac{1}{f} = 2.5$
   - $N = 5$
 
 ### Period and frequency
@@ -133,8 +134,8 @@ plt.close()
 ```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
 Tmax = 10
-ta = np.arange(0, Tmax, 0.01)        # 
-td = np.arange(0, Tmax, 1)           # 
+ta = np.arange(0, Tmax, 0.01)        #
+td = np.arange(0, Tmax, 1)           #
 xa = np.sin(2*math.pi*0.4*ta)        # analog signal
 xd = np.sin(2*math.pi*0.4*td)        # discrete signal
 
@@ -142,7 +143,7 @@ plt.plot(ta,xa,'--r')                # plotting
 plt.stem(td,xd, use_line_collection=True)
 plt.xlabel('Time')
 plt.ylabel('Value')
-plt.title('Discrete signal and its envelope')
+plt.title('Discrete signal and continuous signal')
 plt.savefig('fig/01_DiscreteFreqPeriod.png', transparent=True, bbox_inches='tight', dpi=300)
 plt.close()
 ```
@@ -153,14 +154,14 @@ plt.close()
 
 ### Period and frequency
 
-- Quasi-periodic signals: $$x[n] = \cos(5 \cdot n)$$
-- Frequency = irrational number, period = never
+- Quasi-periodic signals: $$x[n] = \sin(0.8 \cdot n)$$
+- Frequency = irrational number, period = does not exist, but the signal is "almost periodic"
 
 ```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
 Tmax = 30
-ta = np.arange(0, Tmax, 0.01)        # 
-td = np.arange(0, Tmax, 1)           # 
+ta = np.arange(0, Tmax, 0.01)        #
+td = np.arange(0, Tmax, 1)           #
 xa = np.sin(2*0.4*ta)        # analog signal
 xd = np.sin(2*0.4*td)        # discrete signal
 
@@ -168,7 +169,7 @@ plt.plot(ta,xa,'--r')                # plotting
 plt.stem(td,xd, use_line_collection=True)
 plt.xlabel('Time')
 plt.ylabel('Value')
-plt.title('Quasi-periodical signal$')
+plt.title('Quasi-periodical signal')
 plt.savefig('fig/01_QuasiPeriodical.png', transparent=True, bbox_inches='tight', dpi=300)
 plt.close()
 ```
@@ -178,14 +179,14 @@ plt.close()
 ### Domain of definition
 
 - **Finite-length** discrete signals $x[n]$:
-  - have only a certain number $N$ of samples (e.g. for $n = 0, 1, ... N-1)
+  - have only a certain number $N$ of samples (e.g. for $n$ = 0, 1, ... N-1)
   - they are not defined outside these samples
   - can be represented as a **vector** of numbers (e.g. like in Matlab, C)
 
 \smallskip
 
 - **Infinite-length** discrete signals $x[n]$:
-   - e.g. defined for $n = ... -2, -1, 0, 1, 2, ...$ or 
+   - e.g. defined for $n = ... -2, -1, 0, 1, 2, ...$
 
 ### Vector space of signals
 
@@ -194,7 +195,7 @@ plt.close()
 - In mathematics, a vector space = a set $V$ of elements $\{v\}$ (called ``vectors'') such that:
     - the sum of any two elements from $V$ is still a member of $V$
     - any vector from $V$ multiplied by a constant is still a member of $V$
-    
+
 - These properties can easily be verified for signals
 
 ## I.2. Sampling
@@ -211,13 +212,13 @@ plt.close()
     - Converts continuous signals to discrete
     - Processing of continuous signals is expensive
     - Processing of discrete signals is cheap (digital devices)
-    - Sometimes nothing is lost due to sampling 
+    - Sometimes nothing is lost due to sampling
 
 ### Graphical example
 
 ```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
-t = np.arange(0,100)                 # 
+t = np.arange(0,100)                 #
 xa = np.sin(2*math.pi*0.03*t)        # analog signal
 Ts = 8                               # Sampling period Ts=10, sampling freq Fs = 0.1
 td = t[0:101:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
@@ -235,14 +236,15 @@ plt.close()
 
 ### Sampling equation
 
-- Mathematically, it is described by **the sampling equation**:
+- Mathematically, it is described by **the sampling equation**, which uses the Dirac delta function $\delta(t)$:
 
-$$x[n] = x_a(n \cdot T_s)$$
+  $$x[n] = \int_{-\infty}^{+\infty} x_a(t) \delta(t - n T_s) dt$$
 
-- Produces a discrete signal $x[n]$ from a continuous signal $x_a(t)$
+- For continuous signals, this is equal to the value of the signal at $t = n T_s$:
 
-- The $n$-th value of the discrete signal $x[n]$ is the value of the
-analog signal $x_a(t)$ taken after $n$ sampling periods, at time $n \cdot T_s$
+  $$x[n] = x_a(n \cdot T_s)$$
+
+- Periodic sampling produces a discrete signal $x[n]$ from a continuous signal $x_a(t)$
 
 ### Sampling of harmonic signals
 
@@ -260,13 +262,13 @@ x[n] =& x_a(n T_s) \\
 
 ### Discrete frequency is relative
 
-- Sampling a continuous (cosine produces a discrete cosine
+- Sampling a continuous cosine produces a discrete cosine
   with **discrete frequency**:
 $$f = \frac{F}{F_s}$$
 
 - Discrete frequency should be understood as a value **relative to the sampling frequency**
 
-- Example: $f = \frac{1}{4}$ means 
+- Example: $f = \frac{1}{4}$ means
 "coming from an analog frequency F which was $\frac{1}{4}$ of the sampling frequency"
     - it could have been a 100Hz signal sampled with 400Hz
     - it could also have been a 3MHz signal sampled with 12MHz
@@ -279,7 +281,7 @@ $$f = \frac{F}{F_s}$$
 ```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
 t = np.arange(0,40)                  #
-x1 = np.sin(2*math.pi*0.05*t)         #  frequency 
+x1 = np.sin(2*math.pi*0.05*t)         #  frequency
 x2 = np.sin(2*math.pi*0.25*t)          # sin(2*pi*f*t)
 plt.figure(figsize=(10, 3));
 plt.subplot(121)
@@ -298,20 +300,20 @@ plt.close()
 
 The Nyquist-Shannon sampling theorem:
 
-- If a signal $x_a(t)$ that has maximum frequency $F_{max}$ is sampled with a a sampling frequency 
-$$F_s \ge 2 F_{max},$$
+- If a signal $x_a(t)$, which is band-limited with maximum frequency $F_{max}$, is sampled with a sampling frequency
+$$F_s > 2 F_{max},$$
     then it can be perfectly reconstructed from its samples using the formula:
 $$x_a(t) = \sum_{n=-\infty}^{+\infty} x[n] \cdot \frac{\sin(\pi (F_s t - n))}{\pi (F_s t - n)}.$$
 
 
 ### Comments on the sampling theorem
 
-- All the information in the original signal is contained in the samples, 
+- All the information in the original signal is contained in the samples,
 provided the sampling frequency is high enough
 
 \smallskip
 
-- It is much easier to process discrete samples instead of nalog signals
+- It is much easier to process discrete samples instead of analog signals
 (e.g. using Matlab instead of capacitors :) )
 
 \smallskip
@@ -325,7 +327,7 @@ Sampling theorem in action:
 
 - Humans can only hear sounds up to ~20kHz
 
-- Use sampling rates higher than 40kHz => no quality loss 
+- Sampling rates higher than 40kHz are enough for audible frequencies
 
   - Standardized for CD-Audio: 44100Hz
 
@@ -352,7 +354,7 @@ x[n] =& x_a(n T_s) \\
 - Discrete cos() and sin() have funny properties
 
 - They are **the same** when adding an integer to the frequency:
-$$\cos(2 \pi (f+k) n) = \cos(2 \pi f n + (2 k n \pi) = \cos(2 \pi f n) $$
+$$\cos(2 \pi (f+k) n) = \cos(2 \pi f n + 2 \pi k n ) = \cos(2 \pi f n) $$
 
 - So all these discrete frequencies are identical:
 $$ f = ... = -1.4 = -0.4 = 0.6 = 1.6 = 2.6 = 3.6 = ... $$
@@ -365,10 +367,13 @@ $$\sin(2 \pi (-f) n) = -\sin(2 \pi f n) $$
 
 **Aliasing:**
 
-- Every discrete frequency $f$ outside the interval $[-\frac{1}{2}, \frac{1}{2}]$
-is **identical** (an "alias") with a frequency from this interval $f_{alias} \in [-\frac{1}{2}, \frac{1}{2}]$
+- Every discrete frequency $f$ outside the interval $[-\frac{1}{2}, \frac{1}{2})$
+is **identical** (an "alias") with a frequency from this interval $f_{alias} \in [-\frac{1}{2}, \frac{1}{2})$
 
-- Just add or subtract 1's to $f$ until the result is in $[-\frac{1}{2}, \frac{1}{2}]$
+- Just add or subtract 1's to $f$ until the result is in $[-\frac{1}{2}, \frac{1}{2})$
+
+- The interval $[-\frac{1}{2}, \frac{1}{2})$ is called the **Nyquist interval**
+or the **principal interval**
 
 ### Frequency limits
 
@@ -377,21 +382,15 @@ is **identical** (an "alias") with a frequency from this interval $f_{alias} \in
 
 \smallskip
 
-- For discrete signals, **largest frequency** is $f_{max} = \frac{1}{2}$
-    - Smallest period is $N = 2$ (excluding $N=1$, constant signals)
-    - Consequence of using natural numbers to index the samples (x[0], x[1], x[2]...),
-    without any physical unit attached
+- For discrete signals, we consider the **largest frequency** to be $f_{max} = \frac{1}{2}$,
+in the sense that all frequencies $f$ can be reduced to a frequency $\in [-\frac{1}{2}, \frac{1}{2})$
 
-\smallskip
-
-- For mathematical reasons, we will consider negative frequencies as well (remember SCS)
-  (e.g. $-\omega$)
 
 ### Aliasing example - low frequency signal
 
 ```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
-t = np.arange(0,1000)                 # 
+t = np.arange(0,1000)                 #
 Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
 xa = np.sin(2*math.pi*0.006*t)        # analog signal
 td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
@@ -410,7 +409,7 @@ plt.close()
 
 ```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
-t = np.arange(0,1000)                 # 
+t = np.arange(0,1000)                 #
 Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
 xa = -np.sin(2*math.pi*(2/Ts -0.006)*t)        # analog signal
 td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
@@ -428,7 +427,7 @@ plt.close()
 
 ```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np, math
-t = np.arange(0,1000)                 # 
+t = np.arange(0,1000)                 #
 Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
 xa = -np.sin(2*math.pi*(2/Ts -0.006)*t)        # analog signal
 td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
@@ -454,37 +453,32 @@ plt.close()
     $$ f = -0.4 = 0.6 = 1.6 = ...$$
 
   - so if $F_s = 1000Hz$, the original signal could have been any frequency $F$ out of: 600Hz or 1600Hz or ...
-    
+
   - Exercise: check some of these
 
 
 ### Anti-alias
 
-- Aliasing only affects digital signals (it is caused by sampling)
-
 - Sampling according to Shannon theorem guarantees no aliasing:
 
-    $$F_s \ge 2 F_{max} \Rightarrow f = \frac{F}{F_{max}} \le \frac{1}{2}$$
+    $$F_s \ge 2 F_{max} \Rightarrow f = \frac{F}{F_s} \le \frac{1}{2}$$
 
-- Better remove from the signal the frequencies larger than $\frac{F_s}{2}$, 
-which will not be sampled correctly,
-otherwise they will create a false frequency and bring confusion
+- It is better remove from the signal all the frequencies larger than $\frac{F_s}{2}$,
+which will not be sampled correctly, otherwise they will create a false frequency and bring confusion
 
-### Anti-alias
-
-- **Anti-alias filter**: a low-pass filter situated before a sampling circuit, 
+- **Anti-alias filter**: a low-pass filter situated before a sampling circuit,
 rejecting all frequencies $F > \frac{F_s}{2}$ from the signal before sampling
 
     - Standard practice in the design of processing systems
-  
-### Ideal signal reconstruction from samples   
 
-- Reconstruction = opposite of sampling
+### Ideal signal reconstruction from samples
 
-- Produces a continuous signal from a discrete one
+- Reconstruction = opposite of sampling, producing a continuous signal from a discrete one
 
-**Ideal reconstruction equation:**
-$$x_r(t) = x[\frac{t}{T_s}] = x[t \cdot F_s]$$
+- For harmonic signals ($\sin$, $\cos$), the ideal reconstruction equation amounts
+with the inverse variable change $n = \frac{t}{T_s} = t \cdot F_s$:
+
+  $$x_r(t) = x[\frac{t}{T_s}] = x[t \cdot F_s]$$
 
 - A discrete frequency $f$ becomes $F = f \cdot F_s$
 
@@ -493,31 +487,31 @@ $$x_r(t) = x[\frac{t}{T_s}] = x[t \cdot F_s]$$
 - What value to use for $f$?
    - we know $f = f + 1 = f+2 = ...$, which one to use?
 
-- The reconstruction assumes all $f$ are in the interval $[-\frac{1}{2}, \frac{1}{2}]$
+- The reconstruction assumes all $f$ are in the interval $[-\frac{1}{2}, \frac{1}{2})$
    - apply reconstruction equation
-   - the resulting signal has all frequencies $F \leq \frac{F_s}{2} = F_N$ ( = "the Nyquist frequency")
+   - the resulting signal has all frequencies $\frac{F_s}{2} \leq F < \frac{F_s}{2}$ ($\frac{F_s}{2}$ = "the Nyquist frequency")
 
-- **In exercises:** Always bring $f$ in the interval $[-\frac{1}{2}, \frac{1}{2}]$ before reconstruction
-  
-- Reconstruction always produces signals with frequencies in $[-\frac{Fs}{2}, \frac{Fs}{2}]$
+- **In exercises:** Always bring $f$ in the interval $[-\frac{1}{2}, \frac{1}{2})$ before reconstruction
+
+- Reconstruction always produces signals with frequencies in $[-\frac{F_s}{2}, \frac{F_s}{2})$
    - Only signals or components sampled according to the sampling theorem will be reconstructed identically
    - Any other components are replaced with their aliased counterparts
 
 ### A/D and D/A conversion
 
-- Sampling + quantization + coding is usually done by an **Analog to Digital Converter (ADC)** 
+- Sampling + quantization + coding is usually done by an **Analog to Digital Converter (ADC)**
     - It takes an analog signal and produces a sequence of binary-coded values
 
 \smallskip
 
 - Reconstructing an analog signal from numeric samples is done by a **Digital to Analog Converter (DAC)**
-    - Usually the reconstruction is not based on sampling theorem equation, which is too complicated, but with simpler empirical solutions  
+    - Usually the reconstruction is not based on sampling theorem equation, which is too complicated, but with simpler empirical solutions
 
 \smallskip
 
 - You have ADCs and DACs for any In or Out audio jack (phone, computer etc)
-  
-### Signal quantization and coding   
+
+### Signal quantization and coding
 
 - In practice, the amplitudes of the samples are converted to binary representation
 
@@ -525,7 +519,7 @@ $$x_r(t) = x[\frac{t}{T_s}] = x[t \cdot F_s]$$
 
 - This "rounding" is known as **quantization**
 
-- The "rounding error" is known as **quantization error** 
+- The "rounding error" is known as **quantization error**
 
 - Converting the value to binary form is known as **coding**
 
