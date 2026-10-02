@@ -75,17 +75,18 @@ plt.close()
     - $x[3]$ = the value of the signal $x[n]$ for $n = 3$
     - $x[1.5]$ = does not exist
 
-### Signals with continuous and discrete values
+### Continuous, sampled and digital signals
 
-- Not only the time (Ox axis) can be continuous or discrete
+- **Analog signal**: continuous time, continuous amplitude
+  - e.g. a microphone voltage $x_a(t)$
 
-- The signal **values** (Oy axis) can also be continuous or discrete
-    - Example: signal values stored as 8-bit or 16-bit values
+- **Sampled signal**: discrete time, continuous amplitude
+  - sampling selects the values $x_a(nT_s)$
 
-- On digital systems, signals always have discrete values due to finite number precision
+- **Digital signal**: discrete time, discrete amplitude
+  - quantization rounds every sample to one of a finite number of levels
 
-- Here, we mostly consider signals which are discrete on Ox axis,
-  but continuous (any value) on Oy axis
+- **Sampling discretizes time; quantization discretizes amplitude**
 
 ### Periodic signals
 
@@ -115,19 +116,18 @@ plt.close()
     - $N$ **has no unit**, because it is just a number
     - $f$ **has no unit** also
 
-### Period and frequency
+### Periodicity of a discrete sinusoid
 
-- For continuous signals, frequency $F$ = inverse of period $T$
-  - $T = \frac{1}{F}$, $F = \frac{1}{T}$
+- Consider $$x[n] = \cos(2 \pi f n)$$
 
-- For discrete signals, $f$ is **not necessarily** equal to $\frac{1}{N}$
-  - Because $\frac{1}{f}$ is not necessarily an integer, but $N$ must be integer
-  - The period $N$ is the **smallest integer multiple** of $\frac{1}{f}$
+- It is periodic **if and only if** $f$ is rational
 
-- Example: $$x[n] = \cos(2 \pi \cdot 0.4 \cdot n)$$
-  - $f=0.4$
-  - $\frac{1}{f} = 2.5$
-  - $N = 5$
+- If $f = \frac{p}{q}$ is in lowest terms, its fundamental period is
+  $$N=q$$
+
+- Example: $f=\frac{3}{8}$ gives $N=8$
+
+- Contrast: $f=\frac{\sqrt{2}}{10}$ is irrational, so no finite period exists
 
 ### Period and frequency
 
@@ -176,6 +176,17 @@ plt.close()
 <!-- ![](fig/01_DiscreteFreqPeriod.png){width=100% max-width=1000px} -->
 ![](fig/01_QuasiPeriodical.png){max-width=1000px, height=70%}
 
+### Checkpoint: periodicity
+
+- For $x[n]=\cos(2\pi f n)$, decide whether it is periodic:
+  - $f=\frac{5}{12}$
+  - $f=\frac{\sqrt{3}}{8}$
+
+\smallskip
+
+- **Answer:** the first signal is periodic with $N=12$; the second is not periodic
+- Reducing $f=\frac{p}{q}$ to lowest terms is essential
+
 ### Domain of definition
 
 - **Finite-length** discrete signals $x[n]$:
@@ -213,6 +224,33 @@ plt.close()
     - Processing of continuous signals is expensive
     - Processing of discrete signals is cheap (digital devices)
     - Sometimes nothing is lost due to sampling
+
+### From the physical world to digital processing
+
+\small
+
+$$
+\text{phenomenon / sensor}
+\;\longrightarrow\; \boxed{\text{anti-alias filter}}
+\;\longrightarrow\; \boxed{\text{ADC}}
+$$
+
+$$
+\boxed{\text{ADC}}
+\;\longrightarrow\; \text{digital processing / storage}
+\;\longrightarrow\; \boxed{\text{DAC}}
+$$
+
+$$
+\boxed{\text{DAC}}
+\;\longrightarrow\; \boxed{\text{reconstruction filter}}
+\;\longrightarrow\; \text{output}
+$$
+
+\normalsize
+
+- ADC: **sampling $\rightarrow$ quantization $\rightarrow$ coding**
+- Filters act in continuous time, before the ADC and after the DAC
 
 ### Graphical example
 
@@ -318,7 +356,23 @@ provided the sampling frequency is high enough
 
 \smallskip
 
-- Sampling with $F_s \ge 2F_{max}$ makes the discrete frequency smaller than 1/2 $$f = \frac{F}{F_s} \leq \frac{F_{max}}{F_s} \leq \frac{1}{2}$$
+- Sampling with $F_s > 2F_{max}$ makes every signal frequency strictly smaller than 1/2:
+  $$f = \frac{F}{F_s} \leq \frac{F_{max}}{F_s} < \frac{1}{2}$$
+
+<!--
+### Why the Nyquist inequality is strict
+
+- At the boundary $F_s=2F_{max}$, take
+  $$x_a(t)=\sin(2\pi F_{max}t)$$
+
+- The samples are
+  $$x[n]=x_a\left(\frac{n}{F_s}\right)
+  =\sin\left(2\pi F_{max}\frac{n}{2F_{max}}\right)
+  =\sin(\pi n)=0$$
+
+- These samples are identical to the samples of the zero signal
+- Therefore equality cannot guarantee recovery for arbitrary phases/signals
+- The safe statement is **$F_s>2F_{max}$** -->
 
 
 ### Example of the sampling theorem in action
@@ -386,60 +440,38 @@ or the **principal interval**
 in the sense that all frequencies $f$ can be reduced to a frequency $\in [-\frac{1}{2}, \frac{1}{2})$
 
 
-### Aliasing example - low frequency signal
+### One set of samples, two analog frequencies
+
+- Let $F_s=1000$ Hz, $F_1=400$ Hz and $F_2=600$ Hz
+- Because $0.6 \equiv -0.4 \pmod 1$, the two cosines have the same samples
 
 ```{python .cb.run session=plot}
-import matplotlib.pyplot as plt, numpy as np, math
-t = np.arange(0,1000)                 #
-Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
-xa = np.sin(2*math.pi*0.006*t)        # analog signal
-td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
-xd = xa[td]
-plt.plot(t,xa)                       # plotting
-plt.stem(td,xd,'--r', use_line_collection=True)
-plt.xlim(-20, 1020)
-plt.ylim(-1.1, 1.1)
-plt.savefig('fig/01_Sampling_AliasingLowFreq.png', transparent=True, bbox_inches='tight', dpi=300)
+import matplotlib.pyplot as plt, numpy as np
+
+sampling_frequency = 1000
+time = np.linspace(0, 0.01, 2001)
+sample_indices = np.arange(0, 11)
+sample_times = sample_indices / sampling_frequency
+signal_400 = np.cos(2 * np.pi * 400 * time)
+signal_600 = np.cos(2 * np.pi * 600 * time)
+samples_400 = np.cos(2 * np.pi * 400 * sample_times)
+samples_600 = np.cos(2 * np.pi * 600 * sample_times)
+assert np.allclose(samples_400, samples_600, atol=1e-12)
+
+plt.figure(figsize=(10, 4))
+plt.plot(1000 * time, signal_400, label='$F_1=400$ Hz')
+plt.plot(1000 * time, signal_600, '--', label='$F_2=600$ Hz')
+plt.plot(1000 * sample_times, samples_400, 'or', label='shared samples')
+plt.xlabel('Time [ms]')
+plt.ylabel('Value')
+plt.xlim(0, 10)
+plt.ylim(-1.15, 1.15)
+plt.grid(alpha=0.25)
+plt.legend(ncol=3, loc='upper center')
+plt.savefig('fig/01_Sampling_AliasingUnified.png', transparent=True, bbox_inches='tight', dpi=300)
 plt.close()
 ```
-![](fig/01_Sampling_AliasingLowFreq.png){width=100% max-width=1000px}
-
-
-### Aliasing example - high frequency signal, same samples
-
-```{python .cb.run session=plot}
-import matplotlib.pyplot as plt, numpy as np, math
-t = np.arange(0,1000)                 #
-Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
-xa = -np.sin(2*math.pi*(2/Ts -0.006)*t)        # analog signal
-td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
-xd = xa[td]
-plt.plot(t,xa)                       # plotting
-plt.stem(td,xd,'--r', use_line_collection=True)
-plt.xlim(-20, 1020)
-plt.ylim(-1.1, 1.1)
-plt.savefig('fig/01_Sampling_AliasingHighFreq.png', transparent=True, bbox_inches='tight', dpi=300)
-plt.close()
-```
-![](fig/01_Sampling_AliasingHighFreq.png){width=100% max-width=1000px}
-
-### Aliasing example - samples only
-
-```{python .cb.run session=plot}
-import matplotlib.pyplot as plt, numpy as np, math
-t = np.arange(0,1000)                 #
-Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
-xa = -np.sin(2*math.pi*(2/Ts -0.006)*t)        # analog signal
-td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
-xd = xa[td]
-###plt.plot(t,xa)                       # plotting
-plt.stem(td,xd,'--r', use_line_collection=True)
-plt.xlim(-20, 1020)
-plt.ylim(-1.1, 1.1)
-plt.savefig('fig/01_Sampling_AliasingOnlySamples.png', transparent=True, bbox_inches='tight', dpi=300)
-plt.close()
-```
-![](fig/01_Sampling_AliasingOnlySamples.png){width=100% max-width=1000px}
+![](fig/01_Sampling_AliasingUnified.png){max-width=1000px, height=62%}
 
 
 ### The problem of aliasing
@@ -456,18 +488,30 @@ plt.close()
 
   - Exercise: check some of these
 
+### Checkpoint: sampling and aliasing
+
+- A sequence has discrete time but unrounded amplitudes. Is it digital?
+- A 600 Hz cosine is sampled at 1000 Hz. Which cosine in the principal interval has the same samples?
+-
+<!-- - Is $F_s=2F_{max}$ sufficient for every signal? -->
+
+\smallskip
+
+<!-- - **Answers:** no; 400 Hz; no
+- Sampling, aliasing and quantization are different operations -->
+
 
 ### Anti-alias
 
 - Sampling according to Shannon theorem guarantees no aliasing:
 
-    $$F_s \ge 2 F_{max} \Rightarrow f = \frac{F}{F_s} \le \frac{1}{2}$$
+    $$F_s > 2 F_{max} \Rightarrow f = \frac{F}{F_s} < \frac{1}{2}$$
 
 - It is better remove from the signal all the frequencies larger than $\frac{F_s}{2}$,
 which will not be sampled correctly, otherwise they will create a false frequency and bring confusion
 
 - **Anti-alias filter**: a low-pass filter situated before a sampling circuit,
-rejecting all frequencies $F > \frac{F_s}{2}$ from the signal before sampling
+rejecting all frequencies $F \geq \frac{F_s}{2}$ from the signal before sampling
 
     - Standard practice in the design of processing systems
 
@@ -481,6 +525,47 @@ with the inverse variable change $n = \frac{t}{T_s} = t \cdot F_s$:
   $$x_r(t) = x[\frac{t}{T_s}] = x[t \cdot F_s]$$
 
 - A discrete frequency $f$ becomes $F = f \cdot F_s$
+
+### Sinc interpolation: ideal reconstruction
+
+- Example: $F=100$ Hz sampled at $F_s=1000$ Hz, safely inside the Nyquist interval
+- We use 61 samples and show only the interior; shifted sinc terms sum through every sample value
+
+```{python .cb.run session=plot}
+import matplotlib.pyplot as plt, numpy as np
+
+sampling_frequency = 1000
+signal_frequency = 100
+sample_indices = np.arange(-30, 31)
+sample_times = sample_indices / sampling_frequency
+samples = np.cos(2 * np.pi * signal_frequency * sample_times)
+time = np.linspace(-0.0045, 0.0045, 1801)
+sinc_terms = np.sinc(sampling_frequency * time[:, None] - sample_indices[None, :])
+reconstructed = sinc_terms @ samples
+interpolation_matrix = np.sinc(sample_indices[:, None] - sample_indices[None, :])
+assert np.allclose(interpolation_matrix @ samples, samples, atol=1e-12)
+
+plt.figure(figsize=(10, 4))
+for selected_index, color in zip((-1, 0, 1), ('tab:blue', 'tab:orange', 'tab:green')):
+    position = np.flatnonzero(sample_indices == selected_index)[0]
+    contribution = samples[position] * sinc_terms[:, position]
+    plt.plot(1000 * time, contribution, ':', color=color, linewidth=1.6,
+             label=f'contribution $n={selected_index}$')
+plt.plot(1000 * time, np.cos(2 * np.pi * signal_frequency * time),
+         color='black', linewidth=2, label='original')
+plt.plot(1000 * time, reconstructed, '--', linewidth=2, label='reconstructed sum')
+visible = np.abs(sample_indices) <= 4
+plt.plot(1000 * sample_times[visible], samples[visible], 'or', label='samples')
+plt.xlabel('Time [ms]')
+plt.ylabel('Value')
+plt.xlim(-4.5, 4.5)
+plt.ylim(-1.25, 1.25)
+plt.grid(alpha=0.25)
+plt.legend(ncol=3, fontsize=10, loc='lower center')
+plt.savefig('fig/01_Sampling_SincReconstruction.png', transparent=True, bbox_inches='tight', dpi=300)
+plt.close()
+```
+![](fig/01_Sampling_SincReconstruction.png){max-width=1000px, height=60%}
 
 ### Reconstruction and aliasing
 
@@ -524,3 +609,17 @@ with the inverse variable change $n = \frac{t}{T_s} = t \cdot F_s$:
 - Converting the value to binary form is known as **coding**
 
 - ADCs handle sampling, quantization and coding simultaneously
+
+### Sampling: formula summary
+
+\small
+
+- Sampling clock: $F_s=\frac{1}{T_s}$
+- Sampling equation: $x[n]=x_a(nT_s)$
+- Relative frequency: $f=\frac{F}{F_s}$
+- Periodicity: $f=\frac{p}{q}$ in lowest terms $\Longleftrightarrow N=q$; irrational $f$ is not periodic
+- Nyquist--Shannon condition: $F_s>2F_{max}$
+- Frequency equivalence: $f\equiv f+k\pmod 1$, $k\in\mathbb{Z}$; use $f\in[-\frac{1}{2},\frac{1}{2})$
+- Sinc interpolation:
+  $$x_a(t)=\sum_{n=-\infty}^{+\infty}x[n]\,\frac{\sin(\pi(F_st-n))}{\pi(F_st-n)}$$
+- $B$-bit quantization provides $2^B$ amplitude levels
