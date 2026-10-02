@@ -227,27 +227,7 @@ plt.close()
 
 ### From the physical world to digital processing
 
-\small
-
-$$
-\text{phenomenon / sensor}
-\;\longrightarrow\; \boxed{\text{anti-alias filter}}
-\;\longrightarrow\; \boxed{\text{ADC}}
-$$
-
-$$
-\boxed{\text{ADC}}
-\;\longrightarrow\; \text{digital processing / storage}
-\;\longrightarrow\; \boxed{\text{DAC}}
-$$
-
-$$
-\boxed{\text{DAC}}
-\;\longrightarrow\; \boxed{\text{reconstruction filter}}
-\;\longrightarrow\; \text{output}
-$$
-
-\normalsize
+![](fig/01_Sampling_PhysicalToDigital.png){width=100% fig-alt="Signal chain from sensor through anti-alias filter, ADC, digital processing, DAC, and reconstruction filter to output."}
 
 - ADC: **sampling $\rightarrow$ quantization $\rightarrow$ coding**
 - Filters act in continuous time, before the ADC and after the DAC
