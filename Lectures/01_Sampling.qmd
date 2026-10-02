@@ -488,11 +488,66 @@ plt.close()
 
   - Exercise: check some of these
 
+### Aliasing example - low frequency signal
+
+```{python .cb.run session=plot}
+import matplotlib.pyplot as plt, numpy as np, math
+t = np.arange(0,1000)                 #
+Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
+xa = np.sin(2*math.pi*0.006*t)        # analog signal
+td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
+xd = xa[td]
+plt.plot(t,xa)                       # plotting
+plt.stem(td,xd,'--r', use_line_collection=True)
+plt.xlim(-20, 1020)
+plt.ylim(-1.1, 1.1)
+plt.savefig('fig/01_Sampling_AliasingLowFreq.png', transparent=True, bbox_inches='tight', dpi=300)
+plt.close()
+```
+![](fig/01_Sampling_AliasingLowFreq.png){width=100% max-width=1000px}
+
+
+### Aliasing example - high frequency signal, same samples
+
+```{python .cb.run session=plot}
+import matplotlib.pyplot as plt, numpy as np, math
+t = np.arange(0,1000)                 #
+Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
+xa = -np.sin(2*math.pi*(2/Ts -0.006)*t)        # analog signal
+td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
+xd = xa[td]
+plt.plot(t,xa)                       # plotting
+plt.stem(td,xd,'--r', use_line_collection=True)
+plt.xlim(-20, 1020)
+plt.ylim(-1.1, 1.1)
+plt.savefig('fig/01_Sampling_AliasingHighFreq.png', transparent=True, bbox_inches='tight', dpi=300)
+plt.close()
+```
+![](fig/01_Sampling_AliasingHighFreq.png){width=100% max-width=1000px}
+
+### Aliasing example - samples only
+
+```{python .cb.run session=plot}
+import matplotlib.pyplot as plt, numpy as np, math
+t = np.arange(0,1000)                 #
+Ts = 80                               # Sampling period Ts=10, sampling freq Fs = 0.1
+xa = -np.sin(2*math.pi*(2/Ts -0.006)*t)        # analog signal
+td = t[0:1001:Ts]                     # go from 0 to 100 with step=Ts, i.e. 0,10,20,...
+xd = xa[td]
+###plt.plot(t,xa)                       # plotting
+plt.stem(td,xd,'--r', use_line_collection=True)
+plt.xlim(-20, 1020)
+plt.ylim(-1.1, 1.1)
+plt.savefig('fig/01_Sampling_AliasingOnlySamples.png', transparent=True, bbox_inches='tight', dpi=300)
+plt.close()
+```
+![](fig/01_Sampling_AliasingOnlySamples.png){width=100% max-width=1000px}
+
+
 ### Checkpoint: sampling and aliasing
 
-- A sequence has discrete time but unrounded amplitudes. Is it digital?
-- A 600 Hz cosine is sampled at 1000 Hz. Which cosine in the principal interval has the same samples?
--
+- A 800 Hz cosine is sampled at 1000 Hz. Which cosine in the principal interval has the same samples?
+
 <!-- - Is $F_s=2F_{max}$ sufficient for every signal? -->
 
 \smallskip
