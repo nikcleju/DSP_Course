@@ -1,5 +1,6 @@
-
-# Chapter VI. Implementation of Digital Systems
+---
+title: "Chapter VI. Implementation of Digital Systems"
+---
 
 ## VI.1. Direct-Form structures
 

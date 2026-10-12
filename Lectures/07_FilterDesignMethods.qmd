@@ -1,5 +1,6 @@
-
-# Chapter VII. Filter Design Methods
+---
+title: "Chapter VII. Filter Design Methods"
+---
 
 ## FIR filter design
 

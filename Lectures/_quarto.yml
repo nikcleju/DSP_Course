@@ -1,15 +1,21 @@
 project:
   title: "DSP Lectures"
   render:
-    - 00_Introduction.md
+    - 00_Introduction.qmd
     - 01_Sampling.qmd
     - 02_SignalsAndSystems.qmd
+    - 03_Z_Transform.qmd
+    - 04_FrequencyAnalysis.qmd
+    - 05_DigitalFiltering.qmd
+    - 06_ImplementationStructures.qmd
+    - 07_FilterDesignMethods.qmd
 format:
   beamer:
     code-fold: true
     theme: Madrid
     outertheme: default
     number-sections: false
+    slide-level: 3
     #section-titles: false
     include-in-header: macros.md
 execute: 

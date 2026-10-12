@@ -1,5 +1,6 @@
-
-# Chapter III: The Z Transform
+---
+title: "Chapter III: The Z Transform"
+---
 
 ## III.1 Introducing the Z transform
 

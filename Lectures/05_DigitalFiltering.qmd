@@ -1,4 +1,6 @@
-# Chapter V. Digital filtering
+---
+title: "Chapter V. Digital filtering"
+---
 
 ### Response of LTI systems to harmonic signals
 
