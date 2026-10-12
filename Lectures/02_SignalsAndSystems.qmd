@@ -1280,6 +1280,8 @@ Recap:
     0          non-zero        $y[n] = y_{zi}[n]$
   x[n]         non-zero        $y[n] = y_{zs}[n] + y_{zi}[n]$
 
+<!--
+
 ## Complex exponentials as LTI eigenfunctions
 
 - For an LTI system with impulse response $h[n]$, a complex exponential input $x[n]=z^n$ produces an output
@@ -1303,11 +1305,21 @@ plt.subplot(1,2,2); plt.plot(np.abs(ratio).real); plt.axhline(np.abs(H_of_w(w0))
 plt.savefig('fig/02_SignalsAndSystems_Eigenfunction.png', transparent=True, bbox_inches='tight', dpi=300)
 plt.close()
 ```
-![](fig/02_SignalsAndSystems_Eigenfunction.png){width=90% max-width=1000px}
+![](fig/02_SignalsAndSystems_Eigenfunction.png){width=90% max-width=1000px} -->
 
-## Moving-average FIR example
+## Moving-average FIR filters
 
-- A 3-point moving average has $h[n]=\tfrac{1}{3}\{1,1,1\}$ and smooths noise.
+- A "Moving Average" filter is a simple FIR system which smooths noise in a signal.
+
+- It is defined as a weighted sum of the last $M$ input samples, with equal weights:
+
+  $$y[n] = \frac{1}{M} \sum_{k=0}^{M-1} x[n-k]$$
+
+### Moving-average FIR filters
+
+Example:
+
+- A 3-point moving average: $h[n]=\{\underuparrow{1/3}, 1/3, 1/3\}$
 
 ```{python .cb.run session=plot}
 import numpy as np, matplotlib.pyplot as plt
