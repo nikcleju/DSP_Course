@@ -1,5 +1,9 @@
-
-# II. Discrete signals and systems
+---
+title: "Discrete signals and systems"
+format:
+  beamer:
+    slide-level: 3
+---
 
 ## II.1 Discrete signals
 
@@ -34,7 +38,7 @@ $$\delta[n] =
 
 ### Representation
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 delta = [0,0,0,1,0,0,0,0]
 t = range(-3,-3+len(delta))
@@ -60,7 +64,7 @@ $$u[n] =
 
 ### Representation
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 delta = [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1]
 t = range(-6,-6+len(delta))
@@ -85,7 +89,7 @@ n &\mbox{if } n \geq 0 \\
 
 ### Representation
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 delta = [0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10]
 t = range(-6,-6+len(delta))
@@ -116,7 +120,7 @@ Depending on the value of $a$, we have four possible cases:
 
 ### Representation
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 n = np.arange(-10,10)    # n = [-4,-3,...,4,8]
 x1 = 1.35**n
@@ -136,16 +140,15 @@ plt.close()
 ### Discrete-time sinusoids
 
 - A real sinusoid is defined as
-$$x[n] = A \cos(\omega_0 n + \varphi),$$
-  where $\omega_0$ is the normalized rad/sample frequency and $\varphi$ the phase.
+$$x[n] = A \cos(\omega n + \varphi),$$
+  where $\omega = 2 \pi f$ is the normalized frequency and $\varphi$ the phase.
 
 - Complex exponentials and sinusoids are tightly related:
   $$e^{j\omega_0 n} = \cos(\omega_0 n) + j\sin(\omega_0 n).$$
 
-- Periodicity in discrete time: $e^{j(\omega_0+2\pi k)n} = e^{j\omega_0 n}$, thus frequencies differing by multiples of $2\pi$ are indistinguishable.
-  The sinusoid is periodic iff there exist integers $N_0, m$ such that $\omega_0 N_0 = 2\pi m$.
+- Frequencies differing by $1$ are indistinguishable (aliasing, $f \equiv f + 1$)
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import numpy as np, matplotlib.pyplot as plt
 n = np.arange(0,40)
 w1 = 0.2*np.pi
@@ -227,7 +230,7 @@ $$-x[n] = x[-n], \forall n.$$
 
 ### Even and odd signals: example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 n = np.arange(-6,7)
 x1 = [1, 2, 3, 4, 5, 4.5, 3.5, 4.5, 5, 4, 3, 2, 1]
@@ -257,7 +260,7 @@ $$x_o[n] = \frac{x[n] - x[-n]}{2}.$$
 
 ### Even and odd parts: example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 n = np.arange(-6,7)
 x1 = np.array([1, 2, 3, 4, 4, 4, 5, 6, 7, 6, 5, 8, 9], dtype=float)
@@ -290,7 +293,7 @@ plt.close()
 
 ### Time shifting: representation
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 n = np.arange(-9,10)
 x1 = [0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 5, 6, 7, 7, 7, 8, 9, 9, 9]
@@ -311,7 +314,7 @@ plt.close()
 
 - Changing the variable $n$ to $-n$ produces a signal $x[-n]$ which mirrors $x[n]$.
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 n = np.arange(-9,10)
 x1 = [0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 5, 6, 7, 7, 7, 8, 9, 9, 9]
@@ -330,7 +333,7 @@ plt.close()
     - Total number of samples is reduced M times
 $$x_{M\downarrow}[n] = x[Mn]$$
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 n = np.arange(0,19)
 x1 = [0, 0, 0, 0, 1, 2, 3, 4, 4, 4, 5, 6, 7, 7, 7, 8, 9, 9, 9]
@@ -361,7 +364,7 @@ x[\frac{n}{L}] &\mbox{if } \frac{n}{L} \in \mathbb{N} \\
 $$
 
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 x1 = [1, 2, 3, 4, 4]
 x2 = [1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 4, 0, 0, ]
@@ -434,7 +437,7 @@ Examples:
 
 ### Example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 x = [1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4]
 y = [0, 0, 0, 1, 2, 3, 4, 4, 4, 4, 4]
@@ -451,7 +454,7 @@ plt.close()
 
 ### Example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 x = [0, 1, 2, 3, 4, 4, 4, 4, 4]
 y = [1, 2, 3, 4, 4, 4, 4, 4, 4]
@@ -468,7 +471,7 @@ plt.close()
 
 ### Example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 x = [0, 1, 2, 3, 4, 4, 4, 4, 4]
 for i in range(len(x)):
@@ -492,7 +495,7 @@ plt.close()
 
 ### Example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 x = [0, 1, 2, 3, 4, 4, 4, 4, 4]
 for i in range(len(x)):
@@ -515,7 +518,7 @@ plt.close()
 
 ### Example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 x = [0, 1, 2, 3, 4, 4, 4, 4, 4]
 for i in range(len(x)):
@@ -618,7 +621,7 @@ $$x[n-k] \overset{H}{\rightarrow} y[n-k]$$
 
 ### Example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 n = range(0,13)
 x = [0, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4]
@@ -650,7 +653,7 @@ plt.close()
 
 ### Another example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 n = range(0,13)
 x = [0, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4]
@@ -823,7 +826,7 @@ $$x[n] * h[n] = \sum_{k=-\infty}^\infty x[k] h[n-k] = \sum_{k=-\infty}^\infty x[
 
 ### Example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 n = range(0,3)
 x = [4, 3, 2, 1]
@@ -916,9 +919,10 @@ The impulse response can be read directly from the system equation (for non-recu
 
 ### Convolution as matrix multiplication
 
-- 3. Convolution can we written as multiplication with a "**Toeplitz**" matrix
+3. Convolution can we written as multiplication with a special kind of matrix (**Toeplitz** matrix)
 
-  - in this example, assuming $h[n]$ is non-zero only from $h[-1]$ to $h[3]$
+   - "Toeplitz" = each row of is a shifted version of the previous
+   - in this example, assuming $h[n]$ is non-zero only from $h[-1]$ to $h[3]$
 
 $$\begin{bmatrix}
 \vdots\\
@@ -965,7 +969,13 @@ x_{n+3}\\
 
 ### 2D convolution
 
+::: {.content-visible when-format="beamer"}
+![2D Convolution as weighted sum](img/Convolution2D.png)
+:::
+
+::: {.content-visible unless-format="beamer"}
 ![2D Convolution as weighted sum](img/Convolution2D.gif)
+:::
 
 - image from http://machinelearninguru.com
 
@@ -1108,7 +1118,7 @@ $$h[n] = 0, \forall n < 0$$.
 
 ### Example
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import matplotlib.pyplot as plt, numpy as np
 l = 20
 n = range(-(l+6),(l+7))
@@ -1210,7 +1220,7 @@ Hint/Answer:
   - they depend on previous outputs $y[n-1]$ up to $y[n-N]$
 
   - they also depend on input, going back up to $x[n-k]$
-  
+
 
 
 - General equation of an IIR system:
@@ -1276,7 +1286,7 @@ Recap:
   $$y[n] = (h * x)[n] = \sum_{k=-\infty}^{\infty} h[k] \, z^{n-k} = \underbrace{\Big(\sum_{k=-\infty}^{\infty} h[k] z^{-k}\Big)}_{H(z)} \, z^n.$$
   Thus, $e^{j\omega n}$ is an eigenfunction with eigenvalue $H(e^{j\omega})$ (the frequency response).
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import numpy as np, matplotlib.pyplot as plt
 h = np.array([0.5, 1.0, 0.5])
 def H_of_w(w):
@@ -1299,7 +1309,7 @@ plt.close()
 
 - A 3-point moving average has $h[n]=\tfrac{1}{3}\{1,1,1\}$ and smooths noise.
 
-```{.python .cb.run session=plot}
+```{python .cb.run session=plot}
 import numpy as np, matplotlib.pyplot as plt
 np.random.seed(0)
 n = np.arange(0,200)

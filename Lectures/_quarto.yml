@@ -3,6 +3,7 @@ project:
   render:
     - 00_Introduction.md
     - 01_Sampling.qmd
+    - 02_SignalsAndSystems.qmd
 format:
   beamer:
     code-fold: true
