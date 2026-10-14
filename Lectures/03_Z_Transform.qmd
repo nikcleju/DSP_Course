@@ -27,7 +27,7 @@ $$x[n] \trZ X(Z)$$
 
 - Similar to the Laplace transform for continuous signals
 
-- The Z transform associates **a polynomial** to a signal 
+- The Z transform associates **a polynomial** to a signal
 (think Information Theory class)
 
 - Why?
@@ -35,14 +35,14 @@ $$x[n] \trZ X(Z)$$
     - Easy representation of convolution
 
     - Convolution of two signals = multiplication of polynomials
-    
+
     - Efficient descriptions of complicated systems with poles and zeros
 
 ### Region of convergence
 
 - $X(Z)$ is a sum dependent on some variable $z$ (complex number)
 
-- The **Region Of Convergence (ROC)** = the values of $z$ for which the sum is convergent 
+- The **Region Of Convergence (ROC)** = the values of $z$ for which the sum is convergent
 (does not go to $\pm \infty$)
 
 ### Examples
@@ -59,41 +59,41 @@ Exercises:
 
 ### Region of convergence
 
-- $z$ is a complex number 
+- $z$ is a complex number
 
 - Region of convergence (ROC) is displayed as an area in the complex plane
 (also known as the Z plane)
 
 ### Region of convergence
 
-- For **finite-support** signals, the ROC is the **whole** Z plane, 
+- For **finite-support** signals, the ROC is the **whole** Z plane,
 possibly except 0 or $\infty$
 
 - For **causal** signals, the ROC is the **outside** of a circle:
 	$$|z| > r_1$$
 
     - e.g. if $|z|$ is big enough, the sum is convergent
-    
+
 - For **anti-causal** signals, the ROC is the **inside** of a circle:
 	$$|z| < r_2$$
-	
+
 	- e.g. if $|z|$ is small enough, the sum is convergent
 
 - Why circles? Because only modulus of $z$ matters
-	
+
 	- complex numbers on a circle have the same modulus
 
 ### Region of convergence
 
 - For **bilateral** signals, the ROC is the area **between** two circles:
 	$$r_1 < |z| < r_2$$
-	
+
 	- bilateral signals have a causal part and an anti-causal part
 
-- For finite-support signals, the two "circles" 
+- For finite-support signals, the two "circles"
 are of "radius" $0$ and $\infty$
 
-- Two different signals can have the same expression of $X(z)$, 
+- Two different signals can have the same expression of $X(z)$,
 but with different ROC!
 
     - ROC is an essential part in specifying a Z transform
@@ -104,8 +104,8 @@ but with different ROC!
 
 - From a purely mathematical point of view, $X(z)$ is a complex function
 	$$X(z) = \sum_{n = -\infty}^\infty x[n] z^{-n}$$
-	
-- Proper definition of inverse transform is based on 
+
+- Proper definition of inverse transform is based on
 the theory of complex functions
 
 - Multiply with $z^{n-1}$ and integrate along a contour C inside the ROC:
@@ -115,7 +115,7 @@ the theory of complex functions
 ### The Inverse Z Transform
 
 - The Cauchy integral theorem says that:
-	$$ \frac{1}{2 \pi j} \oint_C z^{n-k-1} dz= 
+	$$ \frac{1}{2 \pi j} \oint_C z^{n-k-1} dz=
 	\begin{cases}
 	1, &\mbox{if } k = n \\
 	0, &\mbox{if } k \neq n
@@ -124,7 +124,7 @@ the theory of complex functions
 - And therefore:
 $$x[n] = \frac{1}{2 \pi j} \oint_C X(z) z^{n-1} dz$$
 
-- We will not use this relation in practice, but instead will rely 
+- We will not use this relation in practice, but instead will rely
 on **partial fraction decomposition**
 
 <!--
@@ -172,7 +172,7 @@ Proof: by definition
 
 If $x[n] \trZ X(z)$ with ROC $r_1 < |z| < r_2$, then:
 $$ x[-n] \trZ X \left( z^{-1} \right)$$
-with ROC $\frac{1}{r_2} < |z| \frac{1}{r_1}$
+with ROC $\frac{1}{r_2} < |z| < \frac{1}{r_1}$
 
 Proof: by definition
 
@@ -212,12 +212,12 @@ Proof: $x[n] = y[n] - y[n-1]$, apply previous property
 
 If $x[n] \trZ X(z)$ with ROC, and $x[n]$ is a complex signal, then:
 $$ x^*[n] \trZ X^* \left( z^* \right)$$
-with same ROC except $z=0$.
+with same ROC.
 
 Proof: apply definition
 
 #### Consequence
-If $x[n]$ is a real signal, the poles / zeroes are either real or in 
+If $x[n]$ is a real signal, the poles / zeroes are either real or in
 complex pairs
 
 
@@ -225,7 +225,7 @@ complex pairs
 ### Properties of Z transform
 #### 9. Convolution in time
 
-If $x_1[n] \trZ X_1(z)$ with ROC1, 
+If $x_1[n] \trZ X_1(z)$ with ROC1,
 and $x_2[n] \trZ X_2(z)$ with ROC2, then:
 $$ x[n] = x_1[n] * x_2[n] \trZ X(z) = X_1(z) \cdot X_2(z)$$
 and ROC the intersection of ROC1 and ROC2.
@@ -239,7 +239,7 @@ Proof: use definition
 ### Properties of Z transform
 #### 10. Correlation in time
 
-If $x_1[n] \trZ X_1(z)$ with ROC1, 
+If $x_1[n] \trZ X_1(z)$ with ROC1,
 and $x_2[n] \trZ X_2(z)$ with ROC2, then:
 $$ r_{x_1x_2}[l] = \sum_{n=-\infty}^{\infty} x_1[n] x_2[n-l] \trZ R_{x_1 x_2}(z) = X_1(z) \cdot X_2(z^{-1})$$
 and ROC the intersection of ROC1 and with the ROC of $X_2(z^{-1})$ (see reflection property)
@@ -254,7 +254,7 @@ If $x[n]$ is a causal signal, then
 
 $$ x[0] = \lim_{z \to \infty}X(z)$$
 
-Proof: 
+Proof:
 $$X(z) = \sum_{n=0}^{\infty} x[n] z^{-n} = x[0] + x[1]z^{-1} + x[2]z^{-2} + ...$$
 When $z \to \infty$, all terms $z^{-k}$ vanish.
 
@@ -276,14 +276,14 @@ a **fraction** where
     - denominator = **polynomial** in $z^{-1}$ or $z$
 
 	$$X(z) = \frac{B(z)}{A(z)} = \frac{\sum_{k=0}^M b_k z^{-k}}{\sum_{k=0}^N a_k z^{-k}} =
-	\frac{b_0 + b_1 z^{-1}+ b_2 z{-2} + ... + b_M z^{-M}}{a_0 + a_1 z^{-1}+ a_2 z{-2} + ... + a_N z^{-N}}$$   
-		
+	\frac{b_0 + b_1 z^{-1}+ b_2 z{-2} + ... + b_M z^{-M}}{a_0 + a_1 z^{-1}+ a_2 z{-2} + ... + a_N z^{-N}}$$
+
 - Example:
 	$$X(z) = \frac{3 + 2 z^{-1} + 4 z^{-2}}{1 - 5z^{-2} + 7 z^{-4}}$$
 
 ### Poles and zeros
 
-- Any polynomial is completely determined 
+- Any polynomial is completely determined
 by its **roots** and a **scaling** factor
 $$Any \; polynomial(X) = G \cdot (X-x_1) \dots (X-x_n)$$
 
@@ -291,29 +291,29 @@ $$Any \; polynomial(X) = G \cdot (X-x_1) \dots (X-x_n)$$
 
 - The **poles** of $X(z)$ are the **roots of the denominator** $A(z)$
 
-- The zeros are usually named $z_1, z_2, ... z_M$, 
+- The zeros are usually named $z_1, z_2, ... z_M$,
 and the poles $p_1, p_2, ... p_N$.
 
-  
+
 ### Poles and zeros
 
 - The transform $X(z)$ can be rewritten as:
-	$$X(z) = \frac{b_0}{a_0} \cdot z^{N-M} \cdot \frac{(z-z_1)...(z-z_M)}{(z-p_1)...(z-z_N)} = \frac{b_0}{a_0} \cdot \frac{(1-z_1 z^{-1})...(1-z_M z^{-1})}{(1-p_1 z^{-1})...(1-z_N z^{-1})}$$
+	$$X(z) = \frac{b_0}{a_0} \cdot z^{N-M} \cdot \frac{(z-z_1)...(z-z_M)}{(z-p_1)...(z-z_N)} = \frac{b_0}{a_0} \cdot \frac{(1-z_1 z^{-1})...(1-z_M z^{-1})}{(1-p_1 z^{-1})...(1-p_N z^{-1})}$$
 
 - It has:
 
 	- M zeros with finite values
 	- N poles with finite values
-	- and either N-M zeros in 0, if N > M, or N-M poles in 0, if N < M (trivial poles/zeros)
+	- and either M-N zeros in 0, if M > N, or N-M poles in 0, if N > M (trivial poles/zeros)
 
 
 ### Poles and zeros
 
 - Example:
 	$$\begin{split}
-	X(z) =& \frac{2z^2 + 0.4 z - 1 }{3z^3 + 2.4 z^2 - 3z - 2.4} \\
+	X(z) =& \frac{2z^2 + 0.4 z - 0.3 }{3z^3 + 2.4 z^2 - 3z - 2.4} \\
 	=& \frac{2}{3} \cdot \frac{(z - 0.3)(z + 0.5)}{(z-1)(z+1)(z+0.8)} \\
-	=& z^{-1} \cdot \frac{( 2 + 0.4 z^{-1} - 1 z^{-2}}{3 + 2.4 z^{-1} - 3z^{-2} - 2.4z^{-3}} \\
+	=& z^{-1} \cdot \frac{ 2 + 0.4 z^{-1} - 0.3 z^{-2}}{3 + 2.4 z^{-1} - 3z^{-2} - 2.4z^{-3}} \\
 	=& z^{-1} \cdot \frac{2}{3} \cdot \frac{(1 - 0.3z^{-1})(1 + 0.5z^{-1})}{(1-z^{-1})(1+z^{-1})(1+0.8z^{-1})} \\
 	\end{split}$$
 
@@ -347,13 +347,13 @@ Methods:
 
 $$x[n] = \frac{1}{2 \pi j} \oint_C X(z) z^{n-1} dz$$
 
-2. Decomposition as continuous power series 
+2. Decomposition as continuous power series
 
 3. **Partial fraction decomposition** (the one we'll actually use)
 
-### Partial fraction decomposition 
+### Partial fraction decomposition
 
-Any rational function 
+Any rational function
 	$$X(z) = \frac{B(z)}{A(z)} = \frac{b_0 + b_1 z^{-1}+ b_2 z{-2} + ... + b_M z^{-M}}{a_0 + a_1 z^{-1}+ a_2 z{-2} + ... + a_N z^{-N}}$$
 can be decomposed in **partial fractions**:
 	$$X(z) = c_0 + c_1 z^{-1} + ... c_{N-M}z^{-(M-N)} + \frac{A_1}{z-p_1} + ...
@@ -374,10 +374,10 @@ $$X(z) = \frac{B(z)}{A(z)}$$
 	- The remaining fraction is $X_1(z) = \frac{B_1(z)}{A(z)}$, with numerator degree
 	strictly smaller than denominator
 
-2. In the remaining fraction, **eliminate the negative powers** of $z$ 
+2. In the remaining fraction, **eliminate the negative powers** of $z$
 by multiplying with $z^N$. We want all powers like $z^N$, not $z^{-N}$
 
-3. **Divide by $z$**: 
+3. **Divide by $z$**:
 $$\frac{X_1(z)}{z} = \frac{B_1(z)}{z A(z)}$$
 
 
@@ -412,8 +412,8 @@ $$A_k = (z-p_k)\frac{X(z)}{z} \rvert_{z = p_k}$$
 
 - Consequence of the complex-conjugate property of Z transform:
 
-- A signal $x[n]$ with **real values** can have only: 
-    - **real-valued** poles or zeroes 
+- A signal $x[n]$ with **real values** can have only:
+    - **real-valued** poles or zeroes
     - complex poles and zeroes in **conjugate pairs**, which can
     be grouped into a single term of degree 2, with real coefficients
 
@@ -427,13 +427,13 @@ then the corresponding signal $x[n]$ is **complex**
   - and some initial terms $z^{k}$ in front
 
 - Each **partial fraction** (pole) generates an **exponential signal**:
-  - $a^n u[n]$, 
-  
+  - $a^n u[n]$,
+
   OR
-  
+
   - $-a^n u[-n-1]$
 
-- For a single partial fraction (one pole only), 
+- For a single partial fraction (one pole only),
 we will analyze the relation between the
 position of the pole and the signal in time
 
@@ -450,7 +450,7 @@ position of the pole and the signal in time
 
     - use the formulas:
 
-	$$x[n] = a^n u[n]$$
+	$$x[n] = C \, a^n u[n]$$
 
 ### Position of poles and signal behavior - 1 pole
 
@@ -460,7 +460,7 @@ How does the signal look like, depending on the pole value $p_1=a$:
 
 - Pole **outside** the unit circle ($|a| > 1$) = **exponentially increasing** signal
 
-- Pole **exactly on** unit circle ($|a| = 1$)= not increasing, not decreasing, but **constant** signal
+- Pole **exactly on** unit circle ($|a| = 1$)= not increasing, not decreasing
 
 - **Negative** pole ($a < 0$) ---> **alternating** signal
 
@@ -477,7 +477,7 @@ How does the signal look like, depending on the pole value $p_1=a$:
 	$$X(z) = C \frac{a z}{(z-a)^2} = C \frac{a z^{-1}}{(1 - a z ^{-1})^2}, ROC: |z| > |a|$$
 
 - The corresponding signal is:
-	$$x[n] = n a^n u[n]$$
+	$$x[n] = C \, n a^n u[n]$$
 
 Effect of double pole in $p_1  = p_2 = a$:
 
@@ -494,27 +494,31 @@ Effect of double pole in $p_1  = p_2 = a$:
 
 ### Position of poles and signal behavior - conjugate poles
 
-- Consider a **pair of complex conjugate** poles ($p_1 = a$, $p_2 = a^*$):
-	$$X(z) = \frac{1 - a \cos{\omega_0} z^{-1}}{1 - 2 a \cos{\omega_0} z^{-1} + a^2 z^{-2}}, ROC: |z| > |a|$$
-	
-- The correponding signal is:	
-	$$x[n] = a^n \cos(\omega_0 n) u[n]$$
+- Consider a **pair of complex conjugate** poles:
+  $$p_1 = a e^{j \omega_0} \quad \quad p_2 = a e^{-j \omega_0}$$
+
+- The Z transform is:
+  <!-- $$X(z) = \frac{1 - a \cos{\omega_0} z^{-1}}{1 - 2 a \cos{\omega_0} z^{-1} + a^2 z^{-2}}, ROC: |z| > |a|$$ -->
+  $$X(z) = \frac{1}{1 - p_1 z^{-1}} + \frac{1}{1 - p_2 z^{-1}} = \frac{1 - a \cos{\omega_0} z^{-1}}{1 - 2 a \cos{\omega_0} z^{-1} + a^2 z^{-2}}, ROC: |z| > |a|$$
+
+- The correponding signal is:
+  $$x[n] = a^n \cos(\omega_0 n) u[n]$$
 
 - Effect of a pair of complex conjugate poles = **sinusoidal with exponential envelope**
 
 ### Position of poles and signal behavior - conjugate poles
 
 Effect of a pair of complex conjugate poles = **sinusoidal with exponential envelope**
-  
+
 - **phase** of poles gives the **frequency** of the sinusoidal
-    
+
 - **modulus** of poles gives the **exponential envelope**
-    
+
   - poles **inside** unit circle = **decreasing** signal
-    
+
   - poles **outside** unit circle --> **increasing** signal
-    
-  - poles **on** unit circle --> **oscillating signal**, constant amplitude, 
+
+  - poles **on** unit circle --> **oscillating signal**, constant amplitude,
   neither increasing nor decreasing
 
 
@@ -542,7 +546,7 @@ Summary: position of poles and behavior of signal
     - **simple** poles **on** unit circle = **bounded** signal
 	  - not increasing to infinity, but also not decreasing
     - **otherwise** = **unbounded** signal
-    
+
 	- poles **closer to 0** = **faster decreasing** signal
     - poles **farther from 0** = **slower decrease** of signal
 
@@ -568,7 +572,7 @@ Summary: position of poles and behavior of signal
 
 ### System function and the system equation
 
-- Reminder: any LTI system has an equation:
+- Reminder: an LTI system has an equation:
 	$$\begin{split}
 	y[n]
 	=& -\sum_{k=1}^N a_k y[n-k] + \sum_{k=0}^M b_k x[n-k] \\
@@ -577,7 +581,7 @@ Summary: position of poles and behavior of signal
 	\end{split}$$
 
 - which can be rewritten as:
-$$y[n] + \sum_{k=1}^n a_k y[n-k] = \sum_{k=0}^m b_k x[n-k]$$
+$$y[n] + \sum_{k=1}^N a_k y[n-k] = \sum_{k=0}^M b_k x[n-k]$$
 
 $$\begin{split}
 y[n] + a_1 y[n-1] + &a_2 y[n-2] +... + a_N y[n-N] = \\
@@ -597,7 +601,7 @@ y[n] + a_1 y[n-1] + &a_2 y[n-2] +... + a_N y[n-N] = \\
 $$Y(z) \left( 1 + \sum_{k=1}^N a_k z^{-k} \right) = X(z) \left( \sum_{k=0}^M b_k z^{-k} \right)$$
 
 $$\begin{split}
-H(z) = \frac{Y(z)}{X(z)} 
+H(z) = \frac{Y(z)}{X(z)}
 &= \frac{ \sum_{k=0}^M b_k z^{-k} }{ 1 + \sum_{k=1}^N a_k z^{-k} } \\
 &= \frac{b_0 + b_1 z^{-1} + \dots + b_M z^{-M}}{1 + a_1 z^{-1} + \dots + a_N z^{-N}}
 \end{split}$$
@@ -605,7 +609,7 @@ H(z) = \frac{Y(z)}{X(z)}
 ### System function and the system equation
 
 $$\begin{split}
-H(z) = \frac{Y(z)}{X(z)} 
+H(z) = \frac{Y(z)}{X(z)}
 &= \frac{ \sum_{k=0}^M b_k z^{-k} }{ 1 + \sum_{k=1}^N a_k z^{-k} } \\
 &= \frac{b_0 + b_1 z^{-1} + \dots + b_M z^{-M}}{1 + a_1 z^{-1} + \dots + a_N z^{-N}}
 \end{split}$$
@@ -616,17 +620,17 @@ H(z) = \frac{Y(z)}{X(z)}
 
     - beware of the sign change of $a_k$
 	- the coefficient of $y[n]$ itself is always $a_0 = 1$
-	
-	
+
+
 ### System function of FIR systems
 
 Particular cases:
 
 - **FIR systems**: when all $a_k = 0$
 
-    - only zeros, no poles ("all-zero system"), no denominator in $H(z)$
+    - only zeros, no poles (except maybe trivial poles in the origin), no denominator in $H(z)$
 	$$H(z) = \frac{Y(z)}{X(z)} = \sum_{k=0}^M b_k z^{-k}$$
-	
+
 	- the coefficients $b_k$ are really the impulse response $h[n]$
 
 
@@ -639,10 +643,10 @@ Particular cases:
 	- $H(z)$ has some polynomial at the denominator
 
     - If denominator is just $b_0$: **all-pole system**
-        - has only poles, no zeros
+        - has only poles, no zeros (except maybe trivial zeros in the origin)
 		$$H(z) = \frac{Y(z)}{X(z)} =  \frac{ b_0 }{ 1 + a_1 z^{-1} + \dots + a_N z^{-N} }$$
-    
-    - Or it can be a general IIR system with both poles and zeros 
+
+    - Or it can be a general IIR system with both poles and zeros
 	(i.e. polynomials both at numerator or denominator)
 
 
@@ -668,13 +672,13 @@ Reminders from chapter 2:
 
 ### Stability of a system and H(z)
 
-- A LTI system is stable if 
+- A LTI system is stable if
 the **unit circle in inside the Region of Convergence** of $H(z)$
 
     - one can also prove the reciprocal, so there is equivalence
 
 - When the system is also **causal**:
-	
+
 	- ROC of causal system = exterior of a circle given by the largest pole
 	- stable = unit circle inside the ROC
     - therefore stable = all poles **inside** unit circle
@@ -684,7 +688,7 @@ the **unit circle in inside the Region of Convergence** of $H(z)$
 
 ### Stability of a system and H(z)
 
-- Alternative explanation: 
+- Alternative explanation:
 
 	- If one pole is **outside** unit circle, the signal component
 	for that partial fraction will be exponentially **increasing**
@@ -713,14 +717,14 @@ $$y[n] = x[n] * h[n] \trZ Y(z) = X(z)H(z) = \frac{N(z)B(z)}{Q(z)A(z)}$$
 	- Assume all poles are *simple* (i.e. no multiplicity)
 	- Assume all poles $\neq$ all zeros, so no simplification
 
-- The output signal has components dependent on the **input signal** 
+- The output signal has components dependent on the **input signal**
 and also of the **system itself**
 
 	$$Y(z) = \sum_{k=1}^N \frac{A_k}{1-p_k z^{-1}} + \sum_{k=1}^L \frac{Q_k}
 	{1-q_k z^{-1}} $$
 
 - and $y[n]$ is
-	$$y[n] = \underbrace{\sum_{k=1}^N A_k (p_k)^n u[n]}_{natural \; response} + 
+	$$y[n] = \underbrace{\sum_{k=1}^N A_k (p_k)^n u[n]}_{natural \; response} +
 	\underbrace{\sum_{k=1}^L Q_k (q_k)^n u[n]}_{forced \; response}$$
 
 ### Natural and forced response
@@ -731,7 +735,7 @@ Any output $y[n]$ is the **sum of two signals**:
 
 - **Forced response** $y_{fr}[n]$ = given by the poles of **the input signal**
 
-- Together they form the **zero-state response** of the system = 
+- Together they form the **zero-state response** of the system =
 the output signal when initial conditions are 0
 
 ### Zero-input response
@@ -745,9 +749,9 @@ If there are **non-zero** initial conditions, there is a **third component** as 
 ### Transient and permanent response
 
 - For a **stable** system, all system poles $|p_k| < 1$
-  - therefore, both natural response and zero-input repsonse are made of decreasing exponentials 
+  - therefore, both natural response and zero-input repsonse are made of decreasing exponentials
 
-- For a stable system, the natural response and the zero-input response 
+- For a stable system, the natural response and the zero-input response
 **die out exponentially**
 
 - Thus, the natural response and the zero-input repsonse are called **transient** response
@@ -766,7 +770,7 @@ Operating regimes:
 Example: apply a infinitely long sinusoidal, starting from $n=0$
 
   - the output has some irregularities at the beginning, due to the natural responses
-  
+
   - afterwards, it becomes perfectly regular
 
 
