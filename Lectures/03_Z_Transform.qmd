@@ -8,20 +8,20 @@ title: "Chapter III: The Z Transform"
 
 Recap: Complex numbers
 
-- real and imaginary part
+- real and imaginary parts
 - **modulus and phase**
 - graphical interpretation
-- Euler formula
+- Euler's formula
 - modulus and phase of $e^{jx}$
 
 ### Definition of Z transform
 
 - The Z Transform of a signal $x[n]$, called $X(z)$, is defined as:
-$$X(z) = \sum_{-\infty}^\infty x[n] z^{-n}$$
+$$X(z) = \sum_{n=-\infty}^\infty x[n] z^{-n}$$
 
 - Notation:
-$$\mathcal{Z}\left( x[n] \right) = X(Z)$$
-$$x[n] \trZ X(Z)$$
+$$\mathcal{Z}\left( x[n] \right) = X(z)$$
+$$x[n] \trZ X(z)$$
 
 ### Definition of Z transform
 
@@ -40,7 +40,7 @@ $$x[n] \trZ X(Z)$$
 
 ### Region of convergence
 
-- $X(Z)$ is a sum dependent on some variable $z$ (complex number)
+- $X(z)$ is a sum dependent on some variable $z$ (complex number)
 
 - The **Region Of Convergence (ROC)** = the values of $z$ for which the sum is convergent
 (does not go to $\pm \infty$)
@@ -51,7 +51,7 @@ Exercises:
 
 - Compute Z transform for the following signals:
 
-	$x[n] = {1, 2, 5, 7, 0}$, (with time origin in 1 or in 5)
+	$x[n] = \{1, 2, 5, 7, 0\}$, (with time origin in 1 or in 5)
 
 	$\delta[n]$, $\delta[n-k]$, $\delta[n+k]$
 
@@ -108,9 +108,9 @@ but with different ROC!
 - Proper definition of inverse transform is based on
 the theory of complex functions
 
-- Multiply with $z^{n-1}$ and integrate along a contour C inside the ROC:
+- Multiply with $z^{n-1}$ and integrate along a contour C inside the ROC, circling the origin:
 
-	$$\oint_C X(z) z^{n-1} dz = \oint_C \sum_{-\infty}^\infty x[k] z^{n-k-1} dz = \sum_{-\infty}^\infty x[k] \oint_C z^{n-k-1} dz$$
+	$$\oint_C X(z) z^{n-1} dz = \oint_C \sum_{k=-\infty}^\infty x[k] z^{n-k-1} dz = \sum_{k=-\infty}^\infty x[k] \oint_C z^{n-k-1} dz$$
 
 ### The Inverse Z Transform
 
@@ -218,7 +218,7 @@ Proof: apply definition
 
 #### Consequence
 If $x[n]$ is a real signal, the poles / zeroes are either real or in
-complex pairs
+complex-conjugate pairs
 
 
 
@@ -276,7 +276,7 @@ a **fraction** where
     - denominator = **polynomial** in $z^{-1}$ or $z$
 
 	$$X(z) = \frac{B(z)}{A(z)} = \frac{\sum_{k=0}^M b_k z^{-k}}{\sum_{k=0}^N a_k z^{-k}} =
-	\frac{b_0 + b_1 z^{-1}+ b_2 z{-2} + ... + b_M z^{-M}}{a_0 + a_1 z^{-1}+ a_2 z{-2} + ... + a_N z^{-N}}$$
+	\frac{b_0 + b_1 z^{-1}+ b_2 z^{-2} + ... + b_M z^{-M}}{a_0 + a_1 z^{-1}+ a_2 z^{-2} + ... + a_N z^{-N}}$$
 
 - Example:
 	$$X(z) = \frac{3 + 2 z^{-1} + 4 z^{-2}}{1 - 5z^{-2} + 7 z^{-4}}$$
@@ -298,13 +298,13 @@ and the poles $p_1, p_2, ... p_N$.
 ### Poles and zeros
 
 - The transform $X(z)$ can be rewritten as:
-	$$X(z) = \frac{b_0}{a_0} \cdot z^{N-M} \cdot \frac{(z-z_1)...(z-z_M)}{(z-p_1)...(z-z_N)} = \frac{b_0}{a_0} \cdot \frac{(1-z_1 z^{-1})...(1-z_M z^{-1})}{(1-p_1 z^{-1})...(1-p_N z^{-1})}$$
+	$$X(z) = \frac{b_0}{a_0} \cdot z^{N-M} \cdot \frac{(z-z_1)...(z-z_M)}{(z-p_1)...(z-p_N)} = \frac{b_0}{a_0} \cdot \frac{(1-z_1 z^{-1})...(1-z_M z^{-1})}{(1-p_1 z^{-1})...(1-p_N z^{-1})}$$
 
 - It has:
 
 	- M zeros with finite values
 	- N poles with finite values
-	- and either M-N zeros in 0, if M > N, or N-M poles in 0, if N > M (trivial poles/zeros)
+	- and either N-M zeros in 0, if N > M, or M-N poles in 0, if M > N (trivial poles/zeros)
 
 
 ### Poles and zeros
@@ -323,7 +323,7 @@ and the poles $p_1, p_2, ... p_N$.
 ### Graphical representation
 
 - The graphical representation of poles and zeros in the complex
-place is called **the pole-zero plot**
+plane is called **the pole-zero plot**
 
 - Graphical: poles = "x", zeros = "0"
 
@@ -354,7 +354,7 @@ $$x[n] = \frac{1}{2 \pi j} \oint_C X(z) z^{n-1} dz$$
 ### Partial fraction decomposition
 
 Any rational function
-	$$X(z) = \frac{B(z)}{A(z)} = \frac{b_0 + b_1 z^{-1}+ b_2 z{-2} + ... + b_M z^{-M}}{a_0 + a_1 z^{-1}+ a_2 z{-2} + ... + a_N z^{-N}}$$
+	$$X(z) = \frac{B(z)}{A(z)} = \frac{b_0 + b_1 z^{-1}+ b_2 z^{-2} + ... + b_M z^{-M}}{a_0 + a_1 z^{-1}+ a_2 z^{-2} + ... + a_N z^{-N}}$$
 can be decomposed in **partial fractions**:
 	$$X(z) = c_0 + c_1 z^{-1} + ... c_{N-M}z^{-(M-N)} + \frac{A_1}{z-p_1} + ...
 \frac{A_N}{z - p_N}$$
@@ -387,7 +387,7 @@ $$\frac{X_1(z)}{z} = \frac{B_1(z)}{z A(z)}$$
 $$\frac{X_1(z)}{z} = \frac{A_1}{z - p_1} + ...$$
 
 
-5. **Multiply back with **$z$:
+5. **Multiply back with** $z$:
 $${X_1(z)} = A_1 \frac{z}{z - p_1} + ...$$
 
 6. Convert each term back to the time domain
@@ -501,7 +501,7 @@ Effect of double pole in $p_1  = p_2 = a$:
   <!-- $$X(z) = \frac{1 - a \cos{\omega_0} z^{-1}}{1 - 2 a \cos{\omega_0} z^{-1} + a^2 z^{-2}}, ROC: |z| > |a|$$ -->
   $$X(z) = \frac{1}{1 - p_1 z^{-1}} + \frac{1}{1 - p_2 z^{-1}} = \frac{1 - a \cos{\omega_0} z^{-1}}{1 - 2 a \cos{\omega_0} z^{-1} + a^2 z^{-2}}, ROC: |z| > |a|$$
 
-- The correponding signal is:
+- The corresponding signal is:
   $$x[n] = a^n \cos(\omega_0 n) u[n]$$
 
 - Effect of a pair of complex conjugate poles = **sinusoidal with exponential envelope**
@@ -529,7 +529,7 @@ What if the poles are double?
 
 ### Position of poles and signal behavior - conjugate poles
 
-![Signal behavior for 1 double pole](img/1ComplexPairPolesSignalBehavior.png){.id height=80%}
+![Signal behavior for complex-conjugate poles](img/1ComplexPairPolesSignalBehavior.png){.id height=80%}
 
 
 ### Position of poles and signal behavior
@@ -554,19 +554,19 @@ Summary: position of poles and behavior of signal
 
 ## III.4 LTI systems and the Z Transform
 
-### System function of a LTI system
+### System function of an LTI system
 
-- Consider a LTI system with impulse response $h[n]$
+- Consider an LTI system with impulse response $h[n]$
 
-- If we aplpy an input signal $x[n]$, the output is (convolution):
+- If we apply an input signal $x[n]$, the output is (convolution):
 	$$y[n] = x[n] * h[n]$$
 
 - In Z transform, **convolution = product** of transforms
 	$$Y(z) = X(z) \cdot H(z)$$
 
-- **The system function H(z)** of a LTI system = the **Z transform of the impulse response** $h[n]$
+- **The system function H(z)** of an LTI system = the **Z transform of the impulse response** $h[n]$
 
-- The system function of a LTI system is(you know this from SCS):
+- The system function of an LTI system is (you know this from SCS):
 	$$H(z) = \frac{Y(z)}{X(z)}$$
 
 
@@ -642,12 +642,12 @@ Particular cases:
 
 	- $H(z)$ has some polynomial at the denominator
 
-    - If denominator is just $b_0$: **all-pole system**
+    - If numerator is just $b_0$: **all-pole system**
         - has only poles, no zeros (except maybe trivial zeros in the origin)
 		$$H(z) = \frac{Y(z)}{X(z)} =  \frac{ b_0 }{ 1 + a_1 z^{-1} + \dots + a_N z^{-N} }$$
 
     - Or it can be a general IIR system with both poles and zeros
-	(i.e. polynomials both at numerator or denominator)
+	(i.e. polynomials in both numerator or denominator)
 
 
 ### Stability of a system and H(z)
@@ -672,8 +672,8 @@ Reminders from chapter 2:
 
 ### Stability of a system and H(z)
 
-- A LTI system is stable if
-the **unit circle in inside the Region of Convergence** of $H(z)$
+- An LTI system is stable if
+the **unit circle is inside the Region of Convergence** of $H(z)$
 
     - one can also prove the reciprocal, so there is equivalence
 
@@ -749,13 +749,13 @@ If there are **non-zero** initial conditions, there is a **third component** as 
 ### Transient and permanent response
 
 - For a **stable** system, all system poles $|p_k| < 1$
-  - therefore, both natural response and zero-input repsonse are made of decreasing exponentials
+  - therefore, both natural response and zero-input response are made of decreasing exponentials
 
 - For a stable system, the natural response and the zero-input response
 **die out exponentially**
 
-- Thus, the natural response and the zero-input repsonse are called **transient** response
-    - they fadea away, usually quickly
+- Thus, the natural response and the zero-input response are called **transient** response
+    - they fade away, usually quickly
 
 - Input signals last indefinitely => the forced response is a **permanent response**
 
@@ -767,7 +767,7 @@ Operating regimes:
 
 - When the transient response has died out, the system remains in **permanent regime**, where only the input signal determines the output
 
-Example: apply a infinitely long sinusoidal, starting from $n=0$
+Example: apply a infinitely long sinusoid, starting from $n=0$
 
   - the output has some irregularities at the beginning, due to the natural responses
 
