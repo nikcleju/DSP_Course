@@ -622,7 +622,7 @@ plt.close(fig)
   $$\begin{split}
   x[n] &= \frac{1}{2\pi} \int_{-\pi}^0 X(\omega) e^{j \omega n} + \frac{1}{2\pi} \int_0^\pi X(\omega) e^{j \omega n} d\omega\\
        &= \frac{1}{2\pi} \int_0^\pi (X(\omega) e^{j \omega n}  + X(-\omega) e^{j (-\omega) n} ) d\omega\\
-       &= \frac{1}{2\pi} \int_0^\pi 2|X(\omega)| ( e^{j \omega n + \angle{X(\omega)}}  +  e^{- j \omega n - \angle{X(\omega)}} ) d\omega\\
+       &= \frac{1}{2\pi} \int_0^\pi |X(\omega)| ( e^{j \left(\omega n + \angle{X(\omega)} \right)}  +  e^{- j \left(\omega n - \angle{X(\omega)}\right)} ) d\omega\\
        &= \frac{1}{2\pi} \int_0^\pi 2 |X(\omega)| \cos(\omega n + \angle X(\omega))d\omega
   \end{split}$$
 
