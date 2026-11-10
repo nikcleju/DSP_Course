@@ -47,8 +47,8 @@ of LTI systems:
   $$\cos(\omega n) = \frac{e^{j \omega n} + e^{-j \omega n}}{2}$$
   $$\sin(\omega n) = \cos(\omega n - \frac{\pi}{2})$$
 
-- System is linear and real => 
-  
+- System is linear and real =>
+
     - amplitude is multiplied by $|H(\omega_0)|$
     - phase is shifted by $\angle H(\omega_0)$
 
@@ -65,9 +65,9 @@ of LTI systems:
 - Magnitude response is non-negative: $|H(\omega)| \geq 0$
 
 - Phase response is an angle: $\angle H(\omega) \in (-\pi, \pi]$
-    
+
     - Phase response may have jumps of $2 \pi$ (wrapped phase)
-    - Stitching the pieces in a continuous function = phase *unwrapping*
+    - Stitching the pieces by ignoring the $2 \pi$ jumps = phase *unwrapping*
     - Unwrapped phase: continuous function, may go outside interval $(-\pi, \pi]$
     - Example: at blackboard
 
@@ -77,11 +77,11 @@ of LTI systems:
 
 - The above harmonic signals start at $n = -\infty$.
 
-- What's wrong if the signal starts at some time $n$?
+- What's wrong if the signal starts at some time $n_0$?
 
 ### Permanent and transient response
 
-- What if the signal starts at some time $n$?
+- What if the signal starts at some time $n_0$?
 
 - Total response = transient response + permanent (steady-state) response
 
@@ -109,7 +109,7 @@ $$x[n] = \frac{1}{N} \sum_{k=0}^{N-1}c_k e^{j 2 \pi k n / N}$$
 - So the total output is:
 $$y[n] = \frac{1}{N}\sum_{k=0}^{N-1}c_k H\left(\frac{2 \pi}{N}k\right) e^{j 2 \pi k n / N}$$
 
-- The output is still periodic, same period, same frequencies
+- The output is still periodic, same period, same frequencies (but some frequencies may vanish)
 
 ### Response of LTI systems to non-periodic signals
 
@@ -132,11 +132,11 @@ $$Y(\omega) = X(\omega) \cdot H(\omega)$$
 - In polar form:
 
     - modulus is multiplied
-        
+
         $$|Y(\omega)| = |X(\omega)| \cdot |H(\omega)|$$
-    
+
     - phase is added:
-    
+
         $$\angle{Y(\omega)} = \angle{X(\omega)} + \angle{H(\omega)}$$
 
 ### Response of LTI systems to non-periodic signals
@@ -149,9 +149,9 @@ $$Y(\omega) = X(\omega) \cdot H(\omega)$$
 
 ### Power spectral density
 
-- For a WSS input: $S_{yy}(\omega) = |H(\omega)|^2 \cdot S_{xx}(\omega)$ 
+- For a WSS input: $S_{yy}(\omega) = |H(\omega)|^2 \cdot S_{xx}(\omega)$
 
-- The poles and zeros of $|H(\omega)|^2$ come in reciprocal pairs ($z, 1/z$ and $p, 1/p$) because $|H(\omega)|^2 = H(z) H(z^{-1})$ on the unit circle ($z = e^{j\omega}$)
+- For a filter with real coefficients, the poles and zeros of $|H(\omega)|^2$ come in reciprocal pairs ($z, 1/z$ and $p, 1/p$) because $|H(\omega)|^2 = H(z) H(z^{-1})$ on the unit circle ($z = e^{j\omega}$)
 
 ### Digital filters
 
@@ -178,24 +178,24 @@ $$Y(\omega) = X(\omega) \cdot H(\omega)$$
 
 - Any filter can be implemented, in general, with this number of unit delay blocks ($z^{-1}$)
 
-- Higher order -> better filter transfer function
+- Higher order -> more degrees of freedom, i.e., in general a better filter transfer function
 
     - closer to ideal filter
     - more complex to implement
-    - more delays (bad)
+    - more delays (bad), in general
 
-- Lower order
+- Lower order -> fewer degrees of freedom
 
     - worse transfer function (not close to ideal)
     - simpler, cheaper
-    - faster response
+    - faster response, in general
 
 
 ### Filter design by pole and zero placements
 
 - Based on geometric method
 
-- The gain coefficient must be found by separate condition
+- The gain coefficient must be found from a separate condition
     - i.e. specify the desired magnitude response at one frequency
 
 - Examples at blackboard
@@ -222,23 +222,23 @@ $$Y(\omega) = X(\omega) \cdot H(\omega)$$
    - different frequencies are delayed differently
    - the phase function controls how uniform that delay is across frequencies
 
-- **Linear-phase** filter: delays all frequencies 
-  with the same amount of time 
-   
-   - i.e. the whole signal is delayed, but otherwise not distorted
+- **Linear-phase** filter: delays all frequencies
+  with the same amount of time
+
+   - i.e. the whole signal is delayed, but otherwise not distorted because of the phase
 
    - otherwise, we get distortions
-   
+
 ### Linear-phase filters
 
 - For a sinusoidal signal, extra phase of $2 \pi$ = delay of a period $N = \frac{1}{f}$
 
-- To ensure same delay for all frequencies (in time), 
+- To ensure same delay for all frequencies (in time),
   the phase $\angle H(\omega)$ must be proportional to the frequency
-  
+
     - draw at blackboard
     - hence the name **linear**
- 
+
 ### Linear-phase filters
 
 - Example: consider the following filter with **linear phase** function:
@@ -249,11 +249,11 @@ $$Y(\omega) = X(\omega) \cdot H(\omega)$$
 
     $$y[n] = C \cdot x[n-n_0]$$
 
-- Linear phase means **just a delaying** of the input signal
-    
+- Linear phase produces **just a delay** of the input signal
+
     - Fourier property: $x[n-n_0] <--> X(\omega) e^{-j \omega n_0}$
 
-### Group delay
+<!-- ### Group delay
 
 - Group delay = The time delay experienced by a component at frequency $\omega$ when passing through the filter
 
@@ -262,16 +262,16 @@ $$Y(\omega) = X(\omega) \cdot H(\omega)$$
 - **Group delay** of the filter:
 $$\tau_g(\omega) = -\frac{d}{d \omega}\angle H(\omega)$$
 
-- Linear phase = constant group delay = all frequencies delayed the same = whole signal delayed
+- Linear phase = constant group delay = all frequencies delayed the same = whole signal delayed -->
 
 
 ### Linear-phase FIR filters
 
 What type of filters can have linear phase?
 
-- IIR filters cannot have linear phase (no proof provided) 
+- IIR filters, causal and stable, cannot have linear phase (no proof provided)
 
-- Only FIR filters can have linear phase, and only if they satisfy some symmetry conditions
+- Only FIR filters (causal, stable and with real coefficients) can have linear phase, and only if they satisfy some symmetry conditions
 
 
 ### Symmetry conditions for linear-phase FIR
@@ -306,7 +306,7 @@ What type of filters can have linear phase?
 
 Linear-phase proof for a FIR system with positive symmetry, M = odd
 
-- Only for an example, it is simpler (general case at blackboard)
+- Consider a numerical example, for simplicity (general case at blackboard)
 
 - Suppose we have a FIR filter with $M=5$ coefficients:
   $$h[n] = \lbrace 4, 3, 2, 3, 4 \rbrace$$
@@ -325,27 +325,54 @@ H(\omega) &= \sum_n h[n] e^{- j \omega n} \\
 &= 4 e^0 + 3 e^{-j \omega} + 2 e^{-j 2 \omega} + 3 e^{-j 3 \omega} + 4 e^{-j 4 \omega}\\
 &= e^{-j 2 \omega} (4 e^{j 2 \omega} + 3 e^{j \omega} + 2 + 3 e^{-j \omega} + 4 e^{-j 2 \omega} ) \\
 &= e^{-j 2 \omega} (4 e^{j 2 \omega} + 4 e^{-j 2 \omega} + 3 e^{j \omega} + 3 e^{-j \omega} + 2) \\
-&= e^{-j 2 \omega} (4 \cdot 2 \cos(2 \omega) + 3 \cdot 2 \cos(\omega) + 2 ) \\
-&= \underbrace{    e^{j \angle{H(\omega)}}   }_{e^{j \cdot phase}} \underbrace{|H(\omega)|}_{real} \\
+&= \underbrace{e^{-j 2 \omega}}_{\text{phase}} \underbrace{4 \cdot 2 \cos(2 \omega) + 3 \cdot 2 \cos(\omega) + 2 }_{\text{real}} \\
 \end{aligned}$$
 
-- The phase is $\angle(H(\omega)) = - 2 \omega$, a **linear** function
+- The (generalized) phase is $\Phi(\omega) = - 2 \omega$, a **linear** function
 
 ### Proof explained
 
 Key points in this proof:
 
 - we pull a common factor, so that the first and last terms have the same exponents, but with opposite signs
-- we group first with last term, second with second-to-last:
+- then we group first with last term, second with second-to-last:
   - they have same coefficient in front, because of positive symmetry
     - $e^{jx} + e^{-jx} = 2 \cos(x) = real$
-- everything remaining in the right-side parenthesis is real-valued
+- therefore everything remaining in the right-side parenthesis is **real-valued**, and the only complex term is the factor $e^{-j 2 \omega}$, which is a linear function of $\omega$ (up to some changes in sign of the real part)
 
-Since $H(\omega) = |H(\omega)| e^{j\angle{H(\omega)}}$, we identify the two terms:
+<!-- Since $H(\omega) = |H(\omega)| e^{j\angle{H(\omega)}}$, we identify the two terms:
 
 - $|H(\omega)|$ must be the real part in the right-side
 - $\angle{H(\omega)}$ must be the term $-2\omega$, which is a linear function of $\omega$
-(up to some changes in sign of the real part)
+(up to some changes in sign of the real part) -->
+
+### Generalized linear-phase
+
+$$H(\omega) = \underbrace{e^{-j 2 \omega}}_{\text{phase}} \underbrace{4 \cdot 2 \cos(2 \omega) + 3 \cdot 2 \cos(\omega) + 2 }_{\text{real}}$$
+
+We are tempted to say that the right-side is $|H(\omega)|$, and the phase is $-2 \omega$,
+but this is not strictly correct, because the right-side may be negative, while $|H(\omega)|$ must be non-negative.
+
+Therefore, we can say:
+
+- the magnitude $|H(\omega)|$ is the modulus of the right-side:
+  $$|H(\omega)| = |4 \cdot 2 \cos(2 \omega) + 3 \cdot 2 \cos(\omega) + 2|$$
+
+- the phase $\angle H(\omega)$ is $-2 \omega$ with some jumps of $\pi$ whenever the right-side is negative:
+  $$\angle H(\omega) = -2 \omega + \left\lbrace \begin{matrix} 0, & \text{if right-side} > 0 \\ \pi, & \text{if right-side} < 0 \end{matrix}\right.$$
+
+### Generalized linear-phase
+
+In such cases, we define a transfer function as the product:
+
+$$H(\omega) = A(\omega) e^{j \angle \phi(\omega)}$$
+
+where
+
+- $A(\omega)$ is a real-valued function, which may be negative
+  (i.e. it is $\pm |H(\omega)|$, including the sign of the right-side)
+
+- $\angle \phi(\omega)$ is the generalized phase, which no longer has jumps of $\pi$
 
 ### Other cases
 
@@ -353,7 +380,7 @@ Generalizations:
 
 - the filter length can be anything, as long as it has symmetry
 - if $M$ is even, there is no single term remaining in the middle, but the proof stays the same
-- if we have **negative** symmetry, the terms have opposite signs, and we use: 
+- if we have **negative** symmetry, the terms have opposite signs, and we use:
   $$e^{jx} - e^{-jx} = 2 j \sin(x) = 2 \sin(x) \cdot e^{j \frac{\pi}{2}}$$
 
 ### Zero-phase FIR filters
@@ -362,19 +389,19 @@ Generalizations:
 
 - **Zero-phase** filter = a particular type of linear-phase filter with zero delay
 
-- For a zero-phase filter, the phase response $\angle H(\omega) = 0$
+- For a zero-phase filter, the phase response $\angle H(\omega) = 0$ or $\pi$
 
-  - (Group) delay = derivative of $\angle{H(\omega)}$
-  - delay 0 $\Leftrightarrow$ flat $\angle{H(\omega)}$ $\Leftrightarrow$ $\angle H(\omega) = 0$
-  
+  <!-- - (Group) delay = minus derivative of $\angle{H(\omega)}$
+  - delay 0 $\Leftrightarrow$ flat $\angle{H(\omega)}$ $\Leftrightarrow$ $\angle H(\omega) = 0$ -->
+
 - Delay is 0 $\Leftrightarrow$ symmetry with respect to $h[0]$
 
   - the system cannot be causal
-  
+
 ### Zero-phase FIR filters
 
 - Zero-phase filters must be non-causal
-  
+
   - left side of $h[n]$ symmetrical to right side of $h[n]$
 
 - For causal, we need to delay $h[n]$ to be wholly on the right side => delay
@@ -399,7 +426,7 @@ Generalizations:
 
 ### Example
 
-- Solution: zero-phase filter (positive symmetry, and centered in 0):
+- Solution: zero-phase filter (positive symmetry, and centered at $n=0$):
 - But filter is **not causal** anymore
 
 ![Impulse response of zero-phase filter](img/ZeroPhase_h.png){height=65%}
@@ -430,7 +457,7 @@ Generalizations:
 
 ### Digital oscillators
 
-- **Oscillator** = a system which produces an output signal even in the absence of input
+- **Oscillator** = a system which produces an output signal even in the absence of input (besides an initial impulse / excitation / initial conditions)
 
 - Has a pair of complex conjugate poles **exactly on unit circle** (marginally stable)
 
@@ -446,6 +473,6 @@ Generalizations:
 $$H_I(z) = \frac{1}{H(z)}$$
 
 - Problem: if $H(z)$ has zeros outside unit circle, $H_I(z)$ has poles
-  outside unit circle --> unstable
+  outside unit circle --> unstable, when implemented as a causal system
 
 - Examples at blackboard
